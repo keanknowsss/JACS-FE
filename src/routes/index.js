@@ -23,7 +23,7 @@ const Navigation = () => {
 				<Route path="/tech101" element={<Tech101 />} />
 				<Route path="/repair" element={<Repair />} />
 				<Route path="/about" element={<AboutUs />} />
-				<Route path="*" element={<NotFound />} />
+				<Route path="*" element={<NotFound />} />				
 			</Route>
 		</Routes>
 	);
