@@ -2,7 +2,15 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "#121416",
+        lightWhite: "#EFEFEF" 
+      },
+      fontFamily: {
+        body: ["Montserrat"]
+      }
+    },
   },
   plugins: [],
 }

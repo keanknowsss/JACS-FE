@@ -1,0 +1,107 @@
+@mixin indicator {
+    height: 7px;
+    border: none;
+    border-radius: 2px;
+    margin: auto;
+    background-color: white;
+}
+
+
+nav {
+    height: 3.75rem;
+    padding-inline: 25px;
+}
+
+ul {
+    font-size: 0.938rem;
+}
+
+.home, .shop, .buildYourPC, .forum, .tech101, .repair, .aboutUs {
+    text-align: center;
+}
+
+.home {
+    width: 60px;
+}
+
+.shop {
+    width: 50px;
+}
+
+.buildYourPC {
+    width: 108px;
+}
+
+.forum {
+
+}
+
+.tech101, .repair {
+    width: 77px;
+}
+
+.repair {
+
+}
+
+.aboutUs {
+    width: 88px;
+}
+
+
+.homeIndicator {
+    @include indicator();
+    width: 50px;
+    display: none;
+}
+
+.shopIndicator {
+    @include indicator();
+    width: 40px;
+    display: none;
+}
+
+.BYPCIndicator {
+    @include indicator();
+    display: none;
+    width: 106px;
+}
+
+.forumIndicator {
+    @include indicator();
+    width: 51px;
+    display: none;
+}
+
+.tech101Indicator {
+    @include indicator();
+    width: 63px;
+    display: none;
+}
+
+.repairIndicator {
+    @include indicator();
+    width: 64px;
+    display: none;
+}
+
+.aboutUsIndicator {
+    @include indicator();
+    width: 71px;
+    display: none;
+}
+
+
+
+
+@media (min-width: 640px) {
+    
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (max-width: 976px) {
+    
+}
