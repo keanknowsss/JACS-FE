@@ -1,10 +1,23 @@
+@mixin indicator {
+    height: 7px;
+    border: none;
+    border-radius: 2px;
+    margin: auto;
+    background-color: white;
+}
+
+
 nav {
-    height: 60px;
+    height: 3.75rem;
     padding-inline: 25px;
 }
 
 ul {
-    font-size: 15px;
+    font-size: 0.938rem;
+}
+
+.home, .shop, .buildYourPC, .forum, .tech101, .repair, .aboutUs {
+    text-align: center;
 }
 
 .home {
@@ -15,15 +28,15 @@ ul {
     width: 50px;
 }
 
-.build-your-pc {
-    width: 50px;
+.buildYourPC {
+    width: 108px;
 }
 
 .forum {
 
 }
 
-.tech-101, .repair {
+.tech101, .repair {
     width: 77px;
 }
 
@@ -31,9 +44,55 @@ ul {
 
 }
 
-.about-us {
+.aboutUs {
     width: 88px;
 }
+
+
+.homeIndicator {
+    @include indicator();
+    width: 50px;
+    display: none;
+}
+
+.shopIndicator {
+    @include indicator();
+    width: 40px;
+    display: none;
+}
+
+.BYPCIndicator {
+    @include indicator();
+    display: none;
+    width: 106px;
+}
+
+.forumIndicator {
+    @include indicator();
+    width: 51px;
+    display: none;
+}
+
+.tech101Indicator {
+    @include indicator();
+    width: 63px;
+    display: none;
+}
+
+.repairIndicator {
+    @include indicator();
+    width: 64px;
+    display: none;
+}
+
+.aboutUsIndicator {
+    @include indicator();
+    width: 71px;
+    display: none;
+}
+
+
+
 
 @media (min-width: 640px) {
     
@@ -43,14 +102,6 @@ ul {
     
 }
 
-@media (min-width: 1024px) {
-    
-}
-
-@media (min-width: 1280px) {
-    
-}
-
-@media (min-width: 1536px) {
+@media (max-width: 976px) {
     
 }

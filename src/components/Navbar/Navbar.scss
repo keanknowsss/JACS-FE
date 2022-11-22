@@ -1,0 +1,9 @@
+.active {
+    color: #F66B0E;
+    font-weight: bold;
+}
+
+.active > hr {
+    background-color: #F66B0E;
+    display: block;
+}
