@@ -9,7 +9,6 @@ const Home = () => {
 
 	return (
 		<>
-            <Navbar />
 			<header>Header</header>
 			<main>Main</main>
 			<Footer />
