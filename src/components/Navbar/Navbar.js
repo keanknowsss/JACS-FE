@@ -6,14 +6,12 @@ const Navbar = () => {
 	return (
 		<>
 			<nav className="bg-background flex flex-row items-center justify-between text-lightWhite font-body font-medium">
-				<NavLink to="/">
-					<div className="flex-none">
-						<img
-							src="/assets/images/logo-small.png"
-							width={160}
-							alt="JACS Logo"
-						/>
-					</div>
+				<NavLink to="/" className="flex-none">
+					<img
+						src="/assets/images/logo-small.png"
+						width={160}
+						alt="JACS Logo"
+					/>
 				</NavLink>
 
 				<div className="basis-3/5">
