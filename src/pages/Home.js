@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 const Home = () => {
     useEffect(() => {
@@ -11,7 +12,7 @@ const Home = () => {
             <Navbar />
 			<header>Header</header>
 			<main>Main</main>
-			<footer>Footer</footer>
+			<Footer />
 		</>
 	);
 };
