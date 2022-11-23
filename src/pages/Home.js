@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { Footer } from "../components/Footer"
+
 const Home = () => {
     useEffect(() => {
         document.title = "JACS Home";
@@ -9,7 +11,7 @@ const Home = () => {
 		<>
 			<header>Header</header>
 			<main>Main</main>
-			<footer>Footer</footer>
+			<Footer />
 		</>
 	);
 };
