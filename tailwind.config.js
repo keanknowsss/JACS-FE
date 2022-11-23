@@ -5,10 +5,14 @@ module.exports = {
     extend: {
       colors: {
         background: "#121416",
-        lightWhite: "#EFEFEF" 
+        lightWhite: "#EFEFEF",
+        secondary: {
+          default: "#F66B0E",
+          light: "#F19B61"
+        } 
       },
       fontFamily: {
-        body: ["Montserrat"]
+        main: ["Montserrat"]
       }
     },
   },

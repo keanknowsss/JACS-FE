@@ -1,107 +1,186 @@
+$lightWhite: rgb(239 239 239);
+$background: rgb(18 20 22);
+
 @mixin indicator {
-    height: 7px;
-    border: none;
-    border-radius: 2px;
-    margin: auto;
-    background-color: white;
+	height: 7px;
+	border: none;
+	border-radius: 2px;
+	margin: auto;
+	background-color: #f66b0e;
 }
 
+@mixin test {
+	outline: 1px red solid;
+}
 
+// NavLink
+.active {
+	color: #f66b0e;
+	font-weight: bold;
+}
+
+.active > .homeIndicator,
+.active > .shopIndicator,
+.active > .BYPCIndicator,
+.active > .forumIndicator,
+.active > .tech101Indicator,
+.active > .repairIndicator,
+.active > .aboutUsIndicator {
+	display: block;
+}
+
+.inactive {
+	@apply hover:text-secondary-light transition ease-in duration-150;
+}
+
+// Elements
 nav {
-    height: 3.75rem;
-    padding-inline: 25px;
+	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-main font-medium;
+	height: 3.75rem;
+	padding-inline: 25px;
+
+	ul {
+		font-size: 0.938rem;
+
+		.home,
+		.shop,
+		.buildYourPC,
+		.forum,
+		.tech101,
+		.repair,
+		.aboutUs {
+			text-align: center;
+		}
+
+		.home {
+			width: 60px;
+		}
+
+		.shop {
+			width: 50px;
+		}
+
+		.buildYourPC {
+			width: 108px;
+		}
+
+		.forum {
+		}
+
+		.tech101 {
+			width: 77px;
+		}
+
+		.repair {
+			width: 62px;
+		}
+
+		.aboutUs {
+			width: 88px;
+		}
+
+		.homeIndicator {
+			@include indicator();
+			width: 50px;
+			display: none;
+		}
+
+		.shopIndicator {
+			@include indicator();
+			width: 40px;
+			display: none;
+		}
+
+		.BYPCIndicator {
+			@include indicator();
+			display: none;
+			width: 106px;
+		}
+
+		.forumIndicator {
+			@include indicator();
+			width: 51px;
+			display: none;
+		}
+
+		.tech101Indicator {
+			@include indicator();
+			width: 63px;
+			display: none;
+		}
+
+		.repairIndicator {
+			@include indicator();
+			width: 56px;
+			display: none;
+		}
+
+		.aboutUsIndicator {
+			@include indicator();
+			width: 71px;
+			display: none;
+		}
+	}
+
+	.searchLogo {
+		@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite hover:p-1 hover:border hover:border-lightWhite transition-all ease-in duration-150 text-lightWhite;
+	}
+
+	.searchLogoActive {
+		@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
+	}
+
+	.profileLogo {
+		@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
+		width: 34px;
+		height: 34px;
+	}
+
+	.profileLogo:hover,
+	.searchLogo:hover,
+	.cartIcon:hover {
+		fill: rgba($lightWhite, 0.5);
+		transition: ease-in;
+		transition-duration: 150ms;
+	}
+
+	.cartIcon {
+		@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
+	}
 }
 
-ul {
-    font-size: 0.938rem;
+section {
+	@apply flex justify-center items-center font-main bg-background text-xs pb-5;
+	height: 5.75rem;
+
+	form {
+		height: 35px;
+		padding-inline: 5px;
+
+		.searchInput,
+		select {
+			background: #fff;
+			border-radius: 8px;
+			padding-inline: 0.675rem;
+		}
+
+		.searchInput {
+			width: calc(100% - 12rem);
+		}
+
+		.searchInput::placeholder {
+			color: #4e4e4e;
+		}
+	}
 }
 
-.home, .shop, .buildYourPC, .forum, .tech101, .repair, .aboutUs {
-    text-align: center;
-}
-
-.home {
-    width: 60px;
-}
-
-.shop {
-    width: 50px;
-}
-
-.buildYourPC {
-    width: 108px;
-}
-
-.forum {
-
-}
-
-.tech101, .repair {
-    width: 77px;
-}
-
-.repair {
-
-}
-
-.aboutUs {
-    width: 88px;
-}
-
-
-.homeIndicator {
-    @include indicator();
-    width: 50px;
-    display: none;
-}
-
-.shopIndicator {
-    @include indicator();
-    width: 40px;
-    display: none;
-}
-
-.BYPCIndicator {
-    @include indicator();
-    display: none;
-    width: 106px;
-}
-
-.forumIndicator {
-    @include indicator();
-    width: 51px;
-    display: none;
-}
-
-.tech101Indicator {
-    @include indicator();
-    width: 63px;
-    display: none;
-}
-
-.repairIndicator {
-    @include indicator();
-    width: 64px;
-    display: none;
-}
-
-.aboutUsIndicator {
-    @include indicator();
-    width: 71px;
-    display: none;
-}
-
-
-
+// Queries
 
 @media (min-width: 640px) {
-    
 }
 
 @media (min-width: 768px) {
-    
 }
 
 @media (max-width: 976px) {
-    
 }
