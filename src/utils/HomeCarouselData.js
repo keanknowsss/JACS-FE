@@ -26,6 +26,7 @@ export const categories = [
     description:
       "Lorem ipsum dolor sit amet consectetur. Dolor ullamcorper volutpat eu ut.",
     button: "BUILD MY PC",
+    link: "/buildpc",
   },
   {
     name: "SHOP",
@@ -47,6 +48,7 @@ export const categories = [
     description:
       "Lorem ipsum dolor sit amet consectetur. Dolor ullamcorper volutpat eu ut.",
     button: "BROWSE SHOP ITEMS",
+    link: "/shop",
   },
   {
     name: "REPAIR",
@@ -68,6 +70,7 @@ export const categories = [
     description:
       "Lorem ipsum dolor sit amet consectetur. Dolor ullamcorper volutpat eu ut.",
     button: "CONSULT MY PC",
+    link: "/repair",
   },
   {
     name: "LEARN",
@@ -89,5 +92,6 @@ export const categories = [
     description:
       "Lorem ipsum dolor sit amet consectetur. Dolor ullamcorper volutpat eu ut.",
     button: "LEARN COMPUTER",
+    link: "/tech101",
   },
 ];
