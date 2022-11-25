@@ -13,6 +13,10 @@ $background: rgb(18 20 22);
 	outline: 1px red solid;
 }
 
+@mixin button {
+	@apply py-2 border-lightWhite rounded-md text-sm ease-in-out duration-150 text-center;
+}
+
 // NavLink
 .active {
 	color: #f66b0e;
@@ -30,12 +34,12 @@ $background: rgb(18 20 22);
 }
 
 .inactive {
-	@apply hover:text-secondary-light transition ease-in duration-150;
+	@apply hover:text-secondary-light transition ease-out duration-150;
 }
 
 // Elements
 nav {
-	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-main font-medium;
+	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-main font-medium relative;
 	height: 3.75rem;
 	padding-inline: 25px;
 
@@ -125,7 +129,6 @@ nav {
 	.searchLogo {
 		@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite hover:p-1 hover:border hover:border-lightWhite transition-all ease-in duration-150 text-lightWhite;
 	}
-
 	.searchLogoActive {
 		@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
 	}
@@ -135,21 +138,56 @@ nav {
 		width: 34px;
 		height: 34px;
 	}
-
-	.profileLogo:hover,
-	.searchLogo:hover,
-	.cartIcon:hover {
+	.profileLogoActive {
 		fill: rgba($lightWhite, 0.5);
-		transition: ease-in;
-		transition-duration: 150ms;
+		@apply ease-in duration-150 border border-lightWhite;
 	}
 
 	.cartIcon {
 		@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
 	}
+
+	// ONHOVER: lightens the background
+	.profileLogo:hover,
+	.searchLogo:hover,
+	.cartIcon:hover {
+		fill: rgba($lightWhite, 0.5);
+		@apply ease-in duration-150;
+	}
+
+	// sections
+	.profileSection {
+		@apply bg-primary-default absolute top-13 bottom-0 right-23 px-6 py-5 h-fit w-fit rounded-lg flex flex-col gap-[9px];
+		filter: drop-shadow(4px 4px 7px rgb(0 0 0 / 0.5)) ;
+
+		.profilePicture {
+
+		}
+
+		h1 {
+			@apply font-bold text-xl tracking-tight;
+		}
+
+		.login {
+			@apply border basis-6/12;
+			@include button()
+		}
+		.register {
+			@apply basis-5/12 text-background;
+			@include button();
+			background-color: rgba($lightWhite, 0.8);
+		}
+		.register:hover,
+		.login:hover {
+			font-size: 15px;
+			background-color: white;
+			color: black;
+		}
+	}
 }
 
-section {
+// search Bar
+.searchSection {
 	@apply flex justify-center items-center font-main bg-background text-xs pb-5;
 	height: 5.75rem;
 

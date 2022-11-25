@@ -1,0 +1,1 @@
+export { default as ProfilePicture } from "./user_dp.png";

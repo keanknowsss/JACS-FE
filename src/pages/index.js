@@ -8,3 +8,6 @@ export { default as Tech101 } from "./Tech101";
 export { default as Repair } from "./Repair";
 export { default as AboutUs } from "./AboutUs";
 export { default as NotFound } from "./NotFound";
+
+export { default as Login } from "./Login";
+export { default as Register } from "./Register";

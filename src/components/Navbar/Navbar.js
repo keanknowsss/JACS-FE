@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { ProfilePicture } from "../../assets/placeholder";
 import styles from "./Navbar.module.scss";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const Navbar = () => {
 	const location = useLocation();
 
 	const [searchActive, setSearchActive] = useState(false);
+	const [profileActive, setProfileActive] = useState(false);
+	const [cartActive, setCartActive] = useState(false);
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
 	};
 
+	const handleProfile = (e) => {
+		profileActive ? setProfileActive(false) : setProfileActive(true);
+	};
+
 	useEffect(() => {
 		setSearchActive(false);
-	}, [location])
+		setProfileActive(false);
+	}, [location]);
 
 	return (
 		<>
@@ -125,7 +133,8 @@ const Navbar = () => {
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							className={styles.profileLogo}
+							className={`${ profileActive ? styles.profileLogoActive : null } ${styles.profileLogo}`}
+							onClick={handleProfile}
 						>
 							<path
 								fillRule="evenodd"
@@ -145,10 +154,37 @@ const Navbar = () => {
 						</svg>
 					</div>
 				</div>
+
+				{profileActive ? (
+					<section
+						aria-label="profile dropdown"
+						className={styles.profileSection}						
+					>
+						<div className="flex justify-between">
+							<div>
+								<h1>No Account Signed In</h1>
+								{/* <img src={ProfilePicture} alt="My Profile" className={styles.profilePicture} /> */}
+							</div>
+						</div>
+
+						<hr />
+
+						<div className="flex justify-between mt-1.5">
+							<Link className={styles.login} to="/login">
+								Login
+							</Link>
+							<Link className={styles.register} to="/register">
+								Register
+							</Link>
+						</div>
+					</section>
+				) : null}
+
+				
 			</nav>
 
 			{searchActive ? (
-				<section>
+				<section aria-label="searchbar" className={styles.searchSection}>
 					<form className="basis-3/5 flex justify-between">
 						<input
 							className={styles.searchInput}
