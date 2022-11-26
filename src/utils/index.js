@@ -1,0 +1,1 @@
+export {categories as HomeCarouselData} from './HomeCarouselData';
