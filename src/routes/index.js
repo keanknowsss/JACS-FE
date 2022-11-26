@@ -8,6 +8,8 @@ import {
 	Repair,
 	AboutUs,
 	NotFound,
+	Register,
+	Login,
 } from "../pages";
 import Navbar from "../components/Navbar";
 
@@ -23,7 +25,9 @@ const Navigation = () => {
 				<Route path="/tech101" element={<Tech101 />} />
 				<Route path="/repair" element={<Repair />} />
 				<Route path="/about" element={<AboutUs />} />
-				<Route path="*" element={<NotFound />} />				
+				<Route path="/register" element={<Register />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="*" element={<NotFound />} />		
 			</Route>
 		</Routes>
 	);

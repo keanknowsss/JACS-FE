@@ -1,0 +1,24 @@
+.searchSection {
+	@apply flex justify-center items-center font-montserrat bg-background text-xs pb-5;
+	height: 5.75rem;
+
+	form {
+		height: 35px;
+		padding-inline: 5px;
+
+		.searchInput,
+		select {
+			background: #fff;
+			border-radius: 8px;
+			padding-inline: 0.675rem;
+		}
+
+		.searchInput {
+			width: calc(100% - 12rem);
+		}
+
+		.searchInput::placeholder {
+			color: #4e4e4e;
+		}
+	}
+}

@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-        <main className="px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 w-full h-full justify-center items-center bg-container box-border">
+        <main className="px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 w-full h-full justify-center items-center bg-primary-default box-border">
           <section aria-label="home carousel" className="col-span-1 lg:col-span-2 row-span-3 w-full h-full rounded-t-md lg:rounded-l-md lg:rounded-tr-none">
             <div className="bg-background w-full h-screen lg:h-full shadow-md rounded-md">
               <HomeCarousel categories={HomeCarouselData} />
