@@ -18,9 +18,15 @@ module.exports = {
 					default: "#F66B0E",
 					light: "#F19B61",
 				},
+				accent: {
+					1: "#112B3C",
+					2: "#205375",
+				}
 			},
 			fontFamily: {
-				main: ["Montserrat"],
+				montserrat: ["Montserrat"],
+				catamaran: ["Catamaran"],
+				roboto: ["Roboto"]
 			},
 			spacing: {
 				13: "3.25rem",
