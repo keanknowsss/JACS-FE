@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import styles from "./Profile.module.scss"
 
 
-const Profile = () => {
+const Profile = ({ setProfileActive }) => {
 	return (
-		<section aria-label="profile dropdown" className={styles.profileSection}>
+		<section aria-label="profile dropdown" className={styles.profileSection} onMouseEnter={(e) => setProfileActive(true)} onMouseLeave={(e) => setProfileActive(false)}>
 			<div className="flex justify-between">
 				<div>
 					<h1>No Account Signed In</h1>

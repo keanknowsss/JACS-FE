@@ -8,23 +8,14 @@ const Navbar = () => {
 	const location = useLocation();
 
 	const [searchActive, setSearchActive] = useState(false);
+
 	const [profileActive, setProfileActive] = useState(false);
+	const [isProfileRendered, setProfileRender] = useState(false);
+
 	const [cartActive, setCartActive] = useState(false);
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
-	};
-
-	const handleProfile = (e) => {
-		profileActive ? setProfileActive(false) : setProfileActive(true);
-	};
-
-	const profileActiveTrue = () => {
-		setProfileActive(true);
-	};
-
-	const profileActiveFalse = () => {
-		setProfileActive(false);
 	};
 
 	useEffect(() => {
@@ -141,18 +132,13 @@ const Navbar = () => {
 							</svg>
 						</div>
 
-						<div
-							className={styles.profileLogoContainer}
-							// onMouseEnter={(e)=>setProfileActive(true)}
-							// onMouseLeave={(e)=>setProfileActive(false)}
-						>
+						<div className={`${styles.profileLogoContainer} relative`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
 								className={`${
 									profileActive ? styles.profileLogoActive : null
 								} ${styles.profileLogo}`}
-								onClick={handleProfile}
 							>
 								<path
 									fillRule="evenodd"
@@ -160,13 +146,14 @@ const Navbar = () => {
 									clipRule="evenodd"
 								/>
 							</svg>
+							<div
+								className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-45%] w-10 h-12"
+								onMouseEnter={(e) => setProfileActive(true)}
+								onMouseLeave={(e) => setProfileActive(false)}
+							></div>
 						</div>
 
-						<div
-							className="inline-flex items-center h-15"
-							onMouseMove={profileActiveTrue}
-							onMouseLeave={profileActiveFalse}
-						>
+						<div className="inline-flex items-center h-15">
 							<svg
 								viewBox="0 0 24 24"
 								xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +167,11 @@ const Navbar = () => {
 					</div>
 				</div>
 
-				{profileActive ? <Profile /> : null}
+				{profileActive ? (
+					<Profile
+						setProfileActive={setProfileActive}
+					/>
+				) : null}
 			</nav>
 
 			{searchActive ? <Search /> : null}
