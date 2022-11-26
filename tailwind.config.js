@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       colors: {
         background: "#121416",
-        lightWhite: "#EFEFEF",
-        container: "#1E2126", 
+        container: "#1E2126",
+        lightWhite: "#EFEFEF" 
       },
       fontFamily: {
         body: ["Montserrat"]
