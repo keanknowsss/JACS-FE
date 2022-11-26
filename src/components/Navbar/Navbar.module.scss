@@ -39,8 +39,7 @@ $background: rgb(18 20 22);
 
 // Elements
 nav {
-	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-main font-medium relative;
-	height: 3.75rem;
+	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-main font-medium relative h-15;
 	padding-inline: 25px;
 
 	ul {
@@ -133,14 +132,18 @@ nav {
 		@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
 	}
 
-	.profileLogo {
-		@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
-		width: 34px;
-		height: 34px;
-	}
-	.profileLogoActive {
-		fill: rgba($lightWhite, 0.5);
-		@apply ease-in duration-150 border border-lightWhite;
+	.profileLogoContainer {
+		@apply inline-flex items-center h-15;
+
+		.profileLogo {
+			@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
+			width: 34px;
+			height: 34px;
+		}
+		.profileLogoActive {
+			fill: rgba($lightWhite, 0.5);
+			@apply ease-in duration-150 border border-lightWhite;
+		}
 	}
 
 	.cartIcon {
@@ -156,61 +159,9 @@ nav {
 	}
 
 	// sections
-	.profileSection {
-		@apply bg-primary-default absolute top-13 bottom-0 right-23 px-6 py-5 h-fit w-fit rounded-lg flex flex-col gap-[9px];
-		filter: drop-shadow(4px 4px 7px rgb(0 0 0 / 0.5)) ;
-
-		.profilePicture {
-
-		}
-
-		h1 {
-			@apply font-bold text-xl tracking-tight;
-		}
-
-		.login {
-			@apply border basis-6/12;
-			@include button()
-		}
-		.register {
-			@apply basis-5/12 text-background;
-			@include button();
-			background-color: rgba($lightWhite, 0.8);
-		}
-		.register:hover,
-		.login:hover {
-			font-size: 15px;
-			background-color: white;
-			color: black;
-		}
-	}
 }
 
 // search Bar
-.searchSection {
-	@apply flex justify-center items-center font-main bg-background text-xs pb-5;
-	height: 5.75rem;
-
-	form {
-		height: 35px;
-		padding-inline: 5px;
-
-		.searchInput,
-		select {
-			background: #fff;
-			border-radius: 8px;
-			padding-inline: 0.675rem;
-		}
-
-		.searchInput {
-			width: calc(100% - 12rem);
-		}
-
-		.searchInput::placeholder {
-			color: #4e4e4e;
-		}
-	}
-}
 
 // Queries
 
