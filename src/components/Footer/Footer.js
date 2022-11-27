@@ -1,12 +1,12 @@
 import React from "react";
 
-import "./Footer.module.scss";
+import styles from "./Footer.module.scss";
 import FooterLogo from "../../assets/images/footer logo.png"
 
 const Footer = () => {
   return (
     <>
-      <footer className="">
+      <footer className={styles.footerSection}>
         <div className="p-10 bg-background text-gray-200">
           <div className="max-w-6xl mx-auto">
             <div className=" py-6 flex flex-col lg:flex-row justify-between items-center">
