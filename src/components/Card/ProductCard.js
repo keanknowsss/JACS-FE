@@ -6,9 +6,9 @@ const ProductCard = () => {
     <>
       <div>
         <div className="p-3">
-            <div className="p-1 bg-[#F66B0E] rounded-t-lg rounded-b-lg relative overflow-hidden drop-shadow-xl">
+            <div className="p-1 bg-[#F66B0E] rounded-t-lg rounded-b-lg relative">
               <img
-                className="rounded-t-lg rounded-b-lg w-full h-full object-cover"
+                className="rounded-t-lg rounded-b-lg w-full h-full object-cover "
                 src={ImageCard}
                 alt=""
               />
