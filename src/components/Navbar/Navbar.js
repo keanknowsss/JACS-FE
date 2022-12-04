@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import { Search, Cart, Profile } from "./subcomponents";
 import styles from "./Navbar.module.scss";
@@ -8,11 +8,12 @@ const Navbar = () => {
 	const location = useLocation();
 
 	const [searchActive, setSearchActive] = useState(false);
-
 	const [profileActive, setProfileActive] = useState(false);
-	const [isProfileRendered, setProfileRender] = useState(false);
-
 	const [cartActive, setCartActive] = useState(false);
+
+	// TO CHANGE
+	// check if logged in
+	const LOGGED_IN = false;
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
@@ -118,7 +119,7 @@ const Navbar = () => {
 				</div>
 				<div className="basis-1/5">
 					<div className="float-right">
-						<div className="inline-flex items-center">
+						<div className={styles.logoContainer}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
@@ -132,13 +133,13 @@ const Navbar = () => {
 							</svg>
 						</div>
 
-						<div className={`${styles.profileLogoContainer} relative`}>
+						<div className={styles.logoContainer}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
-								className={`${
-									profileActive ? styles.profileLogoActive : null
-								} ${styles.profileLogo}`}
+								className={`${profileActive && styles.profileLogoActive} ${
+									styles.profileLogo
+								}`}
 							>
 								<path
 									fillRule="evenodd"
@@ -153,28 +154,34 @@ const Navbar = () => {
 							></div>
 						</div>
 
-						<div className="inline-flex items-center h-15">
+						<div className={`${styles.logoContainer}`}>
 							<svg
 								viewBox="0 0 24 24"
 								xmlns="http://www.w3.org/2000/svg"
-								className={styles.cartIcon}
+								className={`${cartActive && styles.cartLogoActive} ${
+									styles.cartLogo
+								}`}
+								onClick={(e) => setCartActive(true)}
 							>
 								<path d="m20.756 5.345c-.191-.219-.466-.345-.756-.345h-13.819l-.195-1.164c-.08-.482-.497-.836-.986-.836h-2.25c-.553 0-1 .447-1 1s.447 1 1 1h1.403l1.86 11.164.045.124.054.151.12.179.095.112.193.13.112.065c.116.047.238.075.367.075h11.001c.553 0 1-.447 1-1s-.447-1-1-1h-10.153l-.166-1h11.319c.498 0 .92-.366.99-.858l1-7c.041-.288-.045-.579-.234-.797zm-1.909 1.655-.285 2h-3.562v-2zm-4.847 0v2h-3v-2zm0 3v2h-3v-2zm-4-3v2h-3l-.148.03-.338-2.03zm-2.986 3h2.986v2h-2.653zm7.986 2v-2h3.418l-.285 2z" />
 								<circle cx="8.5" cy="19.5" r="1.5" />
 								<circle cx="17.5" cy="19.5" r="1.5" />
 							</svg>
+
+							<div
+								className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-45%] w-10 h-12"
+								onMouseEnter={(e) => setCartActive(true)}
+								onMouseLeave={(e) => setCartActive(false)}
+							></div>
 						</div>
 					</div>
 				</div>
 
-				{profileActive ? (
-					<Profile
-						setProfileActive={setProfileActive}
-					/>
-				) : null}
+				{profileActive && <Profile setProfileActive={setProfileActive} LOGGED_IN={LOGGED_IN} />}
+				{cartActive && <Cart setCartActive={setCartActive} LOGGED_IN={LOGGED_IN} />}
 			</nav>
 
-			{searchActive ? <Search /> : null}
+			{searchActive && <Search />}
 
 			<Outlet />
 		</>
