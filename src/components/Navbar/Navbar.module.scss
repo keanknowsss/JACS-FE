@@ -125,15 +125,15 @@ nav {
 		}
 	}
 
-	.searchLogo {
-		@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite hover:p-1 hover:border hover:border-lightWhite transition-all ease-in duration-150 text-lightWhite;
-	}
-	.searchLogoActive {
-		@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
-	}
+	.logoContainer {
+		@apply inline-flex items-center relative h-15;
 
-	.profileLogoContainer {
-		@apply inline-flex items-center h-15;
+		.searchLogo {
+			@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite hover:p-1 hover:border hover:border-lightWhite transition-all ease-in duration-150 text-lightWhite;
+		}
+		.searchLogoActive {
+			@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
+		}
 
 		.profileLogo {
 			@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
@@ -144,11 +144,17 @@ nav {
 			fill: rgba($lightWhite, 0.5);
 			@apply ease-in duration-150 border border-lightWhite;
 		}
+
+		.cartLogo {
+			@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
+		}
+		.cartLogoActive {
+			fill: rgba($lightWhite, 0.5);
+			@apply border border-lightWhite p-1 transition-all ease-in duration-150;
+		}
 	}
 
-	.cartIcon {
-		@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
-	}
+
 
 	// ONHOVER: lightens the background
 	.profileLogo:hover,

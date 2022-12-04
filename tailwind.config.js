@@ -31,11 +31,15 @@ module.exports = {
 				catamaran: ["Catamaran"],
 				roboto: ["Roboto"]
 			},
+			fontSize: {
+				"2xs": "10px"  
+			},
 			spacing: {
 				13: "3.25rem",
 				15: "3.75rem",
 				22: "5.5rem",
 				23: "5.75rem",
+				68: "17rem"
 			},
 		},
 	},
