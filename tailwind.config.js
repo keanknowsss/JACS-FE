@@ -21,6 +21,15 @@ module.exports = {
 					default: "#F66B0E",
 					light: "#F19B61",
 				},
+				blue: {
+					default: "#0066FF"
+				},
+				green: {
+					default: "#23D77E"
+				},
+				red: {
+					default: "#FF2121"
+				},
 				accent: {
 					1: "#112B3C",
 					2: "#205375",

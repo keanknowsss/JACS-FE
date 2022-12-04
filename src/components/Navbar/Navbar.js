@@ -13,7 +13,7 @@ const Navbar = () => {
 
 	// TO CHANGE
 	// check if logged in
-	const LOGGED_IN = true;
+	const LOGGED_IN = false;
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
