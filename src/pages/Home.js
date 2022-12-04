@@ -13,9 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/thumbs";
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "JACS Home";
-  }, []);
+  document.title = "JACS Home";
 
   return (
     <>
