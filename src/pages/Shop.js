@@ -1,6 +1,4 @@
-import { Footer } from "../components/Footer";
 import { useEffect } from "react";
-import React from "react";
 import { ProductCard } from "../components/Card";
 
 const Shop = () => {
@@ -68,9 +66,6 @@ const Shop = () => {
         {/* </div> */}
       </main>
 
-      <div className="block left-0 top-0">
-        <Footer />
-      </div>
     </>
   );
 };
