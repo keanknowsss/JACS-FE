@@ -12,13 +12,14 @@ import {
 	Login,
 } from "../pages";
 import Navbar from "../components/Navbar";
-
+import { Footer } from "../components/Footer";
 
 const Navigation = () => {
 	return (
-		<Routes>
-			<Route path="/" element={<Navbar />}>
-				<Route index element={<Home />} />
+		<>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<Home />} />
 				<Route path="/shop" element={<Shop />} />
 				<Route path="/buildpc" element={<BuildYourPC />} />
 				<Route path="/forum" element={<Forum />} />
@@ -27,9 +28,11 @@ const Navigation = () => {
 				<Route path="/about" element={<AboutUs />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="*" element={<NotFound />} />		
-			</Route>
-		</Routes>
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+			<hr />
+			<Footer />
+		</>
 	);
 };
 
