@@ -13,7 +13,7 @@ const ProductCard = () => {
                 alt=""
               />
               <div class="absolute bottom-1 left-1 right-1 px-4 py-4 bg-gradient-to-t from-black rounded-b-lg">
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Product Name</h3>
+                <h3 class="text-xl text-white font-bold">Product Name</h3>
                 <p class="mt-2 text-sm text-gray-300 sm:justify-left">
                   Some description text. Some dummy text here. Welcome to
                   KindaCode.com

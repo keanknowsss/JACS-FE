@@ -1,8 +1,5 @@
-import { Footer } from "../components/Footer";
 import { useEffect } from "react";
-import React from "react";
 import { ProductCard } from "../components/Card";
-import { ShopSlider } from "../components/PriceRangeSlider";
 
 const Shop = () => {
   useEffect(() => {
