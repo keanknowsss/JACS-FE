@@ -1,5 +1,4 @@
-import React from 'react'
-import "./ShopSlider.scss"
+import ShopSliderScss from "./ShopSlider.module.scss"
 
 
 const ShopSlider = () => {
@@ -16,12 +15,10 @@ e.target.style = color
 
   return (
     <>
-         <div className='bg-container rounded-full items-center justify-center'>
-          <div class="slideContainer">
-            <span className='text-white pr-3 ' >Price Range: 0</span> 
-            <input type="range" min="1" max="99999999" defaultValue="0" id="myRange" class="slider" onMouseMove={sliderMove} />
-            <span className='text-white p-3'>99999999</span>
-          </div>
+         <div className='bg-primary-default rounded-full w-[100%] mt-5 flex justify-between items-center'>
+              <div className='text-white p-3 w-[20  %]' >Price Range: 0</div> 
+              <div className="w-[60%]"><input type="range" min="1" max="99999999" defaultValue="0" id="myRange" class={ShopSliderScss.slider} onInput={sliderMove} /></div>
+              <div className='text-white p-3 w-[15%]'>999</div>
         </div>
 
 

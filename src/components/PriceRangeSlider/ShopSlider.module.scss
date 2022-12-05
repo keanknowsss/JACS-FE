@@ -1,23 +1,19 @@
 .slideContainer {
     width: 75%;
-    margin-top: 50px;
+    margin-top: 10px;
     position: relative;
-    margin-left: 70px;
+    margin-left: 10px;
     padding: 5px;
+    flex: content;
 
 }
 
-// p {
-//     margin-top: 50px;
-//     opacity: 0.7;
-//     color: white;
-// }
 
 .slider{
     -webkit-appearance: none;
 	height: 5px;
-    width: 30%;
-    background: linear-gradient(90deg,#f66b0e 60%, grey 60%);
+    width: 100%;
+    background: linear-gradient(90deg,#f66b0e 0%, grey 0%);
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
@@ -37,21 +33,4 @@
 .slider:hover {
     opacity: 1;
 }
-
-// .slider::after{
-//     content: '999999';
-//     color: white;
-//     left: 80%;
-//     top: 1rem;
-// }
-
-// .slider::before{
-//     content: "0";
-//     color: white;
-//     left: 12%;
-//     top: 30%;
-// }
-
-
-
 
