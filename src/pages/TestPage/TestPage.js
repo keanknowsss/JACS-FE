@@ -1,18 +1,12 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-	ChipIcon,
-	MonitorIcon,
-	MouseIcon,
-	PrinterIcon,
-} from "../../assets/icons";
+import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../assets/icons";
 import FormContainer from "../../components/FormContainer";
 import { InputField } from "../../components/InputField";
+import styles from "./TestPage.module.scss";
 
-import styles from "./Register.module.scss";
-
-const Register = () => {
-	document.title = "Register - Just Another Computer Shop";
+const TestPage = () => {
+	document.title = "Testing";
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -83,18 +77,18 @@ const Register = () => {
 
 			<div className={styles.iconContainer}>
 				<div className={styles.columnIcon}>
-					<PrinterIcon className={styles.printerIcon} />
+					<MouseIcon className={styles.mouseIcon} />
 					<ChipIcon className={styles.chipIcon} />
 				</div>
 				<div className={styles.columnIcon}></div>
 
 				<div className={styles.columnIcon}>
 					<MonitorIcon className={styles.monitorIcon} />
-					<MouseIcon className={styles.mouseIcon} />
+					<PrinterIcon className={styles.printerIcon} />
 				</div>
 			</div>
 		</main>
 	);
 };
 
-export default Register;
+export default TestPage;

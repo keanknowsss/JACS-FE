@@ -1,5 +1,6 @@
 @import "variables";
 
+// compoonents
 @mixin test {
 	outline: 1px red solid;
 }
@@ -12,6 +13,12 @@
 	}
 }
 
+// containers
+@mixin main-container-1 {
+	@apply min-h-screen max-h-max bg-background flex justify-center text-white font-montserrat overflow-x-clip relative;
+}
+
+// breakpoints
 @mixin medium-screen {
 	@media screen and (min-width: 900px) {
 		@content;

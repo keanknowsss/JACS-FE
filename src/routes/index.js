@@ -10,6 +10,9 @@ import {
 	NotFound,
 	Register,
 	Login,
+	UserInformation,
+	SellerRegister,
+	TestPage
 } from "../pages";
 import Navbar from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -26,8 +29,14 @@ const Navigation = () => {
 				<Route path="/tech101" element={<Tech101 />} />
 				<Route path="/repair" element={<Repair />} />
 				<Route path="/about" element={<AboutUs />} />
+
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
+
+				<Route path="/user/information" element={<UserInformation />} />
+				<Route path="/store/registration" element={<SellerRegister />} />
+
+				<Route path="/test" element={<TestPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<hr />

@@ -11,3 +11,7 @@ export { default as NotFound } from "./NotFound";
 
 export { default as Login } from "./Login";
 export { default as Register } from "./Register/Register";
+export { default as UserInformation } from "./UserInformation/UserInformation";
+export { default as SellerRegister } from "./SellerRegister/SellerRegister"
+
+export { default as TestPage } from "./TestPage/TestPage";

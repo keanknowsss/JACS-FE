@@ -2,9 +2,9 @@
 @import "../../styles/variables";
 
 .formContainer {
-	@include main-container-1();
+    @include main-container-1();
 
-	.iconContainer {
+    .iconContainer {
 		@apply absolute w-full h-full flex;
 
 		.columnIcon {
