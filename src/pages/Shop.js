@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { ProductCard } from "../components/Card";
+import { PaginationShop } from "../components/PaginationShop";
 import { ShopSlider } from "../components/PriceRangeSlider";
 import { SearchBar } from "../components/ShopSearch";
 
@@ -20,8 +21,8 @@ const Shop = () => {
           </div>
           <div></div>
           <div className="relative">
-            <div className="p-3 text-secondary-default justify-center items-center mb-2 bg-primary-default rounded w-[100px] h-[2rem] absolute bottom-[-9px] right-0"> 
-              <div className="flex relative justify-center items-center bottom-[8px]">
+            <div className="p-3 text-secondary-default justify-center items-center mb-2 bg-primary-default rounded w-[100px] h-[50px] absolute bottom-[-9px] right-0"> 
+              <div className="flex justify-center items-center bottom-[8px]">
                 <svg
                   class="w-6 h-6"
                   fill="none"
@@ -42,7 +43,7 @@ const Shop = () => {
           </div>
         </div>
         <div class="my-3 h-px bg-secondary-default "></div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-3 md:grid-cols-2 w-full h-full justify-center items-center box-border bg-primary-default rounded-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-3 md:grid-cols-2 w-full h-full justify-center items-center box-border bg-primary-default rounded-lg ">
           <div>
             <ProductCard />
           </div>
@@ -74,6 +75,7 @@ const Shop = () => {
             <ProductCard />
           </div>
         </div>
+        <PaginationShop/>
       </main>
 		</>
 	);

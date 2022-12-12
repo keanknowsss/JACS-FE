@@ -15,7 +15,7 @@ e.target.style = color
 
   return (
     <>
-         <div className='bg-primary-default rounded-full w-[100%] mt-5 flex justify-between items-center'>
+         <div className='bg-primary-default rounded-full w-[100%] mt-5 flex justify-between items-center h-[50px]'>
               <div className='text-white p-3 w-[20  %]' >Price Range: 0</div> 
               <div className="w-[60%]"><input type="range" min="1" max="99999999" defaultValue="0" id="myRange" class={ShopSliderScss.slider} onInput={sliderMove} /></div>
               <div className='text-white p-3 w-[15%]'>999</div>
