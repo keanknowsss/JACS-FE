@@ -4,6 +4,11 @@
 .formContainer {
 	@include main-container-1();
 
+	.formElement {
+		width: min(580px, 100% - 10rem);
+		z-index: 10;
+	}
+
 	.iconContainer {
 		@apply absolute w-full h-full flex;
 

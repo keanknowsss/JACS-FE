@@ -4,8 +4,14 @@
 .formContainer {
 	@include main-container-1();
 
+	.formElement {
+		width: min(580px, 100% - 10rem);
+		z-index: 10;
+	}
+
 	.iconContainer {
-		@apply absolute w-full h-full flex;
+		@apply absolute w-full flex;
+		height: calc(100% - 3rem);
 
 		.columnIcon {
 			@apply w-full h-full relative basis-1/3;

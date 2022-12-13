@@ -45,41 +45,41 @@ const Register = () => {
 
 	return (
 		<main className={styles.formContainer}>
-			<FormContainer submit={submitHandler}>
-				<div data-title="heading">
-					<h1>
-						Sign up to <span>JACS.</span>
-					</h1>
-					<p>
-						Have an account already? <Link to="/login">Login Here</Link>
-					</p>
-				</div>
-
-				<div data-title="inputContainer">
-					<InputField
-						name="username"
-						label="Username"
-						type="text"
-						state={username}
-						setState={setUsername}
-						required={true}
-					/>
-					<InputField
-						name="password"
-						label="Password"
-						type="password"
-						state={password}
-						setState={setPassword}
-						required={true}
-					/>
-				</div>
-
-				<InputField name="agree" reference={checkbox} type="checkbox" />
+			<form onSubmit={submitHandler} className={styles.formElement}>
+				<FormContainer>
+					<div data-title="heading">
+						<h1>
+							Sign up to <span>JACS.</span>
+						</h1>
+						<p>
+							Have an account already? <Link to="/login">Login Here</Link>
+						</p>
+					</div>
+					<div data-title="inputContainer">
+						<InputField
+							name="username"
+							label="Username"
+							type="text"
+							state={username}
+							setState={setUsername}
+							required={true}
+						/>
+						<InputField
+							name="password"
+							label="Password"
+							type="password"
+							state={password}
+							setState={setPassword}
+							required={true}
+						/>
+					</div>
+					<InputField name="agree" reference={checkbox} type="checkbox" />
 				
-				<button type="submit" className={styles.registerButton}>
-					Register
-				</button>
-			</FormContainer>
+					<button type="submit">
+						Register
+					</button>
+				</FormContainer>
+			</form>
 
 			<div className={styles.iconContainer}>
 				<div className={styles.columnIcon}>

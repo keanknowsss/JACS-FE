@@ -1,14 +1,11 @@
 import styles from "./FormContainer.module.scss";
 
-const FormContainer = ({ submit, children }) => {
-    const defaultSubmit = (e) => {
-        e.preventDefault();
-    }
-
+const FormContainer = ({ children }) => {
+	
 	return (
-		<form className={styles.formContainer} onSubmit={submit ? submit : defaultSubmit}>
+		<div className={styles.formContainer}>
 			{children}
-		</form>
+		</div>
 	);
 };
 

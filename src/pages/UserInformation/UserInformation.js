@@ -23,53 +23,53 @@ const UserInformation = () => {
 
 	return (
 		<main className={styles.formContainer}>
-			<FormContainer submit={submitHandler}>
-				<div data-title="heading">
-					<h1>User Information</h1>
-					<p>Please fill out necessary information</p>
-				</div>
-
-				<div data-title="inputContainer">
-					<div className="flex gap-3">
-						<InputField
-							name="firstName"
-							label="First Name"
-							type="text"
-							state={firstName}
-							setState={setFirstName}
-							required={true}
-						/>
-						<InputField
-							name="lastName"
-							label="Last Name"
-							type="text"
-							state={lastName}
-							setState={setLastName}
-							required={true}
-						/>
+			<form className={styles.formElement}>
+				<FormContainer submit={submitHandler}>
+					<div data-title="heading">
+						<h1>User Information</h1>
+						<p>Please fill out necessary information</p>
 					</div>
-					<InputField
-						name="contactNumber"
-						label="Contact Number"
-						type="tel"
-						state={contactNumber}
-						setState={setContactNumber}
-						required={true}
-					/>
-					<InputField
-						name="email"
-						label="Email"
-						type="email"
-						state={email}
-						setState={setEmail}
-						required={true}
-					/>
-
-					<button type="submit" className={styles.saveButton}>
-						Save
-					</button>
-				</div>
-			</FormContainer>
+					<div data-title="inputContainer">
+						<div className="flex gap-3">
+							<InputField
+								name="firstName"
+								label="First Name"
+								type="text"
+								state={firstName}
+								setState={setFirstName}
+								required={true}
+							/>
+							<InputField
+								name="lastName"
+								label="Last Name"
+								type="text"
+								state={lastName}
+								setState={setLastName}
+								required={true}
+							/>
+						</div>
+						<InputField
+							name="contactNumber"
+							label="Contact Number"
+							type="tel"
+							state={contactNumber}
+							setState={setContactNumber}
+							required={true}
+						/>
+						<InputField
+							name="email"
+							label="Email"
+							type="email"
+							state={email}
+							setState={setEmail}
+							required={true}
+						/>
+						<button type="submit" className={styles.saveButton}>
+							Save
+						</button>
+					</div>
+				</FormContainer>
+			</form>
 
 			<div className={styles.iconContainer}>
 				<div className={styles.columnIcon}>

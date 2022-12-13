@@ -34,7 +34,7 @@ const Navigation = () => {
 				<Route path="/login" element={<Login />} />
 
 				<Route path="/user/information" element={<UserInformation />} />
-				<Route path="/store/registration" element={<SellerRegister />} />
+				<Route path="/store/register" element={<SellerRegister />} />
 
 				<Route path="/test" element={<TestPage />} />
 				<Route path="*" element={<NotFound />} />
