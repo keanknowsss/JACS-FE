@@ -1,5 +1,5 @@
-@import "../../styles/mixins";
-@import "../../styles/variables";
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
 
 .formTitleContainer {
 	@apply bg-background flex justify-center text-center font-montserrat pt-11;
@@ -21,14 +21,14 @@
 }
 
 .formContainer {
-    @include main-container-1();
+	@include main-container-1();
 	padding-top: 0;
 
-    .formElement {
-		@apply flex-col items-center;
-        width: min(580px, 100% - 10rem);
+	.formElement {
+		width: min(580px, 100% - 10rem);
 		z-index: 10;
-    }
+		@apply flex-col items-center;
+	}
 
 	.iconContainer {
 		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
@@ -48,29 +48,6 @@
                     stroke: $primary-default;
                 }
             }
-			
-			.mouseIcon {
-                width: 235.77px;
-                left: 22%;
-                top: 9%;
-                transform: rotate(14.54deg);
-    
-                g {
-                    stroke-width: 0.8;
-                }
-            }
-			
-			.printerIcon {
-                right: -9%;
-                top: -20%;
-                transform: rotate(14.31deg);
-                width: 318.47px;
-    
-                g {
-                    stroke-width: 0.7;
-                    fill: $background;
-                }
-            }
             .chipIcon1, .chipIcon2 {
                 width: 190.29px;
     
@@ -81,14 +58,14 @@
                 }
             }
             .chipIcon1 {
-                transform: rotate(14.77deg);
-                top: 20%;
-                left: -5%;
+                transform: rotate(-11.92deg);
+                right: -10%;
+                top: 4%;
             }
             .chipIcon2 {
-                transform: rotate(28.14deg);
-                top: 0%;
-                right: 28%;
+                transform: rotate(114.58deg);
+                top: 405;
+                right: -20%;
             }
     
             .monitorIcon1, .monitorIcon2 {
@@ -100,19 +77,38 @@
                 }
             }
             .monitorIcon1 {
-                transform: rotate(-20.13deg);
-                right: 0%;
-                top: 32%
+                transform: rotate(19.83deg);
+                left: -15%;
+                bottom: 30%;
             }
             .monitorIcon2 {
-                transform: rotate(18.64deg);
-                bottom: 19%;
-                right: 24%;
+                transform: rotate(-37.67deg);
+                bottom: 20%;
+                left: 30%;
             }
 
-            
+            .printerIcon {
+                left: -10%;
+                top: -30%;
+                transform: rotate(-13.13deg);
+                width: 318.47px;
     
-            
+                g {
+                    stroke-width: 0.7;
+                    fill: $background;
+                }
+            }
+    
+            .mouseIcon {
+                width: 235.77px;
+                right: 12%;
+                bottom: 15%;
+                transform: rotate(30.42deg);
+    
+                g {
+                    stroke-width: 0.8;
+                }
+            }
         }
 	}
 }

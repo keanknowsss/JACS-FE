@@ -5,11 +5,11 @@ import {
 	MonitorIcon,
 	MouseIcon,
 	PrinterIcon,
-} from "../../assets/icons";
-import FormContainer from "../../components/FormContainer";
-import { InputField } from "../../components/InputField";
+} from "../../../../assets/icons";
+import FormContainer from "../../../../components/FormContainer";
+import InputField from "../../../../components/InputField";
 
-import styles from "./Register.module.scss";
+import styles from "./UserRegister.module.scss";
 
 const Register = ({ title }) => {
 	document.title = title;

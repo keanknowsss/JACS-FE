@@ -4,13 +4,13 @@ import {
 	MonitorIcon,
 	MouseIcon,
 	PrinterIcon,
-} from "../../assets/icons";
-import FormContainer from "../../components/FormContainer";
-import { InputField } from "../../components/InputField";
-import styles from "./UserInformation.module.scss";
+} from "../../../../assets/icons";
+import FormContainer from "../../../../components/FormContainer";
+import InputField from "../../../../components/InputField";
+import styles from "./UserProfile.module.scss";
 
-const UserInformation = () => {
-	document.title = "User Information - Just Another Computer Shop";
+const UserInformation = ({ title }) => {
+	document.title = title;
 
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");

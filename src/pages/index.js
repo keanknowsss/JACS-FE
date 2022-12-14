@@ -9,10 +9,13 @@ export { default as Repair } from "./Repair";
 export { default as AboutUs } from "./AboutUs";
 export { default as NotFound } from "./NotFound";
 
+// FORMS
 export { default as Login } from "./Login";
-export { default as Register } from "./Register/Register";
-export { default as UserInformation } from "./UserInformation/UserInformation";
-export { default as SellerRegister } from "./SellerRegister/SellerRegister";
-export { default as TechnicianRegister } from "./TechnicianRegister/TechnicianRegister";
+
+export { default as UserRegister } from "./FormPages/User/Register";
+export { default as UserProfile } from "./FormPages/User/Profile";
+
+export { default as StoreRegister } from "./FormPages/Store/Register";
+export { default as TechnicianRegister } from "./FormPages/Technician/Register";
 
 export { default as TestPage } from "./TestPage/TestPage";

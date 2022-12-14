@@ -8,15 +8,15 @@ import {
 	Repair,
 	AboutUs,
 	NotFound,
-	Register,
+	UserRegister,
+	UserProfile,
 	Login,
-	UserInformation,
-	SellerRegister,
+	TechnicianRegister,
+	StoreRegister,
 	TestPage,
-	TechnicianRegister
 } from "../pages";
 import Navbar from "../components/Navbar";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 
 const Navigation = () => {
 	const TITLES = {
@@ -27,10 +27,11 @@ const Navigation = () => {
 		Tech101: "JACS Tech101 - Just Another Computer Shop",
 		Repair: "JACS Repair - Just Another Computer Shop",
 		About: "About JACS - Just Another Computer Shop",
-		Register: "Create an Account - Just Another Computer Shop",
+
 		Login: "Login - Just Another Computer Shop",
-		UserInformation: "User Information - Just Another Computer Shop",
-		SellerRegister: "Register Your Store - Just Another Computer Shop",
+		UserRegister: "Create an Account - Just Another Computer Shop",
+		UserProfile: "User Information - Just Another Computer Shop",
+		StoreRegister: "Register Your Store - Just Another Computer Shop",
 		TechnicianRegister: "Register as Technician - Just Another Computer Shop",
 
 		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
@@ -49,11 +50,11 @@ const Navigation = () => {
 				<Route path="/repair" element={<Repair title={TITLES.Repair} />} />
 				<Route path="/about" element={<AboutUs title={TITLES.About} />} />
 
-				<Route path="/register" element={<Register title={TITLES.Register} />} />
 				<Route path="/login" element={<Login title={TITLES.Login} />} />
+				<Route path="/register" element={<UserRegister title={TITLES.UserRegister} />} />
 
-				<Route path="/user/information" element={<UserInformation title={TITLES.UserInformation} />} />
-				<Route path="/store/register" element={<SellerRegister title={TITLES.SellerRegister} />} />
+				<Route path="/user/information" element={<UserProfile title={TITLES.UserProfile} />} />
+				<Route path="/store/register" element={<StoreRegister title={TITLES.StoreRegister} />} />
 				<Route path="/technician/register" element={<TechnicianRegister title={TITLES.TechnicianRegister} />} />
 
 				<Route path="/test" element={<TestPage title={TITLES.Test} />} />

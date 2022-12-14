@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../assets/icons";
 import FormContainer from "../../components/FormContainer";
-import { InputField } from "../../components/InputField";
+import InputField from "../../components/InputField";
 import styles from "./TestPage.module.scss";
 
 const TestPage = ({ title }) => {
