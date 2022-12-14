@@ -19,12 +19,18 @@ const UserInformation = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+		console.log(`
+			first name: ${firstName} \n
+			last name: ${lastName} \n
+			contact number: ${contactNumber} \n
+			email: ${email}
+		`);
 	};
 
 	return (
 		<main className={styles.formContainer}>
-			<form className={styles.formElement}>
-				<FormContainer submit={submitHandler}>
+			<form className={styles.formElement} onSubmit={submitHandler}>
+				<FormContainer>
 					<div data-title="heading">
 						<h1>User Information</h1>
 						<p>Please fill out necessary information</p>
@@ -33,41 +39,45 @@ const UserInformation = () => {
 						<div className="flex gap-3">
 							<InputField
 								name="firstName"
-								label="First Name"
 								type="text"
 								state={firstName}
 								setState={setFirstName}
 								required={true}
-							/>
+							>
+								First Name
+							</InputField>
 							<InputField
 								name="lastName"
-								label="Last Name"
 								type="text"
 								state={lastName}
 								setState={setLastName}
 								required={true}
-							/>
+							>
+								Last Name
+							</InputField>
 						</div>
 						<InputField
 							name="contactNumber"
-							label="Contact Number"
 							type="tel"
 							state={contactNumber}
 							setState={setContactNumber}
 							required={true}
-						/>
+						>
+							Contact Number
+						</InputField>
 						<InputField
 							name="email"
-							label="Email"
 							type="email"
 							state={email}
 							setState={setEmail}
 							required={true}
-						/>
-						<button type="submit" className={styles.saveButton}>
-							Save
-						</button>
+						>
+							Email
+						</InputField>
 					</div>
+					<button type="submit" className={styles.saveButton}>
+						Save
+					</button>
 				</FormContainer>
 			</form>
 

@@ -1,10 +1,7 @@
-import { useEffect } from "react";
 import { ProductCard } from "../components/Card";
 
-const Shop = () => {
-  useEffect(() => {
-    document.title = "JACS Shop";
-  }, []);
+const Shop = ({title}) => {
+  document.title = title;
 
   return (
     <>

@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../assets/icons";
+import {
+	ChipIcon,
+	MonitorIcon,
+	MouseIcon,
+	PrinterIcon,
+} from "../../assets/icons";
 import FormContainer from "../../components/FormContainer";
 import { InputField } from "../../components/InputField";
 
 import styles from "./SellerRegister.module.scss";
 
-const SellerRegister = () => {
-	document.title = "Register Store - Just Another Computer Shop";
+const SellerRegister = ({ title }) => {
+	document.title = title;
 
 	const [storeName, setStoreName] = useState("");
 	const [storeContactNumber, setStoreContactNumber] = useState("");
@@ -69,28 +74,31 @@ const SellerRegister = () => {
 						<div data-title="inputContainer">
 							<InputField
 								name="storeName"
-								label="Store Name"
 								type="text"
 								state={storeName}
 								setState={setStoreName}
 								required={true}
-							/>
+							>
+								Store Name
+							</InputField>
 							<InputField
 								name="storeContactNumber"
-								label="Contact Number"
 								type="tel"
 								state={storeContactNumber}
 								setState={setStoreContactNumber}
 								required={true}
-							/>
+							>
+								Contact Number
+							</InputField>
 							<InputField
 								name="storeEmail"
-								label="Email"
 								type="email"
 								state={storeEmail}
 								setState={setStoreEmail}
 								required={true}
-							/>
+							>
+								Email
+							</InputField>
 						</div>
 					</FormContainer>
 

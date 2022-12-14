@@ -5,8 +5,8 @@ import FormContainer from "../../components/FormContainer";
 import { InputField } from "../../components/InputField";
 import styles from "./TestPage.module.scss";
 
-const TestPage = () => {
-	document.title = "Testing";
+const TestPage = ({ title }) => {
+	document.title = title;
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");

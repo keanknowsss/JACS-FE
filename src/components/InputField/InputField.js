@@ -6,12 +6,13 @@ import {
 	FileAddIcon,
 	FileIcon,
 	InformationIcon,
+	TriangleIcon,
 } from "../../assets/icons";
 import styles from "./InputField.module.scss";
 
 const InputField = ({
+	className, // for tailwind styles
 	name, // for input name
-	label, // label text
 	title, // title for inputs
 	type, // input type/rendering type
 	error, // used in error handling
@@ -21,6 +22,7 @@ const InputField = ({
 	radioGroup, // used in radio buttons
 	value, // value of radio button
 	checked, // for checkbox and radiobuttons
+	selectChoice, // for select box mapping
 	required, // true or false
 	children, // props children
 }) => {
@@ -35,6 +37,7 @@ const InputField = ({
 		}
 	}, [required]);
 
+	const [dropDown, setDropDown] = useState(false);
 	const [information, showInformation] = useState(false);
 	const [passwordVisible, setPasswordVisible] = useState(true); // for password
 
@@ -50,6 +53,16 @@ const InputField = ({
 
 	const fileHandler = (e) => {
 		fileInput.current.click();
+	};
+
+	const dropDownStyle = (e) => {
+		if (dropDown) {
+			setDropDown(false);
+			inputContainer.current.classList.remove(styles.inputActive);
+		} else {
+			setDropDown(true);
+			inputContainer.current.classList.add(styles.inputActive);
+		}
 	};
 
 	// render components via switch based on type
@@ -108,6 +121,66 @@ const InputField = ({
 					<label htmlFor={name}>{children}</label>
 				</div>
 			);
+		case "select":
+			return (
+				<div
+					className={`${styles.inputForm} cursor-pointer ${className}`}
+					ref={inputContainer}
+				>
+					<label htmlFor={name}>{children}</label>
+					<div className={styles.selectBox}>
+						<select
+							name={name}
+							id={name}
+							ref={inputRef}
+							onClick={dropDownStyle}
+							onFocus={(e) => {
+								inputContainer.current.classList.add(styles.inputActive);
+							}}
+							onBlur={(e) => {
+								inputContainer.current.classList.remove(styles.inputActive);
+								setDropDown(false);
+							}}
+							value={state}
+							onChange={(e) => setState(e.target.value)}
+						>
+							{selectChoice.map((choice, key) => {
+								return (
+									<option value={choice.toLowerCase()} key={key}>
+										{choice}
+									</option>
+								);
+							})}
+						</select>
+						<TriangleIcon
+							className={`${styles.selectDropdown} ${
+								dropDown ? styles.dropDownActive : null
+							}`}
+						/>
+					</div>
+				</div>
+			);
+		case "textarea":
+			return (
+				<div
+					className={`${styles.inputForm} ${styles.textAreaForm}`}
+					onClick={(e) => inputRef.current.focus()}
+					ref={inputContainer}
+				>
+					<label htmlFor={name}>{children}</label>
+					<textarea
+						name={name}
+						ref={inputRef}
+						id={name}
+						autoComplete="off"
+						required={required}
+						minLength="1"
+						maxLength="200"
+						value={state}
+						onChange={(e) => setState(e.target.value)}
+					></textarea>
+				</div>
+			);
 		case "title":
 			return (
 				<div className={styles.title}>
@@ -140,11 +213,11 @@ const InputField = ({
 		default: // for texts, tel, email, and passwords
 			return (
 				<div
-					className={styles.inputForm}
+					className={`${styles.inputForm} ${className}`}
 					onClick={(e) => inputRef.current.focus()}
 					ref={inputContainer}
 				>
-					<label htmlFor={name}>{label}</label>
+					<label htmlFor={name}>{children}</label>
 					<input
 						type={type}
 						id={name}

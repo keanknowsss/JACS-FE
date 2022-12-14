@@ -1,6 +1,10 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
+input:focus, select:focus {
+	border-color: black;
+}
+
 .inputForm {
 	@apply max-w-full cursor-text h-[57px] rounded-md px-3 transition-all duration-100 ease-in relative hover:border-primary-1;
 	border: 1px solid rgba($primary-1, 0.5);
@@ -8,6 +12,7 @@
 	label {
 		@apply block text-xs font-light text-primary-1 leading-6  cursor-text transition-all duration-100 ease-in;
 		letter-spacing: 0.005rem;
+		pointer-events: none;
 	}
 
 	input {
@@ -26,6 +31,55 @@
 		display: none;
 	}
 
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	.selectBox {
+		@apply w-full relative cursor-pointer;
+
+		select {
+			@apply appearance-none bg-none cursor-pointer rounded-md;
+			padding-top: 24px;
+			padding-bottom: 7px;
+			margin-top: -30px;
+			margin-left: -12px;
+			padding-left: 12px;
+			color: rgba(black, 0.8);
+
+			background: none;
+			width: max(106%, 100% + 24px);
+
+			option {
+				font-size: 15px;
+				font-weight: 300;
+			}
+		}
+
+		select:hover ~ .selectDropdown {
+			fill: $primary-1;
+		} 
+
+		select:focus ~ label {
+			color: black;
+		}
+
+		.selectDropdown {
+			@apply rotate-180 absolute pointer-events-none transition-opacity duration-75 ease-in;
+			fill: rgba($primary-1, 0.5);
+			right: 10px;
+			top: 7px;
+			height: 10px;
+			transform: scale(2, -1.5);
+		}
+	}
+
 	.eyeIcon {
 		@apply inline-block absolute right-4 top-1/2 translate-y-[-50%] cursor-pointer;
 
@@ -35,12 +89,37 @@
 	}
 }
 
+.textAreaForm {
+	@apply h-full;
+
+	textarea {
+		@apply text-sm w-full h-20;
+		border: none;
+		outline: none;
+		resize: none;
+		width: full;
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+	}
+	textarea:focus {
+		border-color: none;
+	}
+}
+
 .inputActive {
 	border: 1px solid black !important;
 
 	label {
 		color: black !important;
 	}
+	svg {
+		color: $primary-1;
+	}
+}
+
+.dropDownActive {
+	@apply transition-none;
+	transform: scale(2, 1.5) !important;
 }
 
 .checkSection {

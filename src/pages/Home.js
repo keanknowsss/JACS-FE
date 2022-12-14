@@ -9,8 +9,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 
-const Home = () => {
-	document.title = "JACS Home";
+const Home = ({title}) => {
+	document.title = title;
 
 	return (
 		<main className="px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 w-full h-full justify-center items-center bg-primary-default box-border">

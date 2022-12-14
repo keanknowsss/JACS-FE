@@ -11,8 +11,8 @@ import { InputField } from "../../components/InputField";
 
 import styles from "./Register.module.scss";
 
-const Register = () => {
-	document.title = "Register - Just Another Computer Shop";
+const Register = ({ title }) => {
+	document.title = title;
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -58,26 +58,26 @@ const Register = () => {
 					<div data-title="inputContainer">
 						<InputField
 							name="username"
-							label="Username"
 							type="text"
 							state={username}
 							setState={setUsername}
 							required={true}
-						/>
+						>
+							Username
+						</InputField>
 						<InputField
 							name="password"
-							label="Password"
 							type="password"
 							state={password}
 							setState={setPassword}
 							required={true}
-						/>
+						>
+							Password
+						</InputField>
 					</div>
 					<InputField name="agree" reference={checkbox} type="checkbox" />
-				
-					<button type="submit">
-						Register
-					</button>
+
+					<button type="submit">Register</button>
 				</FormContainer>
 			</form>
 
