@@ -16,6 +16,8 @@ export { default as UserRegister } from "./FormPages/User/Register";
 export { default as UserProfile } from "./FormPages/User/Profile";
 
 export { default as StoreRegister } from "./FormPages/Store/Register";
+export { default as StoreProfile } from "./FormPages/Store/Profile";
+
 export { default as TechnicianRegister } from "./FormPages/Technician/Register";
 
 export { default as TestPage } from "./TestPage/TestPage";

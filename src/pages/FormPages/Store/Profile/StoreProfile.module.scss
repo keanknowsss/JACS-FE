@@ -2,10 +2,10 @@
 @import "../../../../styles/variables";
 
 .formTitleContainer {
-	@apply bg-background flex justify-center text-center font-montserrat pt-11;
+	@apply bg-background flex justify-center text-center font-montserrat pt-11 z-30;
 
 	.formTitle {
-		@apply w-fit;
+		@apply w-fit z-20;
 
 		h1 {
 			@apply font-black text-lightWhite uppercase;
@@ -30,7 +30,7 @@
 		@apply flex-col items-center;
 	}
 
-	.iconContainer {
+    .iconContainer {
 		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
 
         .columnIcon {
@@ -48,9 +48,9 @@
             }
             .chipIcon {
                 width: 190.29px;
-                transform: rotate(-11.92deg);
+                transform: rotate(11.92deg);
                 right: -10%;
-                top: 4%;
+                top: 2%;
     
                 g {
                     stroke-width: 1.1;
@@ -60,9 +60,9 @@
     
             .monitorIcon {
                 width: 236.77px;
-                transform: rotate(19.83deg);
-                left: -15%;
-                top: 30%;
+                transform: rotate(-19.83deg);
+                left: -20%;
+                top: 15%;
 
                 g {
                     stroke-width: 1.1;
@@ -73,7 +73,7 @@
             .printerIcon {
                 left: -10%;
                 top: -30%;
-                transform: rotate(-13.13deg);
+                transform: rotate(13.13deg);
                 width: 318.47px;
     
                 g {
@@ -86,7 +86,7 @@
                 width: 235.77px;
                 right: 12%;
                 bottom: 15%;
-                transform: rotate(30.42deg);
+                transform: rotate(-30.42deg);
     
                 g {
                     stroke-width: 0.8;
