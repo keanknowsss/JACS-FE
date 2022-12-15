@@ -12,12 +12,6 @@ import styles from "./TechnicianRegister.module.scss";
 const TechnicianRegister = ({ title }) => {
 	document.title = title;
 
-	const [yearsOfExperience, setYearsOfExperience] = useState();
-	const [areaOfExpertise, setAreaOfExpertise] = useState("any");
-	const [levelOfExpertise, setLevelOfExpertise] = useState("any");
-	const [technicianEmail, setTechnicianEmail] = useState("");
-	const [technicianDescription, setTechnicianDescription] = useState("");
-
 	const [workSetup, setWorkSetup] = useState("onlineRemote");
 	const [technicianAddress, setTechnicianAddress] = useState("");
 
@@ -37,12 +31,6 @@ const TechnicianRegister = ({ title }) => {
 		}
 
 		console.log(`
-			Years of Experience: ${yearsOfExperience}
-			Area of Expertise: ${areaOfExpertise}
-			Level of Expertise: ${levelOfExpertise}
-			Technician Email: ${technicianEmail}
-			Description: ${technicianDescription}
-			
 			Work Setup: ${workSetup}
 			${workSetup === "physicalShop" && technicianAddress}
 			
@@ -56,73 +44,12 @@ const TechnicianRegister = ({ title }) => {
 			<div className={styles.formTitleContainer}>
 				<div className={styles.formTitle}>
 					<h1>TECHNICIAN APPLICATION</h1>
-					<p>Help Clients, Repair Commissions, Earn Money</p>
+					<p>Technician Documents (Application 1 of 2)</p>
 				</div>
 			</div>
 
 			<main className={styles.formContainer}>
 				<form className={styles.formElement} onSubmit={submitHandler}>
-					<FormContainer>
-						<div data-title="heading">
-							<h1>Technician Expertise</h1>
-							<p>This is displayed in your Technician Profile</p>
-						</div>
-						<div data-title="inputContainer">
-							<div className="flex gap-3">
-								<InputField
-									name="yearsExperience"
-									type="number"
-									state={yearsOfExperience}
-									setState={setYearsOfExperience}
-									className={"basis-1/3"}
-									required={true}
-								>
-									Years of Experience
-								</InputField>
-								<InputField
-									className={"basis-2/3"}
-									type="select"
-									name="areaOfExpertise"
-									state={areaOfExpertise}
-									setState={setAreaOfExpertise}
-									selectChoice={["Any", "Hardware", "Software", "Networks"]}
-								>
-									Area of Expertise
-								</InputField>
-							</div>
-							<InputField
-								type="select"
-								name="levelOfExpertise"
-								state={levelOfExpertise}
-								setState={setLevelOfExpertise}
-								selectChoice={[
-									"Amateur",
-									"Intermediate",
-									"Advanced",
-									"Expertise",
-								]}
-							>
-								Level of Expertise
-							</InputField>
-							<InputField
-								name="technicianEmail"
-								type="email"
-								state={technicianEmail}
-								setState={setTechnicianEmail}
-								required={true}
-							>
-								Email
-							</InputField>
-							<InputField
-								name="technicianDescription"
-								type="textarea"
-								state={technicianDescription}
-								setState={setTechnicianDescription}
-							>
-								Description
-							</InputField>
-						</div>
-					</FormContainer>
 					<FormContainer>
 						<div data-title="heading">
 							<h1>Technician Way of Contact</h1>

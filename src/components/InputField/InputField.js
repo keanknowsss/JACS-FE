@@ -106,6 +106,36 @@ const InputField = ({
 					)}
 				</div>
 			);
+		case "number":
+			return (
+				<div
+					className={`${styles.inputForm} ${className}`}
+					onClick={(e) => inputRef.current.focus()}
+					ref={inputContainer}
+				>
+					<label htmlFor={name}>{children}</label>
+					<input
+						type={type}
+						id={name}
+						ref={inputRef}
+						name={name}
+						value={state}
+						min="0"
+						max="100"
+						onChange={(e) => setState(e.target.value)}
+						onFocus={(e) =>
+							inputContainer.current.classList.add(styles.inputActive)
+						}
+						onBlur={(e) =>
+							inputContainer.current.classList.remove(styles.inputActive)
+						}
+						onLoad={(e) => {
+							e.target.required = true;
+							console.log(e.target.required);
+						}}
+					/>
+				</div>
+			)
 		case "radio":
 			return (
 				<div className={styles.radioChoice}>
@@ -236,7 +266,7 @@ const InputField = ({
 							console.log(e.target.required);
 						}}
 					/>
-					{type === "password" && (
+					{type === "password" && state.length > 0 && (
 						<div className={styles.eyeIcon} onClick={passwordVisibleToggler}>
 							{passwordVisible ? <EyeClose /> : <EyeOpen />}
 						</div>

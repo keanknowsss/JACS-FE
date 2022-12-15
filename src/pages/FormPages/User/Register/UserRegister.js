@@ -16,6 +16,7 @@ const Register = ({ title }) => {
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 
 	const checkbox = useRef();
 
@@ -26,20 +27,21 @@ const Register = ({ title }) => {
 	// insert logic for submit
 	const submitHandler = (e) => {
 		e.preventDefault();
-		if (username === user.username) {
-			alert("Username already taken!");
-			return;
-		}
-		if (password.length < 5) {
-			alert("Password must have 5 Characters or more");
-			return;
-		}
 		if (!checkbox.current.checked) {
-			alert(
+			return alert(
 				"You must agree with Terms and Condition and Privacy Policy before Proceeding!"
 			);
-			return;
 		}
+		if (password !== confirmPassword) {
+			return alert("Password Doesn't Match! Please check again");
+		}
+		if (username === user.username) {
+			return alert("Username already taken!");
+		}
+		if (password.length < 5) {
+			return alert("Password must have 5 Characters or more");
+		}
+		
 		alert("Awesome!\nAccount Successfully Created 😊");
 	};
 
@@ -73,6 +75,15 @@ const Register = ({ title }) => {
 							required={true}
 						>
 							Password
+						</InputField>
+						<InputField
+							name="confirmPassword"
+							type="password"
+							state={confirmPassword}
+							setState={setConfirmPassword}
+							required={true}
+						>
+							Confirm Password
 						</InputField>
 					</div>
 					<InputField name="agree" reference={checkbox} type="checkbox" />

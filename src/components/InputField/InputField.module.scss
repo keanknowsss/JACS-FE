@@ -85,6 +85,14 @@ input:focus, select:focus {
 
 		svg {
 			@apply transition delay-100 ease-in-out;
+
+			g {
+				stroke: rgba($primary-1, 0.5);
+			}
+		}
+
+		svg:hover > g {
+			stroke: $primary-1;
 		}
 	}
 }

@@ -37,7 +37,7 @@ const StoreProfile = ({ title }) => {
 				<form className={styles.formElement} onSubmit={registerHandler}>
 					<FormContainer>
 						<div data-title="heading">
-							<h1>Shop Credentials</h1>
+							<h1>Shop Profile</h1>
 							<p>This is displayed in your Shop Profile</p>
 						</div>
 						<div data-title="inputContainer">

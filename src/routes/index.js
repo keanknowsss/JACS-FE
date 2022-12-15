@@ -14,6 +14,7 @@ import {
 	TechnicianRegister,
 	StoreRegister,
 	StoreProfile,
+	TechnicianProfile,
 	TestPage,
 } from "../pages";
 import Navbar from "../components/Navbar";
@@ -34,7 +35,8 @@ const Navigation = () => {
 		UserProfile: "User Profile - JACS User Registeration",
 		StoreRegister: "Register Your Store - JACS Store Registration",
 		StoreProfile: "Store Profile - JACS Store Registration",
-		TechnicianRegister: "Register as Technician - Just Another Computer Shop",
+		TechnicianRegister: "Register as Technician - JACS Technician Registration",
+		TechnicianProfile: "Technician Profile - JACS Technician Registration",
 
 		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
 		Test: "Testing"
@@ -59,6 +61,7 @@ const Navigation = () => {
 				<Route path="/store/register" element={<StoreRegister title={TITLES.StoreRegister} />} />
 				<Route path="/store/information" element={<StoreProfile title={TITLES.StoreProfile} />} />
 				<Route path="/technician/register" element={<TechnicianRegister title={TITLES.TechnicianRegister} />} />
+				<Route path="/technician/profile" element={<TechnicianProfile title={TITLES.TechnicianProfile} />} />
 
 				<Route path="/test" element={<TestPage title={TITLES.Test} />} />
 				<Route path="*" element={<NotFound title={TITLES.NotFound} />} />
