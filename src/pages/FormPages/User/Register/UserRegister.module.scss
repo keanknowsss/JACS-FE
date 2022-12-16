@@ -10,10 +10,11 @@
 	}
 
 	.iconContainer {
-		@apply absolute w-full h-full flex;
+		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
 
-		.columnIcon {
-			@apply w-full h-full relative basis-1/3;
+        .columnIcon {
+            @apply w-full h-full relative;
+        
 
 			.printerIcon,
 			.chipIcon,

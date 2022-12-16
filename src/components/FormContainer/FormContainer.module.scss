@@ -9,12 +9,18 @@
 	div[data-title="heading"] {
 		h1 {
 			@apply text-[32px] font-bold;
-			line-height: 32px;
+			line-height: 36px;
 			letter-spacing: -0.015em;
 
 			span {
 				@apply text-secondary-default;
 			}
+		}
+
+		h2 {
+			@apply font-extralight text-[32px] text-primary-1;
+			line-height: 36px;
+			letter-spacing: -0.015em;
 		}
 
 		p {

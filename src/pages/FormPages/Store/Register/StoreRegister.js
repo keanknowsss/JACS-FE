@@ -152,7 +152,7 @@ const SellerRegister = ({ title }) => {
 								</>
 							)}
 						</div>
-						<button type="submit">Create Store</button>
+						<button type="submit">Submit Documents</button>
 						<p data-title="submit-information">
 							JACS team will review your request, you will receive a response in
 							your email when the request is accepted or rejected within 1-2

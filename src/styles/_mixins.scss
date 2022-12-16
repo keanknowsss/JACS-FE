@@ -6,7 +6,7 @@
 }
 
 @mixin link {
-	@apply text-blue-default;
+	@apply text-blue-default cursor-pointer;
 
 	&:hover {
 		color: rgba($blue-default, 0.8);

@@ -10,7 +10,7 @@ export { default as AboutUs } from "./AboutUs";
 export { default as NotFound } from "./NotFound";
 
 // FORMS
-export { default as Login } from "./Login";
+export { default as Login } from "./FormPages/User/Login";
 
 export { default as UserRegister } from "./FormPages/User/Register";
 export { default as UserProfile } from "./FormPages/User/Profile";
