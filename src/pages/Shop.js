@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ProductCard } from "../components/Card";
 import { PaginationShop } from "../components/PaginationShop";
-import { ShopSlider } from "../components/PriceRangeSlider";
+import { SliderApp } from "../components/PriceRangeSlider";
 import { FilterModal } from "../components/ShopModal";
 import { SearchBar } from "../components/ShopSearch";
 
@@ -18,7 +18,7 @@ const Shop = () => {
         </div>
         <div className="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2 sm:grid-cols-1 sm:grid-rows-2">
           <div>
-            <ShopSlider />
+            <SliderApp />
           </div>
           <div></div>
           <div className="relative">
