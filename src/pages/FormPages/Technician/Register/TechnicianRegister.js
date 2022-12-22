@@ -7,6 +7,7 @@ import {
 } from "../../../../assets/icons";
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
+import Modal from "../../../../components/Modal";
 import styles from "./TechnicianRegister.module.scss";
 
 const TechnicianRegister = ({ title }) => {
@@ -17,6 +18,8 @@ const TechnicianRegister = ({ title }) => {
 
 	const [validID, setValidID] = useState();
 	const [certificateTrainings, setCertificateTrainings] = useState();
+
+	const [showModal, setShowModal] = useState(false);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -29,18 +32,21 @@ const TechnicianRegister = ({ title }) => {
 				"Please upload a file or image of your Certificate of Trainings or Portfolio"
 			);
 		}
-
-		console.log(`
-			Work Setup: ${workSetup}
-			${workSetup === "physicalShop" && technicianAddress}
-			
-			Valid ID File: ${validID.name}
-			Certficate of Trainings: ${certificateTrainings.name}
-		`);
+		setShowModal(true);
 	};
 
 	return (
 		<>
+			<Modal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				type="redirect"
+				link="/"
+				symbol="success"
+			>
+				<h1>Submitted Successfully</h1>
+				<p>You will be updated if the application is verified</p>
+			</Modal>
 			<div className={styles.formTitleContainer}>
 				<div className={styles.formTitle}>
 					<h1>TECHNICIAN APPLICATION</h1>

@@ -1,0 +1,92 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.modalContainer {
+	.backdrop {
+		@apply h-full w-full fixed z-50 top-0 flex justify-center font-montserrat;
+		background: rgba(0, 0, 0, 0.8);
+
+		.modal {
+			@apply bg-accent-1 rounded-xl flex flex-col items-center gap-y-6 h-fit text-center z-[60];
+			width: min(550px, 100% - 2rem);
+			// max-width: 550px;
+			padding: 45px 90px 55px 90px;
+			box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1);
+
+			.symbol {
+				height: 60px;
+				width: 60px;
+				fill: $green-default;
+			}
+
+			div {
+				color: $lightWhite;
+
+				h1 {
+					@apply uppercase text-white;
+					font-weight: 700;
+					font-size: 24px;
+					line-height: 28px;
+				}
+				p {
+					font-weight: normal;
+					font-size: 14px;
+					line-height: 20px;
+				}
+			}
+
+			a {
+				display: block;
+				width: 100%;
+			}
+
+			button {
+				@apply text-secondary-default text-base mt-3 transition-all duration-150 ease-in block rounded-full;
+				padding-block: 10px;
+				border: 3px solid #f66b0e;
+				width: 98%;
+				font-weight: 700;
+
+				&:hover {
+					@apply text-white bg-secondary-default;
+					filter: drop-shadow(0px 4px 23px rgba(246, 107, 14, 0.76));
+				}
+			}
+
+			.formModal {
+				@apply flex flex-col w-full items-center gap-y-5;
+
+				.buttonContainer {
+					@apply flex gap-6;
+					width: 80%;
+				}
+
+				input {
+					@apply bg-accent-2;
+					width: 90%;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 20px;
+
+					padding: 10px 10px;
+					border: 3px solid rgba($secondary-default, 0.8);
+					border-radius: 6px;
+					color: $lightWhite;
+
+					&:focus {
+						outline: none;
+						border-color: $secondary-default;
+					}
+					&:hover {
+						border-color: $secondary-default;
+					}
+				}
+
+				.errorContent {
+					@apply mt-[-15px] text-secondary-default text-sm;
+				}
+
+			}
+		}
+	}
+}

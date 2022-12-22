@@ -1,8 +1,14 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../assets/icons";
+import {
+	ChipIcon,
+	MonitorIcon,
+	MouseIcon,
+	PrinterIcon,
+} from "../../assets/icons";
 import FormContainer from "../../components/FormContainer";
 import InputField from "../../components/InputField";
+import Modal from "../../components/Modal";
 import styles from "./TestPage.module.scss";
 
 const TestPage = ({ title }) => {
@@ -11,6 +17,7 @@ const TestPage = ({ title }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
+	const [showModal, setShowModal] = useState(true);
 	const checkbox = useRef();
 
 	const user = {
@@ -37,57 +44,88 @@ const TestPage = ({ title }) => {
 		alert("Awesome!\nAccount Successfully Created 😊");
 	};
 
+	const [email, setEmail] = useState("");
+
+	const testSubmitHandler = (e) => {
+		e.preventDefault();
+		console.log(email);
+		setShowModal(false);
+	}
+
 	return (
-		<main className={styles.formContainer}>
-			<FormContainer submit={submitHandler}>
-				<div data-title="heading">
-					<h1>
-						Sign up to <span>JACS.</span>
-					</h1>
-					<p>
-						Have an account already? <Link to="/login">Login Here</Link>
-					</p>
-				</div>
+		<>
+			<Modal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				type="input"
+				input="email"
+				value={email}
+				setValue={setEmail}
+				submitHandler={testSubmitHandler}
+			>
+				<h1>Change Password</h1>
+				<p>Input the email associated with your account</p>
+			</Modal>
+			{/* <Modal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				type="redirect"
+				link="/user/information"
+			>
+				<h1>Registration Successful</h1>
+				<p>Fill out the form to proceed to the site</p>
+			</Modal> */}
+			<main className={styles.formContainer}>
+				<FormContainer submit={submitHandler}>
+					<div data-title="heading">
+						<h1>
+							Sign up to <span>JACS.</span>
+						</h1>
+						<p>
+							Have an account already? <Link to="/login">Login Here</Link>
+						</p>
+					</div>
 
-				<div data-title="inputContainer">
-					<InputField
-						name="username"
-						label="Username"
-						type="text"
-						state={username}
-						setState={setUsername}
-						required={true}
-					/>
-					<InputField
-						name="password"
-						label="Password"
-						type="password"
-						state={password}
-						setState={setPassword}
-						required={true}
-					/>
-				</div>
+					<div data-title="inputContainer">
+						<InputField
+							name="username"
+							label="Username"
+							type="text"
+							state={username}
+							setState={setUsername}
+							required={true}
+						/>
+						<InputField
+							name="password"
+							label="Password"
+							type="password"
+							state={password}
+							setState={setPassword}
+							required={true}
+						/>
+					</div>
 
-				<InputField name="agree" reference={checkbox} type="checkbox" />
-				
-				<button type="submit" className={styles.registerButton}>
-					Register
-				</button>
-			</FormContainer>
+					<InputField name="agree" reference={checkbox} type="checkbox" />
 
-			<div className={styles.iconContainer}>
-				<div className={styles.columnIcon}>
-					<MouseIcon className={styles.mouseIcon} />
-					<ChipIcon className={styles.chipIcon} />
-				</div>
-				<div className={styles.columnIcon}></div>
+					<button type="submit" className={styles.registerButton}>
+						Register
+					</button>
+				</FormContainer>
 
-				<div className={styles.columnIcon}>
-					<MonitorIcon className={styles.monitorIcon} />
-					<PrinterIcon className={styles.printerIcon} />
+				<div className={styles.iconContainer}>
+					<div className={styles.columnIcon}>
+						<MouseIcon className={styles.mouseIcon} />
+						<ChipIcon className={styles.chipIcon} />
+					</div>
+					<div className={styles.columnIcon}></div>
+
+					<div className={styles.columnIcon}>
+						<MonitorIcon className={styles.monitorIcon} />
+						<PrinterIcon className={styles.printerIcon} />
+					</div>
 				</div>
-			</div>
-		</main>
+			</main>
+		</>
 	);
 };
 

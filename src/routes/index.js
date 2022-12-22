@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import {
 	Home,
 	Shop,
@@ -19,8 +19,15 @@ import {
 } from "../pages";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 const Navigation = () => {
+	const location = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [location])
+
 	const TITLES = {
 		Home: "JACS Home - Just Another Computer Shop",
 		Shop: "JACS Shop - Just Another Computer Shop",

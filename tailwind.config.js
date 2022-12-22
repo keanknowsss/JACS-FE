@@ -6,9 +6,6 @@ module.exports = {
 			colors: {
 				background: "#121416",
 				lightWhite: "#EFEFEF",
-				blue: {
-					default: "#0066FF",
-				},
 				primary: {
 					default: "#1E2126",
 					1: "#6B728E",

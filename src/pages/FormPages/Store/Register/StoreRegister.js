@@ -7,6 +7,7 @@ import {
 } from "../../../../assets/icons";
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
+import Modal from "../../../../components/Modal";
 
 import styles from "./StoreRegister.module.scss";
 
@@ -18,6 +19,8 @@ const SellerRegister = ({ title }) => {
 	const [bankAccount, setBankAccount] = useState();
 	const [BIRFile, setBIRFile] = useState();
 	const [businessDocument, setBusinessDocument] = useState();
+
+	const [showModal, setShowModal] = useState(false);
 
 	const registerHandler = (e) => {
 		e.preventDefault();
@@ -42,14 +45,21 @@ const SellerRegister = ({ title }) => {
 				);
 			}
 		}
-
-		console.log("store type", storeType);
-		console.log("validID", validID.name);
-		console.log("bankAccount", bankAccount.name);
+		setShowModal(true);
 	};
 
 	return (
 		<>
+			<Modal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				type="redirect"
+				link="/"
+				symbol="success"
+			>
+				<h1>Submitted Successfully</h1>
+				<p>You will be updated if the application is verified</p>
+			</Modal>
 			<div className={styles.formTitleContainer}>
 				<div className={styles.formTitle}>
 					<h1>Create New Shop</h1>
