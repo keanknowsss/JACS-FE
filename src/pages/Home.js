@@ -31,7 +31,7 @@ const Home = () => {
 				<p className="text-white text-2xl font-serif font-bold py-3 pl-3">
 					Most Bought items
 				</p>
-				<div className="rounded-md flex flex-row justify-center items-center">
+				<div className="rounded-md flex flex-row justify-center items-center flex-wrap">
 					<div>
 						<ProductCard />
 					</div>
@@ -48,7 +48,7 @@ const Home = () => {
 				<p className="text-white text-3xl font-serif font-bold py-3 pl-3">
 					Trending items
 				</p>
-				<div className="rounded-md flex flex-row justify-center items-center">
+				<div className="rounded-md flex flex-row justify-center items-center flex-wrap">
 					<div>
 						<ProductCard />
 					</div>

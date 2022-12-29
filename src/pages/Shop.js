@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { ProductCard } from "../components/Card";
-import { PaginationShop } from "../components/PaginationShop";
+// import { ProductCard } from "../components/Card";
+// import { PaginationShop } from "../components/PaginationShop";
 import { SliderApp } from "../components/PriceRangeSlider";
 import { FilterModal } from "../components/ShopModal";
+import { Paginate } from "../components/ShopPaginate";
 import { SearchBar } from "../components/ShopSearch";
 
 const Shop = () => {
@@ -16,18 +17,19 @@ const Shop = () => {
         <div>
           <SearchBar />
         </div>
-        <div className="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2 sm:grid-cols-1 sm:grid-rows-2">
+        <div className="flex justify-between flex-wrap">
           <div>
             <SliderApp />
           </div>
           <div></div>
-          <div className="relative">
+          <div>
             <FilterModal/>
           </div>
         </div>
         <div class="my-3 h-px bg-secondary-default "></div>
-        <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-3 md:grid-cols-2 w-full h-full justify-center items-center box-border bg-primary-default rounded-lg ">
-          <div>
+        <div className="">
+          <Paginate/>
+          {/* <div>
             <ProductCard />
           </div>
           <div>
@@ -56,9 +58,9 @@ const Shop = () => {
           </div>
           <div>
             <ProductCard />
-          </div>
+          </div> */}
         </div>
-        <PaginationShop/>
+        {/* <PaginationShop/> */}
       </main>
 		</>
 	);

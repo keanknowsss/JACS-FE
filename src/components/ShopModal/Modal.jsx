@@ -8,6 +8,9 @@ const Modal = ({open, closeModal}) => {
             <p onClick={closeModal} className={FilterModalScss.closeBtn}>
                 X
             </p>
+            <p className={FilterModalScss.confirmBtn}>
+                    Confirm
+            </p>
                 <div className={FilterModalScss.filterContainer}>
                     <div className={FilterModalScss.filter}>Test</div>
                     <div className={FilterModalScss.filter}>Test</div>
@@ -65,9 +68,6 @@ const Modal = ({open, closeModal}) => {
                     <div className={FilterModalScss.filter}>Test</div>
                     <div className={FilterModalScss.filter}>Test</div>
                     <div className={FilterModalScss.filter}>Test</div>
-                </div>
-                <div className={FilterModalScss.confirmBtn}>
-                    Confirm
                 </div>
 
         </div>

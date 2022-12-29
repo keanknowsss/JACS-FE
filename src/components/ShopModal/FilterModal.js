@@ -5,9 +5,9 @@ const FilterModal = () => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div>
+    <div className="mt-5">
       <button onClick={() => setOpenModal(true)}>
-        <div className="p-3 text-secondary-default justify-center items-center mb-2 bg-primary-default rounded w-[100px] h-[50px] absolute bottom-[-9px] right-0">
+        <div className="p-3 text-secondary-default justify-center items-center mb-2 bg-primary-default rounded w-[100px] h-[50px] ">
           <div className="flex justify-center items-center bottom-[8px]">
             <svg
               class="w-6 h-6"

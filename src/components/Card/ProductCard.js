@@ -7,11 +7,13 @@ const ProductCard = () => {
       <div>
         <div className="p-3">
             <div className="p-1 bg-secondary-default rounded-t-lg rounded-b-lg relative">
+              <div className="h-[20rem] w-[260px]">
               <img
                 className="rounded-t-lg rounded-b-lg w-full h-full object-cover "
                 src={ImageCard}
                 alt=""
               />
+              </div>
               <div class="absolute bottom-1 left-1 right-1 px-4 py-4 bg-gradient-to-t from-black rounded-b-lg">
                 <h3 class="text-xl text-white font-bold">Product Name</h3>
                 <p class="mt-2 text-sm text-gray-300 sm:justify-left">
