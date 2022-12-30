@@ -25,7 +25,8 @@ module.exports = {
 					default: "#23D77E"
 				},
 				red: {
-					default: "#FF2121"
+					default: "#FF2121",
+					secondary: "#ff0000"
 				},
 				accent: {
 					1: "#112B3C",

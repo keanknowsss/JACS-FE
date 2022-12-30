@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	ChipIcon,
 	MonitorIcon,
@@ -9,18 +10,30 @@ import {
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
+import { useLoginMutation } from "../../../../features/api/builders/loginAuthApi";
+import {
+	logOut,
+	selectCurrentToken,
+	setCredentials,
+} from "../../../../features/slice/loginAuthSlice";
 import styles from "./Login.module.scss";
 
 const Login = ({ title }) => {
 	document.title = title;
 
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState({ value: "", error: false });
+	const [password, setPassword] = useState({ value: "", error: false });
 
 	const [passwordModal, setPasswordModal] = useState(false);
 
 	const [emailAccount, setEmailAccount] = useState("");
 	const [emailExist, setEmailExist] = useState(true);
+
+	const [login] = useLoginMutation();
+
+	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
 
 	// dummy account
 	const USER = {
@@ -29,12 +42,51 @@ const Login = ({ title }) => {
 		email: "test@test.com",
 	};
 
-	const submitHandler = (e) => {
+	const token = useSelector(selectCurrentToken);
+
+	useEffect(() => {
+		token && navigate("/");
+	}, [token, navigate]);
+
+	// to remove when logout is created
+	useEffect(() => {
+		dispatch(logOut());
+	}, [dispatch]);
+
+	const submitHandler = async (e) => {
 		e.preventDefault();
-		if (username !== USER.username && password !== USER.password) {
-			setUsername("");
+
+		if (!formValidation(username.value, password.value)) {
+			return;
+		}
+
+		try {
+			const { result } = await login({
+				username: username.value,
+				password: password.value,
+			}).unwrap();
+			const { isVerified } = result;
+			dispatch(setCredentials(result));
 			setPassword("");
-			return alert("Incorrect credentials please input again");
+			setUsername("");
+
+			isVerified
+				? navigate("/")
+				: navigate("/user/information", { state: { fromLogin: true } });
+		} catch (err) {
+			// error logic
+			if (!err?.status) {
+				// isLoading: true until timeout occurs
+				console.log("No Server Response");
+			} else if (err.status === 400) {
+				console.log("Missing Username or Password");
+			} else if (err.status === 401) {
+				// Incorrect Credentials
+				setUsername({ ...username, error: true });
+				setPassword({ ...password, error: true });
+			} else {
+				console.log("Login Failed");
+			}
 		}
 	};
 
@@ -48,6 +100,24 @@ const Login = ({ title }) => {
 			// insert code for toast
 		}
 		// insert code for api
+	};
+
+	const formValidation = (username, password) => {
+		let isFormValid = false;
+		if (username === "") {
+			setUsername({ ...username, error: true });
+			isFormValid = false;
+		} else {
+			isFormValid = true;
+		}
+		if (password === "" || password.length < 5) {
+			setPassword({ ...password, error: true });
+			isFormValid = false;
+		} else {
+			isFormValid = true;
+		}
+
+		return isFormValid;
 	};
 
 	return (

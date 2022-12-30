@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	EyeClose,
@@ -15,7 +15,6 @@ const InputField = ({
 	name, // for input name
 	title, // title for inputs
 	type, // input type/rendering type
-	error, // used in error handling
 	state, // states in page
 	setState,
 	reference, // used in getting value returning to page
@@ -23,7 +22,6 @@ const InputField = ({
 	value, // value of radio button
 	checked, // for checkbox and radiobuttons
 	selectChoice, // for select box mapping
-	required, // true or false
 	children, // props children
 }) => {
 	const inputRef = useRef();
@@ -31,15 +29,12 @@ const InputField = ({
 	const fileInput = useRef();
 	const radioRef = useRef();
 
-	useEffect(() => {
-		if (required && inputRef.current) {
-			inputRef.current.required = required;
-		}
-	}, [required]);
-
 	const [dropDown, setDropDown] = useState(false);
 	const [information, showInformation] = useState(false);
 	const [passwordVisible, setPasswordVisible] = useState(true); // for password
+
+	const [focusData, setFocusData] = useState("");
+	const [errorData, setErrorData] = useState("error-div");
 
 	const passwordVisibleToggler = (e) => {
 		if (passwordVisible) {
@@ -129,10 +124,6 @@ const InputField = ({
 						onBlur={(e) =>
 							inputContainer.current.classList.remove(styles.inputActive)
 						}
-						onLoad={(e) => {
-							e.target.required = true;
-							console.log(e.target.required);
-						}}
 					/>
 				</div>
 			)
@@ -203,7 +194,6 @@ const InputField = ({
 						ref={inputRef}
 						id={name}
 						autoComplete="off"
-						required={required}
 						minLength="1"
 						maxLength="200"
 						value={state}
@@ -246,24 +236,28 @@ const InputField = ({
 					className={`${styles.inputForm} ${className}`}
 					onClick={(e) => inputRef.current.focus()}
 					ref={inputContainer}
-				>
+					data-error={ state.error ? errorData : ""}
+					data-focus={ focusData }
+					>
 					<label htmlFor={name}>{children}</label>
 					<input
 						type={type}
 						id={name}
 						ref={inputRef}
 						name={name}
-						value={state}
-						onChange={(e) => setState(e.target.value)}
-						onFocus={(e) =>
-							inputContainer.current.classList.add(styles.inputActive)
-						}
-						onBlur={(e) =>
-							inputContainer.current.classList.remove(styles.inputActive)
-						}
-						onLoad={(e) => {
-							e.target.required = true;
-							console.log(e.target.required);
+						value={state.value || ""}
+						onChange={(e) => setState({ ...state, value: e.target.value})}
+						onFocus={(e) => { 
+							if (state.error) {
+								setFocusData("error-focus")
+								setErrorData("")
+							} else {
+								setFocusData("focus-div")
+							}
+						}}
+						onBlur={(e) => {
+							setFocusData("");
+							state.error && setErrorData("error-div")
 						}}
 					/>
 					{type === "password" && state.length > 0 && (

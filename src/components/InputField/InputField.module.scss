@@ -1,7 +1,8 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-input:focus, select:focus {
+input:focus,
+select:focus {
 	border-color: black;
 }
 
@@ -64,7 +65,7 @@ input:focus, select:focus {
 
 		select:hover ~ .selectDropdown {
 			fill: $primary-1;
-		} 
+		}
 
 		select:focus ~ label {
 			color: black;
@@ -114,15 +115,30 @@ input:focus, select:focus {
 	}
 }
 
-.inputActive {
-	border: 1px solid black !important;
-
+div[data-focus="error-focus"],
+div[data-focus="focus-div"] {
 	label {
 		color: black !important;
 	}
 	svg {
 		color: $primary-1;
 	}
+}
+
+div[data-focus="focus-div"] {
+	border: 1px solid black !important;
+}
+
+div[data-error="error-div"] {
+		border: 2px solid rgba($red-default, 0.5) !important;
+
+	&:hover {
+		border: 2px solid rgba($red-default, 0.7) !important;
+	}
+}
+
+div[data-focus="error-focus"] {
+	border: 2px solid $red-secondary!important;
 }
 
 .dropDownActive {
