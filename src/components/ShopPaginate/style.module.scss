@@ -8,12 +8,36 @@
     gap: 5rem;
 }
 
+.imageContainer {
+    background-color: #F66B0E;
+    height: 329px;
+    width: 329px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.imageContainerHover{
+    cursor: pointer;
+}
+
+.imageContainerBottom {
+    height: 112px;
+    background-color: #F66B0E;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 .image{
     width: 20rem;
     height: 20rem;
     color: #eee;
     border-radius: 10px;
-    box-shadow: 3px 3px 3px #9e9e9e;
+    // box-shadow: 3px 3px 3px #9e9e9e;
     overflow: hidden;
 }
 
@@ -23,7 +47,7 @@
 }
 
 .pagination {
-    width: 40%;
+    width: 40rem;
     height: 3rem;
     color: white;
     position: relative;
@@ -36,6 +60,8 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .pagination .pageNum{

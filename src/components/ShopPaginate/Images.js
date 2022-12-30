@@ -25,8 +25,20 @@ export default function Images(props) {
         <div className={stylescss.images}>
             {currentItems.map(image => {
                 return(
-                    <div className={stylescss.image}>
-                        <img src={image.url} alt={image.title}/>
+                    <div className={stylescss.imageContainerHover}>
+                    <div className="bg-secondary-default rounded-[10px] inline-block w-auto h-auto">
+                        <div className={stylescss.imageContainer}>
+                            <div className={stylescss.image}>
+                                <img src={image.url} alt={image.title}/>
+                            </div>
+                        </div>
+                        <div className={stylescss.imageContainerBottom}>
+                            <div className="bg-primary-default h-[100px] w-[320px] rounded-[10px]">
+                                
+                            </div>
+
+                        </div>
+                    </div>
                     </div>
                 )
             })}
