@@ -20,13 +20,15 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
+import AuthReset from "./AuthReset";
+import AuthRedirect from "./AuthRedirect";
 
 const Navigation = () => {
 	const location = useLocation();
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	}, [location])
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	const TITLES = {
 		Home: "JACS Home - Just Another Computer Shop",
@@ -46,32 +48,59 @@ const Navigation = () => {
 		TechnicianProfile: "Technician Profile - JACS Technician Registration",
 
 		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
-		Test: "Testing"
-	}
+		Test: "Testing",
+	};
 
 	return (
 		<>
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Home title={TITLES.Home} />} />
-				<Route path="/shop" element={<Shop title={TITLES.Shop} />} />
-				<Route path="/buildpc" element={<BuildYourPC title={TITLES.BuildYourPC} />} />
-				<Route path="/forum" element={<Forum title={TITLES.Forum} />} />
-				<Route path="/tech101" element={<Tech101 title={TITLES.Tech101} />} />
-				<Route path="/repair" element={<Repair title={TITLES.Repair} />} />
-				<Route path="/about" element={<AboutUs title={TITLES.About} />} />
+				{/* reset credentials if not verified */}
+				<Route element={<AuthReset />}>
+					<Route path="/" element={<Home title={TITLES.Home} />} />
+					<Route path="/shop" element={<Shop title={TITLES.Shop} />} />
+					<Route
+						path="/buildpc"
+						element={<BuildYourPC title={TITLES.BuildYourPC} />}
+					/>
+					<Route path="/forum" element={<Forum title={TITLES.Forum} />} />
+					<Route path="/tech101" element={<Tech101 title={TITLES.Tech101} />} />
+					<Route path="/repair" element={<Repair title={TITLES.Repair} />} />
+					<Route path="/about" element={<AboutUs title={TITLES.About} />} />
 
-				<Route path="/login" element={<Login title={TITLES.Login} />} />
-				<Route path="/register" element={<UserRegister title={TITLES.UserRegister} />} />
+					<Route
+						path="/store/register"
+						element={<StoreRegister title={TITLES.StoreRegister} />}
+					/>
+					<Route
+						path="/store/information"
+						element={<StoreProfile title={TITLES.StoreProfile} />}
+					/>
+					<Route
+						path="/technician/register"
+						element={<TechnicianRegister title={TITLES.TechnicianRegister} />}
+					/>
+					<Route
+						path="/technician/profile"
+						element={<TechnicianProfile title={TITLES.TechnicianProfile} />}
+					/>
 
-				<Route path="/user/information" element={<UserProfile title={TITLES.UserProfile} />} />
-				<Route path="/store/register" element={<StoreRegister title={TITLES.StoreRegister} />} />
-				<Route path="/store/information" element={<StoreProfile title={TITLES.StoreProfile} />} />
-				<Route path="/technician/register" element={<TechnicianRegister title={TITLES.TechnicianRegister} />} />
-				<Route path="/technician/profile" element={<TechnicianProfile title={TITLES.TechnicianProfile} />} />
+					<Route path="/test" element={<TestPage title={TITLES.Test} />} />
+					<Route path="*" element={<NotFound title={TITLES.NotFound} />} />
+				</Route>
 
-				<Route path="/test" element={<TestPage title={TITLES.Test} />} />
-				<Route path="*" element={<NotFound title={TITLES.NotFound} />} />
+				{/* user forms:  */}
+				<Route element={<AuthRedirect />}>
+					<Route path="/login" element={<Login title={TITLES.Login} />} />
+					<Route
+						path="/register"
+						element={<UserRegister title={TITLES.UserRegister} />}
+					/>
+					<Route
+						path="/user/information"
+						element={<UserProfile title={TITLES.UserProfile} />}
+					/>
+				</Route>
 			</Routes>
 			<hr />
 			<Footer />

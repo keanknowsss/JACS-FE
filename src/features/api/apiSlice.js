@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { JACS_BE_API } from "../../constants/env";
 
+const TAG_TYPES = ["USER"]
+
 const apiBaseQuery = fetchBaseQuery({
     baseUrl: JACS_BE_API,
     credentials: "include",
@@ -15,5 +17,6 @@ const apiBaseQuery = fetchBaseQuery({
 
 export const apiSlice = createApi({
     baseQuery: apiBaseQuery,
+    tagTypes: TAG_TYPES,
     endpoints: builder => ({})
 });

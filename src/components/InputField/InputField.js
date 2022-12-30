@@ -260,7 +260,7 @@ const InputField = ({
 							state.error && setErrorData("error-div")
 						}}
 					/>
-					{type === "password" && state.length > 0 && (
+					{type === "password" && state.value.length > 0 && (
 						<div className={styles.eyeIcon} onClick={passwordVisibleToggler}>
 							{passwordVisible ? <EyeClose /> : <EyeOpen />}
 						</div>

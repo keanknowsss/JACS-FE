@@ -10,9 +10,9 @@ import {
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
+import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
 import { useLoginMutation } from "../../../../features/api/builders/loginAuthApi";
 import {
-	logOut,
 	selectCurrentToken,
 	setCredentials,
 } from "../../../../features/slice/loginAuthSlice";
@@ -21,8 +21,8 @@ import styles from "./Login.module.scss";
 const Login = ({ title }) => {
 	document.title = title;
 
-	const [username, setUsername] = useState({ value: "", error: false });
-	const [password, setPassword] = useState({ value: "", error: false });
+	const [username, setUsername] = useState(INPUT_INITIAL_VALUE);
+	const [password, setPassword] = useState(INPUT_INITIAL_VALUE);
 
 	const [passwordModal, setPasswordModal] = useState(false);
 
@@ -42,17 +42,6 @@ const Login = ({ title }) => {
 		email: "test@test.com",
 	};
 
-	const token = useSelector(selectCurrentToken);
-
-	useEffect(() => {
-		token && navigate("/");
-	}, [token, navigate]);
-
-	// to remove when logout is created
-	useEffect(() => {
-		dispatch(logOut());
-	}, [dispatch]);
-
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
@@ -67,8 +56,8 @@ const Login = ({ title }) => {
 			}).unwrap();
 			const { isVerified } = result;
 			dispatch(setCredentials(result));
-			setPassword("");
-			setUsername("");
+			setPassword({...password, value: ""});
+			setUsername({...username, value: ""});
 
 			isVerified
 				? navigate("/")
@@ -82,8 +71,8 @@ const Login = ({ title }) => {
 				console.log("Missing Username or Password");
 			} else if (err.status === 401) {
 				// Incorrect Credentials
-				setUsername({ ...username, error: true });
-				setPassword({ ...password, error: true });
+				setUsername({ value: "", error: true });
+				setPassword({ value: "", error: true });
 			} else {
 				console.log("Login Failed");
 			}
@@ -102,19 +91,15 @@ const Login = ({ title }) => {
 		// insert code for api
 	};
 
-	const formValidation = (username, password) => {
-		let isFormValid = false;
-		if (username === "") {
+	const formValidation = (usernameValue, passwordValue) => {
+		let isFormValid = true;
+		if (usernameValue === "") {
 			setUsername({ ...username, error: true });
 			isFormValid = false;
-		} else {
-			isFormValid = true;
 		}
-		if (password === "" || password.length < 5) {
+		if (passwordValue === "" || passwordValue.length < 5) {
 			setPassword({ ...password, error: true });
 			isFormValid = false;
-		} else {
-			isFormValid = true;
 		}
 
 		return isFormValid;

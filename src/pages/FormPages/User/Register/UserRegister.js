@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
 	ChipIcon,
@@ -10,41 +11,102 @@ import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 
+import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
+import { useLoginMutation } from "../../../../features/api/builders/loginAuthApi";
+import { useRegisterUserMutation } from "../../../../features/api/builders/userApi";
+import { setCredentials } from "../../../../features/slice/loginAuthSlice";
+
 import styles from "./UserRegister.module.scss";
 
 const Register = ({ title }) => {
 	document.title = title;
 
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const [username, setUsername] = useState(INPUT_INITIAL_VALUE);
+	const [password, setPassword] = useState(INPUT_INITIAL_VALUE);
+	const [confirmPassword, setConfirmPassword] = useState(INPUT_INITIAL_VALUE);
 
 	const [showModal, setShowModal] = useState(false);
 
+	const [register] = useRegisterUserMutation();
+	const [login] = useLoginMutation();
+
+	const dispatch = useDispatch();
+
 	const checkbox = useRef();
 
-	const user = {
-		username: "admin",
-		password: "admin",
-	};
 	// insert logic for submit
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
+
+		if (
+			!formValidation(username.value, password.value, confirmPassword.value)
+		) {
+			checkbox.current.checked = false;
+			return;
+		}
+
+		try {
+			await register({
+				username: username.value,
+				password: password.value,
+			}).unwrap();
+
+			setShowModal(true);
+		} catch (error) {
+			if (!error?.status) {
+				console.log("No Server Response");
+			} else if (error?.status === 400) {
+				const { message } = error.data;
+				setUsername({ ...username, value: "", error: true });
+				setPassword({ value: "", error: true });
+				setConfirmPassword({ value: "", error: true });
+				checkbox.current.checked = false;
+				alert(message);
+			} else {
+				alert("User Registration Failed");
+			}
+			return;
+		}
+
+		try {
+			const { result } = await login({
+				username: username.value,
+				password: password.value,
+			}).unwrap();
+			dispatch(setCredentials(result));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const formValidation = (
+		usernameValue,
+		passwordValue,
+		confirmPasswordValue
+	) => {
+		let isFormValid = true;
+
+		if (usernameValue === "") {
+			setUsername({ ...username, error: true });
+			isFormValid = false;
+		}
+		if (
+			passwordValue === "" ||
+			confirmPasswordValue === "" ||
+			passwordValue.length < 5 ||
+			passwordValue !== confirmPasswordValue
+		) {
+			setPassword({ value: "", error: true });
+			setConfirmPassword({ value: "", error: true });
+			isFormValid = false;
+		}
 		if (!checkbox.current.checked) {
-			return alert(
+			alert(
 				"You must agree with Terms and Condition and Privacy Policy before Proceeding!"
 			);
 		}
-		if (password !== confirmPassword) {
-			return alert("Password Doesn't Match! Please check again");
-		}
-		if (username === user.username) {
-			return alert("Username already taken!");
-		}
-		if (password.length < 5) {
-			return alert("Password must have 5 Characters or more");
-		}
-		setShowModal(true);
+
+		return isFormValid;
 	};
 
 	return (
@@ -60,7 +122,11 @@ const Register = ({ title }) => {
 				<p>Fill out the form to proceed to the site</p>
 			</Modal>
 			<main className={styles.formContainer}>
-				<form onSubmit={submitHandler} className={styles.formElement}>
+				<form
+					onSubmit={submitHandler}
+					className={styles.formElement}
+					noValidate
+				>
 					<FormContainer>
 						<div data-title="heading">
 							<h1>
