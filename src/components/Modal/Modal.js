@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CircleCheck } from "../../assets/icons";
+import { CircleCheck, InformationModal } from "../../assets/icons";
 import styles from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -34,7 +34,7 @@ const Modal = ({
 	showModal, // all
 	setShowModal, // all
 	type, // all
-	symbol, // success,
+	symbol, // success, information
 	link, // REDIRECT Type - link
 	input, // INPUT Type - type of input (text, email, tel)
 	value, // INPUT Type - variable of useState
@@ -96,11 +96,26 @@ const Modal = ({
 		}
 	};
 
+	const ModalIcon = () => {
+		switch (symbol) {
+			case "success":
+				return <CircleCheck className={styles.check} />;
+			case "information":
+				return <InformationModal className={styles.information} />;
+			default:
+				return;
+		}
+	};
+
 	return (
 		<>
 			<AnimatePresence mode="wait">
 				{showModal && (
-					<section className={styles.modalContainer} data-backdrop="static" data-keyboard="false">
+					<section
+						className={styles.modalContainer}
+						data-backdrop="static"
+						data-keyboard="false"
+					>
 						<motion.div
 							className={styles.backdrop}
 							onClick={(e) => {
@@ -118,9 +133,7 @@ const Modal = ({
 								onClick={(e) => e.stopPropagation()}
 								variants={modalVariant}
 							>
-								{symbol === "success" && (
-									<CircleCheck className={styles.symbol} />
-								)}
+								<ModalIcon />
 								<div>
 									{headingContent && <h1>{headingContent}</h1>}
 									{subContent && <p>{subContent}</p>}

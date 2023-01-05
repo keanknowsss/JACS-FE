@@ -13,10 +13,12 @@
 			padding: 45px 90px 55px 90px;
 			box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1);
 
-			.symbol {
+			.check {
+				fill: $green-default;
+			}
+			.information, .check {
 				height: 60px;
 				width: 60px;
-				fill: $green-default;
 			}
 
 			div {

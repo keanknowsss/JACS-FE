@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
 	ChipIcon,
@@ -12,9 +12,8 @@ import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
-import { useLoginMutation } from "../../../../features/api/builders/loginAuthApi";
-import { useRegisterUserMutation } from "../../../../features/api/builders/userApi";
-import { setCredentials } from "../../../../features/slice/loginAuthSlice";
+import { useLoginMutation ,useRegisterUserMutation } from "../../../../features/api/builders/userApi";
+import { setCredentials } from "../../../../features/slice/userAccessSlice";
 
 import styles from "./UserRegister.module.scss";
 

@@ -1,7 +1,15 @@
-import { apiSlice } from "../apiSlice";
+import { apiMiddleware } from "../apiMiddleware";
 
-export const userApi = apiSlice.injectEndpoints({
+export const userApi = apiMiddleware.injectEndpoints({
 	endpoints: (builder) => ({
+		// user
+		login: builder.mutation({
+			query: (credentials) => ({
+				url: "/login",
+				method: "POST",
+				body: credentials,
+			}),
+		}),
 		registerUser: builder.mutation({
 			query: (user) => ({
 				url: "/register",
@@ -18,7 +26,25 @@ export const userApi = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: ["USER"],
 		}),
+		// details
+		addUserDetails: builder.mutation({
+			query: (userDetails) => ({
+				url: "/users/details",
+				method: "POST",
+				body: userDetails
+			})
+		}),
+		getUserDetail: builder.query({
+			query: (id) => `/users/${id}/details`,
+			providesTags: ["USER_DETAILS"]
+		})
 	}),
 });
 
-export const { useRegisterUserMutation, useUpdateUserMutation } = userApi;
+export const {
+	useLoginMutation,
+	useRegisterUserMutation,
+	useUpdateUserMutation,
+	useAddUserDetailsMutation,
+	useGetUserDetailQuery
+} = userApi;

@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import {
 	logOut,
-	selectCurrentUserIsVerified,
-} from "../features/slice/loginAuthSlice";
+	selectCurrentToken,
+} from "../features/slice/userAccessSlice";
 
 const AuthReset = () => {
-	const isVerified = useSelector(selectCurrentUserIsVerified);
+	const token = useSelector(selectCurrentToken);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (!isVerified) {
+		if (!token) {
 			dispatch(logOut());
 		}
-	}, [dispatch, isVerified]);
+	}, [dispatch, token]);
 
 	return <Outlet />;
 };

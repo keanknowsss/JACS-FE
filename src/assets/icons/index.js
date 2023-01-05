@@ -9,3 +9,4 @@ export { default as FileIcon } from "./FileIcon";
 export { default as InformationIcon } from "./InformationIcon";
 export { default as TriangleIcon } from "./TriangleIcon";
 export { default as CircleCheck } from "./CircleCheck";
+export { default as InformationModal } from "./InformationModal";

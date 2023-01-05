@@ -21,7 +21,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
 import AuthReset from "./AuthReset";
-import AuthRedirect from "./AuthRedirect";
 
 const Navigation = () => {
 	const location = useLocation();
@@ -69,6 +68,10 @@ const Navigation = () => {
 					<Route path="/about" element={<AboutUs title={TITLES.About} />} />
 
 					<Route
+						path="/user/information"
+						element={<UserProfile title={TITLES.UserProfile} />}
+					/>
+					<Route
 						path="/store/register"
 						element={<StoreRegister title={TITLES.StoreRegister} />}
 					/>
@@ -90,17 +93,11 @@ const Navigation = () => {
 				</Route>
 
 				{/* user forms:  */}
-				<Route element={<AuthRedirect />}>
-					<Route path="/login" element={<Login title={TITLES.Login} />} />
-					<Route
-						path="/register"
-						element={<UserRegister title={TITLES.UserRegister} />}
-					/>
-					<Route
-						path="/user/information"
-						element={<UserProfile title={TITLES.UserProfile} />}
-					/>
-				</Route>
+				<Route path="/login" element={<Login title={TITLES.Login} />} />
+				<Route
+					path="/register"
+					element={<UserRegister title={TITLES.UserRegister} />}
+				/>
 			</Routes>
 			<hr />
 			<Footer />

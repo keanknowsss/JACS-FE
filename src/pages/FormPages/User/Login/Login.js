@@ -11,11 +11,11 @@ import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
-import { useLoginMutation } from "../../../../features/api/builders/loginAuthApi";
+import { useLoginMutation } from "../../../../features/api/builders/userApi";
 import {
-	selectCurrentToken,
+	logOut,
 	setCredentials,
-} from "../../../../features/slice/loginAuthSlice";
+} from "../../../../features/slice/userAccessSlice";
 import styles from "./Login.module.scss";
 
 const Login = ({ title }) => {
@@ -42,10 +42,14 @@ const Login = ({ title }) => {
 		email: "test@test.com",
 	};
 
+	useEffect(() => {
+		dispatch(logOut());
+	}, []);
+
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
-		if (!formValidation(username.value, password.value)) {
+		if (!formValidation()) {
 			return;
 		}
 
@@ -54,14 +58,11 @@ const Login = ({ title }) => {
 				username: username.value,
 				password: password.value,
 			}).unwrap();
-			const { isVerified } = result;
 			dispatch(setCredentials(result));
-			setPassword({...password, value: ""});
-			setUsername({...username, value: ""});
+			setPassword({ ...password, value: "" });
+			setUsername({ ...username, value: "" });
 
-			isVerified
-				? navigate("/")
-				: navigate("/user/information", { state: { fromLogin: true } });
+			navigate("/", { state: { fromLogin: true } });
 		} catch (err) {
 			// error logic
 			if (!err?.status) {
@@ -91,16 +92,17 @@ const Login = ({ title }) => {
 		// insert code for api
 	};
 
-	const formValidation = (usernameValue, passwordValue) => {
+	const formValidation = () => {
 		let isFormValid = true;
-		if (usernameValue === "") {
+		if (username.value === "") {
 			setUsername({ ...username, error: true });
 			isFormValid = false;
 		}
-		if (passwordValue === "" || passwordValue.length < 5) {
+		if (password.value === "" || password.value.length < 5) {
 			setPassword({ ...password, error: true });
 			isFormValid = false;
 		}
+		!isFormValid && alert("Error: Invalid Inputs!");
 
 		return isFormValid;
 	};
@@ -125,7 +127,11 @@ const Login = ({ title }) => {
 				{!emailExist && <span>Input is not linked to any accounts</span>}
 			</Modal>
 			<main className={styles.formContainer}>
-				<form className={styles.formElement} onSubmit={submitHandler}>
+				<form
+					className={styles.formElement}
+					onSubmit={submitHandler}
+					noValidate
+				>
 					<FormContainer>
 						<div data-title="heading">
 							<h2>Welcome Back</h2>

@@ -8,9 +8,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectHasData } from "../features/slice/userAccessSlice";
 
-const Home = ({title}) => {
+const Home = ({ title }) => {
 	document.title = title;
+
+	const hasData = useSelector(selectHasData);
+
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (location?.state?.fromLogin && !hasData) {
+			navigate("/user/information", {
+				state: { fromLogin: location.state.fromLogin },
+			});
+		}
+	});
 
 	return (
 		<main className="px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 w-full h-full justify-center items-center bg-primary-default box-border">
