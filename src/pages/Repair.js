@@ -1,5 +1,7 @@
 
-const Repair = () => {
+const Repair = ({ title }) => {
+  document.title = title;
+
   return (
     <div>Repair</div>
   )

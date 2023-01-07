@@ -6,10 +6,8 @@ import { FilterModal } from "../components/ShopModal";
 import { Paginate } from "../components/ShopPaginate";
 import { SearchBar } from "../components/ShopSearch";
 
-const Shop = () => {
-  useEffect(() => {
-    document.title = "JACS Shop";
-  }, []);
+const Shop = ({title}) => {
+  document.title = title;
 
 	return (
 		<>

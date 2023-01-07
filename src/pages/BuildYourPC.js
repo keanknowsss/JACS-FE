@@ -1,5 +1,7 @@
 
-const BuildYourPC = () => {
+const BuildYourPC = ({title}) => {
+  document.title = title;
+
   return (
     <div>BuildYourPC</div>
   )

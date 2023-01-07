@@ -6,9 +6,6 @@ module.exports = {
 			colors: {
 				background: "#121416",
 				lightWhite: "#EFEFEF",
-				blue: {
-					default: "#0066FF",
-				},
 				primary: {
 					default: "#1E2126",
 					1: "#6B728E",
@@ -28,7 +25,8 @@ module.exports = {
 					default: "#23D77E"
 				},
 				red: {
-					default: "#FF2121"
+					default: "#FF2121",
+					secondary: "#ff0000"
 				},
 				accent: {
 					1: "#112B3C",
