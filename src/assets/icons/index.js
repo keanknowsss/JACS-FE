@@ -10,3 +10,6 @@ export { default as InformationIcon } from "./InformationIcon";
 export { default as TriangleIcon } from "./TriangleIcon";
 export { default as CircleCheck } from "./CircleCheck";
 export { default as InformationModal } from "./InformationModal";
+export { default as ExitIcon } from "./ExitIcon";
+export { default as WarningIcon } from "./WarningIcon";
+export { default as ErrorIcon } from "./ErrorIcon";

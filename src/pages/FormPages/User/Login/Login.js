@@ -1,3 +1,4 @@
+import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,8 +11,12 @@ import {
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
+import Toast from "../../../../components/Toast";
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
-import { useLoginMutation } from "../../../../features/api/builders/userApi";
+import {
+	useLoginMutation,
+	userApi,
+} from "../../../../features/api/builders/userApi";
 import {
 	logOut,
 	setCredentials,
@@ -26,8 +31,13 @@ const Login = ({ title }) => {
 
 	const [passwordModal, setPasswordModal] = useState(false);
 
+	const [apiErrorToast, showApiErrorToast] = useState(false);
+	const [apiErrorMessage, setApiErrorMessage] = useState(null);
+
 	const [emailAccount, setEmailAccount] = useState("");
 	const [emailExist, setEmailExist] = useState(true);
+
+	const [queryData] = userApi.endpoints.getUserDetail.useLazyQuery();
 
 	const [login] = useLoginMutation();
 
@@ -62,21 +72,29 @@ const Login = ({ title }) => {
 			setPassword({ ...password, value: "" });
 			setUsername({ ...username, value: "" });
 
-			navigate("/", { state: { fromLogin: true } });
+			const { data, isLoading, isFetching } = await queryData(result?._id);
+
+			if (!isLoading && !isFetching) {
+				data?.result
+					? navigate("/", { state: { fromForm: true } })
+					: navigate("/user/information", { state: { fromLogin: true } });
+			}
 		} catch (err) {
 			// error logic
 			if (!err?.status) {
 				// isLoading: true until timeout occurs
-				console.log("No Server Response");
+				setApiErrorMessage("No Server Response");
 			} else if (err.status === 400) {
-				console.log("Missing Username or Password");
+				setApiErrorMessage("Missing Username or Password");
 			} else if (err.status === 401) {
 				// Incorrect Credentials
 				setUsername({ value: "", error: true });
 				setPassword({ value: "", error: true });
+				setApiErrorMessage("User not found");
 			} else {
-				console.log("Login Failed");
+				setApiErrorMessage(null);
 			}
+			showApiErrorToast(true);
 		}
 	};
 
@@ -126,6 +144,13 @@ const Login = ({ title }) => {
 				</p>
 				{!emailExist && <span>Input is not linked to any accounts</span>}
 			</Modal>
+			<Toast
+				showToast={apiErrorToast}
+				setShowToast={showApiErrorToast}
+				symbol="error"
+				title="Login Failed"
+				subtitle={apiErrorMessage}
+			/>
 			<main className={styles.formContainer}>
 				<form
 					className={styles.formElement}

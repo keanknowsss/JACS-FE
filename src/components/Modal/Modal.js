@@ -13,6 +13,12 @@ const backdropVariant = {
 			delay: 0.2,
 		},
 	},
+	exit: {
+		opacity: 0,
+		transition: {
+			duration: 0.2,
+		},
+	},
 };
 
 const modalVariant = {
@@ -28,6 +34,14 @@ const modalVariant = {
 			duration: 0.5,
 		},
 	},
+	exit: {
+		y: "-100vh",
+		opacity: 0,
+		transition: {
+			ease: "easeInOut",
+			duration: 0.5,
+		},
+	},
 };
 
 const Modal = ({
@@ -35,7 +49,7 @@ const Modal = ({
 	setShowModal, // all
 	type, // all
 	symbol, // success, information
-	link, // REDIRECT Type - link
+	callback, // REDIRECT Type - Callback
 	input, // INPUT Type - type of input (text, email, tel)
 	value, // INPUT Type - variable of useState
 	setValue, // INPUT Type - function of useState
@@ -66,12 +80,8 @@ const Modal = ({
 	// dynamic div using switch
 	const ContentDiv = () => {
 		switch (type) {
-			case "redirect":
-				return (
-					<Link to={link}>
-						<button>Proceed</button>
-					</Link>
-				);
+			case "callback":
+				return <button onClick={callback}>Proceed</button>;
 			case "input":
 				return (
 					<form className={styles.formModal} onSubmit={submitHandler}>
@@ -109,7 +119,7 @@ const Modal = ({
 
 	return (
 		<>
-			<AnimatePresence mode="wait">
+			<AnimatePresence>
 				{showModal && (
 					<section
 						className={styles.modalContainer}
@@ -126,7 +136,7 @@ const Modal = ({
 							variants={backdropVariant}
 							initial="initial"
 							animate="animate"
-							exit="initial"
+							exit="exit"
 						>
 							<motion.div
 								className={styles.modal}

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	ChipIcon,
 	MonitorIcon,
@@ -10,9 +10,13 @@ import {
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
+import Toast from "../../../../components/Toast";
 
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
-import { useLoginMutation ,useRegisterUserMutation } from "../../../../features/api/builders/userApi";
+import {
+	useLoginMutation,
+	useRegisterUserMutation,
+} from "../../../../features/api/builders/userApi";
 import { setCredentials } from "../../../../features/slice/userAccessSlice";
 
 import styles from "./UserRegister.module.scss";
@@ -26,10 +30,14 @@ const Register = ({ title }) => {
 
 	const [showModal, setShowModal] = useState(false);
 
+	const [apiErrorToast, showApiErrorToast] = useState(false);
+	const [apiErrorMessage, setApiErrorMessage] = useState(null);
+
 	const [register] = useRegisterUserMutation();
 	const [login] = useLoginMutation();
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const checkbox = useRef();
 
@@ -53,17 +61,19 @@ const Register = ({ title }) => {
 			setShowModal(true);
 		} catch (error) {
 			if (!error?.status) {
-				console.log("No Server Response");
+				setApiErrorMessage("No Server Response");
 			} else if (error?.status === 400) {
 				const { message } = error.data;
 				setUsername({ ...username, value: "", error: true });
 				setPassword({ value: "", error: true });
 				setConfirmPassword({ value: "", error: true });
 				checkbox.current.checked = false;
-				alert(message);
+				setApiErrorMessage(message);
 			} else {
-				alert("User Registration Failed");
+				setApiErrorMessage(null);
 			}
+			showApiErrorToast(true);
+
 			return;
 		}
 
@@ -74,7 +84,10 @@ const Register = ({ title }) => {
 			}).unwrap();
 			dispatch(setCredentials(result));
 		} catch (error) {
-			console.log(error);
+			const { message } = error.data;
+			setApiErrorMessage(message);
+			showApiErrorToast(true);
+
 		}
 	};
 
@@ -108,18 +121,29 @@ const Register = ({ title }) => {
 		return isFormValid;
 	};
 
+	const toUserInformation = () => {
+		navigate("/user/information")
+	}
+
 	return (
 		<>
 			<Modal
 				showModal={showModal}
 				setShowModal={setShowModal}
-				type="redirect"
-				link="/user/information"
+				type="callback"
+				callback={toUserInformation}
 				symbol="success"
 			>
-				<h1>Registration Successful</h1>
+				<h1>REGISTRATION SUCCESSFUL</h1>
 				<p>Fill out the form to proceed to the site</p>
 			</Modal>
+			<Toast
+				showToast={apiErrorToast}
+				setShowToast={showApiErrorToast}
+				symbol="error"
+				title="User Registration Failed"
+				subtitle={apiErrorMessage}
+			/>
 			<main className={styles.formContainer}>
 				<form
 					onSubmit={submitHandler}

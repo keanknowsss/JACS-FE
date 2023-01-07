@@ -20,7 +20,7 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
-import AuthReset from "./AuthReset";
+import MainRoutes from "./MainRoutes";
 
 const Navigation = () => {
 	const location = useLocation();
@@ -55,7 +55,7 @@ const Navigation = () => {
 			<Navbar />
 			<Routes>
 				{/* reset credentials if not verified */}
-				<Route element={<AuthReset />}>
+				<Route element={<MainRoutes />}>
 					<Route path="/" element={<Home title={TITLES.Home} />} />
 					<Route path="/shop" element={<Shop title={TITLES.Shop} />} />
 					<Route

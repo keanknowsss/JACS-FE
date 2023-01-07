@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	ChipIcon,
 	MonitorIcon,
@@ -21,6 +22,8 @@ const SellerRegister = ({ title }) => {
 	const [businessDocument, setBusinessDocument] = useState();
 
 	const [showModal, setShowModal] = useState(false);
+
+	const navigate = useNavigate();
 
 	const registerHandler = (e) => {
 		e.preventDefault();
@@ -48,13 +51,17 @@ const SellerRegister = ({ title }) => {
 		setShowModal(true);
 	};
 
+	const returnHome = () => {
+		navigate("/")
+	}
+
 	return (
 		<>
 			<Modal
 				showModal={showModal}
 				setShowModal={setShowModal}
-				type="redirect"
-				link="/"
+				type="callback"
+				callback={returnHome}
 				symbol="success"
 			>
 				<h1>Submitted Successfully</h1>

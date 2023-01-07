@@ -10,16 +10,16 @@ import {
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
+import Toast from "../../../../components/Toast";
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
 import {
 	useAddUserDetailsMutation,
 	useGetUserDetailQuery,
+	userApi,
 } from "../../../../features/api/builders/userApi";
 import {
 	selectCurrentUserId,
-	selectCurrentUserIsVerified,
-	selectHasData,
-	toggleHasData,
+	verifyUser,
 } from "../../../../features/slice/userAccessSlice";
 
 import styles from "./UserProfile.module.scss";
@@ -34,9 +34,11 @@ const UserInformation = ({ title }) => {
 
 	const [showModal, setShowModal] = useState(false);
 
+	const [fromLoginToast, setFromLoginToast] = useState(false);
+	const [addErrorToast, setAddErrorToast] = useState(false);
+	const [toastMessage, setToastMessage] = useState(false);
+
 	const userId = useSelector(selectCurrentUserId);
-	const isVerified = useSelector(selectCurrentUserIsVerified);
-	const hasData = useSelector(selectHasData);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -45,13 +47,19 @@ const UserInformation = ({ title }) => {
 	const [addDetails] = useAddUserDetailsMutation();
 
 	const { data } = useGetUserDetailQuery(userId);
+	const [queryData] = userApi.endpoints.getUser.useLazyQuery();
 
 	useEffect(() => {
-		console.log("from Login", location?.state?.fromLogin);
 		if (data) {
 			navigate("/");
 		}
-	}, [navigate, data]);
+	}, []);
+
+	useEffect(() => {
+		if (location?.state?.fromLogin) {
+			setFromLoginToast(true);
+		}
+	}, [location]);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -60,18 +68,24 @@ const UserInformation = ({ title }) => {
 			return;
 		}
 
-		try {
-			await addDetails({
-				_userId: userId,
-				firstName: firstName.value,
-				lastName: lastName.value,
-				email: email.value,
-				contactNo: contactNumber.value,
-			});
+		const { error } = await addDetails({
+			_userId: userId,
+			firstName: firstName.value,
+			lastName: lastName.value,
+			email: email.value,
+			contactNo: contactNumber.value,
+		});
+
+		if (error) {
+			setAddErrorToast(true);
+			setToastMessage(error?.data?.message);
+			setFirstName({ ...firstName, error: true });
+			setLastName({ ...lastName, error: true });
+			setContactNumber({ ...contactNumber, error: true });
+			setEmail({ ...email, error: true });
+			return;
+		} else {
 			setShowModal(true);
-			dispatch(toggleHasData(true));
-		} catch (error) {
-			return console.log(error);
 		}
 	};
 
@@ -98,22 +112,43 @@ const UserInformation = ({ title }) => {
 		return isFormValid;
 	};
 
+	const returnHome = async () => {
+		const { data, isFetching, isLoading } = await queryData(userId);
+		if (!isFetching && !isLoading) {
+			const { isVerified } = data?.result;
+			console.log(isVerified);
+			dispatch(verifyUser(isVerified));
+			navigate("/", { state: { fromForm: true } });
+		}
+	};
+
 	return (
 		<>
 			<Modal
 				showModal={showModal}
 				setShowModal={setShowModal}
-				type="redirect"
+				type="callback"
 				symbol="information"
-				link="/"
+				callback={returnHome}
 			>
 				<h1>Verify Your Email</h1>
 				<p>An email verification has been sent to your account</p>
 			</Modal>
+			<Toast
+				showToast={fromLoginToast}
+				setShowToast={setFromLoginToast}
+				symbol="inform"
+				title="FILL USER DETAILS"
+				subtitle="Please fill the form before proceeding"
+			/>
+			<Toast
+				showToast={addErrorToast}
+				setShowToast={setAddErrorToast}
+				symbol="error"
+				title="Saving Details Failed"
+				subtitle={toastMessage}
+			/>
 			<main className={styles.formContainer}>
-				{/* insert toast here */}
-				{location?.state?.fromLogin && <></>}
-
 				<form
 					className={styles.formElement}
 					onSubmit={submitHandler}

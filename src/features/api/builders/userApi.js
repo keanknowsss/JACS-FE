@@ -10,6 +10,10 @@ export const userApi = apiMiddleware.injectEndpoints({
 				body: credentials,
 			}),
 		}),
+		getUser: builder.query({
+			query: (id) => `/users/${id}`,
+			providesTags: ["USER"]
+		}),
 		registerUser: builder.mutation({
 			query: (user) => ({
 				url: "/register",
@@ -43,6 +47,7 @@ export const userApi = apiMiddleware.injectEndpoints({
 
 export const {
 	useLoginMutation,
+	useGetUserQuery,
 	useRegisterUserMutation,
 	useUpdateUserMutation,
 	useAddUserDetailsMutation,
