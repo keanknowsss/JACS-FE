@@ -1,0 +1,88 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+.formContainer {
+	@include main-container-1();
+
+	.formElement {
+		width: min(580px, 100% - 10rem);
+		z-index: 10;
+
+        .forgotPassword {
+            @include link();
+            @apply text-sm ml-1 w-fit;
+        }
+	}
+
+    .iconContainer {
+		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
+
+        .columnIcon {
+            @apply w-full h-full relative;
+
+            .printerIcon,
+			.chipIcon,
+			.monitorIcon,
+			.mouseIcon {
+				position: absolute;
+
+				g {
+					stroke: $primary-default;
+				}
+			}
+
+            .mouseIcon {
+				width: 235.77px;
+				right: -4%;
+				top: 7%;
+				transform: rotate(18.24deg);
+
+				g {
+					stroke-width: 0.8;
+				}
+			}
+
+            .monitorIcon {
+				width: 236.77px;
+				right: -17%;
+				top: 4%;
+				transform: rotate(19.83deg);
+
+				g {
+					stroke-width: 1.1;
+					fill: $background;
+				}
+			}
+
+            .chipIcon {
+				width: 190.29px;
+				left: -7%;
+				top: 1%;
+				transform: rotate(-11.92deg);
+
+				g {
+					stroke-width: 1.1;
+					fill: $background;
+				}
+			}
+
+			.printerIcon {
+				left: -10%;
+				top: 10%;
+				transform: rotate(-13.13deg);
+				width: 318.47px;
+
+				g {
+					stroke-width: 0.7;
+					fill: $background;
+				}
+			}
+
+			
+
+			
+
+			
+        }
+    }
+}

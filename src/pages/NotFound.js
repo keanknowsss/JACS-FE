@@ -1,5 +1,7 @@
 
-const NotFound = () => {
+const NotFound = ({ title }) => {
+  document.title = title;
+
   return (
     <div>NotFound</div>
   )

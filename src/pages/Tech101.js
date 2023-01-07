@@ -1,5 +1,7 @@
 
-const Tech101 = () => {
+const Tech101 = ({ title }) => {
+  document.title = title;
+  
   return (
     <div>Tech101</div>
   )

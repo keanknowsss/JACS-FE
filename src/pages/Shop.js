@@ -1,72 +1,67 @@
 import { useEffect } from "react";
-import { ProductCard } from "../components/Card";
+// import { ProductCard } from "../components/Card";
+// import { PaginationShop } from "../components/PaginationShop";
+import { SliderApp } from "../components/PriceRangeSlider";
+import { FilterModal } from "../components/ShopModal";
+import { Paginate } from "../components/ShopPaginate";
+import { SearchBar } from "../components/ShopSearch";
 
-const Shop = () => {
-  useEffect(() => {
-    document.title = "JACS Shop";
-  }, []);
+const Shop = ({title}) => {
+  document.title = title;
 
-  return (
-    <>
-      <main className="flex flex-col lg:flex-row justify-between items-center bg-background w-full h-auto p-3">
-        {/* <div className="flex flex-col flex-auto justify-evenly items-center bg-container w-full h-screen py-3 pl-3 lg:pl-0 rounded-b-md lg:rounded-r-md lg:rounded-bl-none"> */}
-          <div className="flex-row relative justify-evenly w-full">
-            <div className="bg-container rounded-md md:flex flex-row flex-auto w-full h-auto justify-evenly relative">
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-            </div>
-            <div className="bg-container rounded-md md:flex flex-row flex-auto w-full justify-evenly relative">
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-            </div>
-			<div className="bg-container rounded-md md:flex flex-row flex-auto w-full justify-evenly relative">
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-              <div>
-                <ProductCard />
-              </div>
-            </div>
+	return (
+		<>
+      <main className="px-5 py-3 w-full h-full justify-center items-center bg-background box-border">
+        <div>
+          <SearchBar />
+        </div>
+        <div className="flex justify-between flex-wrap">
+          <div>
+            <SliderApp />
           </div>
-        {/* </div> */}
+          <div></div>
+          <div>
+            <FilterModal/>
+          </div>
+        </div>
+        <div class="my-3 h-px bg-secondary-default "></div>
+        <div className="">
+          <Paginate/>
+          {/* <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div>
+          <div>
+            <ProductCard />
+          </div> */}
+        </div>
+        {/* <PaginationShop/> */}
       </main>
-
-    </>
-  );
+		</>
+	);
 };
+
 export default Shop;

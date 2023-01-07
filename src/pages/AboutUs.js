@@ -1,5 +1,7 @@
 
-const AboutUs = () => {
+const AboutUs = ({ title }) => {
+  document.title = title;
+  
   return (
     <div>AboutUs</div>
   )

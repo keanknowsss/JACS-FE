@@ -39,7 +39,7 @@ $background: rgb(18 20 22);
 
 // Elements
 nav {
-	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-montserrat font-medium relative h-15;
+	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-montserrat font-medium relative h-15 z-50;
 	padding-inline: 25px;
 
 	ul {
@@ -67,8 +67,6 @@ nav {
 			width: 108px;
 		}
 
-		.forum {
-		}
 
 		.tech101 {
 			width: 77px;
