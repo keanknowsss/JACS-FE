@@ -1,0 +1,94 @@
+.overlay {
+    background-color: #F66B0E;
+    position: fixed;;
+    width: 60%;
+    height: 90%;
+    z-index: 999;
+    border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 100%;
+    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.75);
+}
+
+.modalContainer {
+    width: 99.5%;
+    height: 99%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #1E2126;
+    overflow-y: auto;
+}
+
+.closeBtn:hover{
+    cursor: pointer;
+}
+
+.closeBtn{
+    position: fixed;
+    padding: 3;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: #F66B0E;
+    border-radius: 10px;
+    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.75);
+    font-weight: bolder;
+    
+}
+
+.filter {
+    height: 50px;
+    width: 100px;
+    margin: 10px;
+    background-color: #F66B0E;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter:hover {
+    cursor: pointer;
+}
+
+.filterContainer {
+    height: 0px;
+    width: full;
+    display: flex;
+    margin-top: 120px;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    justify-content: space-around;
+    background-color: #121416;
+    border-radius: .45rem;
+    flex-wrap: wrap ;
+    position: relative;
+}
+
+.confirmBtn{
+    background-color: #121416;
+    height: 50px;
+    width: 100px;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(239,239,239);
+    position: absolute;
+    right: 65px;
+    margin-top: 40px;
+}
+
+.confirmBtn:hover{
+    cursor: pointer;
+}

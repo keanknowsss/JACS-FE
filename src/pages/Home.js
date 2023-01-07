@@ -58,40 +58,40 @@ const Home = ({ title }) => {
 					<JACSLogo />
 				</div>
 
-				<div className="col-span-1 lg:col-span-2 row-span-1 bg-background w-full h-full rounded-md">
-					<p className="text-white text-2xl font-serif font-bold py-3 pl-3">
-						Most Bought items
-					</p>
-					<div className="rounded-md flex flex-row justify-center items-center">
-						<div>
-							<ProductCard />
-						</div>
-						<div>
-							<ProductCard />
-						</div>
-						<div>
-							<ProductCard />
-						</div>
+			<div className="col-span-1 lg:col-span-2 row-span-1 bg-background w-full h-full rounded-md">
+				<p className="text-white text-2xl font-serif font-bold py-3 pl-3">
+					Most Bought items
+				</p>
+				<div className="rounded-md flex flex-row justify-center items-center flex-wrap">
+					<div>
+						<ProductCard />
+					</div>
+					<div>
+						<ProductCard />
+					</div>
+					<div>
+						<ProductCard />
 					</div>
 				</div>
+			</div>
 
-				<div className="col-span-1 lg:col-span-2 row-span-1 bg-background w-full h-full rounded-md">
-					<p className="text-white text-3xl font-serif font-bold py-3 pl-3">
-						Trending items
-					</p>
-					<div className="rounded-md flex flex-row justify-center items-center">
-						<div>
-							<ProductCard />
-						</div>
-						<div>
-							<ProductCard />
-						</div>
-						<div>
-							<ProductCard />
-						</div>
+			<div className="col-span-1 lg:col-span-2 row-span-1 bg-background w-full h-full rounded-md">
+				<p className="text-white text-3xl font-serif font-bold py-3 pl-3">
+					Trending items
+				</p>
+				<div className="rounded-md flex flex-row justify-center items-center flex-wrap">
+					<div>
+						<ProductCard />
+					</div>
+					<div>
+						<ProductCard />
+					</div>
+					<div>
+						<ProductCard />
 					</div>
 				</div>
-			</main>
+			</div>
+		</main>
 		</>
 	);
 };
