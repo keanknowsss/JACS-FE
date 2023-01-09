@@ -51,5 +51,7 @@ export const {
 	useRegisterUserMutation,
 	useUpdateUserMutation,
 	useAddUserDetailsMutation,
-	useGetUserDetailQuery
+	useGetUserDetailQuery,
 } = userApi;
+
+export const { getUserDetail } = userApi.endpoints;
