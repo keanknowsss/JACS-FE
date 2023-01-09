@@ -14,8 +14,8 @@ import Modal from "../../../../components/Modal";
 import Toast from "../../../../components/Toast";
 import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
 import {
+	getUserDetail,
 	useLoginMutation,
-	userApi,
 } from "../../../../features/api/builders/userApi";
 import {
 	logOut,
@@ -37,7 +37,7 @@ const Login = ({ title }) => {
 	const [emailAccount, setEmailAccount] = useState("");
 	const [emailExist, setEmailExist] = useState(true);
 
-	const [queryData] = userApi.endpoints.getUserDetail.useLazyQuery();
+	const [queryData] = getUserDetail.useLazyQuery();
 
 	const [login] = useLoginMutation();
 

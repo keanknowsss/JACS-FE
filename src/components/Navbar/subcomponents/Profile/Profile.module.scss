@@ -1,5 +1,5 @@
-$lightWhite: rgb(239 239 239);
-$background: rgb(18 20 22);
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
 
 @mixin button {
 	@apply py-2 border-lightWhite rounded-md text-sm ease-in-out duration-150 text-center;
@@ -10,20 +10,23 @@ $background: rgb(18 20 22);
 	filter: drop-shadow(4px 4px 7px rgb(0 0 0 / 0.5));
 
 	.heading {
-		@apply flex items-center gap-2 justify-center;
+		@apply flex items-center gap-3;
 
 		.profilePicture {
 			@apply w-16 h-16 rounded-full border-4;
-
 		}
 
-		.name {
-			@apply text-xl font-bold
-		}
-		.type {
-			@apply text-xs mt-[-3px];
-			font-size: 10px;
-			color: rgba($lightWhite, 0.7);
+		.profileText {
+			@apply flex flex-col;
+
+			.name {
+				@apply text-xl font-bold
+			}
+			.type {
+				@apply text-xs mt-[-3px];
+				font-size: 10px;
+				color: rgba($lightWhite, 0.7);
+			}
 		}
 	
 		.noAcc {
@@ -51,7 +54,7 @@ $background: rgb(18 20 22);
 	li {
 		@apply text-center py-1;
 
-		a {
+		a, button {
 			@apply py-1 px-3 text-base hover:text-secondary-default hover:underline;
 		}
 	}

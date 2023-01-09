@@ -3,6 +3,8 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import { Search, Cart, Profile } from "./subcomponents";
 import styles from "./Navbar.module.scss";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../../features/slice/userAccessSlice";
 
 const Navbar = () => {
 	const location = useLocation();
@@ -11,9 +13,7 @@ const Navbar = () => {
 	const [profileActive, setProfileActive] = useState(false);
 	const [cartActive, setCartActive] = useState(false);
 
-	// TO CHANGE
-	// check if logged in
-	const LOGGED_IN = false;
+	const token = useSelector(selectCurrentToken);
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
@@ -22,7 +22,7 @@ const Navbar = () => {
 	useEffect(() => {
 		setSearchActive(false);
 		setProfileActive(false);
-	}, [location]);
+	}, [location, token]);
 
 	return (
 		<>
@@ -177,8 +177,8 @@ const Navbar = () => {
 					</div>
 				</div>
 
-				{profileActive && <Profile setProfileActive={setProfileActive} LOGGED_IN={LOGGED_IN} />}
-				{cartActive && <Cart setCartActive={setCartActive} LOGGED_IN={LOGGED_IN} />}
+				{profileActive && <Profile setProfileActive={setProfileActive} />}
+				{cartActive && <Cart setCartActive={setCartActive} />}
 			</nav>
 
 			{searchActive && <Search />}
