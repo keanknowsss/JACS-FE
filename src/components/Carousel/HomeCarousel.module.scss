@@ -1,0 +1,53 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.homeCarousel {
+	@apply w-full h-full;
+
+	.swiperComponent {
+		@apply relative w-full h-full rounded-md;
+
+		.swiperImage {
+			@apply w-full h-full object-cover absolute top-0 left-0 rounded-md brightness-50;
+		}
+	}
+
+	.carouselMainContent {
+		@apply absolute w-full px-3;
+		bottom: calc(15% - 50px);
+
+		.carouselHeadingContent {
+			@apply flex flex-row items-center;
+
+			.carouselHeadingText {
+				@apply text-white ml-2;
+				letter-spacing: 0.085em;
+				font-size: 90px;
+				margin-top: -20px;
+			}
+		}
+
+		.divider {
+			@apply w-full block border-t-2 border-secondary-default mb-4;
+		}
+
+		.carouselText {
+			@apply flex flex-col items-end;
+
+			.description {
+				@apply text-white text-right mb-7 text-[24px] w-[389px];
+				font-family: "Roboto";
+				letter-spacing: 0.085em;
+			}
+
+			.redirect {
+				@apply 
+            inline-block px-8 py-4 mr-7 mb-7 bg-background hover:bg-secondary-default text-white 
+            font-medium leading-tight uppercase border border-secondary-default rounded shadow-md 
+            hover:shadow-secondary-default focus:bg-secondary-default focus:shadow-lg focus:outline-none focus:ring-0 
+            active:bg-secondary-default active:shadow-lg transition duration-150 ease-in-out;
+				font-family: "Montserrat";
+			}
+		}
+	}
+}

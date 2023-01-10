@@ -1,5 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { ProductCard } from "../../components/Card";
 
 import Modal from "../../components/Modal";
 import Toast from "../../components/Toast/Toast";
@@ -17,6 +18,9 @@ const TestPage = ({ title }) => {
 
 	return (
 		<>
+			<main className="h-screen w-screen bg-primary-default">
+				<ProductCard />
+			</main>
 			{/* <Toast
 				showToast={showToast}
 				setShowToast={setShowToast}
@@ -33,13 +37,13 @@ const TestPage = ({ title }) => {
 				callback={callBack}
 				linkText="Send email verification"
 			/> */}
-			<Toast
+			{/* <Toast
 				showToast={showToast}
 				setShowToast={setShowToast}
 				symbol="inform"
 				title="Login Failed"
 				subtitle="hello"
-			/>
+			/> */}
 			{/* <Modal
 				showModal={showModal}
 				setShowModal={setShowModal}

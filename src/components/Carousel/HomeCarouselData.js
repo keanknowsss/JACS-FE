@@ -3,7 +3,7 @@ import {
   ShopCarousel,
   RepairCarousel,
   LearnCarousel,
-} from "../assets/images";
+} from "../../assets/images";
 
 export const categories = [
   {
