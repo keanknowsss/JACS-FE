@@ -1,10 +1,10 @@
 import { ImageCard } from "../../assets/images";
 import styles from "./ProductCard.module.scss";
 
-const ProductCard = ({modifierClass}) => {
+const ProductCard = ({modifierClass, productKey}) => {
 	return (
 		<>
-			<div className={`${styles.productCard} ${modifierClass}`}>
+			<div key={productKey} className={`${styles.productCard} ${modifierClass}`}>
 				<div className={styles.mainCard}>
 					<div className={styles.mainImg}>
 					<div className={styles.imgContainer}></div>

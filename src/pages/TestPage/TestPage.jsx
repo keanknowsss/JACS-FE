@@ -4,6 +4,7 @@ import { ProductCard } from "../../components/Card";
 
 import Modal from "../../components/Modal";
 import Toast from "../../components/Toast/Toast";
+import { FilterModal } from "../ShopPage/subcomponents";
 import styles from "./TestPage.module.scss";
 
 const TestPage = ({ title }) => {
@@ -18,9 +19,10 @@ const TestPage = ({ title }) => {
 
 	return (
 		<>
-			<main className="h-screen w-screen bg-primary-default">
+			{/* <main className="h-screen w-screen bg-primary-default">
 				<ProductCard />
-			</main>
+			</main> */}
+			<FilterModal showFilter={showModal} setShowFilter={setShowModal} />
 			{/* <Toast
 				showToast={showToast}
 				setShowToast={setShowToast}

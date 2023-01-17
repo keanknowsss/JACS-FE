@@ -1,7 +1,7 @@
 // exports all pages in the folder
 
 export { default as Home } from "./HomePage";
-export { default as Shop } from "./Shop";
+export { default as Shop } from "./ShopPage";
 export { default as BuildYourPC } from "./BuildYourPC";
 export { default as Forum } from "./Forum";
 export { default as Tech101 } from "./Tech101";

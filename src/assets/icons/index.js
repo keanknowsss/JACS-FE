@@ -13,3 +13,6 @@ export { default as InformationModal } from "./InformationModal";
 export { default as ExitIcon } from "./ExitIcon";
 export { default as WarningIcon } from "./WarningIcon";
 export { default as ErrorIcon } from "./ErrorIcon";
+export { default as SearchIcon } from "./SearchIcon";
+export { default as FilterIcon } from "./FilterIcon";
+export { default as ArrowNavigation } from "./ArrowNavigation";
