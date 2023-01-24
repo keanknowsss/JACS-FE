@@ -68,7 +68,7 @@ const Profile = ({ setProfileActive }) => {
 					<div className="flex flex-col">
 						<ul>
 							<li>
-								<Link to="/">MY PROFILE</Link>
+								<Link to="/profile/">MY PROFILE</Link>
 							</li>
 							<li>
 								<Link to="/">MY ORDERS</Link>

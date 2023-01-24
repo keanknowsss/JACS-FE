@@ -1,0 +1,92 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.profileNavbarContainer {
+	@apply bg-background font-montserrat font-light h-full flex justify-center z-10;
+	font-size: 20px;
+	line-height: 130%;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+
+	.profileNavbar {
+		@apply flex justify-evenly w-full;
+		margin-top: 15px;
+
+		li {
+			@apply text-center px-[1px] relative pb-1 w-fit;
+
+			.indicator {
+				@apply bg-secondary-default border-secondary-default text-center absolute w-full bottom-0;
+				height: 4px;
+				display: none;
+				border-radius: 1px;
+			}
+
+			.iconContainer {
+				@apply flex justify-center items-center;
+				width: 150%;
+			}
+
+			.activeLink {
+				@apply text-secondary-default font-black;
+
+				.indicator {
+					display: block;
+				}
+			}
+
+			.inactiveLink {
+				@apply hover:text-secondary-light transition ease-out duration-150;
+			}
+		}
+	}
+}
+
+li {
+	.profileIcon,
+	.shopIcon,
+	.technicianIcon,
+	.cartIcon,
+	.buildIcon,
+	.savedIcon,
+	.orderIcon,
+	.settingIcon {
+		height: 30px;
+		display: none;
+	}
+
+	span {
+		display: inline;
+	}
+}
+
+@media (max-width: 900px) {
+	li {
+		.profileIcon,
+		.shopIcon,
+		.technicianIcon,
+		.cartIcon,
+		.buildIcon,
+		.savedIcon,
+		.orderIcon,
+		.settingIcon {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		span {
+			display: none;
+		}
+
+		.activeLink, .inactiveLink {
+			@apply flex justify-center;
+			width: 150%;
+		} 
+
+		.activeLink {
+			.indicator {
+				height: 3px !important;
+				width: 150% !important;
+			}
+		}
+	}
+}

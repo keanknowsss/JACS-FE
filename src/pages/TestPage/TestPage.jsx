@@ -1,28 +1,18 @@
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { ProductCard } from "../../components/Card";
-
-import Modal from "../../components/Modal";
-import Toast from "../../components/Toast/Toast";
-import { FilterModal } from "../ShopPage/subcomponents";
+import CartCard from "../ProfilePages/Profile/subcomponents/cartCard/CartCard";
 import styles from "./TestPage.module.scss";
+import { ProductCard } from "../../components/Card";
+import BuildCard from "../ProfilePages/Profile/subcomponents/buildCard/BuildCard";
 
 const TestPage = ({ title }) => {
 	document.title = title;
 
-	const [showToast, setShowToast] = useState(true);
-	const [showModal, setShowModal] = useState(true);
-
-	const callBack = () => {
-		console.log("test callback");
-	};
-
 	return (
 		<>
-			{/* <main className="h-screen w-screen bg-primary-default">
-				<ProductCard />
-			</main> */}
-			<FilterModal showFilter={showModal} setShowFilter={setShowModal} />
+			<main className="h-screen w-full bg-primary-default flex">
+				{/* <CartCard /> */}
+				<BuildCard />
+			</main>
+
 			{/* <Toast
 				showToast={showToast}
 				setShowToast={setShowToast}
