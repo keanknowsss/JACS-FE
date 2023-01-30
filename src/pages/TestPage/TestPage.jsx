@@ -2,15 +2,20 @@ import CartCard from "../ProfilePages/Profile/subcomponents/cartCard/CartCard";
 import styles from "./TestPage.module.scss";
 import { ProductCard } from "../../components/Card";
 import BuildCard from "../ProfilePages/Profile/subcomponents/buildCard/BuildCard";
+import Menu from "../../components/Navbar/subcomponents/Menu/Menu";
+import { useState } from "react";
 
 const TestPage = ({ title }) => {
 	document.title = title;
 
+	const [showMenu, setShowMenu] = useState(false);
+
 	return (
 		<>
-			<main className="h-screen w-full bg-primary-default flex">
+			<main className="h-screen w-full bg-primary-default">
 				{/* <CartCard /> */}
-				<BuildCard />
+				{/* <BuildCard /> */}
+				<Menu showMenu={true} setShowMenu={setShowMenu} />
 			</main>
 
 			{/* <Toast

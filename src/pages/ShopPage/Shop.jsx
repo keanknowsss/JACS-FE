@@ -69,7 +69,7 @@ const Shop = ({ title }) => {
 							max={1000}
 							defaultValue={minRange}
 							onChange={(e) => setMinRange(e.target.value)}
-							class={styles.slider}
+							className={styles.slider}
 						/>
 						<span>1000</span>
 					</div>

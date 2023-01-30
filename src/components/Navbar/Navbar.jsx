@@ -1,32 +1,111 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { NavLink, Outlet, useHref, useLocation } from "react-router-dom";
 
 import { Search, Cart, Profile } from "./subcomponents";
 import styles from "./Navbar.module.scss";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../../features/slice/userAccessSlice";
-import { ProfileNavbar, SearchNavbar, CartNavbar } from "../../assets/icons";
+import {
+	selectCurrentToken,
+	selectCurrentUserId,
+} from "../../features/slice/userAccessSlice";
+import {
+	ProfileNavbar,
+	SearchNavbar,
+	CartNavbar,
+	MenuIcon,
+} from "../../assets/icons";
+import { getUserDetail } from "../../features/api/builders/userApi";
+import Menu from "./subcomponents/Menu/Menu";
 
 const Navbar = () => {
-	const location = useLocation();
-
 	const [searchActive, setSearchActive] = useState(false);
 	const [profileActive, setProfileActive] = useState(false);
 	const [cartActive, setCartActive] = useState(false);
+	const [showMenu, setShowMenu] = useState(false);
+	const [pageName, setPageName] = useState(null);
 
 	const token = useSelector(selectCurrentToken);
+	const id = useSelector(selectCurrentUserId);
+
+	const [queryData] = getUserDetail.useLazyQuery();
+	const [name, setName] = useState(null);
+
+	const route = useHref();
+	const location = useLocation();
 
 	const handleSearch = (e) => {
 		searchActive ? setSearchActive(false) : setSearchActive(true);
 	};
 
+	const changePageNameHandler = (pageLocation) => {
+		switch (pageLocation) {
+			case "/":
+				return setPageName("Home");
+			case "/shop":
+				return setPageName("Shop");
+			case "/buildpc":
+				return setPageName("Build Your PC");
+			case "/forum":
+				return setPageName("Forum");
+			case "/tech101":
+				return setPageName("Tech101");
+			case "/repair":
+				return setPageName("Repair");
+			case "/register":
+				return setPageName("Register");
+			case "/login":
+				return setPageName("Login");
+			case "/profile/":
+				return setPageName("My Profile");
+			case "/profile/shop":
+				return setPageName("My Shop");
+			case "/profile/technician":
+				return setPageName("Technician Dashboard");
+			case "/profile/cart":
+				return setPageName("Cart");
+			case "/profile/builds":
+				return setPageName("Builds");
+			case "/profile/saved":
+				return setPageName("Saved");
+			case "/profile/orders":
+				return setPageName("My Orders");
+			case "/profile/settings":
+				return setPageName("Settings");
+			default:
+				return;
+		}
+	};
+
+	useLayoutEffect(() => {
+		const getData = async () => {
+			if (token && id) {
+				const { data, error } = await queryData(id);
+				if (!error) {
+					setName(data?.result?.firstName);
+				} else {
+					console.log("error in profile name", error?.result);
+				}
+			}
+		};
+		getData();
+	}, [token, id]);
+
 	useEffect(() => {
 		setSearchActive(false);
 		setProfileActive(false);
-	}, [location, token]);
+		setShowMenu(false);
+
+		changePageNameHandler(route);
+	}, [location]);
 
 	return (
 		<>
+			<Menu
+				showMenu={showMenu}
+				setShowMenu={setShowMenu}
+				name={name}
+				className={styles.menuNav}
+			/>
 			<nav>
 				<NavLink to="/" className="flex-none">
 					<img
@@ -37,9 +116,12 @@ const Navbar = () => {
 					/>
 				</NavLink>
 
-				<div className="basis-3/5">
-					<ul className="flex justify-between">
-						<li className={styles.home}>
+				<div className={styles.middlePart}>
+					
+					<h1 className={styles.currentPage}>{pageName}</h1>
+
+					<ul className={styles.linkContainer}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/"
 								className={({ isActive }) =>
@@ -47,10 +129,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Home</span>
-								<hr className={styles.homeIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.shop}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/shop"
 								className={({ isActive }) =>
@@ -58,10 +140,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Shop</span>
-								<hr className={styles.shopIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.buildYourPC}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/buildpc"
 								className={({ isActive }) =>
@@ -69,10 +151,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Build your PC</span>
-								<hr className={styles.BYPCIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.forum}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/forum"
 								className={({ isActive }) =>
@@ -80,10 +162,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Forum</span>
-								<hr className={styles.forumIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.tech101}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/tech101"
 								className={({ isActive }) =>
@@ -91,10 +173,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Tech 101</span>
-								<hr className={styles.tech101Indicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.repair}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/repair"
 								className={({ isActive }) =>
@@ -102,10 +184,10 @@ const Navbar = () => {
 								}
 							>
 								<span>Repair</span>
-								<hr className={styles.repairIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.aboutUs}>
+						<li className={styles.linkList}>
 							<NavLink
 								to="/about"
 								className={({ isActive }) =>
@@ -113,21 +195,20 @@ const Navbar = () => {
 								}
 							>
 								<span>About Us</span>
-								<hr className={styles.aboutUsIndicator} />
+								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
 					</ul>
 				</div>
-				<div className="basis-1/5">
-					<div className="float-right">
-						<div className={styles.logoContainer}>
+				<div className={styles.rightPart}>
+					<div className="float-right flex">
+						<button className={styles.logoContainer} onClick={handleSearch}>
 							<SearchNavbar
 								className={`${
 									!searchActive ? styles.searchLogo : styles.searchLogoActive
 								} transition-all ease-in duration-100`}
-								onClick={handleSearch}
 							/>
-						</div>
+						</button>
 
 						<div className={styles.logoContainer}>
 							<ProfileNavbar
@@ -154,11 +235,25 @@ const Navbar = () => {
 								onMouseLeave={(e) => setCartActive(false)}
 							></div>
 						</div>
+						<button
+							className={styles.menuButtonContainer}
+							onClick={() => setShowMenu(true)}
+						>
+							<MenuIcon className={styles.menuIcon} />
+						</button>
 					</div>
 				</div>
 
-				{profileActive && <Profile setProfileActive={setProfileActive} />}
-				{cartActive && <Cart setCartActive={setCartActive} />}
+				{profileActive && (
+					<Profile
+						setProfileActive={setProfileActive}
+						name={name}
+						className={styles.profileSection}
+					/>
+				)}
+				{cartActive && (
+					<Cart setCartActive={setCartActive} className={styles.cartSection} />
+				)}
 			</nav>
 
 			{searchActive && <Search />}

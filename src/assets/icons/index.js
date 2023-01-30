@@ -42,3 +42,5 @@ export { default as OrderIcon } from "./OrderIcon";
 export { default as SettingIcon } from "./SettingIcon";
 export { default as ShopIcon } from "./ShopIcon";
 export { default as TechnicianIcon } from "./TechnicianIcon";
+
+export { default as MenuIcon } from "./MenuIcon";
