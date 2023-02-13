@@ -1,18 +1,20 @@
+import { forwardRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Product } from "../../../../assets/placeholder";
 import { selectCurrentToken } from "../../../../features/slice/userAccessSlice";
 import styles from "./Cart.module.scss";
 
-const Cart = ({ setCartActive }) => {
+const Cart = forwardRef(({ setCartActive, className }, ref) => {
 	const token = useSelector(selectCurrentToken);
 
 	return (
 		<section
 			aria-label="profile dropdown"
-			className={`${styles.cartSection} ${token ? "w-80" : "w-68"}`}
-			onMouseEnter={(e) => setCartActive(true)}
-			onMouseLeave={(e) => setCartActive(false)}
+			className={`${styles.cartSection} ${token ? "w-80" : "w-68"} ${className}`}
+			onMouseEnter={(e) => setCartActive && setCartActive(true)}
+			onMouseLeave={(e) => setCartActive && setCartActive(false)}
+			ref={ref}
 		>
 			<div className={`flex ${token ? "justify-start" : "justify-center"}`}>
 				<h1>{token ? "My Cart" : "No Account Signed In"}</h1>
@@ -59,7 +61,7 @@ const Cart = ({ setCartActive }) => {
 			<div className="flex justify-between mt-1.5 gap-2">
 				{token ? (
 					<>
-						<Link className={styles.cart} to="/">
+						<Link className={styles.cart} to="/profile/cart">
 							View Cart
 						</Link>
 						<Link className={styles.checkout} to="/">
@@ -79,6 +81,6 @@ const Cart = ({ setCartActive }) => {
 			</div>
 		</section>
 	);
-};
+});
 
 export default Cart;

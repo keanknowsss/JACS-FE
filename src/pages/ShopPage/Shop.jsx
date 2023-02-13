@@ -3,13 +3,13 @@ import {
 	ArrowNavigation,
 	ExitIcon,
 	FilterIcon,
-	SearchIcon,
+	SearchIcon
 } from "../../assets/icons";
 import { ProductCard } from "../../components/Card";
 import { FilterModal } from "./subcomponents";
 
-import styles from "./Shop.module.scss";
 import ReactPaginate from "react-paginate";
+import styles from "./Shop.module.scss";
 
 const Shop = ({ title }) => {
 	document.title = title;
@@ -69,7 +69,7 @@ const Shop = ({ title }) => {
 							max={1000}
 							defaultValue={minRange}
 							onChange={(e) => setMinRange(e.target.value)}
-							class={styles.slider}
+							className={styles.slider}
 						/>
 						<span>1000</span>
 					</div>

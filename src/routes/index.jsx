@@ -1,25 +1,10 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import {
-	Home,
-	Shop,
-	BuildYourPC,
-	Forum,
-	Tech101,
-	Repair,
-	AboutUs,
-	NotFound,
-	UserRegister,
-	UserProfile,
-	Login,
-	TechnicianRegister,
-	StoreRegister,
-	StoreProfile,
-	TechnicianProfile,
-	TestPage,
-} from "../pages";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import {
+	AboutUs, Build, BuildYourPC, Cart, Forum, Home, LoginForm, NotFound, Order, Profile, ProfileNavbar, Repair, Saved, Settings, Shop, ShopProfile, StoreProfileForm, StoreRegisterForm, Tech101, TechnicianProfile, TechnicianProfileForm, TechnicianRegisterForm, TestPage, UserProfileForm, UserRegisterForm
+} from "../pages";
 import MainRoutes from "./MainRoutes";
 
 const Navigation = () => {
@@ -38,13 +23,22 @@ const Navigation = () => {
 		Repair: "JACS Repair - Just Another Computer Shop",
 		About: "About JACS - Just Another Computer Shop",
 
-		Login: "Login - Just Another Computer Shop",
-		UserRegister: "Create an Account - Just Another Computer Shop",
-		UserProfile: "User Profile - JACS User Registeration",
-		StoreRegister: "Register Your Store - JACS Store Registration",
-		StoreProfile: "Store Profile - JACS Store Registration",
-		TechnicianRegister: "Register as Technician - JACS Technician Registration",
-		TechnicianProfile: "Technician Profile - JACS Technician Registration",
+		LoginForm: "Login - Just Another Computer Shop",
+		UserRegisterForm: "Create an Account - Just Another Computer Shop",
+		UserProfileForm: "User Profile - JACS User Registeration",
+		StoreRegisterForm: "Register Your Store - JACS Store Registration",
+		StoreProfileForm: "Store Profile - JACS Store Registration",
+		TechnicianRegisterForm: "Register as Technician - JACS Technician Registration",
+		TechnicianProfileForm: "Technician Profile - JACS Technician Registration",
+
+		Profile: "My Profile - Just Another Computer Shop",
+		ShopProfile: "My Shop - Just Another Computer Shop",
+		TechnicianProfile: "Technician Dashboard - Just Another Computer Shop",
+		Cart: "My Cart - Just Another Computer Shop",
+		Build: "My Builds - Just Another Computer Shop",
+		Saved: "Saved - Just Another Computer Shop",
+		Order: "My Orders - Just Another Computer Shop",
+		Settings: "Settings - Just Another Computer Shop",
 
 		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
 		Test: "Testing",
@@ -69,34 +63,45 @@ const Navigation = () => {
 
 					<Route
 						path="/user/information"
-						element={<UserProfile title={TITLES.UserProfile} />}
+						element={<UserProfileForm title={TITLES.UserProfileForm} />}
 					/>
 					<Route
 						path="/store/register"
-						element={<StoreRegister title={TITLES.StoreRegister} />}
+						element={<StoreRegisterForm title={TITLES.StoreRegisterForm} />}
 					/>
 					<Route
 						path="/store/information"
-						element={<StoreProfile title={TITLES.StoreProfile} />}
+						element={<StoreProfileForm title={TITLES.StoreProfileForm} />}
 					/>
 					<Route
 						path="/technician/register"
-						element={<TechnicianRegister title={TITLES.TechnicianRegister} />}
+						element={<TechnicianRegisterForm title={TITLES.TechnicianRegisterForm} />}
 					/>
 					<Route
 						path="/technician/profile"
-						element={<TechnicianProfile title={TITLES.TechnicianProfile} />}
+						element={<TechnicianProfileForm title={TITLES.TechnicianProfileForm} />}
 					/>
+
+					<Route exact path="/profile" element={<ProfileNavbar />} >
+						<Route index element={<Profile title={TITLES.Profile}/>} />
+						<Route path="cart" element={<Cart title={TITLES.Cart} />} />
+						<Route path="builds" element={<Build title={TITLES.Build} />} />
+						<Route path="saved" element={<Saved title={TITLES.Saved} />} />
+						<Route path="orders" element={<Order title={TITLES.Order} />} />
+						<Route path="settings" element={<Settings title={TITLES.Settings} />} />
+						<Route path="shop" element={<ShopProfile title={TITLES.ShopProfile} />} />
+						<Route path="technician" element={<TechnicianProfile title={TITLES.TechnicianProfile} />} />
+ 					</Route>
 
 					<Route path="/test" element={<TestPage title={TITLES.Test} />} />
 					<Route path="*" element={<NotFound title={TITLES.NotFound} />} />
 				</Route>
 
 				{/* user forms:  */}
-				<Route path="/login" element={<Login title={TITLES.Login} />} />
+				<Route path="/login" element={<LoginForm title={TITLES.LoginForm} />} />
 				<Route
 					path="/register"
-					element={<UserRegister title={TITLES.UserRegister} />}
+					element={<UserRegisterForm title={TITLES.UserRegisterForm} />}
 				/>
 			</Routes>
 			<hr />
