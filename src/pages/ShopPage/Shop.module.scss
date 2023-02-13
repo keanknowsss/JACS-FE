@@ -1,0 +1,267 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.shopPage {
+	@apply px-10 pt-3 pb-20 bg-background;
+
+	.searchBar {
+		@apply bg-primary-default rounded-full flex gap-x-2;
+		padding: 7px 8px;
+		height: 66px;
+
+		.searchInput {
+			@apply bg-background font-montserrat rounded-full text-lightWhite w-full text-sm;
+			padding-left: 1rem;
+			padding-top: 2px;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		.searchButton {
+			@apply bg-background rounded-full flex justify-center items-center;
+			width: 58px;
+
+			svg {
+				height: 1.7rem;
+				fill: $secondary-default;
+			}
+
+			&:hover {
+				svg {
+					height: 2rem;
+					fill: $secondary-light;
+				}
+			}
+		}
+	}
+
+	.optionsContainer {
+		@apply flex justify-between font-roboto flex-wrap items-center px-5 text-white mt-8 mb-4;
+		font-size: 17px;
+		line-height: 33px;
+
+		@media (max-width: 660px) {
+			@apply flex-col gap-5;
+		}
+
+		.rangeContainer {
+			@apply bg-primary-default rounded-full px-5 flex items-center gap-5 w-fit;
+			height: 35px;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+			.slider {
+				-webkit-appearance: none;
+				background: none;
+				opacity: 0.7;
+				transition: all 0.1s ease-in-out;
+
+				&:hover {
+					opacity: 1;
+
+					&::-webkit-slider-runnable-track {
+						background-color: rgba($secondary-default, 0.8);
+					}
+				}
+
+				&::-webkit-slider-runnable-track {
+					background: $secondary-light;
+					border-radius: 24px;
+					height: 3px;
+				}
+
+				&::-webkit-slider-thumb {
+					margin-top: -6px;
+					height: 15px;
+					width: 15px;
+				}
+
+				&::-webkit-slider-thumb,
+				&::-moz-range-thumb {
+					-webkit-appearance: none;
+					background: $secondary-default;
+					height: 16px;
+					width: 16px;
+					border: none;
+					cursor: pointer;
+				}
+
+				// track
+
+				&::-moz-range-track {
+					-webkit-appearance: none;
+					background: $background;
+				}
+				&::-ms-fill-upper {
+					-webkit-appearance: none;
+					background: $background;
+				}
+
+				// progress
+				&::-moz-range-progress {
+					-webkit-appearance: none;
+					background: $secondary-default;
+				}
+
+				&::-ms-fill-lower {
+					-webkit-appearance: none;
+					background: $secondary-default;
+				}
+			}
+		}
+
+		.filterBtn {
+			@apply bg-primary-default flex gap-2 items-center;
+			border-radius: 5px;
+			padding: 6px 12px;
+
+			span {
+				@apply transition-opacity duration-75 ease-in;
+				opacity: 0.8;
+			}
+
+			.filterIcon {
+				@apply fill-secondary-default transition-opacity duration-75 ease-in;
+				width: 24px;
+				opacity: 0.8;
+			}
+
+			&:hover {
+				span,
+				.filterIcon {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.filterSection {
+		@apply flex flex-wrap justify-end px-7 py-3;
+
+		.filterContainer {
+			@apply text-white flex items-center bg-primary-default w-fit cursor-pointer rounded-full font-medium;
+			padding-inline: 8px;
+			padding-block: 3px;
+			padding: 1px 14px 3px 6px;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			margin: 4px 6px;
+
+			.removeFilter {
+				height: 11px;
+				margin-top: 4px;
+				cursor: pointer;
+				margin-inline: 6px;
+				padding: none;
+
+				path {
+					@apply transition-opacity duration-100 ease-in-out;
+					stroke-width: 4px;
+					stroke: $secondary-default;
+					opacity: 0.5;
+				}
+			}
+
+			span {
+				@apply transition-opacity duration-100 ease-in-out;
+				font-size: 15px;
+				line-height: 31px;
+				opacity: 0.5;
+			}
+
+			&:hover {
+				.removeFilter {
+					path {
+						opacity: 1;
+					}
+				}
+
+				span {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.sectionDivider {
+		@apply h-px border-secondary-default mt-3 mb-10;
+	}
+
+	.productContainer {
+		@apply grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 gap-y-8;
+
+		.productCard {
+			width: max(253px, 100%);
+		}
+	}
+
+	.pagination {
+		@apply flex justify-center text-white my-15;
+
+		.paginationRelativeContainer {
+			@apply w-fit relative;
+		}
+		.paginationComponent {
+			@apply flex justify-center items-center gap-4 px-5 py-2 font-roboto bg-primary-default;
+			font-size: 17px;
+			line-height: 33px;
+			border-radius: 5px;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		}
+
+		.pageLink, .nextLink, .prevLink {
+			@apply transition-colors duration-150 ease-in-out;
+
+			&:hover {
+				@apply text-secondary-light;
+			}
+		}
+
+		.nextLink  {
+			margin-left: 20px;
+			padding-right: 30px;
+			padding-block: 5px;
+		}
+
+		.prevLink {
+			margin-right: 20px;
+			padding-left: 30px;
+			padding-block: 5px;
+		}
+
+
+		.activePage {
+			@apply font-bold text-secondary-default;
+			&:hover {
+				color: $secondary-default !important;
+			}
+		}
+
+		.rightArrowContainer {
+			@apply absolute flex top-1/2 left-9 -translate-y-1/2 pointer-events-none; 
+
+			.rightArrow {
+				@apply rotate-180;
+				height: 26px;
+				margin-left: -20px;
+
+				path {
+					fill: $secondary-default;				
+				}
+			}
+		}
+
+		.leftArrowContainer {
+			@apply absolute flex top-1/2 right-9 -translate-y-1/2 pointer-events-none; 
+
+			.leftArrow {
+				height: 26px;
+				margin-right: -20px;
+
+				path {
+					fill: $secondary-default;				
+				}
+			}
+		}
+	}
+}

@@ -1,4 +1,3 @@
-import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,13 +11,14 @@ import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 import Toast from "../../../../components/Toast";
-import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
+import { INPUT_INITIAL_VALUE } from "../../../../constants";
 import {
 	getUserDetail,
 	useLoginMutation,
 } from "../../../../features/api/builders/userApi";
 import {
 	logOut,
+	selectCurrentToken,
 	setCredentials,
 } from "../../../../features/slice/userAccessSlice";
 import styles from "./Login.module.scss";
@@ -45,6 +45,8 @@ const Login = ({ title }) => {
 
 	const navigate = useNavigate();
 
+	const token = useSelector(selectCurrentToken);
+
 	// dummy account
 	const USER = {
 		username: "test",
@@ -53,8 +55,8 @@ const Login = ({ title }) => {
 	};
 
 	useEffect(() => {
-		dispatch(logOut());
-	}, []);
+		token && navigate("/")
+	}, [token, navigate]);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();

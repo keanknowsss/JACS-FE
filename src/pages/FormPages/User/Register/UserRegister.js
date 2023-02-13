@@ -12,7 +12,7 @@ import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 import Toast from "../../../../components/Toast";
 
-import { INPUT_INITIAL_VALUE } from "../../../../constants/constants";
+import { INPUT_INITIAL_VALUE } from "../../../../constants";
 import {
 	useLoginMutation,
 	useRegisterUserMutation,

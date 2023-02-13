@@ -1,0 +1,73 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.homeContainer {
+	@apply bg-background flex justify-center items-center;
+	padding-block: 1rem 3rem;
+}
+
+.homeDiv {
+	@apply px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 
+        justify-center items-center bg-primary-default 
+        box-border;
+
+	width: 97%;
+
+	.carouselSection {
+		@apply col-span-1 lg:col-span-2 row-span-3 w-full h-full 
+            rounded-t-md lg:rounded-l-md lg:rounded-tr-none;
+
+		.carouselDiv {
+			@apply bg-background w-full h-[175vh] lg:h-full shadow-md rounded-md;
+		}
+	}
+
+	.logoSection {
+		@apply col-span-1 lg:col-span-2 row-span-1 p-3 lg:p-0 bg-background w-full h-full 
+			flex justify-center items-center rounded-md;
+	}
+
+	.itemsSection {
+		@apply col-span-1 lg:col-span-2 row-span-1 bg-background w-full h-full rounded-md flex flex-col items-center;
+		padding-bottom: 20px;
+
+		.itemHeading {
+			@apply text-white font-bold font-montserrat uppercase;
+			font-size: 2rem;
+			padding-block: 12px 4px;
+			line-height: 50px;
+			letter-spacing: 0.065em;
+			text-align: left;
+			width: 97%;
+		}
+
+		.cardContainer {
+			@apply rounded-md flex flex-row justify-evenly items-center flex-wrap gap-5 p-2;
+			background: rgba($primary-default, 0.5);
+			width: 97%;
+		}
+	}
+}
+
+@media (max-width: 1734px) {
+	.productMod:nth-child(3) {
+		display: none;
+	}
+
+	.productMod {
+		width: 40%;
+		min-width: 253px;
+	}
+}
+
+@media (max-width: 1172px) {
+	.productMod:nth-child(3), .productMod:nth-child(2) {
+		display: none;
+	}
+}
+
+@media (max-width: 1022px) {
+	.productMod:nth-child(2) {
+		display: flex;
+	}
+}
