@@ -1,9 +1,11 @@
 import { ImageCard } from "../../assets/images";
 import styles from "./ProductCard.module.scss";
 
-const ProductCard = ({ modifierClass, productKey }) => {
+const ProductCard = (props, { modifierClass}) => {
+	const { _id, category, name, img, price} = props;
+
 	return (
-		<div key={productKey} className={`${styles.productCard} ${modifierClass}`}>
+		<div className={`${styles.productCard} ${modifierClass}`}>
 			<div className={styles.mainCard}>
 				<div className={styles.mainImg}>
 					<div className={styles.imgContainer}></div>
@@ -11,14 +13,14 @@ const ProductCard = ({ modifierClass, productKey }) => {
 				</div>
 
 				<div className={styles.textContainer}>
-					<h3>Lorem ipsum dolor sit amet, consectetur</h3>
+					<h3>{name}</h3>
 					<ul>
 						<li>Brand: Lorem</li>
-						<li>Category: Lorem</li>
+						<li>Category: {category}</li>
 					</ul>
 				</div>
 				<div className={styles.priceContainer}>
-					<span>&#8369; 9999</span>
+					<span>&#8369; {price}</span>
 				</div>
 			</div>
 		</div>
