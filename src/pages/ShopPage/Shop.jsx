@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import {
-	ArrowNavigation,
-	ExitIcon,
-	FilterIcon,
-	SearchIcon
+  ArrowNavigation,
+  ExitIcon,
+  FilterIcon,
+  SearchIcon
 } from "../../assets/icons";
 import { ProductCard } from "../../components/Card";
 import { FilterModal } from "./subcomponents";
@@ -15,7 +15,11 @@ import { useGetAllProductsQuery } from "../../features/api/builders/productApi";
 
 const Shop = ({ title }) => {
   document.title = title;
+  document.title = title;
 
+  const searchHandler = (e) => {
+    e.preventDefault();
+  };
   const searchHandler = (e) => {
     e.preventDefault();
   };
@@ -26,6 +30,11 @@ const Shop = ({ title }) => {
   const [items, setItems] = useState([]);
   const [itemRange, setItemRange] = useState({ min: 0, max: 20 });
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setShowFilter(false);
+    }
+  });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       setShowFilter(false);

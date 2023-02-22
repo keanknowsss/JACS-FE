@@ -1,0 +1,8 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.loading {
+    @apply text-center flex flex-col justify-center items-center w-full h-screen;
+    background-color: #121416;
+}
+
