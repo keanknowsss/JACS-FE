@@ -20,9 +20,6 @@ const Shop = ({ title }) => {
   const searchHandler = (e) => {
     e.preventDefault();
   };
-  const searchHandler = (e) => {
-    e.preventDefault();
-  };
 
   const [minRange, setMinRange] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState([]);
