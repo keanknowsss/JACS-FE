@@ -6,7 +6,7 @@ import styles from "./Loading.module.scss";
 const Loading = () => {
   return (
     <div className={styles.loading}>
-      <img src={CircleLoading} alt="" />
+      <img src={CircleLoading} className="" alt="" />
       <TextLoading />
     </div>
   );

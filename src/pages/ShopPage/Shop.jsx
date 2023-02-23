@@ -11,27 +11,29 @@ import { FilterModal } from "./subcomponents";
 import ReactPaginate from "react-paginate";
 import styles from "./Shop.module.scss";
 
+import EmptyVoid from "../../components/EmptyVoid";
+import Loading from "../../components/Loading/Loading";
 import { useGetAllProductsQuery } from "../../features/api/builders/productApi";
 
 const Shop = ({ title }) => {
   document.title = title;
-  document.title = title;
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-  };
 
   const [minRange, setMinRange] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [items, setItems] = useState([]);
   const [itemRange, setItemRange] = useState({ min: 0, max: 20 });
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalDocs, setTotalDocs] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      setShowFilter(false);
-    }
-  });
+  const searchHandler = (e) => {
+    const searchFilter = document.getElementById("searchFilter");
+    setSearch(() => searchFilter.value);
+    e.preventDefault();
+  };
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       setShowFilter(false);
@@ -43,22 +45,31 @@ const Shop = ({ title }) => {
       min: 0 + 20 * page.selected,
       max: 20 + 20 * page.selected,
     });
+    setCurrentPage(page.selected + 1);
     window.scrollTo(0, 0);
   };
 
   const { data, error, isLoading } = useGetAllProductsQuery({
-    page: 1,
-    limit: 10,
+    page: currentPage,
+    limit: 20,
+    search: search,
   });
 
-  const products = data ? data["result"]["docs"] : [];
-
   useEffect(() => {
+    const products = data ? data["result"]["docs"] : [];
+    const {totalPages, totalDocs} = data && data["result"] !== undefined ? data["result"] : {totalPages : 0, totalDocs : 0};
+    
     setItems(() => products);
-  }, [items]);
+    setTotalPages(() => totalPages);
+    setTotalDocs(() => totalDocs);
+  }, [items, data, totalPages]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {
@@ -77,6 +88,7 @@ const Shop = ({ title }) => {
         <form onSubmit={searchHandler} className={styles.searchBar}>
           <input
             type="search"
+            id="searchFilter"
             placeholder="Search Products"
             className={styles.searchInput}
             autoComplete="off"
@@ -138,15 +150,20 @@ const Shop = ({ title }) => {
         {/* 
 					PRODUCTS 
 				*/}
-        <div className={styles.productContainer}>
-          {items.map((item, index) => {
-            return (
-              <Fragment key={item._id}>
-                <ProductCard {...item} modifierClass={styles.productCard} />
-              </Fragment>
-            );
-          })}
-        </div>
+
+        {items.length !== 0 ? (
+          <div className={styles.productContainer}>
+            {items.map((item, index) => {
+              return (
+                <Fragment key={item._id}>
+                  <ProductCard {...item} modifierClass={styles.productCard} />
+                </Fragment>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyVoid />
+        )}
 
         {/* 
 					PAGINATION 
@@ -157,7 +174,7 @@ const Shop = ({ title }) => {
               breakLabel="..."
               nextLabel="Next"
               onPageChange={changePageHandler}
-              pageCount={Math.ceil(items.length / 20)}
+              pageCount={Math.ceil(totalDocs/20) + 5} // Added custom 5 pages
               previousLabel="Previous"
               pageRangeDisplayed={5}
               className={styles.paginationComponent}

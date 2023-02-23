@@ -59,7 +59,7 @@
 		}
 
 		.priceContainer {
-			@apply absolute flex justify-center items-center font-bold;
+			@apply absolute flex justify-center items-center font-bold ;
 			border: 3px solid #f66b0e;
 			border-radius: 5px;
 			background: #121416;
@@ -67,7 +67,7 @@
 			min-width: 80px;
 			max-width: 80%;
 			padding: 5px 10px;
-			bottom: -8px;
+			bottom: -14px;
 			right: 10px;
 		}
 	}

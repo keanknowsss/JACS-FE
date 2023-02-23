@@ -5,10 +5,9 @@ export const productApi = apiMiddleware.injectEndpoints({
         // products
         getAllProducts: builder.query({
             query: (params) => {
-                const { page, limit } = params;
                 return {
                     url: `/products`,
-                    params: {page, limit},
+                    params: {...params},
                 };
             },
             providesTags: (result, error, arg) => {
