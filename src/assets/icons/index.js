@@ -7,6 +7,8 @@ export { default as CartNavbar } from "./CartNavbar";
 export { default as ChipIcon } from "./ChipIcon";
 export { default as CircleCheck } from "./CircleCheck";
 export { default as DeleteIcon } from "./DeleteIcon";
+export { default as DeliveryIcon } from "./DeliveryIcon";
+export { default as DiscountIcon } from "./DiscountIcon";
 export { default as EditIcon } from "./EditIcon";
 export { default as ErrorIcon } from "./ErrorIcon";
 export { default as ExitIcon } from "./ExitIcon";
@@ -30,11 +32,11 @@ export { default as SavedIcon } from "./SavedIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as SearchNavbar } from "./SearchNavbar";
 export { default as SettingIcon } from "./SettingIcon";
+export { default as ShipIcon } from "./ShipIcon";
 export { default as ShopIcon } from "./ShopIcon";
 export { default as TechnicianIcon } from "./TechnicianIcon";
 export { default as TriangleIcon } from "./TriangleIcon";
 export { default as WarningIcon } from "./WarningIcon";
-
 
 
 

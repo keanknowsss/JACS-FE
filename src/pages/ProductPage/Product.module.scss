@@ -1,0 +1,12 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.main {
+    @apply w-full h-full flex justify-center pt-10;
+    background-color: #121416;
+
+    .container {
+        width: 1541px;
+        height: 100%;
+    }
+}

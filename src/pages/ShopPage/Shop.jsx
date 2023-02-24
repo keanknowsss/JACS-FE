@@ -183,7 +183,7 @@ const Shop = ({ title }) => {
               breakLabel="..."
               nextLabel="Next"
               onPageChange={changePageHandler}
-              pageCount={Math.ceil(totalDocs/20) + 5} // Added custom 5 pages
+              pageCount={Math.ceil(totalDocs/20)}
               previousLabel="Previous"
               pageRangeDisplayed={5}
               className={styles.paginationComponent}

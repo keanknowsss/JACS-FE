@@ -17,15 +17,15 @@ export const productApi = apiMiddleware.injectEndpoints({
                         ...result.result.docs.map(id => ({type: "Product", id}))
                 ];
             },
-        })
+        }),
         // getAllProductsFromSeller: builder.query({
         //     query: (sellerId) => `/products/store/${sellerId}`,
         //     providesTags: ["PRODUCT"]
         // }),
-        // getProduct: builder.query({
-        //     query: (id) => `/products/${id}`,
-        //     providesTags: ["PRODUCT"]
-        // }),
+        getProduct: builder.query({
+            query: (id) => `/products/${id}`,
+            providesTags: ["PRODUCT"]
+        }),
         // addProduct: builder.mutation({
         //     query: (product) => ({
         //         url: "/products",
@@ -77,11 +77,11 @@ export const productApi = apiMiddleware.injectEndpoints({
         //     invalidatesTags: ["PRODUCT"]
         // }),
 
-        // //Product specifications
-        // getProductSpecifications: builder.query({
-        //     query: (productId) => `/products/${productId}/specifications`,
-        //     providesTags: ["SPECIFICATION"]
-        // }),
+        //Product specifications
+        getProductSpecifications: builder.query({
+            query: (productId) => `/products/${productId}/specifications`,
+            providesTags: ["SPECIFICATION"]
+        }),
         // addProductSpecifications: builder.mutation({
         //     query: (productId, specifications) => ({
         //         url: `/products/${productId}/specifications`,
@@ -103,8 +103,12 @@ export const productApi = apiMiddleware.injectEndpoints({
 
 export const {
     useGetAllProductsQuery,
+    useGetProductQuery,
+    useGetProductSpecificationsQuery,
 } = productApi;
 
 export const {
     getAllProducts,
+    getProduct,
+    getProductSpecifications,
 } = productApi.endpoints;

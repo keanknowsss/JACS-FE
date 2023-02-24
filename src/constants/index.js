@@ -12,7 +12,7 @@ export const PC_ESSENTIALS = [
 	"Video Card",
 	"Case",
 	"Power Supply",
-	"Operating System",
+	"OS",
 	"Monitor",
 ];
 

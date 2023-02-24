@@ -1,0 +1,17 @@
+@import "../../../../styles//mixins";
+@import "../../../../styles/variables";
+
+.main {
+    @apply w-full h-full mb-7 p-5 font-montserrat rounded-md;
+    background-color: #1E2126;
+    color: #efefef;
+
+    .header {
+        @apply font-bold text-xl mb-2;
+    }
+
+    .specifications {
+        @apply w-full h-full px-10 py-5 rounded-md;
+        background-color: #333840;
+    }
+}

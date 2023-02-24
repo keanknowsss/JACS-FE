@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import {
 	AboutUs, Build, BuildYourPC, Cart, Forum, Home, LoginForm, NotFound, Order, Profile, ProfileNavbar, Repair, Saved, Settings, Shop, ShopProfile, StoreProfileForm, StoreRegisterForm, Tech101, TechnicianProfile, TechnicianProfileForm, TechnicianRegisterForm, TestPage, UserProfileForm, UserRegisterForm
 } from "../pages";
+import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
 
 const Navigation = () => {
@@ -103,6 +104,9 @@ const Navigation = () => {
 					path="/register"
 					element={<UserRegisterForm title={TITLES.UserRegisterForm} />}
 				/>
+
+				{/* product page */}
+				<Route path="/products/:productId" element={<Product/>} />
 			</Routes>
 			<hr />
 			<Footer />
