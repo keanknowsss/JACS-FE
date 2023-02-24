@@ -49,11 +49,20 @@ const Shop = ({ title }) => {
     window.scrollTo(0, 0);
   };
 
-  const { data, error, isLoading } = useGetAllProductsQuery({
+  const query = {
     page: currentPage,
     limit: 20,
     search: search,
+  }
+
+  if(selectedFilter.length > 0) {
+    query.category = selectedFilter[0].replace(/ /g, "_");
+  }
+
+  const { data, error, isLoading } = useGetAllProductsQuery({
+    ...query
   });
+
 
   useEffect(() => {
     const products = data ? data["result"]["docs"] : [];

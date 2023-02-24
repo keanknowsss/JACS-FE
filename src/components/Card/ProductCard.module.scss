@@ -10,7 +10,8 @@
 	height: 297px;
 	position: relative;
 
-	&:hover > .mainCard .mainImg {
+	&:hover > .mainCard .priceContainer {
+		transition: transform .2s;
 		transform: scale(1.05);
 	}
 

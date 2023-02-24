@@ -10,13 +10,13 @@ const ProductCard = (props, { modifierClass }) => {
         <div className={styles.mainCard}>
           <div className={styles.mainImg}>
             <div className={styles.imgContainer}></div>
-            <img className={styles.productImg} src={ImageCard} alt="" />
+            <img className={styles.productImg} src={img ? img[0] : ImageCard} alt="" />
           </div>
 
           <div className={styles.textContainer}>
             <h3>{name}</h3>
             <ul>
-              <li>Category: {category.replace(/_/g, " ")}</li>
+              <li>Category: {category ? category.replace(/_/g, " ") : "Sample category"}</li>
             </ul>
           </div>
           <div className={styles.priceContainer}>
