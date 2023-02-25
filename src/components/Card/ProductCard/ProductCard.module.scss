@@ -21,23 +21,29 @@
 		height: 263px;
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.52));
 
-		.imgContainer {
-			@apply h-full w-full absolute;
-			background: linear-gradient(
-				359.28deg,
-				#020100 4.12%,
-				rgba(26, 25, 24, 0.905556) 13.75%,
-				rgba(33, 32, 31, 0.878634) 25.19%,
-				rgba(63, 62, 62, 0.758709) 31.81%,
-				rgba(255, 255, 255, 0) 58.3%
-			);
-			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-			border-radius: 5px;
-			border: 3px solid #f66b0e;
-		}
+		.mainImg {
+			@apply w-full h-full rounded-t-lg rounded-b-lg;
+			background-color: #ffffff;
 
-		.productImg {
-			@apply rounded-t-lg rounded-b-lg w-full h-full object-cover;
+			.imgContainer {
+				@apply h-full w-full absolute;
+				background: linear-gradient(
+					359.28deg,
+					#333 4.12% ,
+					rgba(26, 25, 24, 0.905556) 13.75%,
+					rgba(33, 32, 31, 0.878634) 25.19%,
+					rgba(63, 62, 62, 0.758709) 41.81%,
+					rgba(255, 255, 255, 0) 70.3%
+				);
+				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+				border-radius: 5px;
+				border: 3px solid #f66b0e;
+			}
+	
+			.productImg {
+				@apply rounded-t-lg rounded-b-lg w-full h-full object-cover;
+				
+			}
 		}
 
 		.textContainer {
