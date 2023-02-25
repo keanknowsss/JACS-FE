@@ -1,4 +1,4 @@
-import { ImageCard } from "../../assets/images";
+import { ImageCard } from "../../../assets/images";
 import styles from "./ProductCard.module.scss";
 
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ const ProductCard = (props, { modifierClass }) => {
               </ul>
             </div>
             <div className={styles.priceContainer}>
-              <span>&#8369; {price}</span>
+              <span>$ {price}</span>
             </div>
           </Link>
         </div>

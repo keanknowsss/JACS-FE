@@ -53,25 +53,27 @@ const Shop = ({ title }) => {
     page: currentPage,
     limit: 20,
     search: search,
-  }
+  };
 
-  if(selectedFilter.length > 0) {
+  if (selectedFilter.length > 0) {
     query.category = selectedFilter[0].replace(/ /g, "_");
   }
 
   const { data, error, isLoading } = useGetAllProductsQuery({
-    ...query
+    ...query,
   });
-
 
   useEffect(() => {
     const products = data ? data["result"]["docs"] : [];
-    const {totalPages, totalDocs} = data && data["result"] !== undefined ? data["result"] : {totalPages : 0, totalDocs : 0};
-    
-    setItems(() => products);
-    setTotalPages(() => totalPages);
-    setTotalDocs(() => totalDocs);
-  }, [items, data, totalPages]);
+    const { totalPages, totalDocs } =
+      data && data["result"] !== undefined
+        ? data["result"]
+        : { totalPages: 0, totalDocs: 0 };
+
+    setItems((currentItems) => (currentItems = products));
+    setTotalPages((currentTotalPages) => (currentTotalPages = totalPages));
+    setTotalDocs((currentTotalDocs) => (currentTotalDocs = totalDocs));
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -183,7 +185,7 @@ const Shop = ({ title }) => {
               breakLabel="..."
               nextLabel="Next"
               onPageChange={changePageHandler}
-              pageCount={Math.ceil(totalDocs/20)}
+              pageCount={Math.ceil(totalDocs / 20)}
               previousLabel="Previous"
               pageRangeDisplayed={5}
               className={styles.paginationComponent}

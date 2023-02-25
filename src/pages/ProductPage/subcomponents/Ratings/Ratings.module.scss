@@ -1,0 +1,34 @@
+@import "../../../../styles//mixins";
+@import "../../../../styles/variables";
+
+.main {
+  @apply w-full h-full mb-3 p-5 font-montserrat rounded-md;
+  background-color: #1e2126;
+  color: #efefef;
+
+  .header {
+    @apply font-bold text-xl mb-2;
+  }
+
+  .container {
+    @apply flex flex-row w-full h-full;
+
+    .averageRatings {
+      @apply w-1/3 px-10 py-5 mr-2 rounded-md font-roboto;
+      background-color: #333840;
+
+      .average {
+        @apply text-7xl;
+      }
+
+      .maxStars {
+        @apply text-5xl opacity-60;
+      }
+    }
+
+    .individualStars {
+      @apply w-2/3 px-10 py-5 rounded-md;
+      background-color: #333840;
+    }
+  }
+}

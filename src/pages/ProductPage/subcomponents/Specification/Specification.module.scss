@@ -2,7 +2,7 @@
 @import "../../../../styles/variables";
 
 .main {
-    @apply w-full h-full mb-7 p-5 font-montserrat rounded-md;
+    @apply w-full mb-3 p-5 font-montserrat rounded-md mr-3;
     background-color: #1E2126;
     color: #efefef;
 
@@ -11,7 +11,7 @@
     }
 
     .specifications {
-        @apply w-full h-full px-10 py-5 rounded-md;
+        @apply w-full px-10 py-5 rounded-md;
         background-color: #333840;
     }
 }

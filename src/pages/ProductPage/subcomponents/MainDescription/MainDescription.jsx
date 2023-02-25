@@ -7,12 +7,14 @@ const MainDescription = (props) => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.images}></div>
+      <div className={styles.images}>
+        <img src={details.img[0]} className={styles.image}/>
+      </div>
 
       <div className={styles.description}>
         <h1 className={styles.productName}>{details.name}</h1>
         <p className={styles.brand}>Brand: {specifications.manufacturer}</p>
-        <p className={styles.price}>&#8369; {details.price}</p>
+        <p className={styles.price}>$ {details.price}</p>
 
         <div className={styles.btns}>
           <button className={styles.addCartBtn}>Add to Cart</button>

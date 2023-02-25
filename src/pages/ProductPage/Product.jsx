@@ -2,11 +2,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import {
-    useGetProductQuery,
-    useGetProductSpecificationsQuery
+  useGetProductQuery,
+  useGetProductSpecificationsQuery
 } from "../../features/api/builders/productApi";
+import { useGetAllReviewsOfRefQuery, useGetReviewStatisticsQuery } from "../../features/api/builders/reviewApi";
 import styles from "./Product.module.scss";
 import MainDescription from "./subcomponents/MainDescription/MainDescription";
+import Ratings from "./subcomponents/Ratings/Ratings";
+import Reviews from "./subcomponents/Reviews/Reviews";
 import Specification from "./subcomponents/Specification/Specification";
 
 const Product = () => {
@@ -26,7 +29,21 @@ const Product = () => {
     isLoading: isSpecificationLoading,
   } = useGetProductSpecificationsQuery(productId);
 
-  if (isProductLoading || isSpecificationLoading) {
+  // Get product reviews
+  const {
+    data: reviews,
+    error: reviewError,
+    isLoading: isReviewLoading,
+  } = useGetAllReviewsOfRefQuery(productId);
+
+  // Get product review statistics
+  const {
+    data: reviewStats,
+    error: reviewStatsError,
+    isLoading: isStatsLoading,
+  } = useGetReviewStatisticsQuery(productId);
+
+  if (isProductLoading || isSpecificationLoading || isReviewLoading || isStatsLoading) {
     return (
       <>
         <Loading />
@@ -37,7 +54,12 @@ const Product = () => {
   const productDetails = {
     details: { ...product["result"] },
     specifications: { ...specifications["result"] },
+    reviews: {...reviews["result"]},
   };
+
+  if (reviewStats) {
+    productDetails.stats = {...reviewStats["result"]}
+  }
 
   document.title = `${productDetails.details.name} - JACS`;
 
@@ -52,7 +74,10 @@ const Product = () => {
 
         <div className={styles.subPart}>
             <Specification {...productDetails}/>
+            <Ratings {...productDetails.stats}/>           
         </div>
+        
+        <Reviews {...productDetails.reviews} />
       </div>
     </div>
   );

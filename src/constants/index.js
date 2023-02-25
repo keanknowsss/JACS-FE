@@ -30,6 +30,6 @@ export const ACCESSORIES_OTHERS = [
 	"Fan Controllers",
 	"Thermal Compound",
 	"External Storage",
-	"Optical Drives",
+	"Optical Drive",
 	"UPS Systems",
 ];
