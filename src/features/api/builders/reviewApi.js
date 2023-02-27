@@ -4,10 +4,11 @@ export const reviewApi = apiMiddleware.injectEndpoints({
     endpoints: (builder) => ({
         // products
         getAllReviewsOfRef: builder.query({
-            query: (id, params) => {
+            query: (params) => {
+                const {productId: id, query} = params;
                 return {
                     url: `/reviews/${id}`,
-                    params: {...params},
+                    params: {...query},
                 };
             },
             providesTags: (result, error, arg) => {

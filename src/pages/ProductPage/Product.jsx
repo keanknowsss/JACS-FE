@@ -5,12 +5,11 @@ import {
   useGetProductQuery,
   useGetProductSpecificationsQuery
 } from "../../features/api/builders/productApi";
-import { useGetAllReviewsOfRefQuery, useGetReviewStatisticsQuery } from "../../features/api/builders/reviewApi";
+import { useGetReviewStatisticsQuery } from "../../features/api/builders/reviewApi";
 import styles from "./Product.module.scss";
 import MainDescription from "./subcomponents/MainDescription/MainDescription";
 import Ratings from "./subcomponents/Ratings/Ratings";
 import Reviews from "./subcomponents/Reviews/Reviews";
-import Specification from "./subcomponents/Specification/Specification";
 
 const Product = () => {
   const { productId } = useParams();
@@ -29,13 +28,6 @@ const Product = () => {
     isLoading: isSpecificationLoading,
   } = useGetProductSpecificationsQuery(productId);
 
-  // Get product reviews
-  const {
-    data: reviews,
-    error: reviewError,
-    isLoading: isReviewLoading,
-  } = useGetAllReviewsOfRefQuery(productId);
-
   // Get product review statistics
   const {
     data: reviewStats,
@@ -43,7 +35,7 @@ const Product = () => {
     isLoading: isStatsLoading,
   } = useGetReviewStatisticsQuery(productId);
 
-  if (isProductLoading || isSpecificationLoading || isReviewLoading || isStatsLoading) {
+  if (isProductLoading || isSpecificationLoading || isStatsLoading) {
     return (
       <>
         <Loading />
@@ -54,11 +46,10 @@ const Product = () => {
   const productDetails = {
     details: { ...product["result"] },
     specifications: { ...specifications["result"] },
-    reviews: {...reviews["result"]},
   };
 
   if (reviewStats) {
-    productDetails.stats = {...reviewStats["result"]}
+    productDetails.stats = { ...reviewStats["result"] };
   }
 
   document.title = `${productDetails.details.name} - JACS`;
@@ -73,11 +64,17 @@ const Product = () => {
         <MainDescription {...productDetails} />
 
         <div className={styles.subPart}>
-            <Specification {...productDetails}/>
-            <Ratings {...productDetails.stats}/>           
+          <div className={styles.description}>
+            <h1 className={styles.headerDescription}>Description</h1>
+            <div className={styles.descriptionText}>
+              <p>{productDetails.details.description}</p>
+            </div>
+          </div>
+          {/* <Specification {...productDetails} /> */}
+          <Ratings {...productDetails.stats} />
         </div>
-        
-        <Reviews {...productDetails.reviews} />
+
+        <Reviews productId={productId} />
       </div>
     </div>
   );
