@@ -12,7 +12,9 @@
   }
 
   .images img {
-    @apply w-full h-full object-contain;
+    @apply w-full h-full object-contain rounded-md  border-secondary-default;
+    border-width: 4px;
+    background-color: #ffffff;
   }
 
   .description {

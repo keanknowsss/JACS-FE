@@ -1,8 +1,8 @@
-@import "../../../styles//mixins";
+@import "../../../styles/mixins";
 @import "../../../styles/variables";
 
 .main {
-  @apply w-full h-full font-montserrat rounded-md p-5 mb-3;
+  @apply w-full h-full font-montserrat rounded-md p-5 mb-3 shadow-md;
   background-color: #333840;
   color: #efefef;
 

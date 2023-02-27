@@ -3,6 +3,7 @@ import { useGetUserDetailQuery } from "../../../features/api/builders/userApi";
 import styles from "./ReviewCard.module.scss";
 
 import { CircleLoading } from "../../../assets/images";
+import StarRating from "../../StarRating/StarRating";
 
 const ReviewCard = (props) => {
   const { _userId, updatedAt, description, stars, likes } = props;
@@ -32,7 +33,7 @@ const ReviewCard = (props) => {
             <p className={styles.date}>{date.toUTCString()}</p>
         </div>
         <div className={styles.stars}>
-            <span>{stars} {stars > 1 ? `stars` : `star`}</span>
+            <span><StarRating rating={stars} modify={false}/></span>
         </div>
       </div>
 
