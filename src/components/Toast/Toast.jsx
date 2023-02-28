@@ -33,7 +33,7 @@ const Toast = ({
 	showToast, // toast toggle
 	setShowToast, // toast toggle setstate
 	type, // can be linkCallback, default
-	symbol, // can be warning, success
+	symbol, // can be warning, success, error, inform
 	title, // for h1
 	subtitle, // for defaults
 	callback, // for linkCallback

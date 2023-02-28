@@ -1,0 +1,81 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+.modalFilterContainer {
+	.backdrop {
+		@apply h-full w-full fixed z-50 top-0 flex justify-center font-montserrat text-lightWhite;
+		background: rgba(0, 0, 0, 0.8);
+
+		.modal {
+			@apply bg-accent-1 rounded-xl flex flex-col items-center gap-y-4 h-fit text-center z-[60] relative;
+			height: 430px;
+			width: min(450px, 100% - 2rem);
+			padding: 45px 60px 55px 60px;
+			box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1);
+
+			.modalHeading {
+				@apply flex flex-col;
+
+				h2 {
+					@apply font-bold;
+					font-size: 28px;
+					line-height: 32px;
+				}
+
+				p {
+					font-size: 18px;
+					line-height: 15px;
+				}
+			}
+
+			hr {
+				width: 210px;
+				border-color: $secondary-default;
+			}
+
+			.modalContent {
+				ul {
+					@apply flex flex-col mt-5;
+
+					li {
+						font-size: 17px;
+						line-height: 23px;
+						letter-spacing: -0.015em;
+						cursor: pointer;
+
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+
+			svg {
+				width: 50px;
+				@apply transition-colors duration-150 ease-in-out;
+				cursor: pointer;
+
+				path {
+					fill: rgba($secondary-default, 0.5);
+				}
+
+				&:hover {
+					path {
+						fill: rgba($secondary-default, 1);
+					}
+				}
+			}
+
+			.rightArrow {
+				@apply absolute right-0;
+				top: 35%;
+			}
+
+			.leftArrow {
+				@apply absolute left-0;
+				top: 35%;
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
