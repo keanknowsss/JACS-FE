@@ -1,0 +1,255 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+input:focus,
+select:focus {
+	border-color: black;
+}
+
+.inputForm {
+	@apply max-w-full cursor-text h-[57px] rounded-md px-3 transition-all duration-100 ease-in relative hover:border-primary-1;
+	border: 1px solid rgba($primary-1, 0.5);
+
+	label {
+		@apply block text-xs font-light text-primary-1 leading-6  cursor-text transition-all duration-100 ease-in;
+		letter-spacing: 0.005rem;
+		pointer-events: none;
+	}
+
+	input {
+		@apply text-base;
+		width: 93%;
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+
+		&:focus,
+		&:active {
+			outline: none;
+		}
+	}
+
+	input[type="password"]::-ms-reveal {
+		display: none;
+	}
+
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	.selectBox {
+		@apply w-full relative cursor-pointer;
+
+		select {
+			@apply appearance-none bg-none cursor-pointer rounded-md;
+			padding-top: 24px;
+			padding-bottom: 7px;
+			margin-top: -30px;
+			margin-left: -12px;
+			padding-left: 12px;
+			color: rgba(black, 0.8);
+
+			background: none;
+			width: max(106%, 100% + 24px);
+
+			option {
+				font-size: 15px;
+				font-weight: 300;
+			}
+		}
+
+		select:hover ~ .selectDropdown {
+			fill: $primary-1;
+		}
+
+		select:focus ~ label {
+			color: black;
+		}
+
+		.selectDropdown {
+			@apply rotate-180 absolute pointer-events-none transition-opacity duration-75 ease-in;
+			fill: rgba($primary-1, 0.5);
+			right: 10px;
+			top: 7px;
+			height: 10px;
+			transform: scale(2, -1.5);
+		}
+	}
+
+	.eyeIcon {
+		@apply inline-block absolute right-4 top-1/2 translate-y-[-50%] cursor-pointer;
+
+		svg {
+			@apply transition delay-100 ease-in-out;
+
+			g {
+				stroke: rgba($primary-1, 0.5);
+			}
+		}
+
+		svg:hover > g {
+			stroke: $primary-1;
+		}
+	}
+}
+
+.textAreaForm {
+	@apply h-full;
+
+	textarea {
+		@apply text-sm w-full h-20;
+		border: none;
+		outline: none;
+		resize: none;
+		width: full;
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+	}
+	textarea:focus {
+		border-color: none;
+	}
+}
+
+div[data-focus="error-focus"],
+div[data-focus="focus-div"] {
+	label {
+		color: black !important;
+	}
+	svg {
+		color: $primary-1;
+	}
+}
+
+div[data-focus="focus-div"] {
+	border: 1px solid black !important;
+}
+
+div[data-error="error-div"] {
+		border: 2px solid rgba($red-default, 0.5) !important;
+
+	&:hover {
+		border: 2px solid rgba($red-default, 0.7) !important;
+	}
+}
+
+div[data-focus="error-focus"] {
+	border: 2px solid $red-secondary!important;
+}
+
+.dropDownActive {
+	@apply transition-none;
+	transform: scale(2, 1.5) !important;
+}
+
+.checkSection {
+	@apply flex items-center ml-4 mb-3;
+	font-size: 14px;
+
+	label {
+		margin-left: 13px;
+		line-height: 13px;
+		letter-spacing: -0.015em;
+	}
+	input[type="checkbox"] {
+		width: 17px;
+		height: 17px;
+	}
+
+	a {
+		@include link();
+	}
+}
+
+.title {
+	padding-left: 2px;
+
+	h3 {
+		@apply text-base;
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+	}
+	hr {
+		border-top: 1px solid black;
+	}
+}
+
+.radioChoice {
+	input,
+	label {
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+	}
+	input[type="radio"] {
+		margin-right: 1rem;
+	}
+	input[type="radio"],
+	label {
+		cursor: pointer;
+	}
+}
+
+.titleInformation {
+	@apply flex gap-2 items-center mt-1;
+	padding-left: 4px;
+
+	h3 {
+		letter-spacing: -0.015em;
+		color: rgba(black, 0.8);
+	}
+
+	.informationContainer {
+		@apply relative;
+
+		.informationIcon {
+			margin-top: -4px;
+			width: 10px;
+		}
+		.informationText {
+			@apply absolute z-10 border bg-primary-2 text-lightWhite text-2xs px-3 py-2 rounded-lg;
+			top: -2px;
+			left: 2px;
+			letter-spacing: 0.01rem;
+			line-height: 12px;
+			width: 18rem;
+		}
+	}
+}
+
+.fileSection {
+	@apply flex flex-col justify-center items-center max-w-full cursor-pointer h-48 rounded-md transition-all duration-100 ease-in relative hover:border-primary-1;
+	border: 1px solid rgba($primary-1, 0.5);
+	margin-top: -0.5rem;
+
+	&:hover > .fileAddIcon {
+		fill: $primary-2;
+	}
+	&:hover > .fileAddText {
+		color: $primary-2;
+		font-weight: normal;
+	}
+
+	.fileAddIcon {
+		@apply transition-all duration-200 ease-in;
+		height: 66px;
+		fill: rgba($primary-1, 0.5);
+	}
+	.fileIcon {
+		height: 66px;
+		fill: $primary-2;
+	}
+	p {
+		@apply font-light text-primary-1 transition-all duration-100 ease-in;
+		font-size: 13px;
+		line-height: 36px;
+		letter-spacing: 0.005em;
+	}
+	.fileName {
+		color: $primary-2;
+		font-weight: normal;
+	}
+}

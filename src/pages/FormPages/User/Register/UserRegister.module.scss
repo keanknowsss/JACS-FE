@@ -1,0 +1,77 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+.formContainer {
+	@include main-container-1();
+
+	.formElement {
+		width: min(580px, 100% - 10rem);
+		z-index: 10;
+	}
+
+	.iconContainer {
+		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
+
+        .columnIcon {
+            @apply w-full h-full relative;
+        
+
+			.printerIcon,
+			.chipIcon,
+			.monitorIcon,
+			.mouseIcon {
+				position: absolute;
+
+				g {
+					stroke: $primary-default;
+				}
+			}
+			.printerIcon {
+				left: -10%;
+				bottom: 10%;
+				transform: rotate(-13.13deg);
+				width: 318.47px;
+
+				g {
+					stroke-width: 0.7;
+					fill: $background;
+				}
+			}
+
+			.chipIcon {
+				width: 190.29px;
+				right: -5%;
+				top: 10%;
+				transform: rotate(-11.92deg);
+
+				g {
+					stroke-width: 1.1;
+					fill: $background;
+				}
+			}
+
+			.monitorIcon {
+				width: 236.77px;
+				left: -10%;
+				top: -2%;
+				transform: rotate(19.83deg);
+
+				g {
+					stroke-width: 1.1;
+					fill: $background;
+				}
+			}
+
+			.mouseIcon {
+				width: 235.77px;
+				right: 22%;
+				bottom: 15%;
+				transform: rotate(-30.42deg);
+
+				g {
+					stroke-width: 0.8;
+				}
+			}
+		}
+	}
+}

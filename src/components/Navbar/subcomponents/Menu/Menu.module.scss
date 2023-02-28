@@ -1,0 +1,85 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+.menuSection {
+	@apply top-0 right-0 h-screen fixed z-50 text-white bg-primary-default font-montserrat;
+	width: min(488px, 100vw);
+    z-index: 100;
+
+	border-left: 7px solid #f66b0e;
+	box-shadow: -6px 0px 7px rgba(246, 107, 14, 0.34);
+	border-radius: 5px 0px 0px 5px;
+
+    .buttonContainer {
+        @apply transition-opacity duration-150 ease-in;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .menuHead {
+        @apply pl-3 pr-5 h-20 flex items-center justify-between ;
+
+        .menuIcon {
+            width: 35px;
+        }
+
+        .rightIcons {
+            @apply flex gap-4 relative;
+            .profileIconContainer {
+                .profileLogo {
+                    @apply inline-block rounded-full fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
+                    width: 34px;
+                }
+        
+                .profileLogoActive {
+                    fill: rgba($lightWhite, 0.5);
+                    @apply ease-in duration-150 border border-lightWhite;
+                }
+            }
+
+            .cartIconContainer {
+                .cartLogo {
+                    @apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
+                }
+                .cartLogoActive {
+                    fill: rgba($lightWhite, 0.5);
+                    @apply border border-lightWhite p-1 transition-all ease-in duration-150;
+                }
+            }
+        }
+
+        .profileMenuSection {
+            @apply absolute right-13 top-11 border border-lightWhite;
+        }
+        .cartMenuSection {
+            @apply absolute right-0 top-11 border border-lightWhite;
+        }
+    }
+
+    .navOptionsContainer {
+        @apply flex flex-col w-full;
+
+        li {
+
+            .active, .inactive {
+                @apply font-medium block w-full py-5 pl-4;;
+                font-size: 18px;
+            }
+            
+            .active {
+                background: $secondary-default;
+            }
+
+            .inactive {
+                @apply bg-none transition-colors duration-200 ease-in-out;
+                &:hover {
+                    @apply bg-lightWhite text-background;
+                }
+            }
+        }
+        
+    }
+}

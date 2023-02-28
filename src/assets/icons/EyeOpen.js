@@ -9,7 +9,6 @@ const EyeOpen = () => {
 			width="22"
 		>
 			<g
-				stroke="#000"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth="2"

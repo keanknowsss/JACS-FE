@@ -1,0 +1,119 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.toast {
+	@apply fixed bg-accent-1 text-lightWhite rounded-md font-montserrat right-5 bottom-5 z-[100];
+	width: 360px;
+	height: 80px;
+	padding: 20px 20px 25px 18px;
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 1);
+	overflow: hidden;
+
+	.toastContent {
+		@apply flex items-center pr-3;
+
+		.success,
+		.warning,
+		.error,
+		.inform {
+			height: 40px;
+			width: 40px;
+		}
+
+		.success {
+			fill: $green-default;
+		}
+
+		.warning {
+			fill: $yellow-default;
+		}
+
+		.error {
+			circle {
+				fill: $red-default;
+			}
+		}
+
+		.toastText {
+			margin-left: 13px;
+
+			h2 {
+				@apply text-white font-bold;
+				font-size: 16px;
+				line-height: 18px;
+				text-transform: uppercase;
+			}
+
+			p,
+			button {
+				@apply font-medium pl-0.5 mt-1;
+				font-size: 11px;
+				line-height: 11px;
+			}
+
+			button {
+				@apply inline-block;
+				cursor: pointer;
+				color: rgba($blue-default, 0.8);
+				text-decoration: underline;
+				font-size: 13px;
+				line-height: 8px;
+			}
+		}
+	}
+
+	.exitToast {
+		@apply absolute top-3 right-3;
+		height: 12px;
+		width: 12px;
+		cursor: pointer;
+
+		path {
+			stroke: $accent-2;
+			opacity: 0.7;
+			stroke-width: 3;
+		}
+
+		&:hover > path {
+			stroke: #2c6f9c;
+			opacity: 1;
+		}
+	}
+
+	.progress {
+		@apply absolute bottom-0 left-0 w-full bg-accent-1;
+		height: 3px;
+
+		&::before {
+			@apply absolute bottom-0 right-0 h-full w-full bg-secondary-default;
+			content: "";
+		}
+	}
+
+	// timer
+	.progress.active::before {
+		animation: progress 3s linear forwards;
+	}
+
+	@keyframes progress {
+		100% {
+			right: 100%;
+		}
+	}
+}
+
+.yellowToast {
+	border-left: 6px solid $yellow-default;
+}
+
+.greenToast {
+	border-left: 6px solid $green-default;
+}
+
+.redToast {
+	border-left: 6px solid $red-default;
+}
+
+.blueToast {
+	border-left: 6px solid $blue-default;
+}

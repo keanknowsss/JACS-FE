@@ -1,0 +1,110 @@
+@import "../../../../../styles/variables";
+@import "../../../../../styles/mixins";
+
+.contentHeading {
+	@apply pt-4 pb-5 px-5 border-b border-secondary-default flex justify-between items-center;
+
+	.headingText {
+		font-weight: 700;
+		font-size: 25px;
+		display: inline-block;
+	}
+
+	.iconContainer {
+		@apply flex w-fit gap-x-3;
+
+		button {
+			height: fit-content;
+		}
+
+		.invalidBtn {
+			filter: saturate(0);
+			cursor: default;
+		}
+
+		.validBtn {
+			.delete {
+				&:hover {
+					path {
+						fill: $secondary-default;
+					}
+				}
+			}
+		}
+
+		.delete {
+			width: 24px;
+			path {
+				fill: rgba($secondary-default, 0.8);
+			}
+		}
+
+		.add {
+			margin-top: 1px;
+			width: 22px;
+			fill: rgba($secondary-default, 0.8);
+
+			&:hover {
+				fill: $secondary-default;
+			}
+		}
+	}
+}
+
+.productContainer {
+	@apply grid gap-1 grid-cols-5 py-2;
+
+	.productCardShop {
+		width: max(253px, 100%);
+	}
+
+	@media (max-width: 1970px) {
+		@apply grid-cols-4;
+	}
+
+	@media (max-width: 1650px) {
+		@apply grid-cols-3;
+	}
+
+	@media (max-width: 1290px) {
+		@apply grid-cols-2;
+	}
+
+	@media (max-width: 1210px) {
+		@apply grid-cols-4;
+	}
+
+	@media (max-width: 1175px) {
+		@apply grid-cols-3;
+	}
+
+	@media (max-width: 924px) {
+		@apply grid-cols-2;
+	}
+
+	@media (max-width: 670px) {
+		@apply grid-cols-1;
+	}
+}
+
+.noItemsDiv {
+	@apply flex flex-col py-20 mb-10 items-center;
+
+	h1 {
+		font-size: 30px;
+		font-weight: 900;
+		line-height: 24px;
+		// @apply border;
+	}
+
+	button{
+		font-size: 12px;
+		color: $blue-default;
+		opacity: 0.8;
+		@apply transition-opacity duration-100 ease-in-out;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}

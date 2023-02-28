@@ -1,17 +1,24 @@
 @import "variables";
 
+// compoonents
 @mixin test {
 	outline: 1px red solid;
 }
 
 @mixin link {
-	@apply text-blue-default;
+	@apply text-blue-default cursor-pointer;
 
 	&:hover {
 		color: rgba($blue-default, 0.8);
 	}
 }
 
+// containers
+@mixin main-container-1 {
+	@apply min-h-screen max-h-max bg-background flex justify-center text-white font-montserrat overflow-x-clip relative pt-13 pb-44;
+}
+
+// breakpoints
 @mixin medium-screen {
 	@media screen and (min-width: 900px) {
 		@content;

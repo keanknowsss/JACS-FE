@@ -1,5 +1,7 @@
 
-const Forum = () => {
+const Forum = ({title}) => {
+  document.title = title;
+
   return (
     <div>Forum</div>
   )

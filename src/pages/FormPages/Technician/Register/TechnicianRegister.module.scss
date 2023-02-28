@@ -1,0 +1,118 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+.formTitleContainer {
+	@apply bg-background flex justify-center text-center font-montserrat pt-11;
+
+	.formTitle {
+		@apply w-fit;
+
+		h1 {
+			@apply font-black text-lightWhite uppercase;
+			font-size: 3.42rem;
+			line-height: 3rem;
+		}
+		p {
+			color: $primary-6;
+			text-align: right;
+			padding-right: 1rem;
+		}
+	}
+}
+
+.formContainer {
+    @include main-container-1();
+	padding-top: 0;
+
+    .formElement {
+		@apply flex-col items-center;
+        width: min(580px, 100% - 10rem);
+		z-index: 10;
+    }
+
+	.iconContainer {
+		@apply absolute grid-cols-3 h-full grid top-0 w-screen;
+
+        .columnIcon {
+            @apply w-full h-full relative;
+
+            .printerIcon,
+            .chipIcon1,
+            .chipIcon2,
+            .monitorIcon1,
+            .monitorIcon2,
+            .mouseIcon {
+                position: absolute;
+    
+                g {
+                    stroke: $primary-default;
+                }
+            }
+			
+			.mouseIcon {
+                width: 235.77px;
+                left: 22%;
+                top: 9%;
+                transform: rotate(14.54deg);
+    
+                g {
+                    stroke-width: 0.8;
+                }
+            }
+			
+			.printerIcon {
+                right: -9%;
+                top: -20%;
+                transform: rotate(14.31deg);
+                width: 318.47px;
+    
+                g {
+                    stroke-width: 0.7;
+                    fill: $background;
+                }
+            }
+            .chipIcon1, .chipIcon2 {
+                width: 190.29px;
+    
+    
+                g {
+                    stroke-width: 1.1;
+                    fill: $background;
+                }
+            }
+            .chipIcon1 {
+                transform: rotate(14.77deg);
+                top: 20%;
+                left: -5%;
+            }
+            .chipIcon2 {
+                transform: rotate(28.14deg);
+                top: 0%;
+                right: 28%;
+            }
+    
+            .monitorIcon1, .monitorIcon2 {
+                width: 236.77px;
+    
+                g {
+                    stroke-width: 1.1;
+                    fill: $background;
+                }
+            }
+            .monitorIcon1 {
+                transform: rotate(-20.13deg);
+                right: 0%;
+                top: 32%
+            }
+            .monitorIcon2 {
+                transform: rotate(18.64deg);
+                bottom: 19%;
+                right: 24%;
+            }
+
+            
+    
+            
+        }
+	}
+}

@@ -1,0 +1,68 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.formContainer {
+	@apply bg-white text-black pt-14 px-16 pb-12 rounded-lg border border-black my-3 z-10 h-fit;
+	background: white;
+	box-shadow: 0px 0px 20px rgba(#000000, 0.8);
+
+	div[data-title="heading"] {
+		h1 {
+			@apply text-[32px] font-bold;
+			line-height: 36px;
+			letter-spacing: -0.015em;
+
+			span {
+				@apply text-secondary-default;
+			}
+		}
+
+		h2 {
+			@apply font-extralight text-[32px] text-primary-1;
+			line-height: 36px;
+			letter-spacing: -0.015em;
+		}
+
+		p {
+			letter-spacing: -0.015em;
+			line-height: 20px;
+			padding-left: 2px;
+			font-size: 14px;
+			color: $primary-6;
+
+			a {
+				@include link();
+			}
+		}
+	}
+
+	div[data-title="inputContainer"] {
+		@apply mt-10 mb-8 flex flex-col gap-3;
+
+		// input borders for events
+		.inputActive {
+			border: 1px solid black !important;
+
+			label {
+				color: black !important;
+			}
+		}
+	}
+
+	button[type="submit"] {
+		@apply w-full text-center rounded-md py-5 mt-5 bg-secondary-default font-bold text-base text-lightWhite transition-all duration-500 ease-out;
+		line-height: 20px;
+		letter-spacing: -0.015em;
+
+		&:hover {
+			color: white;
+			filter: drop-shadow(0px 0px 21px #f66b0e);
+		}
+	}
+
+	p[data-title="submit-information"] {
+		@apply font-light text-xs text-center mt-5;
+		letter-spacing: 0.005em;
+		line-height: 11px;
+	}
+}

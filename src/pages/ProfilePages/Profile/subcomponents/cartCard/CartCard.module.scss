@@ -1,0 +1,136 @@
+@import "../../../../../styles/variables";
+@import "../../../../../styles/mixins";
+
+.cartCardComponent {
+	@apply bg-primary-5 w-full h-fit flex gap-5 relative;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 30px;
+	padding: 10px;
+	min-width: 350px;
+
+	.cartCardCol1 {
+		@apply flex flex-col gap-1 items-center;
+		flex-basis: 150px;
+        max-width: 150px;
+
+		img {
+			max-height: 150px;
+			filter: drop-shadow(4px 0px 20px #000000);
+			border-radius: 20px;
+		}
+
+		.incrementer {
+			@apply flex overflow-hidden mt-2;
+			width: 68%;
+			box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.75);
+			border-radius: 10px;
+
+			input[type="password"]::-ms-reveal {
+				display: none;
+			}
+
+			input[type="number"]::-webkit-outer-spin-button,
+			input[type="number"]::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			input[type="number"] {
+				appearance: textfield;
+			}
+
+			.qty {
+				@apply font-roboto text-primary-default;
+				width: 60%;
+				height: 28px;
+				text-align: center;
+				outline: none;
+				font-size: 15px;
+			}
+
+			button {
+				@apply bg-accent-2 flex justify-center items-center transition-opacity duration-100 ease-in;
+				width: 40px;
+				opacity: 0.8;
+
+				.addQty {
+					width: 15px;
+					fill: white;
+					pointer-events: none;
+				}
+
+				.minusQty {
+					width: 13px;
+					fill: white;
+					pointer-events: none;
+				}
+
+				&:hover,
+				&:focus {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.cartCardCol2 {
+		@apply w-full flex flex-col gap-2;
+		padding-top: 8px;
+
+		.productName {
+			@apply font-montserrat font-medium text-white;
+			font-size: 20px;
+			line-height: 21px;
+			display: -webkit-box;
+			width: 100%;
+			overflow: hidden;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+
+			@media (max-width: 900px) {
+				font-size: 16px;
+			}
+		}
+
+		.price {
+			@apply font-montserrat font-bold text-secondary-default;
+			font-size: 32px;
+			letter-spacing: -0.015em;
+		}
+	}
+
+	.btnIcons {
+		@apply absolute bottom-4 right-4 flex;
+
+		button {
+            opacity: 0.8;
+
+			.save {
+				@apply transition-all duration-150 ease-in-out;
+				height: 30px;
+                width: 50px;
+				stroke: $secondary-default;
+				fill: none;
+			}
+
+
+			.delete {
+				@apply transition-all duration-150 ease-in-out -ml-3;
+				height: 28px;
+                width: 50px;
+				fill: none;
+
+				path {
+					fill: $secondary-default;
+				}
+			}
+
+            &:hover {
+                opacity: 1;
+				.save {
+					fill: $secondary-light;
+				}
+			}
+		}
+	}
+}

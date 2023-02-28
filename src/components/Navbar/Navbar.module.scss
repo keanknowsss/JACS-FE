@@ -1,181 +1,184 @@
-$lightWhite: rgb(239 239 239);
-$background: rgb(18 20 22);
-
-@mixin indicator {
-	height: 7px;
-	border: none;
-	border-radius: 2px;
-	margin: auto;
-	background-color: #f66b0e;
-}
-
-@mixin test {
-	outline: 1px red solid;
-}
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 @mixin button {
 	@apply py-2 border-lightWhite rounded-md text-sm ease-in-out duration-150 text-center;
 }
 
-// NavLink
-.active {
-	color: #f66b0e;
-	font-weight: bold;
-}
-
-.active > .homeIndicator,
-.active > .shopIndicator,
-.active > .BYPCIndicator,
-.active > .forumIndicator,
-.active > .tech101Indicator,
-.active > .repairIndicator,
-.active > .aboutUsIndicator {
-	display: block;
-}
-
-.inactive {
-	@apply hover:text-secondary-light transition ease-out duration-150;
-}
-
 // Elements
+
+
 nav {
-	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-montserrat font-medium relative h-15;
+	@apply bg-background flex flex-row items-center justify-between text-lightWhite font-montserrat font-medium sticky w-full h-15 z-50;
 	padding-inline: 25px;
 
-	ul {
-		font-size: 0.938rem;
+	.middlePart {
+		@apply basis-3/5;
 
-		.home,
-		.shop,
-		.buildYourPC,
-		.forum,
-		.tech101,
-		.repair,
-		.aboutUs {
-			text-align: center;
-		}
-
-		.home {
-			width: 60px;
-		}
-
-		.shop {
-			width: 50px;
-		}
-
-		.buildYourPC {
-			width: 108px;
-		}
-
-		.forum {
-		}
-
-		.tech101 {
-			width: 77px;
-		}
-
-		.repair {
-			width: 62px;
-		}
-
-		.aboutUs {
-			width: 88px;
-		}
-
-		.homeIndicator {
-			@include indicator();
-			width: 50px;
+		.currentPage {
+			@apply text-center text-secondary-default font-bold tracking-wide mt-1 absolute left-1/2 -translate-x-1/2;
+			font-size: 20px;
 			display: none;
+			top: 14px;
 		}
-
-		.shopIndicator {
-			@include indicator();
-			width: 40px;
-			display: none;
-		}
-
-		.BYPCIndicator {
-			@include indicator();
-			display: none;
-			width: 106px;
-		}
-
-		.forumIndicator {
-			@include indicator();
-			width: 51px;
-			display: none;
-		}
-
-		.tech101Indicator {
-			@include indicator();
-			width: 63px;
-			display: none;
-		}
-
-		.repairIndicator {
-			@include indicator();
-			width: 56px;
-			display: none;
-		}
-
-		.aboutUsIndicator {
-			@include indicator();
-			width: 71px;
-			display: none;
+	
+		.linkContainer {
+			@apply flex justify-between;
+			font-size: 0.938rem;
+	
+			// NavLink
+			.linkList {
+				@apply text-center;
+	
+				.active {
+					color: $secondary-default;
+					font-weight: bold;
+				}
+	
+				.active > .indicator {
+					display: block;
+				}
+	
+				.inactive {
+					@apply hover:text-secondary-light transition ease-out duration-150;
+				}
+	
+				.active span,
+				.inactive span {
+					@apply py-4;
+				}
+			}
+	
+			.indicator {
+				height: 6px;
+				border: none;
+				border-radius: 1px;
+				margin: auto;
+				background-color: $secondary-default;
+				display: none;
+			}
 		}
 	}
 
-	.logoContainer {
-		@apply inline-flex items-center relative h-15;
+	.rightPart {
+		@apply basis-1/5;
 
-		.searchLogo {
-			@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite hover:p-1 hover:border hover:border-lightWhite transition-all ease-in duration-150 text-lightWhite;
+		.logoContainer {
+			@apply inline-flex items-center relative h-15;
+	
+			.searchLogo {
+				@apply w-8 h-8 inline-block rounded-full cursor-pointer fill-lightWhite transition-all ease-in duration-150 text-lightWhite;
+			}
+			.searchLogoActive {
+				@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
+			}
+			&:hover {
+				.searchLogo {
+					@apply p-1 border border-lightWhite;
+				}
+			}
+	
+			.profileLogo {
+				@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
+				width: 34px;
+				height: 34px;
+			}
+			.profileLogoActive {
+				fill: rgba($lightWhite, 0.5);
+				@apply ease-in duration-150 border border-lightWhite;
+			}
+	
+			.cartLogo {
+				@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
+			}
+			.cartLogoActive {
+				fill: rgba($lightWhite, 0.5);
+				@apply border border-lightWhite p-1 transition-all ease-in duration-150;
+			}
 		}
-		.searchLogoActive {
-			@apply w-8 h-8 inline-block rounded-full cursor-pointer p-1 bg-lightWhite fill-background;
+	
+		.menuButtonContainer {
+			@apply transition-all ease-in duration-150 ml-4;
+			opacity: 1;
+			display: none;
+	
+			.menuIcon {
+				width: 40px;
+			}
+	
+			&:hover {
+				opacity: 0.6;
+			}
 		}
-
-		.profileLogo {
-			@apply inline-block rounded-full mx-8 fill-lightWhite cursor-pointer hover:border hover:border-lightWhite transition-all ease-in duration-150;
-			width: 34px;
-			height: 34px;
-		}
-		.profileLogoActive {
+		// ONHOVER: lightens the background
+		.profileLogo:hover,
+		.searchLogo:hover,
+		.cartIcon:hover {
 			fill: rgba($lightWhite, 0.5);
-			@apply ease-in duration-150 border border-lightWhite;
+			@apply ease-in duration-150;
 		}
-
-		.cartLogo {
-			@apply w-8 h-8 inline-block fill-lightWhite rounded-full cursor-pointer hover:border hover:p-1 transition-all ease-in duration-150;
-		}
-		.cartLogoActive {
-			fill: rgba($lightWhite, 0.5);
-			@apply border border-lightWhite p-1 transition-all ease-in duration-150;
-		}
-	}
-
-
-
-	// ONHOVER: lightens the background
-	.profileLogo:hover,
-	.searchLogo:hover,
-	.cartIcon:hover {
-		fill: rgba($lightWhite, 0.5);
-		@apply ease-in duration-150;
 	}
 
 	// sections
+	.profileSection {
+		@apply absolute top-13 bottom-0 right-23;
+	}
+	.cartSection {
+		@apply absolute top-13 bottom-0 right-6;
+	}
 }
 
 // search Bar
 
 // Queries
 
-@media (min-width: 640px) {
+@media (max-width: 900px) {
+	nav {
+		.middlePart {
+			flex-basis: auto;
+			
+			.currentPage {
+				display:block;
+			}
+
+			.linkContainer {
+				display: none;
+			}
+		}
+		
+		.rightPart {
+			flex-basis: auto;
+
+			.logoContainer {
+				.profileLogo {
+					display: none;
+					pointer-events: none;
+				}
+	
+				.cartLogo {
+					display: none;
+					pointer-events: none;
+	
+				}
+			}
+	
+			.menuButtonContainer {
+				display: block;
+			}
+		}
+
+		// sections
+		.profileSection {
+			display: none;
+		}
+		.cartSection {
+			display: none;
+		}
+	}
 }
 
-@media (min-width: 768px) {
-}
-
-@media (max-width: 976px) {
+@media (min-width: 900px) {
+	.menuNav {
+		display: none;
+	}
 }

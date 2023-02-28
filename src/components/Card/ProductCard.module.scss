@@ -1,0 +1,74 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.productCard {
+	@apply flex justify-center cursor-pointer;
+	background: #1e2126;
+	box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.49);
+	border-radius: 5px;
+	width: 253px;
+	height: 297px;
+	position: relative;
+
+	&:hover > .mainCard .mainImg {
+		transform: scale(1.05);
+	}
+
+	.mainCard {
+		@apply absolute bottom-4 font-montserrat text-white;
+		width: 229px;
+		height: 263px;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.52));
+
+		.imgContainer {
+			@apply h-full w-full absolute;
+			background: linear-gradient(
+				359.28deg,
+				#020100 4.12%,
+				rgba(26, 25, 24, 0.905556) 13.75%,
+				rgba(33, 32, 31, 0.878634) 25.19%,
+				rgba(63, 62, 62, 0.758709) 31.81%,
+				rgba(255, 255, 255, 0) 58.3%
+			);
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			border-radius: 5px;
+			border: 3px solid #f66b0e;
+		}
+
+		.productImg {
+			@apply rounded-t-lg rounded-b-lg w-full h-full object-cover;
+		}
+
+		.textContainer {
+			@apply absolute bottom-8 pl-3 pr-1 font-normal;
+
+			h3 {
+				font-size: 17px;
+				line-height: 18px;
+                text-shadow: 0px 0px 4px #000000;
+			}
+
+			ul {
+				@apply mt-3;
+
+				li {
+					font-size: 12px;
+					line-height: 13px;
+				}
+			}
+		}
+
+		.priceContainer {
+			@apply absolute flex justify-center items-center font-bold;
+			border: 3px solid #f66b0e;
+			border-radius: 5px;
+			background: #121416;
+			bottom: 0;
+			min-width: 80px;
+			max-width: 80%;
+			padding: 5px 10px;
+			bottom: -8px;
+			right: 10px;
+		}
+	}
+}
