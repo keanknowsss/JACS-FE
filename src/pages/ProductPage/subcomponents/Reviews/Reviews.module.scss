@@ -15,6 +15,10 @@
     .btn > .addIcon {
       @apply w-7 h-7;
       color: #f66b0e;
+
+      path:nth-child(1) {
+        fill: #F66B0E;
+      }
     }
   }
 
