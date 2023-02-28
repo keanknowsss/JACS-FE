@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.defaultBtn {
+    @apply absolute transition-all duration-100 ease-in-out;
+
+    width: 20px;
+	height: 20px;
+	background: $lightWhite;
+    opacity: 0.8;
+	border: 1px solid rgba(30, 33, 38, 0.44);
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 100%;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.activeButton {
+    background: $secondary-default;
+}

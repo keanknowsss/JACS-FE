@@ -1,0 +1,118 @@
+@import "../../../../../styles/variables";
+@import "../../../../../styles/mixins";
+
+.contentHeading {
+	@apply pt-4 pb-5 pl-5 border-b border-secondary-default;
+
+	.headingText {
+		font-weight: 700;
+		font-size: 25px;
+	}
+}
+
+.categoryContent {
+	padding: 30px 20px 60px;
+	.title {
+		@apply flex gap-1 items-center underline;
+		.titleIcon {
+			width: 22px;
+		}
+		span {
+			font-weight: 700;
+			font-size: 18px;
+			line-height: 24px;
+		}
+	}
+
+	.statsSection {
+		@apply grid grid-cols-4 gap-x-2 gap-y-3 mt-2;
+
+		@media (max-width: 1410px) {
+			@apply grid-cols-2;
+		}
+
+		// @media (max-width: 1185px) {
+		// 	@apply grid-cols-2;
+		// }
+
+		@media (max-width: 600px) {
+			@apply grid-cols-1;
+		}
+	}
+
+	.statsMainContainer {
+		@apply bg-primary-5 border border-secondary-default pt-4 px-4 flex flex-col items-center gap-y-6;
+		width: max(200px, 100%);
+		height: 173px;
+		border-radius: 10px;
+
+		h3 {
+			font-weight: 800;
+			font-size: 20px;
+			line-height: 24px;
+			text-decoration: underline;
+			text-align: center;
+		}
+
+		.statsContent {
+			@apply text-secondary-default font-medium;
+			font-size: 28px;
+			line-height: 24px;
+		}
+
+		.statsDetails {
+			@apply flex justify-between w-full mt-4;
+
+			.date {
+				@apply flex flex-col;
+
+				p {
+					font-size: 10px;
+					line-height: 10px;
+					color: rgba(255, 255, 255, 0.5);
+				}
+			}
+			.percentage {
+				font-size: 13px;
+				line-height: 10px;
+			}
+		}
+	}
+
+	.reviewsContainer {
+		@apply items-start w-full h-fit mt-2 pb-3 gap-y-3 pr-9;
+
+		.reviewContent {
+			@apply flex w-full gap-x-4 ml-3;
+			// @apply justify-center;  - if adding another content
+			@apply justify-start;
+
+			.starsContainer {
+				@apply w-fit;
+
+				.starPercents {
+					@apply flex w-fit gap-5;
+
+					.starContainer {
+						@apply flex;
+						gap: 2px;
+
+						.stars {
+							width: 10px;
+							color: $primary-1;
+						}
+						.stars.active {
+							color: $secondary-default;
+						}
+					}
+					p.percent {
+						width: 26px;
+						font-weight: 400;
+						font-size: 12px;
+						text-align: right;
+					}
+				}
+			}
+		}
+	}
+}

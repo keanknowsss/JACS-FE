@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .toast {
-	@apply fixed bg-accent-1 text-lightWhite rounded-md font-montserrat right-5 bottom-5 z-50;
+	@apply fixed bg-accent-1 text-lightWhite rounded-md font-montserrat right-5 bottom-5 z-[100];
 	width: 360px;
 	height: 80px;
 	padding: 20px 20px 25px 18px;
@@ -40,14 +40,15 @@
 			h2 {
 				@apply text-white font-bold;
 				font-size: 16px;
-				line-height: 14px;
+				line-height: 18px;
 				text-transform: uppercase;
 			}
 
 			p,
 			button {
-				@apply font-medium;
+				@apply font-medium pl-0.5 mt-1;
 				font-size: 11px;
+				line-height: 11px;
 			}
 
 			button {
