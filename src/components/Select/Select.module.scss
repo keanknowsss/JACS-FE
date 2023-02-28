@@ -4,7 +4,7 @@
 .main {
     @apply w-48 mr-2 relative;
     .selector {
-        @apply flex flex-row items-center justify-between px-2 py-1 mb-2 rounded-md;
+        @apply flex flex-row items-center justify-between px-2 py-1 mb-1 rounded-md;
         background-color: #333840;
 
         .arrow {
@@ -13,11 +13,13 @@
     }
 
     .options {
-        @apply absolute w-full top-full rounded-md;
+        @apply absolute w-full top-full rounded-md shadow-lg border border-x-secondary-default border-b-secondary-default;
+        border-top: #1e2126;
+        background-color: #1e2126;
         
         .option {
             @apply p-2 w-full hover:bg-secondary-default hover:cursor-pointer;
-            background-color: #333840;
+            
         }
     }
     
