@@ -1,7 +1,4 @@
 import { useState } from "react";
-import Modal from "../../components/Modal";
-import Checkbox from "../../components/Checkbox";
-import ProductCardShop from "../ProfilePages/Shop/contents/products/components/card/ProductCardShop";
 import ProductModal from "../ProfilePages/Shop/contents/products/components/modal/ProductModal";
 
 const TestPage = ({ title }) => {

@@ -1,0 +1,58 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.main {
+  @apply w-full h-full font-montserrat rounded-md p-5 mb-3 shadow-md;
+  background-color: #333840;
+  color: #efefef;
+
+  .header {
+    @apply flex flex-row items-center mb-2;
+
+    .profileImg {
+      @apply w-11 h-11 object-cover;
+    }
+
+    .nameDate {
+      @apply ml-3;
+
+      .name {
+        @apply text-lg font-bold;
+      }
+
+      .date {
+        @apply text-xs;
+      }
+    }
+
+    .stars {
+      @apply ml-20;
+    }
+  }
+
+  .description {
+    @apply mb-2;
+  }
+
+  .heart {
+    @apply mr-2;
+  }
+}
+
+.loading {
+  @apply flex justify-center items-center p-5 rounded-md;
+  background-color: #333840;
+
+  .loadingGif {
+    @apply w-14 h-14;
+  }
+}
+
+.divider {
+  @apply w-full block border-t-2 border-secondary-default mb-4;
+}
+
+.btn {
+  @apply py-2 px-3 flex flex-row items-center rounded-md duration-150 ease-in-out hover:scale-105 shadow-md ml-auto border-2 border-secondary-default;
+  background-color: #333840;
+}

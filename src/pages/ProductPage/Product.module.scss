@@ -1,0 +1,31 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.main {
+    @apply w-full h-full flex justify-center pt-10 pb-5;
+    background-color: #121416;
+
+    .container {
+        width: 1541px;
+        height: 100%;
+
+        .subPart {
+            @apply w-full h-auto flex flex-row;
+
+            .description {
+                @apply w-2/3 flex flex-col mb-3 p-5 font-montserrat rounded-md mr-3;
+                background-color: #1E2126;
+                color: #efefef;
+            
+                .headerDescription {
+                    @apply font-bold text-xl mb-2;
+                }
+            
+                .descriptionText {
+                    @apply w-full h-full px-10 py-5 rounded-md;
+                    background-color: #333840;
+                }
+            }
+        }
+    }
+}

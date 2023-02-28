@@ -1,0 +1,14 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.main {
+    @apply w-full flex flex-row;
+
+    .button {
+        @apply w-full h-auto;
+
+        .star {
+            @apply w-full h-full
+        }
+    }
+}
