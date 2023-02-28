@@ -28,6 +28,7 @@ export { default as EditIcon } from "./EditIcon";
 
 export { default as AddIcon } from "./AddIcon";
 export { default as MinusIcon } from "./MinusIcon";
+export { default as AddIconCircle } from "./AddIconCircle";
 
 export { default as HeartIcon } from "./HeartIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
@@ -44,3 +45,7 @@ export { default as ShopIcon } from "./ShopIcon";
 export { default as TechnicianIcon } from "./TechnicianIcon";
 
 export { default as MenuIcon } from "./MenuIcon";
+
+export { default as StackOverflowIcon } from "./StackOverflowIcon";
+
+export { default as StarIcon } from "./StarIcon";

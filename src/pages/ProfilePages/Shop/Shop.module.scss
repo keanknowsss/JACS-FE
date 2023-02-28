@@ -1,0 +1,178 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.shopPage {
+	@apply bg-background font-montserrat text-white;
+
+	.shopRow {
+		@apply flex gap-x-6;
+		padding: 40px 120px 158px 120px;
+
+		// common styles
+
+		section {
+			@apply bg-primary-default overflow-hidden;
+			height: fit-content;
+			box-shadow: 0px 4px 6px rgba($primary-4, 0.5);
+		}
+
+		.profileBtn {
+			@apply py-4 rounded-full mt-3 transition-all duration-200 ease-in-out;
+			width: 100%;
+			font-size: 18px;
+			border: 1px solid $lightWhite;
+			background: none;
+
+			&:hover {
+				background: $lightWhite;
+				color: $background;
+			}
+		}
+
+		// unique styles
+
+		.leftColumn {
+			@apply flex flex-none flex-col gap-y-7;
+			flex-basis: 25%;
+
+			.shopProfileSection {
+				border-bottom: 12px solid #f66b0e;
+				border-radius: 10px;
+				width: auto;
+				
+
+				.pictureContainer {
+					@apply h-fit w-full relative;
+
+					.profilePicture {
+						width: 100%;
+						height: 280px;
+						object-fit: cover;
+					}
+
+					.editIcon {
+						@apply absolute top-5 right-5 rounded-full bg-secondary-default cursor-pointer transition-all duration-75 ease-in;
+						width: 30px;
+						height: 30px;
+						opacity: 0.8;
+
+						.editPicture {
+							@apply w-52 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+							width: 50px;
+						}
+
+						&:hover {
+							opacity: 1;
+							scale: 1.1;
+						}
+					}
+				}
+
+				.mainContent {
+					@apply flex flex-col items-center pt-3 pb-6 mx-7 gap-y-5;
+
+					.userName {
+						text-align: center;
+
+						h3 {
+							@apply font-bold;
+							font-size: 25px;
+							line-height: 130%;
+						}
+					}
+
+					.followsContainer {
+						@apply flex justify-evenly w-full;
+
+						div {
+							@apply flex flex-col items-center;
+							font-size: 20px;
+							line-height: 130%;
+
+							p {
+								@apply font-light;
+								font-size: 16px;
+								line-height: 130%;
+
+								&:nth-child(1) {
+									@apply font-bold font-catamaran;
+									font-size: 24px;
+									line-height: 130%;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.shopMenuSection {
+				@apply bg-primary-default;
+				box-shadow: 0px -4px 0px #f66b0e, 0px 6px 0px #f66b0e;
+				padding-block: 30px 60px;
+				border-radius: 8px;
+				height: 250px;
+
+				ul {
+					li {
+						.btnMenu {
+							@apply w-full text-left font-bold;
+							padding-block: 19px;
+							padding-left: 30px;
+							font-size: 20px;
+							line-height: 20px;
+						}
+
+						.btnActive {
+							@apply text-secondary-default bg-background border-t border-b border-secondary-default;
+						}
+
+						.inActive {
+							&:hover {
+								@apply text-secondary-light border-t border-b border-secondary-default bg-primary-5;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.shopMainContentContainer {
+			@apply bg-primary-default h-fit;
+			border-radius: 5px;
+			flex-basis: 75%;
+			min-height: 826px;
+
+			
+		}
+	}
+}
+
+@media (max-width: 1210px) {
+	.shopPage {
+		.shopRow {
+			@apply flex-col gap-y-7;
+			padding: 20px 80px 150px 80px;
+
+			.shopProfileSection {
+				flex-basis: 42%;
+			}
+
+			.shopMenuSection {
+				flex-basis: 58%;
+				height: 520px !important;
+			}
+
+			.leftColumn {
+				@apply gap-x-6 flex-row;
+
+				@media (max-width: 775px) {
+					@apply flex-col;
+				}
+			}
+
+			.shopMainContentContainer {
+				min-height: 100%;
+			}
+		}
+	}
+}

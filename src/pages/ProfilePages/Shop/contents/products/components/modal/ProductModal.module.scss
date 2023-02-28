@@ -1,0 +1,183 @@
+@import "../../../../../../../styles/mixins";
+@import "../../../../../../../styles/variables";
+
+.modalSection {
+	.backdrop {
+		@apply h-full w-full fixed z-50 top-0 left-0 flex justify-center font-montserrat px-20 cursor-auto;
+		background: rgba(0, 0, 0, 0.8);
+
+		.modalContainer {
+			@apply bg-background mb-10 border-secondary-default border-2 font-montserrat overflow-auto;
+			border-radius: 10px;
+			width: 80%;
+			padding: 50px 30px;
+			height: fit-content;
+			max-height: calc(100vh - 20%);
+
+
+			.titleContainer {
+				@apply h-fit flex justify-center w-full;
+			}
+			h1 {
+				@apply text-secondary-default font-bold uppercase border-b-8 border-secondary-default text-center w-fit;
+				font-size: 40px;
+				line-height: 28px;
+				letter-spacing: -0.015em;
+			}
+
+			.formContainer {
+				@apply grid grid-cols-2 text-white mt-8 gap-3;
+
+				.picturesColumn {
+					@apply px-5 flex flex-col items-center;
+					.mainPhoto {
+						@apply w-full flex items-center justify-center relative overflow-hidden bg-white;
+						border-radius: 8px;
+						// height: calc(100vh - 300px);
+						aspect-ratio: 16 / 9;
+
+						img {
+							height: 100%;
+							width: 100%;
+							object-fit: cover;
+						}
+
+						.mainAddPhoto {
+							@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+							width: 72px;
+							fill: $primary-6;
+						}
+					}
+					.imageContainers {
+						@apply grid grid-cols-4 justify-evenly w-full mt-5 gap-x-3 px-3;
+						.photoBtn {
+							@apply flex items-center justify-center relative overflow-hidden bg-white w-full;
+							border-radius: 4px;
+							// height: 55px;
+							aspect-ratio: 16 / 9;
+
+							.mainAddPhoto {
+								@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+								width: 24px;
+								fill: $primary-6;
+							}
+						}
+					}
+				}
+
+				.formColumn {
+					.formContent {
+						@apply grid h-fit gap-x-3 gap-y-4 mb-3 mt-2 pr-5;
+						grid-template-columns: auto 1fr;
+
+						label {
+							margin-top: 2px;
+						}
+
+						input,
+						textarea,
+						select {
+							color: black;
+							border-radius: 3px;
+							@apply py-1 px-2;
+
+							&:focus {
+								outline: $secondary-default 2px solid;
+							}
+						}
+
+						textarea {
+							resize: none;
+						}
+
+						input.smallNumberNoArrows {
+							@apply text-right w-1/5;
+							&::-ms-fill-upper,
+							&::-ms-fill-lower {
+								-webkit-appearance: none;
+							}
+							-moz-appearance: textfield;
+						}
+
+						input.smallNumber {
+							max-width: 80px;
+						}
+
+						input.medText {
+							@apply w-1/2;
+							max-width: 190px;
+						}
+
+						select {
+							@apply w-full pl-2 -mt-1 py-2 text-black cursor-pointer;
+							box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+							border-radius: 3px;
+						}
+
+						select.smallSelect {
+							max-width: 80px;
+						}
+					}
+				}
+
+				.submitContainer {
+					@apply w-full flex justify-between mt-5 gap-x-4;
+					// grid-column: span 2;
+					margin-left: 101%;
+					.submit {
+						@apply transition-colors duration-200 uppercase ease-in-out bg-primary-default text-secondary-default border border-secondary-default opacity-100 font-black;
+						padding-block: 17px;
+						width: 250px;
+						border-radius: 10px;
+						font-size: 14px;
+						letter-spacing: 0.0313rem;
+						line-height: 14px;
+
+						@media (max-width: 1515px) {
+							width: 200px;
+						}
+
+						&:hover {
+							@apply bg-secondary-default text-primary-default;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+button,
+input,
+textarea,
+select {
+	@apply transition-opacity duration-75 ease-in;
+	opacity: 0.8;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 1200px) {
+	.modalSection {
+		.backdrop {
+			.modalContainer {
+				.formContainer {
+					@apply grid-cols-1;
+					.formColumn {
+						@apply px-10 mt-8;
+					}
+					.submitContainer {
+						@apply ml-0 px-10;
+
+						.submit {
+							width: 250px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
