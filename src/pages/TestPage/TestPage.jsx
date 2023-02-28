@@ -1,59 +1,29 @@
-import CartCard from "../ProfilePages/Profile/subcomponents/cartCard/CartCard";
-import styles from "./TestPage.module.scss";
-import { ProductCard } from "../../components/Card";
-import BuildCard from "../ProfilePages/Profile/subcomponents/buildCard/BuildCard";
-import Menu from "../../components/Navbar/subcomponents/Menu/Menu";
 import { useState } from "react";
+import Modal from "../../components/Modal";
+import Checkbox from "../../components/Checkbox";
+import ProductCardShop from "../ProfilePages/Shop/contents/products/components/card/ProductCardShop";
+import ProductModal from "../ProfilePages/Shop/contents/products/components/modal/ProductModal";
 
 const TestPage = ({ title }) => {
 	document.title = title;
 
-	const [showMenu, setShowMenu] = useState(false);
+	const [showMenu, setShowMenu] = useState(true);
+	const [selectedItems, setSelectedItems] = useState([])
 
 	return (
 		<>
 			<main className="h-screen w-full bg-primary-default">
+				{/* <Modal setShowModal={setShowMenu} showModal={showMenu} type="callback">
+					<h1>test</h1>
+					<p>test</p>
+				</Modal> */}
 				{/* <CartCard /> */}
 				{/* <BuildCard /> */}
-				<Menu showMenu={true} setShowMenu={setShowMenu} />
+				{/* <ProductCardShop selectedItem={selectedItems} setSelectedItem={setSelectedItems} /> */}
+				{/* <Menu showMenu={true} setShowMenu={setShowMenu} /> */}
+			
+				<ProductModal type="add" showModal={showMenu} setShowModal={setShowMenu} />
 			</main>
-
-			{/* <Toast
-				showToast={showToast}
-				setShowToast={setShowToast}
-				symbol="success"
-				title="Registration Successful"
-				subtitle="Fill out the form to proceed to the site"
-			/> */}
-			{/* <Toast
-				showToast={showToast}
-				setShowToast={setShowToast}
-				symbol="warning"
-				type="linkCallback"
-				title="Account is not Verified"
-				callback={callBack}
-				linkText="Send email verification"
-			/> */}
-			{/* <Toast
-				showToast={showToast}
-				setShowToast={setShowToast}
-				symbol="inform"
-				title="Login Failed"
-				subtitle="hello"
-			/> */}
-			{/* <Modal
-				showModal={showModal}
-				setShowModal={setShowModal}
-				type="input"
-				input="email"
-				value={null}
-				setValue={null}
-				submitHandler={null}
-			>
-				<h1>Change Password</h1>
-				<p>"Please input the email associated with your account."</p>
-				<span>Input is not linked to any accounts</span>
-			</Modal> */}
 		</>
 	);
 };
