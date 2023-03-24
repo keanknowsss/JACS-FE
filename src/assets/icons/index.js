@@ -1,6 +1,6 @@
+export { default as CartNavbar } from "./CartNavbar";
 export { default as SearchNavbar } from "./SearchNavbar";
 export { default as ProfileNavbar } from "./ProfileNavbar";
-export { default as CartNavbar } from "./CartNavbar";
 
 export { default as EyeOpen } from "./EyeOpen";
 export { default as EyeClose } from "./EyeClose";
@@ -8,8 +8,14 @@ export { default as ExitIcon } from "./ExitIcon";
 
 export { default as PrinterIcon } from "./PrinterIcon";
 export { default as ChipIcon } from "./ChipIcon";
+
+export { default as DeliveryIcon } from "./DeliveryIcon";
+export { default as DiscountIcon } from "./DiscountIcon";
+
 export { default as MonitorIcon } from "./MonitorIcon";
 export { default as MouseIcon } from "./MouseIcon";
+
+export { default as ShipIcon } from "./ShipIcon";
 
 export { default as FileAddIcon } from "./FileAddIcon";
 export { default as FileIcon } from "./FileIcon";

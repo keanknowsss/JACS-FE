@@ -1,0 +1,117 @@
+@import "../../../../styles//mixins";
+@import "../../../../styles/variables";
+
+.main {
+  @apply w-full h-full mb-3 p-5 font-montserrat rounded-md;
+  background-color: #1e2126;
+  color: #efefef;
+
+  .header {
+    @apply flex flex-row justify-between items-center mb-2;
+    .headerTitle {
+      @apply font-bold text-xl mb-2;
+    }
+
+    .btn > .addIcon {
+      @apply w-7 h-7 fill-secondary-default;
+    }
+  }
+
+  .sortAndFilter {
+    @apply flex flex-row mb-5;
+
+    button {
+      @apply mr-5;
+    }
+    
+    
+  }
+
+  .reviewLoader {
+    @apply flex justify-center items-center;
+
+    .loader {
+      @apply w-15 h-15;
+    }
+  }
+
+  .pagination {
+    @apply flex justify-center text-white my-15;
+
+    .paginationRelativeContainer {
+      @apply w-fit relative;
+    }
+    .paginationComponent {
+      @apply flex justify-center items-center gap-4 px-5 py-2 font-roboto bg-primary-default;
+      font-size: 17px;
+      line-height: 33px;
+      border-radius: 5px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .pageLink,
+    .nextLink,
+    .prevLink {
+      @apply transition-colors duration-150 ease-in-out;
+
+      &:hover {
+        @apply text-secondary-light;
+      }
+    }
+
+    .nextLink {
+      margin-left: 20px;
+      padding-right: 30px;
+      padding-block: 5px;
+    }
+
+    .prevLink {
+      margin-right: 20px;
+      padding-left: 30px;
+      padding-block: 5px;
+    }
+
+    .activePage {
+      @apply font-bold text-secondary-default;
+      &:hover {
+        color: $secondary-default !important;
+      }
+    }
+
+    .rightArrowContainer {
+      @apply absolute flex top-1/2 left-9 -translate-y-1/2 pointer-events-none;
+
+      .rightArrow {
+        @apply rotate-180;
+        height: 26px;
+        margin-left: -20px;
+
+        path {
+          fill: $secondary-default;
+        }
+      }
+    }
+
+    .leftArrowContainer {
+      @apply absolute flex top-1/2 right-9 -translate-y-1/2 pointer-events-none;
+
+      .leftArrow {
+        height: 26px;
+        margin-right: -20px;
+
+        path {
+          fill: $secondary-default;
+        }
+      }
+    }
+  }
+
+  .btn {
+    @apply py-2 px-3 flex flex-row items-center rounded-md duration-150 ease-in-out hover:scale-105 shadow-md;
+    background-color: #333840;
+  }
+
+  .divider {
+    @apply w-full block border-t-2 border-secondary-default mb-4;
+  }
+}

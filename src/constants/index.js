@@ -12,7 +12,7 @@ export const PC_ESSENTIALS = [
 	"Video Card",
 	"Case",
 	"Power Supply",
-	"Operating System",
+	"OS",
 	"Monitor",
 ];
 
@@ -30,6 +30,6 @@ export const ACCESSORIES_OTHERS = [
 	"Fan Controllers",
 	"Thermal Compound",
 	"External Storage",
-	"Optical Drives",
+	"Optical Drive",
 	"UPS Systems",
 ];

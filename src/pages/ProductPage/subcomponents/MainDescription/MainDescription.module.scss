@@ -1,0 +1,67 @@
+@import "../../../../styles//mixins";
+@import "../../../../styles/variables";
+//1541x621
+.main {
+  @apply w-full flex flex-row font-montserrat mb-3;
+  height: 550px;
+  background-color: #121416;
+
+  .images {
+    @apply w-full h-full mr-3 p-5 rounded-md;
+    background-color: #1e2126;
+  }
+
+  .images img {
+    @apply w-full h-full object-contain rounded-md  border-secondary-default;
+    border-width: 4px;
+    background-color: #ffffff;
+  }
+
+  .description {
+    @apply w-full h-full p-5 rounded-md shadow-md;
+    background-color: #1e2126;
+    color: #efefef;
+
+    .productName {
+      @apply font-normal text-2xl;
+    }
+
+    .brand {
+      @apply mb-5;
+    }
+
+    .price {
+      @apply font-bold text-4xl mb-5;
+    }
+
+    .deliveryDetails {
+      @apply grid grid-rows-3 grid-cols-3 p-5 rounded-md shadow-md items-start;
+      background-color: #333840;
+
+      .time,
+      .mode,
+      .discount {
+        color: #f66b0e;
+        margin-left: -5rem;
+      }
+    }
+
+    .btns {
+      @apply mb-5;
+
+      .addCartBtn {
+        @apply mr-5 px-5 py-3 bg-background hover:bg-secondary-default text-white 
+        font-medium leading-tight uppercase border border-secondary-default rounded shadow-md 
+        focus:bg-secondary-default focus:shadow-lg focus:outline-none focus:ring-0 
+        active:bg-secondary-default active:shadow-lg transition duration-150 ease-in-out hover:scale-105;
+      }
+
+      .buyBtn {
+        @apply px-5 py-3 bg-background hover:bg-secondary-default text-white 
+                font-medium leading-tight uppercase border border-secondary-default rounded shadow-md 
+                focus:bg-secondary-default focus:shadow-lg focus:outline-none focus:ring-0 
+                active:bg-secondary-default active:shadow-lg transition duration-150 ease-in-out hover:scale-105;
+      }
+    }
+  }
+}

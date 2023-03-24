@@ -1,4 +1,7 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import {
 	Home,
 	Shop,
@@ -26,9 +29,7 @@ import {
 	TechnicianProfile,
 	TestPage,
 } from "../pages";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { useEffect } from "react";
+import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
 
 const Navigation = () => {
@@ -114,7 +115,13 @@ const Navigation = () => {
 
 				{/* user forms:  */}
 				<Route path="/login" element={<LoginForm title={TITLES.LoginForm} />} />
-				<Route path="/register" element={<UserRegisterForm title={TITLES.UserRegisterForm} />} />
+				<Route
+					path="/register"
+					element={<UserRegisterForm title={TITLES.UserRegisterForm} />}
+				/>
+
+				{/* product page */}
+				<Route path="/products/:productId" element={<Product/>} />
 			</Routes>
 			<hr />
 			<Footer />
