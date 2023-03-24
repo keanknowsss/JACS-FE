@@ -27,6 +27,7 @@
 
     .stars {
       @apply ml-20;
+      width: 115px;
     }
   }
 
@@ -35,7 +36,7 @@
   }
 
   .heart {
-    @apply mr-2;
+    @apply mr-2 text-secondary-default h-6 w-6;
   }
 }
 

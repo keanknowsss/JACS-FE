@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetUserDetailQuery } from "../../../features/api/builders/userApi";
 import styles from "./ReviewCard.module.scss";
 
@@ -18,7 +17,7 @@ const ReviewCard = (props) => {
   if (isUserLoading) {
     return (
       <div className={styles.loading}>
-        <img src={CircleLoading} className={styles.loadingGif} />
+        <img src={CircleLoading} className={styles.loadingGif} alt="" />
       </div>
     );
   }
@@ -30,7 +29,7 @@ const ReviewCard = (props) => {
     <div className={styles.main}>
       <div className={styles.header}>
         {img ? (
-          <img src={img} className={styles.profileImg}></img>
+          <img src={img} className={styles.profileImg} alt="" />
         ) : (
           <ProfileIcon className={styles.profileImg} />
         )}

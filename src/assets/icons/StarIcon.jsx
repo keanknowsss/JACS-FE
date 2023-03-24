@@ -1,10 +1,6 @@
-import React from "react";
-
-const StarIcon = ( {color, className, onMouseEnter, onMouseLeave}) => {
+const StarIcon = ({color, className, onMouseEnter, onMouseLeave}) => {
   return (
     <svg
-      width="23"
-      height="20"
       viewBox="0 0 53 50"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

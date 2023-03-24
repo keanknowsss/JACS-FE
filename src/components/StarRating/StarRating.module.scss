@@ -5,7 +5,7 @@
     @apply w-full flex flex-row;
 
     .button {
-        @apply w-full h-auto;
+        @apply w-full h-auto opacity-100;
 
         .star {
             @apply w-full h-full
