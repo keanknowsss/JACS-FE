@@ -4,16 +4,16 @@
 .main {
     @apply w-48 mr-2 relative;
     .selector {
-        @apply flex flex-row items-center justify-between px-2 py-1 mb-1 rounded-md;
+        @apply flex flex-row items-center justify-between px-2 py-1 mb-1 rounded-md cursor-pointer;
         background-color: #333840;
 
         .arrow {
-            @apply w-7 h-auto ml-5 rotate-90 fill-secondary-default hover:cursor-pointer;
+            @apply w-7 h-auto ml-5 rotate-90 fill-secondary-default hover:cursor-pointer text-secondary-default;
         }
     }
 
     .options {
-        @apply absolute w-full top-full rounded-md shadow-lg border border-x-secondary-default border-b-secondary-default;
+        @apply absolute w-full top-full rounded-md shadow-lg border border-x-secondary-default border-b-secondary-default z-10;
         border-top: #1e2126;
         background-color: #1e2126;
         
