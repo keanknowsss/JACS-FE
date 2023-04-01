@@ -19,6 +19,7 @@ const ProductCardShop = ({
 			
 
 			<div
+			// in integration productKey and ID can be same equal to the itemID (id from database)
 				key={productKey}
 				className={`${styles.productCardShop} ${modifierClass}`}
 			>

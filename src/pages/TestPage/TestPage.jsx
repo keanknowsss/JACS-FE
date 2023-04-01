@@ -9,8 +9,7 @@ const TestPage = ({ title }) => {
 
 	const [showMenu, setShowMenu] = useState(true);
 	const [selectedItems, setSelectedItems] = useState([])
-	const [showMenu, setShowMenu] = useState(true);
-	const [selectedItems, setSelectedItems] = useState([])
+
 
 	return (
 		<>
