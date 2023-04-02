@@ -1,6 +1,6 @@
 import styles from "../ProductModal.module.scss";
 
-const CPU = ({ object, setObject }) => {
+const CPU = ({ object, setObject, error }) => {
 	return (
 		<>
 			<label htmlFor="manufacturer">Manufacturer: </label>
@@ -14,7 +14,6 @@ const CPU = ({ object, setObject }) => {
 						manufacturer: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="amd">AMD</option>
 				<option value="intel">Intel</option>
@@ -26,7 +25,9 @@ const CPU = ({ object, setObject }) => {
 				placeholder="6"
 				min={1}
 				max={30}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.core ? styles.errorClass : null
+				}`}
 				value={object.core}
 				onChange={(e) =>
 					setObject({
@@ -44,7 +45,9 @@ const CPU = ({ object, setObject }) => {
 				step="0.1"
 				min={1}
 				max={30}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.core ? styles.errorClass : null
+				}`}
 				value={object.coreClock}
 				onChange={(e) =>
 					setObject({
@@ -62,7 +65,9 @@ const CPU = ({ object, setObject }) => {
 				step="0.1"
 				min={1}
 				max={30}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.boostClock ? styles.errorClass : null
+				}`}
 				value={object.boostClock}
 				onChange={(e) =>
 					setObject({
@@ -78,7 +83,9 @@ const CPU = ({ object, setObject }) => {
 				id="tdp"
 				placeholder="65"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.tdp ? styles.errorClass : null
+				}`}
 				value={object.tdp}
 				onChange={(e) =>
 					setObject({
@@ -93,7 +100,9 @@ const CPU = ({ object, setObject }) => {
 				type="text"
 				id="modelSeries"
 				placeholder="AMD Ryzen 5"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.series ? styles.errorClass : null
+				}`}
 				value={object.series}
 				onChange={(e) =>
 					setObject({
@@ -107,7 +116,9 @@ const CPU = ({ object, setObject }) => {
 			<input
 				type="text"
 				id="microArch"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.microArchitecture ? styles.errorClass : null
+				}`}
 				placeholder="Zen 3"
 				value={object.microArchitecture}
 				onChange={(e) =>
@@ -122,7 +133,9 @@ const CPU = ({ object, setObject }) => {
 			<input
 				type="text"
 				id="coreFam"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.coreFamily ? styles.errorClass : null
+				}`}
 				placeholder="Vermeer"
 				value={object.coreFamily}
 				onChange={(e) =>
@@ -137,7 +150,9 @@ const CPU = ({ object, setObject }) => {
 			<input
 				type="text"
 				id="socket"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.socket ? styles.errorClass : null
+				}`}
 				placeholder="AM4"
 				value={object.socket}
 				onChange={(e) =>
@@ -152,6 +167,7 @@ const CPU = ({ object, setObject }) => {
 			<input
 				type="text"
 				id="graphics"
+				className={`${error.integratedGraphics ? styles.errorClass : null}`}
 				placeholder="Intel UHD Graphics 770"
 				value={object.integratedGraphics}
 				onChange={(e) =>
@@ -168,7 +184,9 @@ const CPU = ({ object, setObject }) => {
 				id="memory"
 				placeholder="128"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.maxSupportedMemory ? styles.errorClass : null
+				}`}
 				value={object.maxSupportedMemory}
 				onChange={(e) =>
 					setObject({
@@ -214,7 +232,9 @@ const CPU = ({ object, setObject }) => {
 			<input
 				type="text"
 				id="packaging"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.packaging ? styles.errorClass : null
+				}`}
 				placeholder="Boxed"
 				value={object.packaging}
 				onChange={(e) =>
@@ -231,6 +251,7 @@ const CPU = ({ object, setObject }) => {
 				id="l1Cache"
 				placeholder="6 x 32 kB Instruction, 6 x 48 kB Data"
 				value={object.l1Cache}
+				className={`${error.l1Cache ? styles.errorClass : null}`}
 				onChange={(e) =>
 					setObject({
 						...object,
@@ -244,6 +265,7 @@ const CPU = ({ object, setObject }) => {
 				id="l2Cache"
 				placeholder="6 x 32 MB"
 				value={object.l2Cache}
+				className={`${error.l2Cache ? styles.errorClass : null}`}
 				onChange={(e) =>
 					setObject({
 						...object,
@@ -256,6 +278,7 @@ const CPU = ({ object, setObject }) => {
 				type="text"
 				id="l3Cache"
 				placeholder="1 x 24 MB"
+				className={`${error.l3Cache ? styles.errorClass : null}`}
 				value={object.l3Cache}
 				onChange={(e) =>
 					setObject({
@@ -270,7 +293,9 @@ const CPU = ({ object, setObject }) => {
 				id="lithography"
 				placeholder="10"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.lithography ? styles.errorClass : null
+				}`}
 				value={object.lithography}
 				onChange={(e) =>
 					setObject({
@@ -317,7 +342,9 @@ const CPU = ({ object, setObject }) => {
 					<input
 						type="text"
 						id="threadingType"
-						className={styles.medText}
+						className={`${styles.medText} ${
+							error.typeOfMultithreading ? styles.errorClass : null
+						}`}
 						placeholder="Hyper-threading"
 						value={object.typeOfMultithreading}
 						onChange={(e) =>

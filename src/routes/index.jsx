@@ -3,7 +3,31 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import {
-	AboutUs, Build, BuildYourPC, Cart, Forum, Home, LoginForm, NotFound, Order, Profile, ProfileNavbar, Repair, Saved, Settings, Shop, ShopProfile, StoreProfileForm, StoreRegisterForm, Tech101, TechnicianProfile, TechnicianProfileForm, TechnicianRegisterForm, TestPage, UserProfileForm, UserRegisterForm
+	Home,
+	Shop,
+	BuildYourPC,
+	Forum,
+	Tech101,
+	Repair,
+	AboutUs,
+	NotFound,
+	UserRegisterForm,
+	UserProfileForm,
+	LoginForm,
+	TechnicianRegisterForm,
+	StoreRegisterForm,
+	StoreProfileForm,
+	TechnicianProfileForm,
+	Profile,
+	Cart,
+	Build,
+	Saved,
+	Order,
+	ProfileNavbar,
+	Settings,
+	ShopProfile,
+	TechnicianProfile,
+	TestPage,
 } from "../pages";
 import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
