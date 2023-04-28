@@ -1,0 +1,55 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.incrementer {
+	@apply flex overflow-hidden w-full;
+	max-width: 110px;;
+	box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.75);
+	border-radius: 10px;
+
+	input[type="number"]::-ms-reveal {
+		display: none;
+	}
+
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		appearance: textfield;
+	}
+
+	.qty {
+		@apply font-roboto text-primary-default;
+		width: 100%;
+		height: 28px;
+		text-align: center;
+		outline: none;
+		font-size: 15px;
+	}
+
+	button {
+		@apply bg-accent-2 flex justify-center items-center transition-opacity duration-100 ease-in;
+		width: 50px;
+		opacity: 0.8;
+
+		.addQty {
+			width: 15px;
+			fill: white;
+			pointer-events: none;
+		}
+
+		.minusQty {
+			width: 13px;
+			fill: white;
+			pointer-events: none;
+		}
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}

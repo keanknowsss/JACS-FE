@@ -1,3 +1,3 @@
-export { default as ProductCard } from './productCard/ProductCard';
-export { default as ReviewCard } from './reviewCard/ReviewCard';
+export { default as ProductCard } from './ProductCard/ProductCard';
+export { default as ReviewCard } from './ReviewCard/ReviewCard';
 

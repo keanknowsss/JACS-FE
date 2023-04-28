@@ -55,3 +55,5 @@ export { default as MenuIcon } from "./MenuIcon";
 export { default as StackOverflowIcon } from "./StackOverflowIcon";
 
 export { default as StarIcon } from "./StarIcon";
+
+export { default as LocationIcon } from "./LocationIcon";
