@@ -1,0 +1,27 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+.store {
+    @apply w-full bg-primary-default flex flex-col gap-3;
+    padding: 20px 40px 21px 40px;
+    border-radius: 10px;
+
+    .storeName {
+        @apply flex items-center gap-4  font-bold;
+        .selectStore {
+            @apply bg-lightWhite rounded-full;
+            height: 18px;
+            width: 18px;
+        }
+
+        .selectedStore {
+            @apply bg-secondary-default;
+        }
+    }
+
+    .itemLists {
+        @apply flex flex-col gap-3;
+        margin-left: 23px;
+
+    }
+}

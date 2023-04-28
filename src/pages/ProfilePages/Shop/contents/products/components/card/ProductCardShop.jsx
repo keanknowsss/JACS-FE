@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditIcon } from "../../../../../../../assets/icons";
 import { ImageCard } from "../../../../../../../assets/images";
 import Checkbox from "../../../../../../../components/Checkbox";
@@ -14,10 +14,21 @@ const ProductCardShop = ({
 }) => {
 	const [editItem, setEditItem] = useState(false);
 
+	const [isChecked, setIsChecked] = useState(false)
+
+	useEffect(() => {
+		if(isChecked) {
+			setSelectedItem([...selectedItem, itemId])
+		} else {
+			if(selectedItem.includes(itemId)) {
+				setSelectedItem(selectedItem.filter((item) => item !== itemId))
+			}
+		}
+	}, [isChecked])
+
+
 	return (
 		<>
-			
-
 			<div
 			// in integration productKey and ID can be same equal to the itemID (id from database)
 				key={productKey}
@@ -35,9 +46,8 @@ const ProductCardShop = ({
 					</button>
 					<Checkbox
 						className={styles.selectProduct}
-						selectedItem={selectedItem}
-						setSelectedItem={setSelectedItem}
-						itemId={itemId}
+						isChecked={isChecked}
+						setIsChecked={setIsChecked}
 					/>
 					<div className={styles.mainImg}>
 						<div className={styles.imgContainer}></div>
