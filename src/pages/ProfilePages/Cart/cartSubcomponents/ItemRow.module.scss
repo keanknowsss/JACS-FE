@@ -21,7 +21,7 @@
 	}
 
 	.content {
-		@apply grid self-start mt-2;
+		@apply grid self-start;
 		grid-template-columns: auto auto;
 
 		.texts {
