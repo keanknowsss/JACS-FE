@@ -28,6 +28,7 @@ import {
 	ShopProfile,
 	TechnicianProfile,
 	TestPage,
+	OrderSuccess,
 } from "../pages";
 import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
@@ -95,6 +96,8 @@ const Navigation = () => {
 					<Route path="/store/information" element={<StoreProfileForm title={TITLES.StoreProfileForm} />} />
 					<Route path="/technician/register" element={<TechnicianRegisterForm title={TITLES.TechnicianRegisterForm} />} />
 					<Route path="/technician/profile" element={<TechnicianProfileForm title={TITLES.TechnicianProfileForm} />} />
+
+					<Route path="/order/:orderId" element={<OrderSuccess />}  />
 
 					<Route exact path="/profile" element={<ProfileNavbar />}>
 						<Route index element={<Profile title={TITLES.Profile} />} />

@@ -2,15 +2,19 @@ import { useState } from "react";
 import { ArrowLine, LocationIcon } from "../../../assets/icons";
 import styles from "./Checkout.module.scss";
 import StoreRow from "./checkoutSubcomponents/StoreRow";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = ({ title, setPage }) => {
 	document.title = title;
 
 	const [transactions, setTransactions] = useState("walk-in");
 	const [payment, setPayment] = useState("cash");
+	const navigate = useNavigate();
 
-	const checkoutHandler = () => {
-		setPage("checkout");
+	const sample_order_id = "adsad234e13143"
+
+	const orderHandler = () => {
+		navigate(`/order/${sample_order_id}`)
 	};
 
 	const goToCart = () => {
@@ -112,7 +116,7 @@ const Checkout = ({ title, setPage }) => {
 						</div>
 					</div>
 
-					<button className={styles.checkout} onClick={checkoutHandler}>
+					<button className={styles.checkout} onClick={orderHandler}>
 						Place Order
 					</button>
 				</div>
