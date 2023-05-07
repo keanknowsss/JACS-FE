@@ -2,19 +2,26 @@ import { useEffect, useState } from "react";
 import styles from "./Cart.module.scss";
 import { DeleteIcon, LocationIcon } from "../../../assets/icons";
 import Checkbox from "../../../components/Checkbox";
-import StoreRow from "./subcomponents/StoreRow";
+import StoreRow from "./cartSubcomponents/StoreRow";
+import Checkout from "./Checkout";
 
-const Cart = ({ title }) => {
+const Cart = ({ title, checkoutTitle }) => {
 	document.title = title;
 
 	const [selectAll, setSelectAll] = useState(false);
 
 	const [selectedItem, setSelectedItem] = useState([]);
 
+	const [page, setPage] = useState("cart");
+
+	const goToCheckout = () => {
+		setPage("checkout");
+	};
+
 	// FOR TEST
 	const STORE_NAME = ["PCX", "Silicon Volley"];
 
-	return (
+	return page === "cart" ? (
 		<main className={styles.cartPage}>
 			<section className={styles.itemsContainer}>
 				<div className={styles.tools}>
@@ -75,9 +82,13 @@ const Cart = ({ title }) => {
 					</div>
 				</div>
 
-				<button className={styles.checkout}>Proceed to Checkout</button>
+				<button className={styles.checkout} onClick={goToCheckout}>
+					Proceed to Checkout
+				</button>
 			</section>
 		</main>
+	) : (
+		<Checkout setPage={setPage} title={checkoutTitle} />
 	);
 };
 
