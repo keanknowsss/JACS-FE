@@ -72,7 +72,7 @@ const Overview = () => {
 							<div className={styles.starPercents}>
 								<div className={styles.starContainer}>
 									{[...Array(5)].map(() => (
-										<StarIcon className={`${styles.stars} ${styles.active}`} />
+										<StarIcon className={`${styles.stars} ${styles.active}`} color={true} />
 									))}
 								</div>
 								<p className={styles.percent}>90%</p>
@@ -80,7 +80,7 @@ const Overview = () => {
 							<div className={styles.starPercents}>
 								<div className={styles.starContainer}>
 									{[...Array(4)].map(() => (
-										<StarIcon className={`${styles.stars} ${styles.active}`} />
+										<StarIcon className={`${styles.stars} ${styles.active}`} color={true} />
 									))}
 									<StarIcon className={`${styles.stars}`} />
 								</div>
@@ -89,7 +89,7 @@ const Overview = () => {
 							<div className={styles.starPercents}>
 								<div className={styles.starContainer}>
 									{[...Array(3)].map(() => (
-										<StarIcon className={`${styles.stars} ${styles.active}`} />
+										<StarIcon className={`${styles.stars} ${styles.active}`} color={true} />
 									))}
 									{[...Array(2)].map(() => (
 										<StarIcon className={styles.stars} />
@@ -100,7 +100,7 @@ const Overview = () => {
 							<div className={styles.starPercents}>
 								<div className={styles.starContainer}>
 									{[...Array(2)].map(() => (
-										<StarIcon className={`${styles.stars} ${styles.active}`} />
+										<StarIcon className={`${styles.stars} ${styles.active}`} color={true} />
 									))}
 									{[...Array(3)].map(() => (
 										<StarIcon className={styles.stars} />
@@ -110,7 +110,7 @@ const Overview = () => {
 							</div>
 							<div className={styles.starPercents}>
 								<div className={styles.starContainer}>
-									<StarIcon className={`${styles.stars} ${styles.active}`} />
+									<StarIcon className={`${styles.stars} ${styles.active}`} color={true} />
 									{[...Array(4)].map(() => (
 										<StarIcon className={styles.stars} />
 									))}

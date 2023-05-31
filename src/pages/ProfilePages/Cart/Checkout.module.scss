@@ -1,0 +1,128 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.checkoutPage {
+	@apply bg-background text-white font-montserrat flex gap-7;
+	padding: 40px 120px 158px 120px;
+
+	.itemsContainer {
+		@apply w-full flex flex-col gap-5;
+		flex-basis: 75%;
+
+		.tools {
+			@apply flex justify-between items-center h-13 rounded-lg bg-primary-default;
+			padding-left: 15px;
+
+			.returnBtn {
+				@apply flex gap-3 hover:border px-3 py-1 rounded-lg transition-all duration-100 ease-in;
+				.return {
+					margin-top: -1px;
+					width: 28px;
+				}
+				p {
+					@apply font-bold;
+				}
+			}
+		}
+
+		.storeItemsContainer {
+			@apply flex flex-col gap-y-2;
+
+			
+		}
+	}
+
+	.checkoutDetails {
+		@apply flex flex-col gap-y-4;
+		flex-basis: 25%;
+
+		.transactionMode,
+		.paymentMethod,
+		.summaryContainer {
+			@apply bg-primary-default rounded-lg h-fit;
+			padding: 12px 15px 20px 15px;
+		}
+
+		.toggleChoices {
+			@apply flex flex-col gap-y-1 mt-2;
+			button {
+				@apply border-2 border-primary-4 rounded-md w-full font-black uppercase text-base h-14;
+				@apply transition-all duration-150 ease-in hover:bg-primary-4;
+			}
+
+			.selected {
+				background-color: $secondary-default !important;
+				border-color: $secondary-default !important;
+			}
+		}
+
+		.transactionMode,
+		.paymentMethod {
+			h2 {
+				@apply font-bold text-lg uppercase text-center;
+			}
+		}
+
+		.summaryContainer {
+			@apply bg-primary-default rounded-lg h-fit flex flex-col gap-y-2;
+			flex-basis: 25%;
+
+			.summaryInfo {
+				h2 {
+					@apply text-xl font-bold mb-1;
+				}
+
+				.location,
+				.summary {
+					@apply border-b border-white;
+					padding-bottom: 12px;
+				}
+
+				.location {
+					p {
+						@apply grid;
+						grid-template-columns: 10% 80%;
+						margin-left: 5%;
+
+						.locationIcon {
+							width: 16px;
+							fill: $red-default;
+						}
+
+						span {
+							@apply text-sm;
+						}
+
+						.addAddress {
+							@apply text-blue-default opacity-80 cursor-pointer hover:opacity-100 hover:underline transition-all duration-100;
+						}
+					}
+				}
+
+				.payables {
+					.summary {
+						.summaryDetails {
+							@apply text-sm flex flex-col gap-y-1;
+							margin-left: 5%;
+
+							.rowDetail {
+								@apply flex justify-between;
+							}
+						}
+					}
+
+					.subTotal {
+						@apply flex justify-between w-full my-1 font-bold text-lg;
+					}
+				}
+			}
+
+			.checkout {
+				@apply w-full uppercase opacity-100 text-secondary-default font-bold mt-5 hover:bg-secondary-default hover:text-primary-default transition-all duration-150 ease-in;
+				border: 2px solid #f66b0e;
+				border-radius: 10px;
+				padding-block: 10px;
+			}
+		}
+	}
+}

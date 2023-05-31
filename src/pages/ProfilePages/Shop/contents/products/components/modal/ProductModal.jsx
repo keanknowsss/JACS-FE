@@ -3,12 +3,43 @@ import styles from "./ProductModal.module.scss";
 import { AddIcon } from "../../../../../../../assets/icons";
 import Toast from "../../../../../../../components/Toast";
 import {
+	ACCESSORIES_OTHERS,
 	EXPANSION_CARDS,
 	PC_ESSENTIALS,
 	PERIPHERALS,
+	DEFAULT_SPECIFICATION_DETAILS,
 } from "../../../../../../../constants";
 import InputSpecification from "./InputSpecifications";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+	caseAccessoriesError,
+	caseFanError,
+	casingError,
+	cpuCoolerError,
+	cpuError,
+	detailsErrorHandling,
+	errorToastHandler,
+	externalStorageError,
+	fanControllerError,
+	headphoneError,
+	keyboardError,
+	memoryError,
+	miceError,
+	monitorError,
+	motherboardError,
+	operatingSystemError,
+	opticalDriveError,
+	powerSupplyError,
+	soundCardError,
+	speakerError,
+	storageError,
+	thermalCompoundError,
+	upsError,
+	videoCardError,
+	webcamError,
+	wiredNetworkAdapterError,
+	wirelessNetwokAdapterError,
+} from "./errorHandling";
 
 const backdropVariant = {
 	initial: {
@@ -51,7 +82,7 @@ const modalVariant = {
 	},
 };
 
-const ProductModal = ({type, showModal, setShowModal, id}) => {
+const ProductModal = ({ type, showModal, setShowModal, id }) => {
 	const [page, setPage] = useState(1);
 
 	const [toast, showToast] = useState(false);
@@ -62,102 +93,81 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 		subtitle: "",
 	});
 
-	const [itemName, setItemName] = useState(null);
-	const [model, setModel] = useState(null);
-	const [brand, setBrand] = useState(null);
-	const [description, setDescription] = useState(null);
-	const [category, setCategory] = useState("");
-	const [price, setPrice] = useState(null);
-	const [stock, setStock] = useState(null);
+	const [productDetails, setProductDetails] = useState({
+		category: "",
+		itemName: "",
+		model: "",
+		brand: "",
+		description: "",
+		price: "",
+		stock: "",
+	});
 
 	const [images, setImages] = useState([]);
 
-	const [CPUSpecification, setCPUSpecification] = useState({
-		manufacturer: "amd",
-		core: null,
-		coreClock: null,
-		boostClock: null,
-		tdp: null,
-		series: null,
-		microArchitecture: null,
-		coreFamily: null,
-		socket: null,
-		integratedGraphics: null,
-		maxSupportedMemory: null,
-		eccSupport: "true",
-		includeCooler: "true",
-		packaging: null,
-		l1Cache: null,
-		l2Cache: null,
-		l3Cache: null,
-		lithography: null,
-		includeCPUCooler: "true",
-		multithreading: "false",
-		typeOfMultithreading: null,
-	});
-	const [CPUCoolerSpecification, setCPUCoolerSpecification] = useState({
-		manufacturer: null,
-		model: null,
-		fanRPM: null,
-		noiseLevel: null,
-		color: null,
-		height: null,
-		cpuSocket: null,
-		waterCooled: "false",
-		fanless: "false",
-	});
-	const [motherboardSpecification, setMotherboardSpecification] = useState({
-		manufacturer: null,
-		socketCpu: null,
-		formFactor: null,
-		chipset: null,
-		maxMemory: null,
-		memorySlots: null,
-		memorySpeed: null,
-		color: null,
-		sliCrossfire: null,
-		pci16: null,
-		pci8: null,
-		pci4: null,
-		pci1: null,
-		pci: null,
-		m2Slots: null,
-		miniPCIeSlots: null,
-		halfMiniPCIeSlots: null,
-		mSataSlots: null,
-		sata6gb: null,
-		onBoardEthernet: null,
-		onBoardVideo: null,
-		usb2Headers: null,
-		singleUsb2Headers: null,
-		usb3Gen1Headers: null,
-		usb3Gen2Headers: null,
-		usb3Gen2x2Headers: null,
-		supportECC: "false",
-		wirelessNetworking: null,
-		raidSupport: "false",
-	});
-	const [memorySpecification, setMemorySpecification] = useState({
-		manufacturer: null,
-		memorySpeed: null,
-		formFactor: null,
-		modules: null,
-		firstWordLatency: null,
-		CASLatency: null,
-		voltage: null,
-		timing: null,
-		eccRegistered: null,
-		heatSpreader: "true",
-	});
-	const [storageSpecification, setStorageSpecification] = useState({
-		manufacturer: null,
-		capacity: null,
-		type: null,
-		cache: null,
-		formFactor: null,
-		interface: null,
-		nvme: "true",
-	});
+	const [categInform, setCategInform] = useState(false);
+	const [detailsError, setDetailsError] = useState({});
+	const [specificationError, setSpecificationError] = useState({});
+
+	const [specification, setSpecification] = useState();
+
+	useEffect(() => {
+		switch (productDetails.category) {
+			case "CPU":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.CPU });
+			case "CPU Cooler":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.CPU_COOLER });
+			case "Motherboard":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.MOTHERBOARD });
+			case "Memory":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.MEMORY });
+			case "Storage":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.STORAGE });
+			case "Video Card":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.VIDEO_CARD });
+			case "Case":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.CASING });
+			case "Power Supply":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.POWER_SUPPLY });
+			case "OS":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.OPERATING_SYSTEM });
+			case "Monitor":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.MONITOR });
+			case "Sound Cards":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.SOUND_CARD });
+			case "Wired Network Adapters":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.WIRED_NETWORK_ADAPTER });
+			case "Wireless Network Adapters":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.WIRELESS_NETWORK_ADAPTER });
+			case "Headphones":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.HEADPHONE });
+			case "Keyboards":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.KEYBOARD });
+			case "Mice":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.MICE });
+			case "Speakers":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.SPEAKER });
+			case "Webcams":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.WEBCAM });
+			case "Case Accessories":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.CASE_ACCESSORIES });
+			case "Case Fans":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.CASE_FAN });
+			case "Fan Controllers":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.FAN_CONTROLLER });
+			case "Thermal Compound":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.THERMAL_COMPOUND });
+			case "External Storage":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.EXTERNAL_STORAGE });
+			case "Optical Drive":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.OPTICAL_DRIVE });
+			case "UPS Systems":
+				return setSpecification({ ...DEFAULT_SPECIFICATION_DETAILS.UPS });
+			default:
+				return;
+		}
+	}, [productDetails.category]);
+
 
 	const [primaryImage, setPrimaryImage] = useState(null);
 	const [subImage1, setSubImage1] = useState(null);
@@ -171,32 +181,243 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 	const subImageRef3 = useRef();
 	const subImageRef4 = useRef();
 
+	const modalRef = useRef();
+
+	useEffect(() => {
+		if (modalRef.current) {
+			modalRef.current.scrollTop = 0;
+		}
+	}, [page, modalRef, categInform, specificationError]);
+
+	const errorHandler = (
+		specificationErrorContainer,
+		specificationErrorMsgArray
+	) => {
+		switch (productDetails.category) {
+			case "CPU":
+				return cpuError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "CPU Cooler":
+				return cpuCoolerError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Motherboard":
+				return motherboardError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Memory":
+				return memoryError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Storage":
+				return storageError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Video Card":
+				return videoCardError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Case":
+				return casingError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Power Supply":
+				return powerSupplyError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "OS":
+				return operatingSystemError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Monitor":
+				return monitorError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Sound Cards":
+				return soundCardError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Wired Network Adapters":
+				return wiredNetworkAdapterError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Wireless Network Adapters":
+				return wirelessNetwokAdapterError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Headphones":
+				return headphoneError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Keyboards":
+				return keyboardError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Mice":
+				return miceError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Speakers":
+				return speakerError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Webcams":
+				return webcamError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Case Accessories":
+				return caseAccessoriesError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Case Fans":
+				return caseFanError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Fan Controllers":
+				return fanControllerError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Thermal Compound":
+				return thermalCompoundError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "External Storage":
+				return externalStorageError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "Optical Drive":
+				return opticalDriveError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			case "UPS Systems":
+				return upsError(
+					specification,
+					specificationErrorContainer,
+					specificationErrorMsgArray
+				);
+			default:
+		}
+	};
+
 	const submitHandler = (e) => {
 		e.preventDefault();
 
+		let detailsErrorContainer = {};
+		let detailsErrorMsgArray = [];
+
+		let specificationErrorContainer = {};
+		let specificationErrorMsgArray = [];
+
+		// set boolean to all fields first
+		if (!mainPhoto.current.files[0]) {
+			detailsErrorContainer.image = true;
+			detailsErrorMsgArray.push("Main Product Image");
+		}
+
+		// from Functions that assigns message and boolean values
+		// to the initialized array and object respectively
+		detailsErrorHandling(
+			productDetails,
+			detailsErrorContainer,
+			detailsErrorMsgArray
+		);
+
+		if (detailsErrorMsgArray.length > 0) {
+			errorToastHandler(
+				detailsErrorContainer,
+				detailsErrorMsgArray,
+				showToast,
+				toastParams,
+				setToastParams
+			);
+			setPage(1);
+		} else {
+			errorHandler(specificationErrorContainer, specificationErrorMsgArray);
+
+			if (productDetails.category) {
+				setSpecificationError({ ...specificationErrorContainer });
+			}
+
+			errorToastHandler(
+				specificationErrorContainer,
+				specificationErrorMsgArray,
+				showToast,
+				toastParams,
+				setToastParams
+			);
+		}
+
+		// update the state to the number of errors per pag from first page
+		setDetailsError({ ...detailsErrorContainer });
+
 		setImages([
-			mainPhoto.current.files[0].name,
-			subImageRef1.current.files[0].name,
-			subImageRef2.current.files[0].name,
-			subImageRef3.current.files[0].name,
-			subImageRef4.current.files[0].name,
+			mainPhoto.current.files[0]?.name,
+			subImageRef1.current.files[0]?.name,
+			subImageRef2.current.files[0]?.name,
+			subImageRef3.current.files[0]?.name,
+			subImageRef4.current.files[0]?.name,
 		]);
 
-		console.log(images);
-		console.log("itemName", itemName);
-		console.log("model", model);
-		console.log("brand", brand);
-		console.log("description", description);
-		console.log("category", category);
-		console.log("price", price);
-		console.log("stock", stock);
+		// console.log(images);
+		// console.log("itemName", itemName);
+		// console.log("model", model);
+		// console.log("brand", brand);
+		// console.log("description", description);
+		// console.log("category", category);
+		// console.log("price", price);
+		// console.log("stock", stock);
 
-		console.table(CPUSpecification);
+		// console.table(CPU);
 	};
-
-	useEffect(()=> {
-		// showModal && console.log(id);
-	}, [type, showModal, id])
 
 	return (
 		<>
@@ -220,6 +441,7 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 							exit="exit"
 						>
 							<motion.div
+								ref={modalRef}
 								className={styles.modalContainer}
 								onClick={(e) => e.stopPropagation()}
 								variants={modalVariant}
@@ -231,7 +453,9 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 									<div className={styles.picturesColumn}>
 										<button
 											type="button"
-											className={styles.mainPhoto}
+											className={`${styles.mainPhoto} ${
+												detailsError.image ? styles.errorClass : null
+											}`}
 											onClick={() => mainPhoto.current.click()}
 										>
 											{primaryImage ? (
@@ -346,47 +570,19 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 										<div className={styles.formContent}>
 											{page === 1 ? (
 												<>
-													<label htmlFor="name">Item Name: </label>
-													<input
-														type="text"
-														id="name"
-														placeholder="Name"
-														value={itemName}
-														onChange={(e) => setItemName(e.target.value)}
-														required
-													/>
-													<label htmlFor="model">Model: </label>
-													<input
-														type="text"
-														id="model"
-														placeholder="Product Model"
-														value={model}
-														onChange={(e) => setModel(e.target.value)}
-														required
-													/>
-													<label htmlFor="brand">Brand: </label>
-													<input
-														type="text"
-														id="brand"
-														placeholder="Product Brand"
-														value={brand}
-														onChange={(e) => setBrand(e.target.value)}
-														required
-													/>
-													<label htmlFor="description">Description: </label>
-													<textarea
-														id="description"
-														placeholder="Add Description"
-														rows={4}
-														value={description}
-														onChange={(e) => setDescription(e.target.value)}
-														required
-													/>
 													<label htmlFor="category">Category: </label>
 													<select
 														id="category"
-														value={category}
-														onChange={(e) => setCategory(e.target.value)}
+														value={productDetails.category}
+														className={`${styles.mediumSelect} ${
+															categInform ? styles.informClass : null
+														}`}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																category: e.target.value,
+															})
+														}
 													>
 														<option value="" className="hidden">
 															Category
@@ -401,7 +597,80 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 														{PERIPHERALS.map((categ) => (
 															<option value={categ}>{categ}</option>
 														))}
+														{ACCESSORIES_OTHERS.map((categ) => (
+															<option value={categ}>{categ}</option>
+														))}
 													</select>
+													<label htmlFor="name">Item Name: </label>
+													<input
+														type="text"
+														id="name"
+														placeholder="Name"
+														value={productDetails.itemName}
+														className={`${
+															detailsError.itemName ? styles.errorClass : null
+														}`}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																itemName: e.target.value,
+															})
+														}
+														// required
+													/>
+													<label htmlFor="model">Model: </label>
+													<input
+														type="text"
+														id="model"
+														placeholder="Product Model"
+														className={`${
+															detailsError.model ? styles.errorClass : null
+														}`}
+														value={productDetails.model}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																model: e.target.value,
+															})
+														}
+														// required
+													/>
+													<label htmlFor="brand">Brand: </label>
+													<input
+														type="text"
+														id="brand"
+														placeholder="Product Brand"
+														className={`${
+															detailsError.brand ? styles.errorClass : null
+														}`}
+														value={productDetails.brand}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																brand: e.target.value,
+															})
+														}
+														// required
+													/>
+													<label htmlFor="description">Description: </label>
+													<textarea
+														id="description"
+														placeholder="Add Description"
+														rows={4}
+														className={`${
+															detailsError.description
+																? styles.errorClass
+																: null
+														}`}
+														value={productDetails.description}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																description: e.target.value,
+															})
+														}
+														// required
+													/>
 													<label htmlFor="price">Item Price: </label>
 													<input
 														type="number"
@@ -409,10 +678,16 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 														placeholder="0"
 														step="0.01"
 														min={0}
-														className={styles.smallNumberNoArrows}
-														value={price}
-														onChange={(e) => setPrice(e.target.value)}
-														required
+														className={`${styles.smallNumberNoArrows} ${
+															detailsError.stock ? styles.errorClass : null
+														}`}
+														value={productDetails.price}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																price: e.target.value,
+															})
+														}
 													/>
 													<label htmlFor="stocks">Stocks: </label>
 													<input
@@ -420,27 +695,24 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 														id="stocks"
 														placeholder="0"
 														min={0}
-														className={styles.smallNumberNoArrows}
-														value={stock}
-														onChange={(e) => setStock(e.target.value)}
-														required
+														className={`${styles.smallNumberNoArrows} ${
+															detailsError.stock ? styles.errorClass : null
+														}`}
+														value={productDetails.stock}
+														onChange={(e) =>
+															setProductDetails({
+																...productDetails,
+																stock: e.target.value,
+															})
+														}
 													/>
 												</>
 											) : (
 												<InputSpecification
-													category={category}
-													CPUSpecification={CPUSpecification}
-													setCPUSpecification={setCPUSpecification}
-													CPUCoolerSpecification={CPUCoolerSpecification}
-													setCPUCoolerSpecification={setCPUCoolerSpecification}
-													motherboardSpecification={motherboardSpecification}
-													setMotherboardSpecification={
-														setMotherboardSpecification
-													}
-													memorySpecification={memorySpecification}
-													setMemorySpecification={setMemorySpecification}
-													storageSpecification={storageSpecification}
-													setStorageSpecification={setStorageSpecification}
+													category={productDetails.category}
+													specification={specification}
+													setSpecification={setSpecification}
+													specificationError={specificationError}
 												/>
 											)}
 										</div>
@@ -463,7 +735,8 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 												type="button"
 												className={styles.submit}
 												onClick={() => {
-													if (category === "") {
+													if (productDetails.category === "") {
+														setCategInform(true);
 														showToast(true);
 														setToastParams({
 															...toastParams,
@@ -473,6 +746,7 @@ const ProductModal = ({type, showModal, setShowModal, id}) => {
 																"Please select an appropriate category before proceeding",
 														});
 													} else {
+														setCategInform(false);
 														setPage((value) => value + 1);
 													}
 												}}

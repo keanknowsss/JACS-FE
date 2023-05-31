@@ -1,6 +1,6 @@
 import styles from "../ProductModal.module.scss";
 
-const Motherboard = ({ object, setObject }) => {
+const Motherboard = ({ object, setObject, error }) => {
 	return (
 		<>
 			<label htmlFor="manufacturer">Manufacturer: </label>
@@ -8,7 +8,9 @@ const Motherboard = ({ object, setObject }) => {
 				type="text"
 				id="manufacturer"
 				placeholder="ASUS"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.manufacturer ? styles.errorClass : null
+				}`}
 				value={object.manufacturer}
 				onChange={(e) =>
 					setObject({
@@ -16,14 +18,15 @@ const Motherboard = ({ object, setObject }) => {
 						manufacturer: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="socketCPU">CPU Socket: </label>
 			<input
 				type="text"
 				id="socketCPU"
 				placeholder="AM4"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.socketCPU ? styles.errorClass : null
+				}`}
 				value={object.socketCpu}
 				onChange={(e) =>
 					setObject({
@@ -31,14 +34,15 @@ const Motherboard = ({ object, setObject }) => {
 						socketCpu: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="formFactor">Form Factor: </label>
 			<input
 				type="text"
 				id="formFactor"
 				placeholder="MicroATX"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.formFactor ? styles.errorClass : null
+				}`}
 				value={object.formFactor}
 				onChange={(e) =>
 					setObject({
@@ -46,14 +50,15 @@ const Motherboard = ({ object, setObject }) => {
 						formFactor: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="chipset">Chipset: </label>
 			<input
 				type="text"
 				id="chipset"
 				placeholder="AMD X570"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.chipset ? styles.errorClass : null
+				}`}
 				value={object.chipset}
 				onChange={(e) =>
 					setObject({
@@ -61,7 +66,6 @@ const Motherboard = ({ object, setObject }) => {
 						chipset: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="maxMemory">Maximum Memory (GB): </label>
 			<input
@@ -69,7 +73,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="maxMemory"
 				placeholder="128"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.maxMemory ? styles.errorClass : null
+				}`}
 				value={object.maxMemory}
 				onChange={(e) =>
 					setObject({
@@ -77,7 +83,6 @@ const Motherboard = ({ object, setObject }) => {
 						maxMemory: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="memorySlots">Memory Slots: </label>
 			<input
@@ -85,7 +90,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="memorySlots"
 				placeholder="4"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.memorySlots ? styles.errorClass : null
+				}`}
 				value={object.memorySlots}
 				onChange={(e) =>
 					setObject({
@@ -93,14 +100,15 @@ const Motherboard = ({ object, setObject }) => {
 						memorySlots: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="memorySpeed">Memory Speed: </label>
 			<input
 				type="text"
 				id="memorySpeed"
 				placeholder="DDR4-2400"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.memorySpeed ? styles.errorClass : null
+				}`}
 				value={object.memorySpeed}
 				onChange={(e) =>
 					setObject({
@@ -108,13 +116,29 @@ const Motherboard = ({ object, setObject }) => {
 						memorySpeed: e.target.value,
 					})
 				}
-				required
+			/>
+            <label htmlFor="color">Color: </label>
+			<input
+				type="text"
+				id="color"
+				placeholder="Black"
+				className={styles.medText}
+				value={object.color}
+				onChange={(e) =>
+					setObject({
+						...object,
+						color: e.target.value,
+					})
+				}
 			/>
             <label htmlFor="sliCrossfire">SLI Crossfire: </label>
 			<input
 				type="text"
 				id="sliCrossfire"
 				placeholder="CrossFire Capable"
+				className={`${
+					error.sliCrossfire ? styles.errorClass : null
+				}`}
 				value={object.sliCrossfire}
 				onChange={(e) =>
 					setObject({
@@ -122,7 +146,6 @@ const Motherboard = ({ object, setObject }) => {
 						sliCrossfire: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="pci16">PCIE x16 Slots: </label>
 			<input
@@ -131,7 +154,9 @@ const Motherboard = ({ object, setObject }) => {
 				placeholder="2"
 				min={0}
                 max={6}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.pci16 ? styles.errorClass : null
+				}`}
 				value={object.pci16}
 				onChange={(e) =>
 					setObject({
@@ -139,7 +164,6 @@ const Motherboard = ({ object, setObject }) => {
 						pci16: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="pci8">PCIE x8 Slots: </label>
 			<input
@@ -148,7 +172,9 @@ const Motherboard = ({ object, setObject }) => {
 				placeholder="2"
 				min={0}
                 max={6}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.pci8 ? styles.errorClass : null
+				}`}
 				value={object.pci8}
 				onChange={(e) =>
 					setObject({
@@ -156,7 +182,6 @@ const Motherboard = ({ object, setObject }) => {
 						pci8: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="pci4">PCIE x4 Slots: </label>
 			<input
@@ -165,7 +190,9 @@ const Motherboard = ({ object, setObject }) => {
 				placeholder="2"
 				min={0}
                 max={6}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.pci4 ? styles.errorClass : null
+				}`}
 				value={object.pci4}
 				onChange={(e) =>
 					setObject({
@@ -173,7 +200,6 @@ const Motherboard = ({ object, setObject }) => {
 						pci4: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="pci1">PCIE x1 Slots: </label>
 			<input
@@ -182,7 +208,9 @@ const Motherboard = ({ object, setObject }) => {
 				placeholder="2"
 				min={0}
                 max={6}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.pci1 ? styles.errorClass : null
+				}`}
 				value={object.pci1}
 				onChange={(e) =>
 					setObject({
@@ -190,16 +218,17 @@ const Motherboard = ({ object, setObject }) => {
 						pci1: e.target.value,
 					})
 				}
-				required
 			/>
-            <label htmlFor="pci">PCI x1 Slots: </label>
+            <label htmlFor="pci">PCI Slots: </label>
 			<input
 				type="number"
 				id="pci"
 				placeholder="2"
 				min={0}
                 max={6}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.pci ? styles.errorClass : null
+				}`}
 				value={object.pci}
 				onChange={(e) =>
 					setObject({
@@ -207,7 +236,6 @@ const Motherboard = ({ object, setObject }) => {
 						pci: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="m2Slots">M.2 Slots: </label>
 			<input
@@ -215,13 +243,15 @@ const Motherboard = ({ object, setObject }) => {
 				id="m2Slots"
 				placeholder="2242/2260/2280/22110 M-key"
 				value={object.m2Slots}
+				className={`${
+					error.m2Slots ? styles.errorClass : null
+				}`}
 				onChange={(e) =>
 					setObject({
 						...object,
 						m2Slots: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="miniPCIeSlots">Mini PCIE Slots: </label>
 			<input
@@ -229,7 +259,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="miniPCIeSlots"
 				placeholder="0"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.miniPCIeSlots ? styles.errorClass : null
+				}`}
 				value={object.miniPCIeSlots}
 				onChange={(e) =>
 					setObject({
@@ -237,7 +269,6 @@ const Motherboard = ({ object, setObject }) => {
 						miniPCIeSlots: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="halfMiniPCIeSlots">Half Mini PCIE Slots: </label>
 			<input
@@ -245,7 +276,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="halfMiniPCIeSlots"
 				placeholder="0"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.halfMiniPCIeSlots ? styles.errorClass : null
+				}`}
 				value={object.halfMiniPCIeSlots}
 				onChange={(e) =>
 					setObject({
@@ -253,7 +286,6 @@ const Motherboard = ({ object, setObject }) => {
 						halfMiniPCIeSlots: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="mSataSlots">MSata Slots: </label>
 			<input
@@ -261,7 +293,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="mSataSlots"
 				placeholder="0"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.mSataSlots ? styles.errorClass : null
+				}`}
 				value={object.mSataSlots}
 				onChange={(e) =>
 					setObject({
@@ -269,7 +303,6 @@ const Motherboard = ({ object, setObject }) => {
 						mSataSlots: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="sata6gb">SATA 6GB/s Ports: </label>
 			<input
@@ -277,7 +310,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="sata6gb"
 				placeholder="0"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.sata6gb ? styles.errorClass : null
+				}`}
 				value={object.sata6gb}
 				onChange={(e) =>
 					setObject({
@@ -285,13 +320,15 @@ const Motherboard = ({ object, setObject }) => {
 						sata6gb: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="onBoardEthernet">Onboard Ethernet: </label>
 			<input
 				type="text"
 				id="onBoardEthernet"
 				placeholder="1 x 1 Gb/s (Realtek L8200A)"
+				className={`${
+					error.onBoardEthernet ? styles.errorClass : null
+				}`}
 				value={object.onBoardEthernet}
 				onChange={(e) =>
 					setObject({
@@ -299,14 +336,15 @@ const Motherboard = ({ object, setObject }) => {
 						onBoardEthernet: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="onBoardVideo">Onboard Video: </label>
 			<input
 				type="text"
 				id="onBoardVideo"
 				placeholder="Depends on CPU"
-				className={styles.medText}
+				className={`${
+					error.onBoardVideo ? styles.errorClass : null
+				}`}
 				value={object.onBoardVideo}
 				onChange={(e) =>
 					setObject({
@@ -314,7 +352,6 @@ const Motherboard = ({ object, setObject }) => {
 						onBoardVideo: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="usb2Headers">USB 2.0 Headers: </label>
 			<input
@@ -322,7 +359,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="usb2Headers"
 				placeholder="2"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.usb2Headers ? styles.errorClass : null
+				}`}
 				value={object.usb2Headers}
 				onChange={(e) =>
 					setObject({
@@ -330,7 +369,6 @@ const Motherboard = ({ object, setObject }) => {
 						usb2Headers: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="singleUsb2Headers">SingleUSB 2.0 Headers: </label>
 			<input
@@ -338,7 +376,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="singleUsb2Headers"
 				placeholder="8"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.singleUsb2Headers ? styles.errorClass : null
+				}`}
 				value={object.singleUsb2Headers}
 				onChange={(e) =>
 					setObject({
@@ -346,7 +386,6 @@ const Motherboard = ({ object, setObject }) => {
 						singleUsb2Headers: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="usb3Gen1Headers">USB 3.2 Gen 1 Headers: </label>
 			<input
@@ -354,7 +393,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="usb3Gen1Headers"
 				placeholder="1"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.usb3Gen1Headers ? styles.errorClass : null
+				}`}
 				value={object.usb3Gen1Headers}
 				onChange={(e) =>
 					setObject({
@@ -362,7 +403,6 @@ const Motherboard = ({ object, setObject }) => {
 						usb3Gen1Headers: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="usb3Gen2Headers">USB 3.2 Gen 2 Headers: </label>
 			<input
@@ -370,7 +410,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="usb3Gen2Headers"
 				placeholder="1"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.usb3Gen2Headers ? styles.errorClass : null
+				}`}
 				value={object.usb3Gen2Headers}
 				onChange={(e) =>
 					setObject({
@@ -378,7 +420,6 @@ const Motherboard = ({ object, setObject }) => {
 						usb3Gen2Headers: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="usb3Gen2x2Headers">USB 3.2 Gen 2x2 Headers: </label>
 			<input
@@ -386,7 +427,9 @@ const Motherboard = ({ object, setObject }) => {
 				id="usb3Gen2x2Headers"
 				placeholder="8"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.usb3Gen2x2Headers ? styles.errorClass : null
+				}`}
 				value={object.usb3Gen2x2Headers}
 				onChange={(e) =>
 					setObject({
@@ -394,7 +437,6 @@ const Motherboard = ({ object, setObject }) => {
 						usb3Gen2x2Headers: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="supportECC">ECC Support: </label>
 			<select
@@ -407,7 +449,6 @@ const Motherboard = ({ object, setObject }) => {
 						supportECC: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="true">True</option>
 				<option value="false">False</option>
@@ -417,7 +458,9 @@ const Motherboard = ({ object, setObject }) => {
 				type="text"
 				id="wirelessNetworking"
 				placeholder="Wi-Fi 5"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.wirelessNetworking ? styles.errorClass : null
+				}`}
 				value={object.wirelessNetworking}
 				onChange={(e) =>
 					setObject({
@@ -425,7 +468,6 @@ const Motherboard = ({ object, setObject }) => {
 						wirelessNetworking: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="raidSupport">Raid Support: </label>
 			<select
@@ -438,7 +480,6 @@ const Motherboard = ({ object, setObject }) => {
 						raidSupport: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="true">True</option>
 				<option value="false">False</option>

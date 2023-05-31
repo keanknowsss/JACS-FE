@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { AddIcon, ArrowNavigation } from "../../../../assets/icons";
 import { ReviewCard } from "../../../../components/Card";

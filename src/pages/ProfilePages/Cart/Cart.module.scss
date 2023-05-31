@@ -1,0 +1,146 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.cartPage {
+	@apply bg-background text-white font-montserrat flex gap-7;
+	padding: 40px 120px 158px 120px;
+
+	.itemsContainer {
+		button {
+			@apply transition-colors duration-150;
+		}
+
+		@apply w-full flex flex-col gap-5;
+		flex-basis: 75%;
+
+		.tools {
+			@apply flex justify-between items-center h-13 rounded-lg bg-primary-default;
+			padding-inline: 25px 40px;
+
+			.selectContainer {
+				@apply flex items-center gap-x-5;
+
+				.select {
+					@apply h-5 w-5 relative bg-lightWhite opacity-80 hover:opacity-100 transition-all duration-150 rounded-sm;
+				}
+			}
+
+			.deleteBtn {
+				@apply flex items-center gap-2 hover:text-secondary-default;
+
+				.delete {
+					width: 21px;
+					margin-top: -2px;
+				}
+			}
+		}
+
+		.storeItemsContainer {
+			@apply flex flex-col gap-y-2;
+		}
+	}
+
+	.summaryContainer {
+		@apply bg-primary-default rounded-lg h-fit flex flex-col gap-y-2;
+		flex-basis: 25%;
+		padding: 12px 15px 31px 15px;
+
+		.summaryInfo {
+			h2 {
+				@apply text-xl font-bold mt-2 mb-1;
+			}
+
+			.location,
+			.summary {
+				@apply border-b border-white;
+				padding-bottom: 12px;
+			}
+
+			.location {
+				p {
+					@apply grid;
+					grid-template-columns: 10% 80%;
+					margin-left: 5%;
+
+					.locationIcon {
+						width: 16px;
+						fill: $red-default;
+					}
+
+					span {
+						@apply text-sm;
+					}
+
+					.addAddress {
+						@apply text-blue-default opacity-80 cursor-pointer hover:opacity-100 hover:underline transition-all duration-100;
+					}
+				}
+			}
+
+			.payables {
+				.summary {
+					.summaryDetails {
+						@apply text-sm flex flex-col gap-y-1;
+						margin-left: 5%;
+
+						.rowDetail {
+							@apply flex justify-between;
+						}
+					}
+				}
+
+				.subTotal {
+					@apply flex justify-between w-full my-1 font-bold text-lg;
+				}
+			}
+		}
+
+		.checkout {
+			@apply w-full uppercase opacity-100 text-secondary-default font-bold mt-5 hover:bg-secondary-default hover:text-primary-default transition-all duration-150 ease-in;
+			border: 2px solid #f66b0e;
+			border-radius: 10px;
+			padding-block: 10px;
+		}
+	}
+}
+
+@media (max-width: 1280px) {
+	.cartPage {
+		padding: 30px 20px 158px 20px;
+	}
+}
+
+@media (max-width: 900px) {
+	.cartPage {
+		@apply flex flex-col;
+
+		.summaryContainer {
+			@apply fixed bottom-0 z-10 w-full bg-background px-8;
+			padding: 5px 15px 0px 15px;
+			margin-inline: -20px;
+			box-shadow: 0px -2px 16px 4px #000000;
+			height: 220px;
+
+			
+
+			.summaryInfo {
+				@apply grid grid-cols-2;
+				
+				h2 {
+					@apply text-base mb-0;
+				}
+
+				.location, .summary {
+					border: none;
+					padding-bottom: 0px;
+				}
+
+				.payables {
+					.subTotal {
+						@apply border-t border-white;
+					}
+				}
+			}
+		}
+	}
+}
