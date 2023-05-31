@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs, Autoplay, Pagination } from "swiper";
+import { Navigation, Thumbs} from "swiper"; //removed Autoplay and Pagination
 import { categories } from "./HomeCarouselData";
 
 import styles from "./HomeCarousel.module.scss"
@@ -10,12 +10,12 @@ const HomeCarousel = () => {
   return (
     <>
       <Swiper
-        modules={[Navigation, Thumbs, Autoplay, Pagination]}
+        modules={[Navigation, Thumbs]} //removed Autoplay and Pagination
         loop
-        autoplay
-        pagination={{
-          clickable: true
-        }}
+        // autoplay
+        // pagination={{
+        //   clickable: true
+        // }}
         className={styles.homeCarousel}
       >
         {categories.map((category, index) => (
