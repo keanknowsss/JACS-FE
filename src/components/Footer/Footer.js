@@ -44,10 +44,10 @@ const Footer = () => {
 									<h1>Company</h1>
 									<ul className="mt-5">
 										<li>
-											<a href="/">About Us</a>
+											<a href="/about">About Us</a>
 										</li>
 										<li>
-											<a href="/">Contact Us</a>
+											<a href="/about">Contact Us</a>
 										</li>
 									</ul>
 								</div>
