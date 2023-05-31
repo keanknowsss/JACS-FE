@@ -41,7 +41,7 @@
         }
 
 		.selectProduct {
-			@apply z-10;
+			@apply z-10 absolute;
 			top: 18px;
 			left: 12px;
 		}

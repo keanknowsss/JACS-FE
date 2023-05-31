@@ -28,6 +28,7 @@ import {
 	ShopProfile,
 	TechnicianProfile,
 	TestPage,
+	OrderSuccess,
 } from "../pages";
 import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
@@ -70,6 +71,8 @@ const Navigation = () => {
 		Order: "My Orders - Just Another Computer Shop",
 		Settings: "Settings - Just Another Computer Shop",
 
+		Checkout: "Checkout - Just Another Computer Shop",
+
 		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
 		Test: "Testing",
 	};
@@ -94,9 +97,11 @@ const Navigation = () => {
 					<Route path="/technician/register" element={<TechnicianRegisterForm title={TITLES.TechnicianRegisterForm} />} />
 					<Route path="/technician/profile" element={<TechnicianProfileForm title={TITLES.TechnicianProfileForm} />} />
 
+					<Route path="/order/:orderId" element={<OrderSuccess />}  />
+
 					<Route exact path="/profile" element={<ProfileNavbar />}>
 						<Route index element={<Profile title={TITLES.Profile} />} />
-						<Route path="cart" element={<Cart title={TITLES.Cart} />} />
+						<Route path="cart" element={<Cart title={TITLES.Cart} checkoutTitle={TITLES.Checkout} />} />
 						<Route path="builds" element={<Build title={TITLES.Build} />} />
 						<Route path="saved" element={<Saved title={TITLES.Saved} />} />
 						<Route path="orders" element={<Order title={TITLES.Order} />} />

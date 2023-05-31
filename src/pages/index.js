@@ -9,6 +9,8 @@ export { default as Repair } from "./Repair";
 export { default as AboutUs } from "./AboutUs";
 export { default as NotFound } from "./NotFound";
 
+export { default as OrderSuccess } from "./OrderSuccessPage";
+
 // FORMS
 export { default as LoginForm } from "./FormPages/User/Login";
 

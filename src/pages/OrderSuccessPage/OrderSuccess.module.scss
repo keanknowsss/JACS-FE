@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.orderSuccessPage {
+	@apply h-3/4 bg-background flex flex-col items-center pt-14 pb-20 font-montserrat text-white gap-y-8;
+
+	.successLogo {
+		@apply rounded-full flex items-center justify-center bg-black;
+		border: 3px solid #f66b0e;
+		box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+		width: 300px;
+		height: 300px;
+
+		svg {
+			@apply text-secondary-default;
+			height: 120px;
+			width: 220px;
+		}
+	}
+
+	.orderSuccessText {
+		@apply flex items-center gap-x-2 bg-black rounded-lg text-4xl px-3 py-2 font-bold;
+
+		.successful {
+			@apply bg-secondary-default text-black px-2 py-2 rounded-lg;
+		}
+	}
+
+	.thanks {
+		@apply font-bold text-xl -mt-5;
+	}
+
+	.returnStore {
+		@apply mt-15 text-lg font-bold px-28 py-4 text-secondary-default hover:bg-secondary-default hover:text-white transition-colors duration-150 ease-out;
+		border: 2px solid #f66b0e;
+		border-radius: 10px;
+	}
+}
