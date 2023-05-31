@@ -5,10 +5,11 @@ import Loading from "../../components/Loading";
 import { JACSLogo } from "../../assets/images";
 import styles from "./Home.module.scss";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Toast from "../../components/Toast";
+import { useGetAllProductsQuery } from "../../features/api/builders/productApi";
 import { selectCurrentUserIsVerified } from "../../features/slice/userAccessSlice";
 
 import "swiper/css";
@@ -23,6 +24,24 @@ const Home = ({ title }) => {
 
   const [isVerifiedToast, showVerifiedToast] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [limit, setLimit] = useState(3);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+
+  const [items, setItems] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalDocs, setTotalDocs] = useState(0);
+
+  const query = {
+    page,
+    limit,
+    search,
+  };
+
+  const { data, error, isLoading } = useGetAllProductsQuery({
+    ...query,
+  });
 
   const location = useLocation();
 
@@ -39,11 +58,21 @@ const Home = ({ title }) => {
     if (location?.state?.fromForm) {
       !isVerified && showVerifiedToast(true);
     }
-  }, [location, isVerified]);
 
+    const products = data ? data["result"]["docs"] : [];
+    const { totalPages, totalDocs } =
+      data && data["result"] !== undefined
+        ? data["result"]
+        : { totalPages: 0, totalDocs: 0 };
+
+    setItems((currentItems) => (currentItems = products));
+    setTotalPages((currentTotalPages) => (currentTotalPages = totalPages));
+    setTotalDocs((currentTotalDocs) => (currentTotalDocs = totalDocs));
+  }, [location, isVerified, data]);
+  
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
@@ -75,18 +104,32 @@ const Home = ({ title }) => {
               <div className={styles.itemsSection}>
                 <p className={styles.itemHeading}>Most Bought items</p>
                 <div className={styles.cardContainer}>
-                  <ProductCard modifierClass={styles.productMod} />
-                  <ProductCard modifierClass={styles.productMod} />
-                  <ProductCard modifierClass={styles.productMod} />
+                  {items.map((item, index) => {
+                    return (
+                      <Fragment key={item._id}>
+                        <ProductCard
+                          {...item}
+                          modifierClass={styles.productMod}
+                        />
+                      </Fragment>
+                    );
+                  })}
                 </div>
               </div>
 
               <div className={styles.itemsSection}>
                 <p className={styles.itemHeading}>Trending items</p>
                 <div className={styles.cardContainer}>
-                  <ProductCard modifierClass={styles.productMod} />
-                  <ProductCard modifierClass={styles.productMod} />
-                  <ProductCard modifierClass={styles.productMod} />
+                {items.map((item, index) => {
+                    return (
+                      <Fragment key={item._id}>
+                        <ProductCard
+                          {...item}
+                          modifierClass={styles.productMod}
+                        />
+                      </Fragment>
+                    );
+                  })}
                 </div>
               </div>
               {/* </div> */}
