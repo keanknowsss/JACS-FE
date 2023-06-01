@@ -6,6 +6,7 @@
 	padding-block: 1rem 3rem;
 }
 
+
 .homeDiv {
 	@apply px-5 py-3 grid grid-cols-1 lg:grid-cols-4 grid-rows-3 gap-3 
         justify-center items-center bg-primary-default 
@@ -49,7 +50,7 @@
 	}
 }
 
-@media (max-width: 1734px) {
+@media (max-width: 1790px) {
 	.productMod:nth-child(3) {
 		display: none;
 	}
@@ -60,7 +61,7 @@
 	}
 }
 
-@media (max-width: 1172px) {
+@media (max-width: 1209px) {
 	.productMod:nth-child(3), .productMod:nth-child(2) {
 		display: none;
 	}
