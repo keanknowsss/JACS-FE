@@ -178,6 +178,7 @@ const Setting = ({ title }) => {
 						)}
 					</div>
 				</div>
+        {/* replace button with div similar to the top with the details and edit if user has shop */}
 				<div className={styles.btnRow}>
 					<button onClick={() => navigate("/store/register")}>Add Shop</button>
 				</div>
