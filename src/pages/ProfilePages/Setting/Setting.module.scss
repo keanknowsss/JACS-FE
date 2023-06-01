@@ -1,0 +1,140 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.settingsPageContainer {
+	@apply bg-background pt-10 flex justify-center font-montserrat text-white;
+
+	.mainColumn {
+		@apply flex flex-col gap-5 pb-10 relative z-0;
+		width: min(1050px, 100%);
+		padding-inline: 32px 25px;
+
+		// common in containers
+
+		h2 {
+			@apply font-bold text-2xl uppercase pl-3;
+		}
+
+		.detailsContainer {
+			@apply bg-primary-5 relative;
+			box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+			border-radius: 10px;
+			padding: 15px;
+		}
+
+		.textGridContainer {
+			@apply grid gap-y-5 gap-x-12;
+			grid-template-columns: auto 1fr;
+
+			.textDetail {
+				@apply font-bold;
+			}
+
+			input, textarea {
+				@apply pl-2 py-1 text-black w-full;
+				font-size: 14px;
+				border-radius: 4px;
+			}
+
+			textarea {
+				resize: none;
+				margin-bottom: 20px;
+			}
+
+			.midInput {
+				width: 40%;
+			}
+
+			.quarterInput {
+				width: 75%;
+			}
+		}
+
+		.links {
+			@apply text-secondary-default text-sm flex flex-col absolute right-2 top-2;
+
+			p {
+				@apply text-right opacity-80 hover:opacity-100 transition-opacity duration-150 cursor-pointer;
+			}
+		}
+
+		.saveCancelBtn {
+			@apply absolute flex gap-x-5 -bottom-5 right-6;
+
+			div {
+				background: #333840;
+				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+				border-radius: 12px;
+				width: 105px;
+				max-width: 105px;
+				padding: 3px;
+			}
+			button {
+				@apply border bg-primary-5 w-full text-secondary-default text-sm font-semibold;
+				padding-block: 6px;
+				border: 1px solid #f66b0e;
+				border-radius: 10px;
+			}
+		}
+
+		// unique components again
+
+		.firstRow {
+			@apply flex gap-x-5;
+
+			.imageContainer {
+				@apply rounded-2xl overflow-hidden w-full;
+				aspect-ratio: 1 / 1;
+				max-width: 260px;
+				filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+
+				img {
+					height: 100%;
+					width: 100%;
+				}
+
+				.editBtn {
+					@apply absolute rounded-full bg-secondary-default cursor-pointer transition-all duration-75 ease-in;
+					width: 28px;
+					height: 28px;
+					opacity: 0.8;
+					top: 8px;
+					right: 10px;
+
+					.edit {
+						@apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+						width: 40px;
+					}
+
+					&:hover {
+						opacity: 1;
+						scale: 1.05;
+					}
+				}
+			}
+
+			.profileContainer {
+				@apply self-end w-full flex flex-col gap-y-2;
+			}
+		}
+
+		.secondRow {
+			@apply flex flex-col gap-y-2;
+		}
+
+		.btnRow {
+			@apply ml-5;
+			button {
+				min-width: 241px;
+				border: 1px solid #efefef;
+				border-radius: 6px;
+				padding-block: 16px;
+			}
+		}
+
+		.backdrop {
+			@apply absolute bg-primary-default w-full h-5/6 left-0 bottom-0 -z-10;
+			border-radius: 10px 10px 0px 0px;
+		}
+	}
+}
