@@ -110,7 +110,7 @@ const Shop = ({ title }) => {
 				</form>
 
 				<div className={styles.optionsContainer}>
-					<div className={styles.rangeContainer}>
+					{/* <div className={styles.rangeContainer}>
 						<span>Price Range : </span>
 						<span className={styles.minRange}>{minRange}</span>
 						<input
@@ -122,7 +122,7 @@ const Shop = ({ title }) => {
 							className={styles.slider}
 						/>
 						<span>1000</span>
-					</div>
+					</div> */}
 
 					<button
 						className={styles.filterBtn}
