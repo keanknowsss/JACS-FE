@@ -10,7 +10,7 @@ import {
 	selectCurrentUserId,
 } from "../../../../../features/slice/userAccessSlice";
 
-const AddForm = React.memo(
+const AddForm = memo(
 	({ rating, setRating, description, setDescription, handleSubmit }) => {
 		const handleDescription = (e) => {
 			setDescription(e.target.value);
