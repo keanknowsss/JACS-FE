@@ -69,7 +69,7 @@ const Navigation = () => {
 		Build: "My Builds - Just Another Computer Shop",
 		Saved: "Saved - Just Another Computer Shop",
 		Order: "My Orders - Just Another Computer Shop",
-		Settings: "Settings - Just Another Computer Shop",
+		Settings: "User Settings - Just Another Computer Shop",
 
 		Checkout: "Checkout - Just Another Computer Shop",
 
