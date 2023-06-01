@@ -46,7 +46,7 @@ export const categories = [
     ),
     img: ShopCarousel,
     description:
-      "Lorem ipsum dolor sit amet consectetur. Dolor ullamcorper volutpat eu ut.",
+      "Browse all the latest computer products and accessories from different shops here!",
     button: "BROWSE SHOP ITEMS",
     link: "/shop",
   },

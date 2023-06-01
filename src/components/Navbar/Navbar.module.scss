@@ -23,7 +23,7 @@ nav {
 		}
 	
 		.linkContainer {
-			@apply flex justify-between;
+			@apply flex gap-x-20 m-10;
 			font-size: 0.938rem;
 	
 			// NavLink
