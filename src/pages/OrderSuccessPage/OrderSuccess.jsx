@@ -22,9 +22,9 @@ const OrderSuccess = () => {
 					>
 						<g
 							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
 						>
 							<path d="m2 12 5.25 5s1.41939-1.6222 2.625-3m6.125-7-3.5 4" />
 							<path d="m8 12 5.25 5 8.75-10" />

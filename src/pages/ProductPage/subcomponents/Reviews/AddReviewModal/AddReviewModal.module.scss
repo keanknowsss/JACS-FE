@@ -1,0 +1,61 @@
+@import "../../../../../styles/mixins";
+@import "../../../../../styles/variables";
+
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.addBtn {
+  @apply py-2 px-3 flex flex-row items-center rounded-md duration-150 ease-in-out hover:scale-105 shadow-md;
+  background-color: #333840;
+
+  .addIcon {
+    @apply w-7 h-7 fill-secondary-default;
+  }
+}
+
+.modal {
+  @apply w-screen h-screen top-0 left-0 right-0 bottom-0 fixed flex items-center justify-center z-20;
+  background: rgba(49, 49, 49, 0.8);
+
+  h2 {
+    @apply font-bold text-xl mb-2;
+  }
+  .modalContent {
+    @apply w-[720px] h-[420px] mb-3 p-5 font-montserrat rounded-md relative;
+    background-color: #1e2126;
+    color: #efefef;
+
+    .closeBtn {
+      @apply py-2 px-3 flex flex-row items-center rounded-md duration-150 ease-in-out hover:scale-105 shadow-md absolute bottom-5 right-5;
+      background-color: #333840;
+    }
+  }
+}
+
+.rating {
+  @apply w-[200px] flex flex-row items-center pt-2;
+
+  span {
+    @apply pr-2;
+  }
+}
+
+.addForm {
+  @apply w-full flex flex-col pt-3;
+
+  .description {
+    @apply block p-2.5 h-[100px] w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white resize-none;
+  }
+
+  .addReviewBtn {
+    @apply w-[200px] absolute bottom-5 left-5 mr-5 px-5 py-3 bg-background hover:bg-secondary-default text-white 
+    font-medium leading-tight border border-secondary-default rounded shadow-md 
+    focus:bg-secondary-default focus:shadow-lg focus:outline-none focus:ring-0 
+    active:bg-secondary-default active:shadow-lg transition duration-150 ease-in-out hover:scale-105;;
+  }
+}
+
+.divider {
+    @apply w-full block border-t-2 border-secondary-default mb-4;
+}
