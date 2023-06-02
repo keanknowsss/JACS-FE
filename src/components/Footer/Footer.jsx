@@ -57,7 +57,7 @@ const Footer = () => {
 						<hr className="h-30" />
 
 						<div className="mt-7 flex flex-col lg:flex-row justify-between items-center">
-							<div>© JACS, Inc. 2022. We love our users!</div>
+							<div>© JACS Inc. 2022. We love our users!</div>
 							<div className="flex mt-4 lg:mt-0">
 								{/* Icons */}
 								<a href="#!" className="mr-6 text-gray-100">

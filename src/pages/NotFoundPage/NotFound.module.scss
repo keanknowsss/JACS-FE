@@ -1,0 +1,42 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.notFoundPage {
+	@apply min-h-screen bg-background font-montserrat flex flex-col items-center pt-14 pb-20 gap-y-7 text-white;
+
+	.iconContainer {
+		@apply bg-black flex justify-center items-center rounded-full;
+		border: 3px solid #f66b0e;
+		box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+        width: 300px;
+		height: 300px;
+
+        .XIcon {
+            @apply fill-secondary-default;
+            width: 140px;
+        }
+	}
+
+    .errText {
+        @apply flex items-center gap-x-2 bg-black text-2xl pl-4 pr-2 py-2 font-black uppercase;
+		border-radius: 20px;
+
+        .notFoundText {
+            @apply bg-secondary-default text-black px-2 py-2;
+			border-radius: 12px;
+        }
+    }
+
+    .notFoundDescription {
+        @apply font-light -mt-2 text-center;
+		font-size: 20px;
+        width: 560px;
+        line-height: 1.8ch;
+    }
+
+    .returnHome {
+        @apply mt-20 text-lg font-bold px-14 py-2.5 text-secondary-default hover:bg-secondary-default hover:text-white transition-colors duration-150 ease-out;
+		border: 2px solid #f66b0e;
+		border-radius: 10px;
+    }
+}
