@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
 	ChipIcon,
@@ -12,20 +13,27 @@ import Modal from "../../../../components/Modal";
 
 import styles from "./StoreRegister.module.scss";
 
+import { useAddSellerDocumentsMutation, useAddSellerMutation } from "../../../../features/api/builders/sellerApi";
+import { selectCurrentUserId } from "../../../../features/slice/userAccessSlice";
+
 const SellerRegister = ({ title }) => {
 	document.title = title;
 
 	const [storeType, setStoreType] = useState("microSeller");
-	const [validID, setValidID] = useState();
-	const [bankAccount, setBankAccount] = useState();
-	const [BIRFile, setBIRFile] = useState();
-	const [businessDocument, setBusinessDocument] = useState();
+	const [validID, setValidID] = useState(null);
+	const [bankAccount, setBankAccount] = useState(null);
+	const [BIRFile, setBIRFile] = useState(null);
+	const [businessDocument, setBusinessDocument] = useState(null);
 
 	const [showModal, setShowModal] = useState(false);
 
+	const [addSellerDocuments] = useAddSellerDocumentsMutation();
+	const [addSeller] = useAddSellerMutation();
+
+	const userId = useSelector(selectCurrentUserId);
 	const navigate = useNavigate();
 
-	const registerHandler = (e) => {
+	const registerHandler = async (e) => {
 		e.preventDefault();
 
 		// error handling for files
@@ -38,6 +46,9 @@ const SellerRegister = ({ title }) => {
 					"Please upload a file or image of your Bank Account Document"
 				);
 			}
+
+			await fileUploading(validID, bankAccount)
+
 		} else {
 			if (!BIRFile) {
 				return alert("Please upload a file or image of your BIR2032 Document");
@@ -47,12 +58,29 @@ const SellerRegister = ({ title }) => {
 					"Please upload a file or image of your Business Permit or Certificate of Registration"
 				);
 			}
+
+			await fileUploading(BIRFile, businessDocument)
+
 		}
 		setShowModal(true);
 	};
 
 	const returnHome = () => {
-		navigate("/")
+		navigate("/profile/settings")
+	}
+
+	const fileUploading =  async(file1, file2) => {
+		try {
+			const uploadedDocument = await addSellerDocuments({
+				id: userId,
+				file1: file1,
+				file2: file2
+			}).unwrap();
+			console.log(uploadedDocument)
+		} catch (error) {
+			console.log(error)
+		}
+
 	}
 
 	return (
