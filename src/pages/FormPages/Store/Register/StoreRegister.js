@@ -47,7 +47,7 @@ const SellerRegister = ({ title }) => {
 				);
 			}
 
-			await fileUploading(validID, bankAccount)
+			await fileUploading(validID, bankAccount, "MICRO")
 
 		} else {
 			if (!BIRFile) {
@@ -59,9 +59,9 @@ const SellerRegister = ({ title }) => {
 				);
 			}
 
-			await fileUploading(BIRFile, businessDocument)
-
+			await fileUploading(BIRFile, businessDocument, "CORPORATE")
 		}
+
 		setShowModal(true);
 	};
 
@@ -69,14 +69,29 @@ const SellerRegister = ({ title }) => {
 		navigate("/profile/settings")
 	}
 
-	const fileUploading =  async(file1, file2) => {
+	const fileUploading = async (file1, file2, type) => {
 		try {
 			const uploadedDocument = await addSellerDocuments({
 				id: userId,
 				file1: file1,
 				file2: file2
 			}).unwrap();
-			console.log(uploadedDocument)
+
+			const result = uploadedDocument.result
+			console.log(result)
+			const links = new Array()
+			result.forEach((image) => links.push(image.publicUrl))
+
+			console.log("Documents uploaded!")
+
+			const uploadSeller = await addSeller({
+				_userId: userId,
+				typeOfSeller: type,
+				documents: links
+			})
+
+			console.log(uploadSeller)
+
 		} catch (error) {
 			console.log(error)
 		}
