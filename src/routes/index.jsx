@@ -77,7 +77,7 @@ const Navigation = () => {
 
 		Checkout: "Checkout - Just Another Computer Shop",
 
-		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
+		NotFound: "Page Not Found 😫",
 		Test: "Testing",
 	};
 

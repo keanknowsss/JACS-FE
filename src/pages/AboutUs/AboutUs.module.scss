@@ -26,15 +26,13 @@
 }
 
 .divContact {
+	@apply font-montserrat;
 	width: 30rem;
-	border: 5px solid #0000;
-	float: left;
 	margin: 20px;
 }
 
 .divSend {
 	width: 80rem;
-	border: 5px solid #0000;
 	float: left;
 	margin: 20px;
 }
