@@ -42,26 +42,26 @@ const AboutUs = ({title}) => {
                     
                     <div className={styles.divContact}>
                         <p className="font-bold text-[30px] text-[white]">Contacts</p>
-                        <p className="font-[1000] text-[white]">______________________________________________________________</p>
+                        <hr className="mb-2" />
                         <p className="text-[23px] font-bold text-[white]">Owner/Founder</p>
                         <p className="text-[19px] font-bold text-[gray]">Keanu Dwight Solomon</p>
-                        <p className="text-[19px] font-bold text-[blue] underline">kwight@gmail.com</p>
-                        <p className="font-[1000] text-[white]">______________________________________________________________</p>
+                        <p className="text-[19px] font-bold text-secondary-default underline">solomon.keanu.sk@gmail.com</p>
+                        <hr />
                         <p className="text-[23px] font-bold text-[white]">Co-Owner</p>
                         <p className="text-[19px] font-bold text-[gray]">John Rexpearl Tumlos</p>
-                        <p className="text-[19px] font-bold text-[blue] underline">kwight@gmail.com</p>
-                        <p className="font-[1000] text-[white]">______________________________________________________________</p>
+                        <p className="text-[19px] font-bold text-secondary-default underline">johnrex412@gmail.com</p>
+                        <hr />
                         <p className="text-[23px] font-bold text-[white]">Co-Owner</p>
                         <p className="text-[19px] font-bold text-[gray]">Phillip Angelo R. Jaculo</p>
-                        <p className="text-[19px] font-bold text-[blue] underline">kwight@gmail.com</p>
+                        <p className="text-[19px] font-bold text-secondary-default underline">parjaculo228922@gmail.com</p>
 
                     </div>
 
 
                     <div className={styles.divSend}>
                         <p className="font-bold text-[30px] text-[white]">Send us a Message</p>
-                        <p className="font-[1000] text-[white] pb-10">________________________________________________________________________________________________________________________________________________________________________________</p>
-                        <div className="space-y-7">
+                        <hr />
+                        <div className="flex flex-col gap-y-5 mt-5">
                             <input type="text" className={styles.textbox} placeholder="Name"/>
                             <input type="text" className={styles.textbox} placeholder="Your E-mail Address"/>
                             {/* <input type="text" className={styles.textbox1} placeholder="Your Message"/> */}
