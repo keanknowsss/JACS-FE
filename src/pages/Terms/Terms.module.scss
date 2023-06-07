@@ -1,0 +1,27 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.termMain {
+    @apply bg-background flex flex-col justify-center items-center;
+	padding-block: 1rem 3rem;
+}
+
+.termDiv{
+    @apply  flex flex-col justify-center items-center 
+    bg-primary-default box-border rounded-lg;
+
+width: 97%;
+
+ }
+
+ .termText{
+    @apply text-secondary-default font-bold text-[3rem]
+     align-top pt-[5rem] pb-[5rem]
+    ;
+}
+
+.termBody {
+    @apply h-[50%] pt-[5rem] pl-[20%] pr-[20%] pb-[10%] 
+    text-justify text-white text-[20px];
+
+}

@@ -10,6 +10,8 @@ import {
 	Tech101,
 	Repair,
 	AboutUs,
+	Terms,
+	Privacy,
 	NotFound,
 	UserRegisterForm,
 	UserProfileForm,
@@ -48,6 +50,8 @@ const Navigation = () => {
 		Tech101: "JACS Tech101 - Just Another Computer Shop",
 		Repair: "JACS Repair - Just Another Computer Shop",
 		About: "About JACS - Just Another Computer Shop",
+		Terms: "Terms of Service",
+		Privacy: "Privacy Policy",
 
 		LoginForm: "Login - Just Another Computer Shop",
 		UserRegisterForm: "Create an Account - Just Another Computer Shop",
@@ -90,6 +94,8 @@ const Navigation = () => {
 					<Route path="/tech101" element={<Tech101 title={TITLES.Tech101} />} />
 					<Route path="/repair" element={<Repair title={TITLES.Repair} />} />
 					<Route path="/about" element={<AboutUs title={TITLES.About} />} />
+					<Route path="/terms" element={<Terms title={TITLES.Terms} />} />
+					<Route path="/privacy" element={<Privacy title={TITLES.Privacy} />} />
 
 					<Route path="/user/information" element={<UserProfileForm title={TITLES.UserProfileForm} />}/>
 					<Route path="/store/register" element={<StoreRegisterForm title={TITLES.StoreRegisterForm} />} />
