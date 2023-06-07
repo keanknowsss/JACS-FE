@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .orderSuccessPage {
-	@apply h-3/4 bg-background flex flex-col items-center pt-14 pb-20 font-montserrat text-white gap-y-8;
+	@apply min-h-screen bg-background flex flex-col items-center pt-14 pb-20 font-montserrat text-white gap-y-7;
 
 	.successLogo {
 		@apply rounded-full flex items-center justify-center bg-black;
@@ -13,25 +13,29 @@
 
 		svg {
 			@apply text-secondary-default;
-			height: 120px;
-			width: 220px;
+			width: 200px;
+			stroke-width: 4px;
 		}
 	}
 
 	.orderSuccessText {
-		@apply flex items-center gap-x-2 bg-black rounded-lg text-4xl px-3 py-2 font-bold;
+        @apply flex items-center gap-x-2 bg-black text-2xl pl-4 pr-2 py-2 font-black uppercase;
+		
+		border-radius: 20px;
 
 		.successful {
-			@apply bg-secondary-default text-black px-2 py-2 rounded-lg;
+			@apply bg-secondary-default text-black px-2 py-2;
+			border-radius: 12px;
 		}
 	}
 
 	.thanks {
-		@apply font-bold text-xl -mt-5;
+		@apply font-light -mt-2;
+		font-size: 20px;
 	}
 
 	.returnStore {
-		@apply mt-15 text-lg font-bold px-28 py-4 text-secondary-default hover:bg-secondary-default hover:text-white transition-colors duration-150 ease-out;
+		@apply mt-20 text-lg font-bold px-14 py-2.5 text-secondary-default hover:bg-secondary-default hover:text-white transition-colors duration-150 ease-out;
 		border: 2px solid #f66b0e;
 		border-radius: 10px;
 	}
