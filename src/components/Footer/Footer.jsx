@@ -1,9 +1,25 @@
-import React from "react";
-
 import styles from "./Footer.module.scss";
 import FooterLogo from "../../assets/images/footer logo.png";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+	const location = useLocation();
+
+	const handleContactUsClick = (event) => {
+		const element = document.getElementById("ContactUs");
+
+		if (element) {
+			event.preventDefault();
+
+			if (location.pathname === "/about") {
+				element.scrollIntoView({ behavior: "smooth" });
+			} else {
+				// Redirect to the About page
+				window.location.href = "/about#ContactUs";
+			}
+		}
+	};
+
 	return (
 		<>
 			<footer className={styles.footerSection}>
@@ -11,7 +27,10 @@ const Footer = () => {
 					<div className="max-w-6xl mx-auto">
 						<div className=" py-6 flex flex-col lg:flex-row justify-between items-center">
 							<div className="my-5 lg:mx-5">
-								<img src={FooterLogo} alt="footer-logo" />
+								<img
+									src={FooterLogo}
+									alt="footer-logo"
+								/>
 							</div>
 
 							<div className="mt-5 flex flex-row justify-between">
@@ -44,10 +63,15 @@ const Footer = () => {
 									<h1>Company</h1>
 									<ul className="mt-5">
 										<li>
-											<a href="/about">About Us</a>
+											<Link to="/about">About Us</Link>
 										</li>
 										<li>
-											<a href="/about">Contact Us</a>
+											<a
+												href="/about#ContactUs"
+												onClick={handleContactUsClick}
+											>
+												Contact Us
+											</a>
 										</li>
 									</ul>
 								</div>
@@ -60,7 +84,10 @@ const Footer = () => {
 							<div>© JACS Inc. 2022. We love our users!</div>
 							<div className="flex mt-4 lg:mt-0">
 								{/* Icons */}
-								<a href="#!" className="mr-6 text-gray-100">
+								<a
+									href="#!"
+									className="mr-6 text-gray-100"
+								>
 									{/* <svg
 										aria-hidden="true"
 										focusable="false"
@@ -78,7 +105,10 @@ const Footer = () => {
 									</svg> */}
 								</a>
 
-								<a href="#!" className="mr-6 text-gray-100">
+								<a
+									href="#!"
+									className="mr-6 text-gray-100"
+								>
 									{/* <svg
 										aria-hidden="true"
 										focusable="false"
