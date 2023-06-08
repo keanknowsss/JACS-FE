@@ -29,6 +29,7 @@ const Navbar = () => {
 
 	const [queryData] = getUserDetail.useLazyQuery();
 	const [name, setName] = useState(null);
+	const [profilePicture, setProfilePicture] = useState(null);
 
 	const route = useHref();
 	const location = useLocation();
@@ -82,6 +83,7 @@ const Navbar = () => {
 				const { data, error } = await queryData(id);
 				if (!error) {
 					setName(data?.result?.firstName);
+					setProfilePicture(data?.result?.img);
 				} else {
 					console.log("error in profile name", error?.result);
 				}
@@ -249,6 +251,7 @@ const Navbar = () => {
 						setProfileActive={setProfileActive}
 						name={name}
 						className={styles.profileSection}
+						userPic={profilePicture}
 					/>
 				)}
 				{cartActive && (
