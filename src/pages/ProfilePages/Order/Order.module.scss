@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.orderPage {
+	@apply bg-background text-white font-montserrat flex gap-7;
+	padding: 40px 120px 158px 120px;
+
+	.itemsContainer {
+		@apply w-full flex flex-col gap-5;
+
+		.storeItemsContainer {
+			@apply flex flex-col gap-y-5;
+		}
+	}
+}
