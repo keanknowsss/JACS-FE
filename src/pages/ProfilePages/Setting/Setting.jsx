@@ -19,6 +19,11 @@ const Setting = ({ title }) => {
 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, enim. Vitae maxime deserunt ratione fugit ducimus, earum aperiam perspiciatis. Ipsum."
 	);
 
+	const [isShop, setIsShop] = useState(true);
+	const [storeEmail, setStoreEmail] = useState("store@gamil.com");
+	const [storeName, setStoreName] = useState("storeName");
+	const [storeContact, setStoreContact] = useState("0123456789");
+
 	// used for having reference before saving
 	const inputName = useRef();
 	const inputUsername = useRef();
@@ -27,8 +32,18 @@ const Setting = ({ title }) => {
 	const inputAddress = useRef();
 	const inputImage = useRef();
 
-	const [showProfileEdit, setShowProfileEdit] = useState(false || location.state?.editProfile);
-	const [showContactEdit, setShowContactEdit] = useState(false || location.state?.editContact);
+	const inputStoreEmail = useRef();
+	const inputStoreContact = useRef();
+	const inputStoreName = useRef();
+
+	// toggles state for edit and view state
+	const [showProfileEdit, setShowProfileEdit] = useState(
+		false || location.state?.editProfile
+	);
+	const [showContactEdit, setShowContactEdit] = useState(
+		false || location.state?.editContact
+	);
+	const [showStoreEdit, setShowStoreEdit] = useState(false);
 
 	// in integration add "or" in usestate to prioritize user's own profile picture
 	const [profilePicture, setProfilePicture] = useState(DefaultProfilePicture);
@@ -46,11 +61,17 @@ const Setting = ({ title }) => {
 		setShowContactEdit(false);
 	};
 
+	const storeSaveHandler = (e) => {
+		setStoreEmail(inputStoreEmail.current.value);
+		setStoreContact(inputStoreContact.current.value);
+		setStoreName(inputStoreName.current.value);
+		setShowStoreEdit(false);
+	};
+
 	const profilePictureHandler = (e) => {
 		const image = e.target.files[0];
 		setProfilePicture(URL.createObjectURL(image));
 		console.log(image.name);
-		
 	};
 
 	return (
@@ -183,10 +204,72 @@ const Setting = ({ title }) => {
 						)}
 					</div>
 				</div>
-				{/* replace button with div similar to the top with the details and edit if user has shop */}
-				<div className={styles.btnRow}>
-					<button onClick={() => navigate("/store/register")}>Add Shop</button>
-				</div>
+				{/* SHOP ROW */}
+				{isShop ? (
+					<div className={styles.secondRow}>
+						<h2>Shop Information</h2>
+						<div className={styles.detailsContainer}>
+							<div className={styles.textGridContainer}>
+								<p>Shop Name</p>
+								{showStoreEdit ? (
+									<input
+										type="text"
+										defaultValue={storeName}
+										ref={inputStoreName}
+										className={styles.quarterInput}
+									/>
+								) : (
+									<p className={styles.textDetail}>{storeName}</p>
+								)}
+								<p>Phone Number</p>
+								{showStoreEdit ? (
+									<input
+										type="tel"
+										ref={inputStoreContact}
+										className={styles.midInput}
+										defaultValue={storeContact}
+									/>
+								) : (
+									<p className={styles.textDetail}>{storeContact}</p>
+								)}
+
+								<p>Email Address</p>
+								{showStoreEdit ? (
+									<input
+										type="text"
+										defaultValue={storeEmail}
+										ref={inputStoreEmail}
+										className={styles.quarterInput}
+									/>
+								) : (
+									<p className={styles.textDetail}>{storeEmail}</p>
+								)}
+							</div>
+							{!showStoreEdit ? (
+								<div className={styles.links}>
+									<p onClick={() => setShowStoreEdit(true)}>Edit</p>
+								</div>
+							) : (
+								<div className={styles.saveCancelBtn}>
+									<div>
+										<button onClick={storeSaveHandler}>Save</button>
+									</div>
+									<div>
+										<button onClick={() => setShowStoreEdit(false)}>
+											Cancel
+										</button>
+									</div>
+								</div>
+							)}
+						</div>
+					</div>
+				) : (
+					<div className={styles.btnRow}>
+						<button onClick={() => navigate("/store/register")}>
+							Add Shop
+						</button>
+					</div>
+				)}
 				<div className={styles.backdrop}></div>
 			</div>
 		</main>
