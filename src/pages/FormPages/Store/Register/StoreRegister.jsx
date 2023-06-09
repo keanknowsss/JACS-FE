@@ -70,7 +70,7 @@ const SellerRegister = ({ title }) => {
 	};
 
 	const returnHome = () => {
-		navigate("/profile/settings")
+		navigate("/store/information")
 	}
 
 	const fileUploading = async (file1, file2, type) => {
