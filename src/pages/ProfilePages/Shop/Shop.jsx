@@ -11,8 +11,12 @@ const Shop = ({ title, content }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		window.scrollTo(0,0);
-	}, [content])
+		window.scrollTo(0, 0);
+	}, [content]);
+
+	useEffect(() => {
+		navigate("/profile/shop/products");
+	}, [navigate]);
 
 	return (
 		<main className={styles.shopPage}>
@@ -33,7 +37,7 @@ const Shop = ({ title, content }) => {
 							<div className={styles.userName}>
 								<h3>Shop Name</h3>
 							</div>
-							<div className={styles.followsContainer}>
+							{/* <div className={styles.followsContainer}>
 								<div>
 									<p>0</p>
 									<p>Followers</p>
@@ -42,11 +46,11 @@ const Shop = ({ title, content }) => {
 									<p>0</p>
 									<p>Following</p>
 								</div>
-							</div>
+							</div> */}
 							<button className={styles.profileBtn}>Edit Profile</button>
 						</div>
 					</section>
-					<section className={styles.shopMenuSection}>
+					{/* <section className={styles.shopMenuSection}>
 						<ul>
 							<li>
 								<button
@@ -81,7 +85,7 @@ const Shop = ({ title, content }) => {
 								</button>
 							</li>
 						</ul>
-					</section>
+					</section> */}
 				</div>
 
 				<section className={styles.shopMainContentContainer}>

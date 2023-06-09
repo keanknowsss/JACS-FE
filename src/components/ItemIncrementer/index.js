@@ -1,1 +1,1 @@
-export { default } from "./ItemIncrementer";
+export { default } from "./ItemIncrementer.jsx";
