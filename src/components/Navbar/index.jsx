@@ -29,6 +29,7 @@ const Navbar = () => {
 
 	const [queryData] = getUserDetail.useLazyQuery();
 	const [name, setName] = useState(null);
+	const [profilePicture, setProfilePicture] = useState(null);
 
 	const route = useHref();
 	const location = useLocation();
@@ -82,6 +83,7 @@ const Navbar = () => {
 				const { data, error } = await queryData(id);
 				if (!error) {
 					setName(data?.result?.firstName);
+					setProfilePicture(data?.result?.img);
 				} else {
 					console.log("error in profile name", error?.result);
 				}
@@ -143,7 +145,7 @@ const Navbar = () => {
 								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.linkList}>
+						{/* <li className={styles.linkList}>
 							<NavLink
 								to="/buildpc"
 								className={({ isActive }) =>
@@ -186,7 +188,7 @@ const Navbar = () => {
 								<span>Repair</span>
 								<hr className={styles.indicator} />
 							</NavLink>
-						</li>
+						</li> */}
 						<li className={styles.linkList}>
 							<NavLink
 								to="/about"
@@ -202,13 +204,13 @@ const Navbar = () => {
 				</div>
 				<div className={styles.rightPart}>
 					<div className="float-right flex">
-						<button className={styles.logoContainer} onClick={handleSearch}>
+						{/* <button className={styles.logoContainer} onClick={handleSearch}>
 							<SearchNavbar
 								className={`${
 									!searchActive ? styles.searchLogo : styles.searchLogoActive
 								} transition-all ease-in duration-100`}
 							/>
-						</button>
+						</button> */}
 
 						<div className={styles.logoContainer}>
 							<ProfileNavbar
@@ -249,6 +251,7 @@ const Navbar = () => {
 						setProfileActive={setProfileActive}
 						name={name}
 						className={styles.profileSection}
+						userPic={profilePicture}
 					/>
 				)}
 				{cartActive && (

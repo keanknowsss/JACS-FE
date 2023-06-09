@@ -40,7 +40,7 @@ const Navbar = () => {
 							<hr className={styles.indicator} />
 						</NavLink>
 					</li>
-					<li>
+					{/* <li>
 						<NavLink
 							to="/profile/technician"
 							className={({ isActive }) =>
@@ -51,7 +51,7 @@ const Navbar = () => {
 							<TechnicianIcon className={styles.technicianIcon} />
 							<hr className={styles.indicator} />
 						</NavLink>
-					</li>
+					</li> */}
 					<li>
 						<NavLink
 							to="/profile/cart"
@@ -64,7 +64,7 @@ const Navbar = () => {
 							<hr className={styles.indicator} />
 						</NavLink>
 					</li>
-					<li>
+					{/* <li>
 						<NavLink
 							to="/profile/builds"
 							className={({ isActive }) =>
@@ -75,8 +75,8 @@ const Navbar = () => {
 							<BuildIcon1 className={styles.buildIcon} />
 							<hr className={styles.indicator} />
 						</NavLink>
-					</li>
-					<li>
+					</li> */}
+					{/* <li>
 						<NavLink
 							to="/profile/saved"
 							className={({ isActive }) =>
@@ -87,7 +87,7 @@ const Navbar = () => {
 							<SavedIcon className={styles.savedIcon} />
 							<hr className={styles.indicator} />
 						</NavLink>
-					</li>
+					</li> */}
 					<li>
 						<NavLink
 							to="/profile/orders"

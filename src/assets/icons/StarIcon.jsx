@@ -14,4 +14,4 @@ const StarIcon = ({ color, className, onMouseEnter, onMouseLeave }) => {
 	);
 };
 
-export default StarIcon;
+export default StarIcon

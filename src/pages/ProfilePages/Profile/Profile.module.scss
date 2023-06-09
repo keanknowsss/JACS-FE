@@ -69,7 +69,7 @@
 						opacity: 0.8;
 
 						.editPicture {
-							@apply w-52 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+							@apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
 							width: 50px;
 						}
 
@@ -197,7 +197,8 @@
 					flex-basis: 40%;
 
 					.contactInformation {
-						height: 380px;
+						height: 307px;
+						// height: 380px;
 					}
 				}
 			}

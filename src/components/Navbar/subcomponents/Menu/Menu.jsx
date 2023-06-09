@@ -132,7 +132,7 @@ const Menu = ({ showMenu, setShowMenu, name }) => {
 									Shop
 								</NavLink>
 							</li>
-							<li className="border-t border-secondary-default">
+							{/* <li className="border-t border-secondary-default">
 								<NavLink
 									to="/buildpc"
 									className={({ isActive }) =>
@@ -171,7 +171,7 @@ const Menu = ({ showMenu, setShowMenu, name }) => {
 								>
 									Repair
 								</NavLink>
-							</li>
+							</li> */}
 							<li className="border-t border-b border-secondary-default">
 								<NavLink
 									to="/about"

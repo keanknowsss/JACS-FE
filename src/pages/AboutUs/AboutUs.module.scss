@@ -1,0 +1,53 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.aboutPage {
+	@apply bg-background flex flex-col justify-center items-center;
+	padding-block: 1rem 3rem;
+}
+
+.AboutUsText {
+	@apply text-secondary-default font-bold text-[3rem]
+         align-top pt-[5rem] pb-[5rem];
+}
+
+.aboutDiv {
+	@apply flex flex-col justify-center items-center 
+    bg-primary-default box-border rounded-lg;
+
+	width: 97%;
+}
+
+.abtUsTxt {
+	@apply pt-[5rem] pl-[20%] pr-[20%] pb-[10%] 
+    text-justify text-white text-[20px];
+
+    height: calc(100vh - 20%);
+}
+
+.divContact {
+	@apply font-montserrat;
+	width: 30rem;
+	margin: 20px;
+}
+
+.divSend {
+	width: 80rem;
+	float: left;
+	margin: 20px;
+}
+
+.aboutDiv2 {
+	@apply flex justify-center bg-primary-default rounded-lg;
+
+	width: 97%;
+}
+
+.textbox {
+	@apply border border-gray-300 px-4 py-2 rounded-md 
+    focus:outline-none focus:ring-blue-500 focus:border-blue-500 w-[90%];
+
+	&::placeholder {
+		@apply text-gray-400 italic;
+	}
+}

@@ -28,6 +28,14 @@ export const reviewApi = apiMiddleware.injectEndpoints({
         getReviewStatistics: builder.query({
             query: (id) => `/reviews/${id}/stats`,
             providesTags: ["REVIEW"]
+        }),
+
+        addReview: builder.mutation({
+            query: ({review}) => ({
+                url: "/reviews",
+                method: "POST",
+                body: review
+            })
         })
     })
 });
@@ -36,6 +44,7 @@ export const {
     useGetAllReviewsOfRefQuery,
     useGetReviewQuery,
     useGetReviewStatisticsQuery,
+    useAddReviewMutation,
 } = reviewApi;
 
 export const {
