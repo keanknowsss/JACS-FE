@@ -1,5 +1,4 @@
 import { JACSLogo } from "../../assets/images";
-import Loading from "../../components/Loading/Loading";
 import styles from "./AboutUs.module.scss";
 
 const AboutUs = ({ title }) => {
@@ -33,6 +32,7 @@ const AboutUs = ({ title }) => {
 					<div
 						className="bg-secondary-default 
                      p-[0px] w-full text-black text-center font-bold text-[50px]"
+						id="ContactUs"
 					>
 						Contact Us
 					</div>
