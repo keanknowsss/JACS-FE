@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -74,6 +74,7 @@ const SellerRegister = ({ title }) => {
 	}
 
 	const fileUploading = async (file1, file2, type) => {
+		console.log(file1)
 		try {
 			const { data, error } = await queryData(currentUser);
 				if (!error) {
@@ -90,8 +91,8 @@ const SellerRegister = ({ title }) => {
 			}).unwrap();
 
 			const result = uploadedDocument.result
-			console.log(result)
-			const links = new Array()
+			// console.log(result)
+			const links = []
 			result.forEach((image) => links.push(image.publicUrl))
 
 			console.log("Documents uploaded!")
@@ -112,6 +113,10 @@ const SellerRegister = ({ title }) => {
 		}
 
 	}
+
+	useEffect(() => {
+		console.log(BIRFile)
+	}, [BIRFile])
 
 	return (
 		<>
