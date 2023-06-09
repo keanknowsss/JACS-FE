@@ -1,13 +1,14 @@
 import { DefaultProfilePicture } from "../../../assets/placeholder";
 import { EditIcon } from "../../../assets/icons";
 import styles from "./Setting.module.scss";
-import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 const Setting = ({ title }) => {
 	document.title = title;
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	// for setting the details, connected to the integration when updated on save
 	const [name, setName] = useState("Dwayne Johnson");
@@ -26,8 +27,8 @@ const Setting = ({ title }) => {
 	const inputAddress = useRef();
 	const inputImage = useRef();
 
-	const [showProfileEdit, setShowProfileEdit] = useState(false);
-	const [showContactEdit, setShowContactEdit] = useState(false);
+	const [showProfileEdit, setShowProfileEdit] = useState(false || location.state?.editProfile);
+	const [showContactEdit, setShowContactEdit] = useState(false || location.state?.editContact);
 
 	// in integration add "or" in usestate to prioritize user's own profile picture
 	const [profilePicture, setProfilePicture] = useState(DefaultProfilePicture);
@@ -45,11 +46,12 @@ const Setting = ({ title }) => {
 		setShowContactEdit(false);
 	};
 
-  const profilePictureHandler = (e) => {
-    const image = e.target.files[0];
-    setProfilePicture(URL.createObjectURL(image));
-    console.log(image.name);
-  }
+	const profilePictureHandler = (e) => {
+		const image = e.target.files[0];
+		setProfilePicture(URL.createObjectURL(image));
+		console.log(image.name);
+		
+	};
 
 	return (
 		<main className={styles.settingsPageContainer}>
@@ -60,16 +62,19 @@ const Setting = ({ title }) => {
 							src={profilePicture}
 							alt="user"
 						/>
-						<button className={styles.editBtn} onClick={() => inputImage.current.click()}>
+						<button
+							className={styles.editBtn}
+							onClick={() => inputImage.current.click()}
+						>
 							<EditIcon className={styles.edit} />
 						</button>
-            <input
-								type="file"
-								accept="image/jpg, image/png, image/jpeg"
-								ref={inputImage}
-                onChange={profilePictureHandler}
-								hidden
-							/>
+						<input
+							type="file"
+							accept="image/jpg, image/png, image/jpeg"
+							ref={inputImage}
+							onChange={profilePictureHandler}
+							hidden
+						/>
 					</div>
 					<div className={styles.profileContainer}>
 						<h2>My Profile</h2>
@@ -178,7 +183,7 @@ const Setting = ({ title }) => {
 						)}
 					</div>
 				</div>
-        {/* replace button with div similar to the top with the details and edit if user has shop */}
+				{/* replace button with div similar to the top with the details and edit if user has shop */}
 				<div className={styles.btnRow}>
 					<button onClick={() => navigate("/store/register")}>Add Shop</button>
 				</div>

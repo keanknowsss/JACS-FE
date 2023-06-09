@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ItemRow from "./ItemRow";
 import styles from "./StoreRow.module.scss";
-import Checkbox from "../../../../components/Checkbox/Checkbox";
 
 const StoreRow = ({ name, checked }) => {
 	const [isChecked, setIsChecked] = useState(false || checked);
