@@ -15,6 +15,18 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 			query: (id) => `/sellers/${id}`,
 			providesTags: ["SELLER"],
 		}),
+		getSellerDetail: builder.query({
+			query: (id) => `/sellers/${id}/details`,
+			providesTags: ["SELLER_DETAIL"],
+		}),
+		updateSellerDetail: builder.mutation({
+			query: ({ id, updatedDetails }) => ({
+				url: `/sellers/${id}/details`,
+				method: "PUT",
+				body: updatedDetails,
+			}),
+			invalidatesTags: ["SELLER_DETAIL"],
+		}),
 		addSellerDocuments: builder.mutation({
 			query: ({ id, file1, file2 }) => {
 				const body = new FormData();
@@ -36,7 +48,9 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 export const {
 	useAddSellerMutation,
 	useGetSellerQuery,
+	useGetSellerDetailQuery,
+    useUpdateSellerDetailMutation,
 	useAddSellerDocumentsMutation,
 } = sellerApi;
 
-export const { getSeller } = sellerApi.endpoints;
+export const { getSeller, getSellerDetail } = sellerApi.endpoints;

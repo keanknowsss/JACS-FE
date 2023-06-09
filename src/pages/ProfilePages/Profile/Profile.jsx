@@ -7,7 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUserId } from "../../../features/slice/userAccessSlice";
-import { getUser, getUserDetail, useAddUserProfilePictureMutation, useUpdateUserDetailMutation } from "../../../features/api/builders/userApi";
+import {
+	getUser,
+	getUserDetail,
+	useAddUserProfilePictureMutation,
+	useUpdateUserDetailMutation,
+} from "../../../features/api/builders/userApi";
 import Loading from "../../../components/Loading/Loading";
 
 const Profile = ({ title }) => {
@@ -19,7 +24,7 @@ const Profile = ({ title }) => {
 	// const [profilePictureFile, setProfilePictureFile] = useState(null);
 	const [name, setName] = useState();
 	const [username, setUsername] = useState();
-	const [address, setAddress] = useState("No Address");
+	const [userAddress, setUserAddress] = useState("No Address");
 	const [contactNumber, setContactNumber] = useState();
 	const [emailAddress, setEmailAddress] = useState();
 
@@ -37,27 +42,25 @@ const Profile = ({ title }) => {
 	// change image
 	const profilePictureHandler = async (e) => {
 		const images = e.target.files[0];
-		// setProfilePicture(URL.createObjectURL(image));
+		setProfilePicture(URL.createObjectURL(images));
+
 		try {
 			const uploadedImage = await addProfilePicture({
 				id,
-				images
+				images,
 			}).unwrap();
-			console.log(uploadedImage);
 
 			const { publicUrl } = uploadedImage.result[0];
-			setProfilePicture(publicUrl);
-			
-			
+
 			editProfilePicture({
 				id,
 				editedDetails: {
-					img: publicUrl
-				}
-			})
+					img: publicUrl,
+				},
+			});
 		} catch (error) {
-			console.log("image upload error:", error)
-		}	
+			console.log("image upload error:", error);
+		}
 	};
 
 	// button redirects to other page
@@ -77,27 +80,31 @@ const Profile = ({ title }) => {
 	// loads all data
 	useLayoutEffect(() => {
 		const getData = async () => {
-			const userDetail = await getUserDetailQuery(id);
-			const user = await getUserQuery(id);
+			try {
+				const userDetail = await getUserDetailQuery(id);
+				const user = await getUserQuery(id);
 
-			if (!userDetail.isLoading && !user.isLoading) {
-				setLoading(false);
+				if (!userDetail.isLoading && !user.isLoading) {
+					setLoading(false);
+				}
+
+				const { firstName, lastName, address, email, contactNo, img } =
+					userDetail.data.result;
+
+				user.error && console.log("User Query Error:", user.error);
+				userDetail.error &&
+					console.log("User Detail Query Error:", userDetail.error);
+
+				setName(firstName + " " + lastName);
+				setUsername(user.data?.result?.username);
+
+				address && setUserAddress(address);
+				setContactNumber(contactNo);
+				setEmailAddress(email);
+				setProfilePicture(img);
+			} catch (error) {
+				console.log("data load error: ", error);
 			}
-
-			const { firstName, lastName, address, email, contactNo, img } =
-				userDetail.data.result;
-
-			user.error && console.log("User Query Error:", user.error);
-			userDetail.error &&
-				console.log("User Detail Query Error:", userDetail.error);
-
-			setName(firstName + " " + lastName);
-			setUsername(user.data?.result?.username);
-
-			address && setAddress(address);
-			setContactNumber(contactNo);
-			setEmailAddress(email);
-			setProfilePicture(img);
 		};
 		getData();
 	}, [id, getUserDetailQuery, getUserQuery, setName, setUsername]);
@@ -162,7 +169,7 @@ const Profile = ({ title }) => {
 						<div className={styles.sectionContent}>
 							<div className={styles.contactInformation}>
 								<h4>Address</h4>
-								<p>{address}</p>
+								<p>{userAddress}</p>
 
 								<h4>Phone Number</h4>
 								<p>{contactNumber}</p>
