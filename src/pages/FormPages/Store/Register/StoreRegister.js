@@ -13,7 +13,8 @@ import Modal from "../../../../components/Modal";
 
 import styles from "./StoreRegister.module.scss";
 
-import { useAddSellerDocumentsMutation, useAddSellerMutation } from "../../../../features/api/builders/sellerApi";
+import { useAddSellerDocumentsMutation, useAddSellerMutation, useVerifySellerMutation } from "../../../../features/api/builders/sellerApi";
+import { getUserDetail } from "../../../../features/api/builders/userApi";
 import { selectCurrentUserId } from "../../../../features/slice/userAccessSlice";
 
 const SellerRegister = ({ title }) => {
@@ -29,8 +30,11 @@ const SellerRegister = ({ title }) => {
 
 	const [addSellerDocuments] = useAddSellerDocumentsMutation();
 	const [addSeller] = useAddSellerMutation();
+	const [verifySeller] = useVerifySellerMutation();
 
-	const userId = useSelector(selectCurrentUserId);
+	const currentUser = useSelector(selectCurrentUserId);
+	const [queryData] = getUserDetail.useLazyQuery();
+
 	const navigate = useNavigate();
 
 	const registerHandler = async (e) => {
@@ -71,6 +75,14 @@ const SellerRegister = ({ title }) => {
 
 	const fileUploading = async (file1, file2, type) => {
 		try {
+			const { data, error } = await queryData(currentUser);
+				if (!error) {
+				} else {
+					console.log("error in profile name", error?.result);
+				}
+
+			const userId = data && data.result && data.result._userId;
+			
 			const uploadedDocument = await addSellerDocuments({
 				id: userId,
 				file1: file1,
@@ -89,8 +101,11 @@ const SellerRegister = ({ title }) => {
 				typeOfSeller: type,
 				documents: links
 			})
-
 			console.log(uploadSeller)
+
+
+			const verifyingSeller = await verifySeller(userId)
+			console.log(verifyingSeller)
 
 		} catch (error) {
 			console.log(error)

@@ -30,6 +30,16 @@ export const sellerApi = apiMiddleware.injectEndpoints({
                 }
             },
             invalidatesTags: ["SELLER"],
+        }),
+        verifySeller: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `confirmSeller/${id}`,
+                    method: "PUT",
+                    headers: {},
+                    body: {}
+                }
+            }
         })
     })
 });
@@ -39,6 +49,7 @@ export const {
     useAddSellerMutation,
     useGetSellerQuery,
     useAddSellerDocumentsMutation,
+    useVerifySellerMutation,
 } = sellerApi;
 
 export const { getSeller } = sellerApi.endpoints;
