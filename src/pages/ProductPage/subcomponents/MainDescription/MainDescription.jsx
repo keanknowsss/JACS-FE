@@ -4,7 +4,11 @@ import { DeliveryIcon, DiscountIcon, ShipIcon } from "../../../../assets/icons";
 import Modal from "../../../../components/Modal";
 import styles from "./MainDescription.module.scss";
 
-import { useAddCartMutation } from "../../../../features/api/builders/cartApi";
+import {
+  getCart,
+  useAddCartMutation,
+  useUpdateCartMutation,
+} from "../../../../features/api/builders/cartApi";
 import { getUserDetail } from "../../../../features/api/builders/userApi";
 import { selectCurrentUserId } from "../../../../features/slice/userAccessSlice";
 
@@ -14,7 +18,9 @@ const MainDescription = (props) => {
 
   const productId = details._id;
   const [addCart] = useAddCartMutation();
+  const [updateCart] = useUpdateCartMutation();
   const [queryData] = getUserDetail.useLazyQuery();
+  const [queryCart] = getCart.useLazyQuery();
 
   const currentUser = useSelector(selectCurrentUserId);
 
@@ -22,26 +28,48 @@ const MainDescription = (props) => {
     e.preventDefault();
 
     try {
-      const { data, error } = await queryData(currentUser);
-      if (error) {
-        console.log("error in profile name", error?.result);
+      const { data: user, error: userError } = await queryData(currentUser);
+      if (userError) {
+        console.log("error in profile name", userError?.result);
       }
 
-      const userId = data && data.result && data.result._userId;
+      const userId = user && user.result && user.result._userId;
+      console.log(userId)
 
-      const body = {
-        _userId: userId,
-        products: [{
+      const { data: cart, error: cartError } = await queryCart(userId);
+      if (cartError) console.log("error in cart name", cartError?.result);
+
+      if (!cart) {
+        const body = {
+          _userId: userId,
+          products: [
+            {
+              _productId: productId,
+              quantity: 1,
+            },
+          ],
+        };
+
+        const result = await addCart(body);
+        console.log(result);
+        
+      } else {
+
+        console.log(cart)
+
+        const products = [...cart.result.products]
+
+        products.push({
           _productId: productId,
-          quantity: 1
-        }]
+          quantity: 1,
+        });
+
+        const result = await updateCart({id: userId, products})
+        console.log(result)
       }
-
-      const result = await addCart(body)
-      console.log(result)
-
+      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
 
     setShowModal(true);

@@ -15,29 +15,34 @@ export const cartApi = apiMiddleware.injectEndpoints({
             invalidatesTags: ["CART"],
         }),
 
-        getAllCartOfUser: builder.query({
-            query: (params) => {
-                return {
-                    url: `/cart`,
-                    params: { ...params },
-                };
-            },
-            providesTags: (result, error, arg) => {
-                // console.log(result.result.docs);
-                return [
-                    { type: "Cart", id: "LIST" },
-                    ...result.result.docs.map(id => ({ type: "Cart", id }))
-                ];
-            },
+        getCart: builder.query({
+            query: (id) => `cart/${id}`,
+            providesTags: ["CART"]
         }),
+
+        updateCart: builder.mutation({
+            query: ({id, products}) => {
+                console.log(id)
+                console.log(products)
+
+                return {
+                    url: `/cart/${id}`,
+                    method: "PUT",
+                    body: {
+                        products: products
+                    }
+                }
+            }
+        })
     })
 })
 
 export const {
     useAddCartMutation,
-    useGetAllCartOfUserQuery
+    useUpdateCartMutation,
+    useGetCartQuery,
 } = cartApi;
 
 export const {
-    getAllCartOfUser
+    getCart
 } = cartApi.endpoints;
