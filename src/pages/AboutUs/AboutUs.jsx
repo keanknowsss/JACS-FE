@@ -1,8 +1,24 @@
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { JACSLogo } from "../../assets/images";
 import styles from "./AboutUs.module.scss";
 
 const AboutUs = ({ title }) => {
 	document.title = title;
+
+	const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_yfujsd6', 'template_ta96psi', form.current, '0XVFD0It22w-Megrh')
+      .then((result) => {
+          console.log(result.text);
+		  console.log("Message Sent");
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
 	return (
 		<>
@@ -69,6 +85,7 @@ const AboutUs = ({ title }) => {
 					</div>
 
 					<div className={styles.divSend}>
+						<form ref={form} onSubmit={sendEmail}>
 						<p className="font-bold text-[30px] text-[white] mb-3">
 							Send us a Message
 						</p>
@@ -76,16 +93,18 @@ const AboutUs = ({ title }) => {
 						<div className="flex flex-col gap-y-5 mt-5">
 							<input
 								type="text"
+								name="user_name"
 								className={styles.textbox}
 								placeholder="Name"
 							/>
 							<input
 								type="text"
+								name="user_email"
 								className={styles.textbox}
 								placeholder="Your E-mail Address"
 							/>
-							{/* <input type="text" className={styles.textbox1} placeholder="Your Message"/> */}
 							<textarea
+								name="message"
 								placeholder="Your Message"
 								className="resize-none border border-gray-300 rounded-md 
                             px-4 py-2 focus:outline-none focus:ring-blue-500
@@ -93,10 +112,10 @@ const AboutUs = ({ title }) => {
 							/>
 						</div>
 						<div className="pt-[20px]">
-							<button className="bg-black hover:bg-gray-700 text-white font-bold py-5 px-10 rounded text-[20px]">
-								Send Message
-							</button>
+							<input type="submit" value="Submit" className="bg-black hover:bg-gray-700 text-white font-bold py-5 px-10 rounded text-[20px]" />
+								
 						</div>
+						</form>
 					</div>
 				</div>
 			</main>

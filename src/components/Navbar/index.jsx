@@ -14,7 +14,7 @@ import {
 	CartNavbar,
 	MenuIcon,
 } from "../../assets/icons";
-import { getUserDetail } from "../../features/api/builders/userApi";
+import { getUser, getUserDetail } from "../../features/api/builders/userApi";
 import Menu from "./subcomponents/Menu/Menu";
 
 const Navbar = () => {
@@ -24,10 +24,13 @@ const Navbar = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [pageName, setPageName] = useState(null);
 
+	const [isSeller, setIsSeller] = useState(false);
+
 	const token = useSelector(selectCurrentToken);
 	const id = useSelector(selectCurrentUserId);
 
-	const [queryData] = getUserDetail.useLazyQuery();
+	const [userDataQuery] = getUser.useLazyQuery();
+	const [userDetailQuery] = getUserDetail.useLazyQuery();
 	const [name, setName] = useState(null);
 	const [profilePicture, setProfilePicture] = useState(null);
 
@@ -80,12 +83,16 @@ const Navbar = () => {
 	useLayoutEffect(() => {
 		const getData = async () => {
 			if (token && id) {
-				const { data, error } = await queryData(id);
-				if (!error) {
-					setName(data?.result?.firstName);
-					setProfilePicture(data?.result?.img);
+				const userDetailData = await userDetailQuery(id);
+				const userData = await userDataQuery(id);
+
+				if (!userDetailData.error && !userData.error) {
+					const nameArray = userDetailData.data?.result?.firstName.split(" ");
+					setName(nameArray[0]);
+					setProfilePicture(userDetailData.data?.result?.img);
+					setIsSeller(userData.data?.result?.isSeller);
 				} else {
-					console.log("error in profile name", error?.result);
+					console.log("error in user data", userDetailData.error, userData.error);
 				}
 			}
 		};
@@ -252,6 +259,7 @@ const Navbar = () => {
 						name={name}
 						className={styles.profileSection}
 						userPic={profilePicture}
+						isSeller={isSeller}
 					/>
 				)}
 				{cartActive && (

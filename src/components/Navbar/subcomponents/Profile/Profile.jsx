@@ -7,13 +7,12 @@ import { logOut } from "../../../../features/slice/userAccessSlice";
 import { forwardRef, useRef, useState } from "react";
 
 const Profile = forwardRef(
-	({ setProfileActive, name, className, userPic }, ref) => {
+	({ setProfileActive, name, className, userPic, isSeller }, ref) => {
 		const token = useSelector(selectCurrentToken);
 		const dispatch = useDispatch();
 		const navigate = useNavigate();
 
-		const profilePicture = userPic ? userPic : DefaultProfilePicture
-
+		const profilePicture = userPic ? userPic : DefaultProfilePicture;
 
 		const logOutHandler = () => {
 			dispatch(logOut());
@@ -38,7 +37,9 @@ const Profile = forwardRef(
 							/>
 							<div className={styles.profileText}>
 								<h1 className={styles.name}>{name}</h1>
-								<p className={styles.type}>Standard JACS User</p>
+								<p className={styles.type}>
+									{isSeller ? "Standard JACS Seller" : "Standard JACS User"}
+								</p>
 							</div>
 						</>
 					) : (

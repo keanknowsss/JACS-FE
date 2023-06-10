@@ -1,1 +1,1 @@
-export { default } from "./StoreRegister.jsx";
+export { default } from "./StoreRegister";

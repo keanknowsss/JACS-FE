@@ -10,9 +10,39 @@ import {
 	TechnicianIcon,
 } from "../../../assets/icons";
 import styles from "./Navbar.module.scss";
+import { useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentUserId } from "../../../features/slice/userAccessSlice";
+import { getUser } from "../../../features/api/builders/userApi";
+import Loading from "../../../components/Loading/Loading";
 
 const Navbar = () => {
-	return (
+	const [isShop, setIsShop] = useState(false);
+	const [loading, setIsLoading] = useState(true);
+
+	const id = useSelector(selectCurrentUserId);
+
+	const [getUserQuery] = getUser.useLazyQuery();
+
+	useLayoutEffect(() => {
+		const checkSeller = async () => {
+			try {
+				const { data, isLoading } = await getUserQuery(id);
+
+				setIsShop(data.result.isSeller);
+
+				setIsLoading(isLoading);
+			} catch (error) {
+				console.log("Check Seller Failed:", error);
+			}
+		};
+
+		checkSeller();
+	}, [id, getUserQuery]);
+
+	return loading ? (
+		<Loading />
+	) : (
 		<>
 			<nav className={styles.profileNavbarContainer}>
 				<ul className={styles.profileNavbar}>
@@ -28,18 +58,21 @@ const Navbar = () => {
 							<hr className={styles.indicator} />
 						</NavLink>
 					</li>
-					<li>
-						<NavLink
-							to="/profile/shop"
-							className={({ isActive }) =>
-								isActive ? styles.activeLink : styles.inactiveLink
-							}
-						>
-							<span>My Shop</span>
-							<ShopIcon className={styles.shopIcon} />
-							<hr className={styles.indicator} />
-						</NavLink>
-					</li>
+					{isShop && (
+						<li>
+							<NavLink
+								to="/profile/shop"
+								className={({ isActive }) =>
+									isActive ? styles.activeLink : styles.inactiveLink
+								}
+							>
+								<span>My Shop</span>
+								<ShopIcon className={styles.shopIcon} />
+								<hr className={styles.indicator} />
+							</NavLink>
+						</li>
+					)}
+
 					{/* <li>
 						<NavLink
 							to="/profile/technician"
