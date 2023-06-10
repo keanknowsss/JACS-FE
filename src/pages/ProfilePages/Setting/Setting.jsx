@@ -17,6 +17,7 @@ import {
 	getSellerDetail,
 	useUpdateSellerDetailMutation,
 } from "../../../features/api/builders/sellerApi";
+import Modal from "../../../components/Modal";
 
 const Setting = ({ title }) => {
 	document.title = title;
@@ -43,6 +44,8 @@ const Setting = ({ title }) => {
 	const id = useSelector(selectCurrentUserId);
 
 	const [loading, setLoading] = useState(true);
+	const [passwordModal, setPassWordModal] = useState(false);
+	const [password, setPassword] = useState();
 
 	// shop data states
 	const [isShop, setIsShop] = useState(false);
@@ -79,6 +82,8 @@ const Setting = ({ title }) => {
 		setUsername(inputUsername.current.value);
 		setShowProfileEdit(false);
 
+		const currentUserName = inputUsername.current.value;
+
 		try {
 			await updateUserDetail({
 				id,
@@ -88,10 +93,12 @@ const Setting = ({ title }) => {
 				},
 			}).unwrap();
 
-			// 		add update username
-			// updateUser({
-
-			// }, id)
+			await updateUser({
+				id,
+				body: {
+					username: currentUserName,
+				},
+			});
 		} catch (error) {
 			console.log("Update Error:", error);
 		}
@@ -144,9 +151,30 @@ const Setting = ({ title }) => {
 					email: inputStoreEmail.current.value,
 				},
 			}).unwrap();
-
 		} catch (error) {
 			console.log("Seller Update Error:", error);
+		}
+	};
+
+	const changePasswordHandler = async (e) => {
+		e.preventDefault();
+
+		if (password) {
+			try {
+				await updateUser({
+					id,
+					body: {
+						password,
+					},
+				}).unwrap();
+
+				setPassWordModal(false);
+				setPassword("");
+			} catch (error) {
+				alert(error.data.message);
+			}
+		} else {
+			alert("Please input your new password.");
 		}
 	};
 
@@ -232,183 +260,139 @@ const Setting = ({ title }) => {
 			<Loading />
 		</div>
 	) : (
-		<main className={styles.settingsPageContainer}>
-			<div className={styles.mainColumn}>
-				<div className={styles.firstRow}>
-					<div className={styles.imageContainer}>
-						<img
-							src={profilePicture}
-							alt="user"
-						/>
-						<button
-							className={styles.editBtn}
-							onClick={() => inputImage.current.click()}
-						>
-							<EditIcon className={styles.edit} />
-						</button>
-						<input
-							type="file"
-							accept="image/jpg, image/png, image/jpeg"
-							ref={inputImage}
-							onChange={profilePictureHandler}
-							hidden
-						/>
-					</div>
-					<div className={styles.profileContainer}>
-						<h2>My Profile</h2>
-						<div className={styles.detailsContainer}>
-							<div className={styles.textGridContainer}>
-								<p>Name</p>
-								{showProfileEdit ? (
-									<input
-										type="text"
-										ref={inputName}
-										defaultValue={name}
-										className={styles.inputName}
-									/>
+		<>
+			<Modal
+				showModal={passwordModal}
+				setShowModal={setPassWordModal}
+				type="input"
+				input="password"
+				value={password}
+				setValue={setPassword}
+				submitHandler={changePasswordHandler}
+			>
+				<h1>Change Password</h1>
+				<p>Please type your secured password</p>
+			</Modal>
+			<main className={styles.settingsPageContainer}>
+				<div className={styles.mainColumn}>
+					<div className={styles.firstRow}>
+						<div className={styles.imageContainer}>
+							<img
+								src={profilePicture}
+								alt="user"
+							/>
+							<button
+								className={styles.editBtn}
+								onClick={() => inputImage.current.click()}
+							>
+								<EditIcon className={styles.edit} />
+							</button>
+							<input
+								type="file"
+								accept="image/jpg, image/png, image/jpeg"
+								ref={inputImage}
+								onChange={profilePictureHandler}
+								hidden
+							/>
+						</div>
+						<div className={styles.profileContainer}>
+							<h2>My Profile</h2>
+							<div className={styles.detailsContainer}>
+								<div className={styles.textGridContainer}>
+									<p>Name</p>
+									{showProfileEdit ? (
+										<input
+											type="text"
+											ref={inputName}
+											defaultValue={name}
+											className={styles.inputName}
+										/>
+									) : (
+										<p className={styles.textDetail}>{name}</p>
+									)}
+									<p>Username</p>
+									{showProfileEdit ? (
+										<input
+											type="text"
+											className={styles.midInput}
+											ref={inputUsername}
+											defaultValue={username}
+										/>
+									) : (
+										<p className={styles.textDetail}>{username}</p>
+									)}
+								</div>
+								{!showProfileEdit ? (
+									<div className={styles.links}>
+										<p onClick={() => setShowProfileEdit(true)}>Edit</p>
+										<p onClick={() => setPassWordModal(true)}>
+											Change Password
+										</p>
+									</div>
 								) : (
-									<p className={styles.textDetail}>{name}</p>
-								)}
-								<p>Username</p>
-								{showProfileEdit ? (
-									<input
-										type="text"
-										className={styles.midInput}
-										ref={inputUsername}
-										defaultValue={username}
-									/>
-								) : (
-									<p className={styles.textDetail}>{username}</p>
+									<div className={styles.saveCancelBtn}>
+										<div>
+											<button onClick={profileSaveHandler}>Save</button>
+										</div>
+										<div>
+											<button onClick={() => setShowProfileEdit(false)}>
+												Cancel
+											</button>
+										</div>
+									</div>
 								)}
 							</div>
-							{!showProfileEdit ? (
-								<div className={styles.links}>
-									<p onClick={() => setShowProfileEdit(true)}>Edit</p>
-									<p>Change Password</p>
-								</div>
-							) : (
-								<div className={styles.saveCancelBtn}>
-									<div>
-										<button onClick={profileSaveHandler}>Save</button>
-									</div>
-									<div>
-										<button onClick={() => setShowProfileEdit(false)}>
-											Cancel
-										</button>
-									</div>
-								</div>
-							)}
 						</div>
 					</div>
-				</div>
-				<div className={styles.secondRow}>
-					<h2>Contact Information</h2>
-					<div className={styles.detailsContainer}>
-						<div className={styles.textGridContainer}>
-							<p>Email Address</p>
-							{showContactEdit ? (
-								<input
-									type="email"
-									defaultValue={email}
-									ref={inputEmail}
-									className={styles.quarterInput}
-								/>
-							) : (
-								<p className={styles.textDetail}>{email}</p>
-							)}
-							<p>Phone Number</p>
-							{showContactEdit ? (
-								<input
-									type="tel"
-									ref={inputPhone}
-									className={styles.midInput}
-									defaultValue={phone}
-								/>
-							) : (
-								<p className={styles.textDetail}>{phone}</p>
-							)}
-
-							<p>Address</p>
-							{showContactEdit ? (
-								<textarea
-									rows={3}
-									ref={inputAddress}
-									defaultValue={userAddress}
-								/>
-							) : (
-								<p className={styles.textDetail}>{userAddress}</p>
-							)}
-						</div>
-						{!showContactEdit ? (
-							<div className={styles.links}>
-								<p onClick={() => setShowContactEdit(true)}>Edit</p>
-							</div>
-						) : (
-							<div className={styles.saveCancelBtn}>
-								<div>
-									<button onClick={contactSaveHandler}>Save</button>
-								</div>
-								<div>
-									<button onClick={() => setShowContactEdit(false)}>
-										Cancel
-									</button>
-								</div>
-							</div>
-						)}
-					</div>
-				</div>
-				{/* SHOP ROW */}
-				{isShop ? (
 					<div className={styles.secondRow}>
-						<h2>Shop Information</h2>
+						<h2>Contact Information</h2>
 						<div className={styles.detailsContainer}>
 							<div className={styles.textGridContainer}>
-								<p>Shop Name</p>
-								{showStoreEdit ? (
-									<input
-										type="text"
-										defaultValue={storeName}
-										ref={inputStoreName}
-										className={styles.quarterInput}
-									/>
-								) : (
-									<p className={styles.textDetail}>{storeName}</p>
-								)}
-								<p>Phone Number</p>
-								{showStoreEdit ? (
-									<input
-										type="tel"
-										ref={inputStoreContact}
-										className={styles.midInput}
-										defaultValue={storeContact}
-									/>
-								) : (
-									<p className={styles.textDetail}>{storeContact}</p>
-								)}
-
 								<p>Email Address</p>
-								{showStoreEdit ? (
+								{showContactEdit ? (
 									<input
 										type="email"
-										defaultValue={storeEmail}
-										ref={inputStoreEmail}
+										defaultValue={email}
+										ref={inputEmail}
 										className={styles.quarterInput}
 									/>
 								) : (
-									<p className={styles.textDetail}>{storeEmail}</p>
+									<p className={styles.textDetail}>{email}</p>
+								)}
+								<p>Phone Number</p>
+								{showContactEdit ? (
+									<input
+										type="tel"
+										ref={inputPhone}
+										className={styles.midInput}
+										defaultValue={phone}
+									/>
+								) : (
+									<p className={styles.textDetail}>{phone}</p>
+								)}
+
+								<p>Address</p>
+								{showContactEdit ? (
+									<textarea
+										rows={3}
+										ref={inputAddress}
+										defaultValue={userAddress}
+									/>
+								) : (
+									<p className={styles.textDetail}>{userAddress}</p>
 								)}
 							</div>
-							{!showStoreEdit ? (
+							{!showContactEdit ? (
 								<div className={styles.links}>
-									<p onClick={() => setShowStoreEdit(true)}>Edit</p>
+									<p onClick={() => setShowContactEdit(true)}>Edit</p>
 								</div>
 							) : (
 								<div className={styles.saveCancelBtn}>
 									<div>
-										<button onClick={storeSaveHandler}>Save</button>
+										<button onClick={contactSaveHandler}>Save</button>
 									</div>
 									<div>
-										<button onClick={() => setShowStoreEdit(false)}>
+										<button onClick={() => setShowContactEdit(false)}>
 											Cancel
 										</button>
 									</div>
@@ -416,16 +400,76 @@ const Setting = ({ title }) => {
 							)}
 						</div>
 					</div>
-				) : (
-					<div className={styles.btnRow}>
-						<button onClick={() => navigate("/store/register")}>
-							Add Shop
-						</button>
-					</div>
-				)}
-				<div className={styles.backdrop}></div>
-			</div>
-		</main>
+					{/* SHOP ROW */}
+					{isShop ? (
+						<div className={styles.secondRow}>
+							<h2>Shop Information</h2>
+							<div className={styles.detailsContainer}>
+								<div className={styles.textGridContainer}>
+									<p>Shop Name</p>
+									{showStoreEdit ? (
+										<input
+											type="text"
+											defaultValue={storeName}
+											ref={inputStoreName}
+											className={styles.quarterInput}
+										/>
+									) : (
+										<p className={styles.textDetail}>{storeName}</p>
+									)}
+									<p>Phone Number</p>
+									{showStoreEdit ? (
+										<input
+											type="tel"
+											ref={inputStoreContact}
+											className={styles.midInput}
+											defaultValue={storeContact}
+										/>
+									) : (
+										<p className={styles.textDetail}>{storeContact}</p>
+									)}
+
+									<p>Email Address</p>
+									{showStoreEdit ? (
+										<input
+											type="email"
+											defaultValue={storeEmail}
+											ref={inputStoreEmail}
+											className={styles.quarterInput}
+										/>
+									) : (
+										<p className={styles.textDetail}>{storeEmail}</p>
+									)}
+								</div>
+								{!showStoreEdit ? (
+									<div className={styles.links}>
+										<p onClick={() => setShowStoreEdit(true)}>Edit</p>
+									</div>
+								) : (
+									<div className={styles.saveCancelBtn}>
+										<div>
+											<button onClick={storeSaveHandler}>Save</button>
+										</div>
+										<div>
+											<button onClick={() => setShowStoreEdit(false)}>
+												Cancel
+											</button>
+										</div>
+									</div>
+								)}
+							</div>
+						</div>
+					) : (
+						<div className={styles.btnRow}>
+							<button onClick={() => navigate("/store/register")}>
+								Add Shop
+							</button>
+						</div>
+					)}
+					<div className={styles.backdrop}></div>
+				</div>
+			</main>
+		</>
 	);
 };
 

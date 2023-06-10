@@ -42,6 +42,35 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 			},
 			invalidatesTags: ["SELLER"],
 		}),
+		verifySeller: builder.mutation({
+			query: (id) => {
+				return {
+					url: `confirmSeller/${id}`,
+					method: "PUT",
+					headers: {},
+					body: {},
+				};
+			},
+		}),
+		addSellerDetails: builder.mutation({
+			query: (details) => {
+				const body = {
+					_userId: details.userId,
+					storeName: details.name,
+					contactNo: details.num,
+					email: details.email,
+				};
+
+				console.log("Details: ", body);
+
+				return {
+					url: `/sellers/details`,
+					method: "POST",
+					headers: {},
+					body: body,
+				};
+			},
+		}),
 	}),
 });
 
@@ -49,7 +78,9 @@ export const {
 	useAddSellerMutation,
 	useGetSellerQuery,
 	useGetSellerDetailQuery,
-    useUpdateSellerDetailMutation,
+	useUpdateSellerDetailMutation,
+	useVerifySellerMutation,
+	useAddSellerDetailsMutation,
 	useAddSellerDocumentsMutation,
 } = sellerApi;
 

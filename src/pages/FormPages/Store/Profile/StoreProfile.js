@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
 	ChipIcon,
 	MonitorIcon,
@@ -7,7 +9,12 @@ import {
 } from "../../../../assets/icons";
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
+import Modal from "../../../../components/Modal";
 import styles from "./StoreProfile.module.scss";
+
+import { useAddSellerDetailsMutation } from "../../../../features/api/builders/sellerApi";
+import { getUserDetail } from "../../../../features/api/builders/userApi";
+import { selectCurrentUserId } from "../../../../features/slice/userAccessSlice";
 
 const StoreProfile = ({ title }) => {
 	document.title = title;
@@ -16,16 +23,62 @@ const StoreProfile = ({ title }) => {
 	const [storeContactNumber, setStoreContactNumber] = useState("");
 	const [storeEmail, setStoreEmail] = useState("");
 
-	const registerHandler = (e) => {
+	const [showModal, setShowModal] = useState(false);
+
+	const currentUser = useSelector(selectCurrentUserId);
+	const [queryData] = getUserDetail.useLazyQuery();
+
+	const navigate = useNavigate();
+
+	const [addSellerDetails] = useAddSellerDetailsMutation();
+
+	const registerHandler = async (e) => {
 		e.preventDefault();
 
 		console.log("name", storeName);
 		console.log("contact", storeContactNumber);
 		console.log("email", storeEmail);
+
+		try {
+			const { data, error } = await queryData(currentUser);
+			if (!error) {
+			} else {
+				console.log("error in profile name", error?.result);
+			}
+
+			const userId = data && data.result && data.result._userId;
+			const name = storeName.value
+			const num = storeContactNumber.value
+			const email = storeEmail.value
+			console.log(userId)
+
+			const upload = await addSellerDetails({ userId, name, num, email });
+			console.log(upload)
+
+		} catch (error) {
+			console.log(error)
+		}
+
+		setShowModal(true);
 	};
+
+	const returnHome = () => {
+		navigate("/profile/shop")
+	}
 
 	return (
 		<>
+			<Modal
+				showModal={showModal}
+				setShowModal={setShowModal}
+				type="callback"
+				callback={returnHome}
+				symbol="success"
+			>
+				<h1>Created Successfully</h1>
+				<p>Your seller account has been created successfully.</p>
+			</Modal>
+
 			<div className={styles.formTitleContainer}>
 				<div className={styles.formTitle}>
 					<h1>Create New Shop</h1>
