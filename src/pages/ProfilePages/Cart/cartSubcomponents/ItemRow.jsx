@@ -1,72 +1,134 @@
-import { useEffect, useState } from "react";
-import ItemIncrementer from "../../../../components/ItemIncrementer";
-import { Product } from "../../../../assets/placeholder";
-import { DeleteIcon, HeartIcon } from "../../../../assets/icons";
-import styles from "./ItemRow.module.scss";
+import { useEffect, useRef, useState } from "react";
+import { DeleteIcon } from "../../../../assets/icons";
 import Checkbox from "../../../../components/Checkbox/Checkbox";
+import ItemIncrementer from "../../../../components/ItemIncrementer";
+import Loading from "../../../../components/Loading/Loading";
+import styles from "./ItemRow.module.scss";
 
-const ItemRow = ({ itemId, itemChecked, itemSaved }) => {
-	const [quantity, setQuantity] = useState(1);
-	const [isChecked, setIsChecked] = useState(false || itemChecked);
-	const [isSaved, setIsSaved] = useState(false || itemSaved);
+import { useGetProductQuery } from "../../../../features/api/builders/productApi";
 
-	const addQtyHandler = () => {
-		setQuantity(quantity + 1);
-	};
+const ItemRow = ({
+  itemId,
+  itemChecked,
+  itemSaved,
+  totalPrice,
+  updateTotalPrice,
+  allItemsChecked,
+}) => {
+  const [quantity, setQuantity] = useState(1);
+  const [isChecked, setIsChecked] = useState(itemChecked);
+  const [price, setPrice] = useState(0);
 
-	const minusQtyHandler = () => {
-		setQuantity(quantity <= 1 ? 1 : quantity - 1);
-	};
+  const prevQuantityRef = useRef(quantity);
+  const isCheckedBeforeRef = useRef(false);
 
-	const changeQtyHandler = (e) => {
-		setQuantity(e.target.value);
-	};
+  const {
+    data: product,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useGetProductQuery(itemId);
 
-	useEffect(() => {
-		setIsChecked(itemChecked);
-	}, [itemChecked]);
+  useEffect(() => {
+    if (product) {
+      setPrice(product.result.price);
+    }
+  }, [product]);
 
-	return (
-		<div className={styles.item}>
-			<Checkbox
-				className={styles.selectItem}
-				isChecked={isChecked}
-				setIsChecked={setIsChecked}
-			/>
-			<img src={Product} alt="item" />
-			<div className={styles.content}>
-				<div className={styles.texts}>
-					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus,
-						voluptas non eveniet, error, vitae assumenda libero expedita quisquam
-						dolor autem explicabo. Maiores assumenda porro tempore. Quaerat
-						aliquid explicabo libero veritatis!
-					</p>
-					<h2 className={styles.price}>&#8369; 1.00</h2>
-				</div>
+  const addQtyHandler = () => {
+    setQuantity(quantity + 1);
+  };
 
-				<div className={styles.modifyItem}>
-					<ItemIncrementer
-						addQtyHandler={addQtyHandler}
-						changeQtyHandler={changeQtyHandler}
-						minusQtyHandler={minusQtyHandler}
-						quantity={quantity}
-					/>
-					<div className={styles.btnContainer}>
-						<button
-							className={`${styles.heart} ${isSaved ? styles.saved : null}`}
-							onClick={() => setIsSaved(!isSaved)}
-						>
-							<HeartIcon />
-						</button>
-						<button className={styles.delete}>
-							<DeleteIcon />
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  const minusQtyHandler = () => {
+    setQuantity(quantity <= 1 ? 1 : quantity - 1);
+  };
+
+  const changeQtyHandler = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  useEffect(() => {
+    setIsChecked(itemChecked);
+  }, [itemChecked]);
+
+  useEffect(() => {
+    if (product) {
+      const itemPrice = price * quantity;
+      let updatedTotalPrice = +totalPrice;
+
+	  console.log(itemId, " ", {price: itemPrice, updatedTotalPrice: updatedTotalPrice, before: isCheckedBeforeRef.current})
+
+      if (isChecked) {
+        if (prevQuantityRef.current > quantity) {
+          const prevItemPrice = price * prevQuantityRef.current;
+          updatedTotalPrice -= prevItemPrice;
+        } else if (!isCheckedBeforeRef.current) {
+          updatedTotalPrice += itemPrice;
+		  console.log(itemId, " ", {added: updatedTotalPrice})
+        }
+
+        isCheckedBeforeRef.current = true;
+      } else {
+        if (isCheckedBeforeRef.current) {
+          const prevItemPrice = price * prevQuantityRef.current;
+          updatedTotalPrice -= prevItemPrice;
+
+          if (updatedTotalPrice < 0) updatedTotalPrice = 0;
+        }
+
+        isCheckedBeforeRef.current = false;
+      }
+
+      updateTotalPrice(updatedTotalPrice.toFixed(2));
+      prevQuantityRef.current = quantity;
+    }
+  }, [isChecked, quantity, product, totalPrice, updateTotalPrice]);
+
+  useEffect(() => {
+    if (allItemsChecked) {
+      isCheckedBeforeRef.current = false;
+    } else {
+      isCheckedBeforeRef.current = true;
+    }
+  }, [allItemsChecked]);
+
+  if (isProductLoading || !product) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
+
+  return (
+    <div className={styles.item}>
+      <Checkbox
+        className={styles.selectItem}
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
+      />
+      <img src={product.result.img[0]} alt="item" />
+      <div className={styles.content}>
+        <div className={styles.texts}>
+          <p>{product.result.name}</p>
+          <h2 className={styles.price}>&#8369; {product.result.price}</h2>
+        </div>
+
+        <div className={styles.modifyItem}>
+          <ItemIncrementer
+            addQtyHandler={addQtyHandler}
+            changeQtyHandler={changeQtyHandler}
+            minusQtyHandler={minusQtyHandler}
+            quantity={quantity}
+          />
+          <div className={styles.btnContainer}>
+            <button className={styles.delete}>
+              <DeleteIcon />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ItemRow;
