@@ -14,13 +14,17 @@ const ItemRow = ({
   totalPrice,
   updateTotalPrice,
   allItemsChecked,
+  inventory,
+  updateItemPrices,
+  noOfItems,
+  isUpdatingCart
 }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(noOfItems);
   const [isChecked, setIsChecked] = useState(itemChecked);
   const [price, setPrice] = useState(0);
 
   const prevQuantityRef = useRef(quantity);
-  const isCheckedBeforeRef = useRef(false);
+  const isCheckedBeforeRef = useRef(true);
 
   const {
     data: product,
@@ -55,15 +59,13 @@ const ItemRow = ({
       const itemPrice = price * quantity;
       let updatedTotalPrice = +totalPrice;
 
-	  console.log(itemId, " ", {price: itemPrice, updatedTotalPrice: updatedTotalPrice, before: isCheckedBeforeRef.current})
-
       if (isChecked) {
-        if (prevQuantityRef.current > quantity) {
+        if (prevQuantityRef.current !== quantity) {
           const prevItemPrice = price * prevQuantityRef.current;
           updatedTotalPrice -= prevItemPrice;
+          updatedTotalPrice += itemPrice;
         } else if (!isCheckedBeforeRef.current) {
           updatedTotalPrice += itemPrice;
-		  console.log(itemId, " ", {added: updatedTotalPrice})
         }
 
         isCheckedBeforeRef.current = true;
@@ -78,20 +80,31 @@ const ItemRow = ({
         isCheckedBeforeRef.current = false;
       }
 
-      updateTotalPrice(updatedTotalPrice.toFixed(2));
+      if (allItemsChecked) updateItemPrices(itemId, itemPrice, quantity);
+      else updateTotalPrice(Number(updatedTotalPrice.toFixed(2)));
       prevQuantityRef.current = quantity;
     }
-  }, [isChecked, quantity, product, totalPrice, updateTotalPrice]);
+  }, [
+    isChecked,
+    quantity,
+    product,
+    totalPrice,
+    allItemsChecked,
+    updateTotalPrice,
+    updateItemPrices,
+    itemId,
+    price,
+  ]);
 
   useEffect(() => {
     if (allItemsChecked) {
-      isCheckedBeforeRef.current = false;
-    } else {
       isCheckedBeforeRef.current = true;
+    } else {
+      isCheckedBeforeRef.current = false;
     }
   }, [allItemsChecked]);
 
-  if (isProductLoading || !product) {
+  if (isProductLoading || !product || isUpdatingCart) {
     return (
       <>
         <Loading />

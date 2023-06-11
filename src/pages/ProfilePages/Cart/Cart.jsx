@@ -8,8 +8,8 @@ import Checkout from "./Checkout";
 import StoreRow from "./cartSubcomponents/StoreRow";
 
 import {
-	getCart,
-	useUpdateCartMutation,
+  getCart,
+  useUpdateCartMutation,
 } from "../../../features/api/builders/cartApi";
 import { getUserDetail } from "../../../features/api/builders/userApi";
 import { selectCurrentUserId } from "../../../features/slice/userAccessSlice";
@@ -23,7 +23,9 @@ const Cart = ({ title, checkoutTitle }) => {
   const [userId, setUserId] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [inventory, setInventory] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0.00)
+  const [totalPrice, setTotalPrice] = useState(0.0);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [isUpdatingCart, setIsUpdatingCart] = useState(false);
 
   const currentUser = useSelector(selectCurrentUserId);
   const [queryData] = getUserDetail.useLazyQuery();
@@ -57,8 +59,41 @@ const Cart = ({ title, checkoutTitle }) => {
   }, [currentUser, queryData, queryUser]);
 
   const updateTotalPrice = useCallback((updatedTotalPrice) => {
-	setTotalPrice(updatedTotalPrice);
+    setTotalPrice(updatedTotalPrice);
   }, []);
+
+  const updateCheckedItems = useCallback((items) => {
+    setCheckedItems(items);
+  }, []);
+
+  useEffect(() => {
+    // Update the cart on the server when checkedItems change
+    const updateCartOnServer = async () => {
+      try {
+        setIsUpdatingCart(true);
+
+        const body = [];
+        checkedItems.map((item) => {
+          body.push({ _productId: item.itemId, quantity: item.quantity });
+        });
+
+        console.log(userId)
+        console.log(body);
+
+        if (body && body.length > 0 && body.length == inventory.length) {
+          await updateCart({id: userId, products: body});
+        }
+        console.log("Cart updated successfully");
+
+      } catch (error) {
+        console.log("Error updating cart:", error);
+      } finally {
+        setIsUpdatingCart(false);
+      }
+    };
+
+    updateCartOnServer();
+  }, [updateCart, checkedItems]);
 
   const goToCheckout = () => {
     setPage("checkout");
@@ -67,10 +102,10 @@ const Cart = ({ title, checkoutTitle }) => {
   // FOR TEST
   const STORE_NAMES = [];
   inventory.forEach((product) => {
-	if (!STORE_NAMES.includes(product.storeName)) {
-		STORE_NAMES.push(product.storeName)
-	}
-  })
+    if (!STORE_NAMES.includes(product.storeName)) {
+      STORE_NAMES.push(product.storeName);
+    }
+  });
 
   if (isLoading) {
     return <Loading />;
@@ -96,7 +131,16 @@ const Cart = ({ title, checkoutTitle }) => {
         </div>
         <div className={styles.storeItemsContainer}>
           {STORE_NAMES.map((name) => (
-            <StoreRow key={name} name={name} checked={selectAll} inventory={inventory} totalPrice={totalPrice} updateTotalPrice={updateTotalPrice}/>
+            <StoreRow
+              key={name}
+              name={name}
+              checked={selectAll}
+              inventory={inventory}
+              totalPrice={totalPrice}
+              updateTotalPrice={updateTotalPrice}
+              updateCheckedItems={updateCheckedItems}
+              isUpdatingCart = {isUpdatingCart}
+            />
           ))}
         </div>
       </section>
