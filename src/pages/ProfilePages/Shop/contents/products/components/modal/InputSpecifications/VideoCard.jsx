@@ -181,37 +181,37 @@ const VideoCard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
-            <label htmlFor="len">Length (mm): </label>
+            <label htmlFor="length">Length (mm): </label>
 			<input
 				type="number"
-				id="len"
+				id="length"
 				placeholder="245"
 				min={1}
 				className={`${styles.smallNumber} ${
-					error.len ? styles.errorClass : null
+					error.length ? styles.errorClass : null
 				}`}
-				value={object.len}
+				value={object.length}
 				onChange={(e) =>
 					setObject({
 						...object,
-						len: e.target.value,
+						length: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="tdp">TDP (Watts): </label>
+            <label htmlFor="TDP">TDP (Watts): </label>
 			<input
 				type="number"
-				id="tdp"
+				id="TDP"
 				placeholder="220"
 				min={1}
 				className={`${styles.smallNumber} ${
-					error.tdp ? styles.errorClass : null
+					error.TDP ? styles.errorClass : null
 				}`}
-				value={object.tdp}
+				value={object.TDP}
 				onChange={(e) =>
 					setObject({
 						...object,
-						tdp: e.target.value,
+						TDP: e.target.value,
 					})
 				}
 			/>

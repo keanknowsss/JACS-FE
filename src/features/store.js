@@ -4,23 +4,25 @@ import userAccessReducer from "./slice/userAccessSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
+import sellerAccessReducer from "./slice/sellerAccessSlice"; // Update the import statement
 
 const userAccessPersistConfig = {
 	key: "root",
-	storage,
+	storage
 };
 
 const reducers = combineReducers({
 	[apiMiddleware.reducerPath]: apiMiddleware.reducer,
 	userAccess: persistReducer(userAccessPersistConfig, userAccessReducer),
+	sellerAccess: sellerAccessReducer
 });
-
-// const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
 	reducer: reducers,
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({ serializableCheck: false }).concat(apiMiddleware.middleware).concat(thunk),
+		getDefaultMiddleware({ serializableCheck: false })
+			.concat(apiMiddleware.middleware)
+			.concat(thunk)
 });
 
 export const persistor = persistStore(store);

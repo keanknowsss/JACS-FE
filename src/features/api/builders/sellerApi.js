@@ -7,25 +7,39 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 			query: (seller) => ({
 				url: "/sellers",
 				method: "POST",
-				body: seller,
+				body: seller
 			}),
-			invalidatesTags: ["SELLER"],
+			invalidatesTags: ["SELLER"]
 		}),
 		getSeller: builder.query({
 			query: (id) => `/sellers/${id}`,
-			providesTags: ["SELLER"],
+			providesTags: ["SELLER"]
 		}),
 		getSellerDetail: builder.query({
 			query: (id) => `/sellers/${id}/details`,
-			providesTags: ["SELLER_DETAIL"],
+			providesTags: ["SELLER_DETAIL"]
 		}),
 		updateSellerDetail: builder.mutation({
 			query: ({ id, updatedDetails }) => ({
 				url: `/sellers/${id}/details`,
 				method: "PUT",
-				body: updatedDetails,
+				body: updatedDetails
 			}),
-			invalidatesTags: ["SELLER_DETAIL"],
+			invalidatesTags: ["SELLER_DETAIL"]
+		}),
+		addSellerProfilePicture: builder.mutation({
+			query: ({ id, images }) => {
+				const body = new FormData();
+				body.append("images", images, images.name);
+
+				return {
+					url: `/sellers/images/${id}`,
+					method: "POST",
+					headers: {},
+					body
+				};
+			},
+			invalidatesTags: ["SELLER"]
 		}),
 		addSellerDocuments: builder.mutation({
 			query: ({ id, file1, file2 }) => {
@@ -37,10 +51,10 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 					url: `/sellers/documents/${id}`,
 					method: "POST",
 					headers: {},
-					body: body,
+					body: body
 				};
 			},
-			invalidatesTags: ["SELLER"],
+			invalidatesTags: ["SELLER"]
 		}),
 		verifySeller: builder.mutation({
 			query: (id) => {
@@ -48,9 +62,9 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 					url: `confirmSeller/${id}`,
 					method: "PUT",
 					headers: {},
-					body: {},
+					body: {}
 				};
-			},
+			}
 		}),
 		addSellerDetails: builder.mutation({
 			query: (details) => {
@@ -58,7 +72,7 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 					_userId: details.userId,
 					storeName: details.name,
 					contactNo: details.num,
-					email: details.email,
+					email: details.email
 				};
 
 				console.log("Details: ", body);
@@ -67,11 +81,11 @@ export const sellerApi = apiMiddleware.injectEndpoints({
 					url: `/sellers/details`,
 					method: "POST",
 					headers: {},
-					body: body,
+					body: body
 				};
-			},
-		}),
-	}),
+			}
+		})
+	})
 });
 
 export const {
@@ -81,7 +95,8 @@ export const {
 	useUpdateSellerDetailMutation,
 	useVerifySellerMutation,
 	useAddSellerDetailsMutation,
-	useAddSellerDocumentsMutation,
+	useAddSellerProfilePictureMutation,
+	useAddSellerDocumentsMutation
 } = sellerApi;
 
 export const { getSeller, getSellerDetail } = sellerApi.endpoints;

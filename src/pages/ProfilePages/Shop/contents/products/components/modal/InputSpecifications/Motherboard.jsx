@@ -25,7 +25,7 @@ const Motherboard = ({ object, setObject, error }) => {
 				id="socketCPU"
 				placeholder="AM4"
 				className={`${styles.medText} ${
-					error.socketCPU ? styles.errorClass : null
+					error.socketCpu ? styles.errorClass : null
 				}`}
 				value={object.socketCpu}
 				onChange={(e) =>
@@ -84,6 +84,23 @@ const Motherboard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
+			<label htmlFor="memoryType">Memory Type: </label>
+			<select
+				id="memoryType"
+				className={styles.smallSelect}
+				value={object.memoryType}
+				onChange={(e) =>
+					setObject({
+						...object,
+						memoryType: e.target.value,
+					})
+				}
+			>
+				<option value="DDR2">DDR2</option>
+				<option value="DDR3">DDR3</option>
+				<option value="DDR4">DDR4</option>
+				<option value="DDR5">DDR5</option>
+			</select>
             <label htmlFor="memorySlots">Memory Slots: </label>
 			<input
 				type="number"
@@ -147,93 +164,93 @@ const Motherboard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
-            <label htmlFor="pci16">PCIE x16 Slots: </label>
+            <label htmlFor="pci16Slots">PCIE x16 Slots: </label>
 			<input
 				type="number"
-				id="pci16"
+				id="pci16Slots"
 				placeholder="2"
 				min={0}
                 max={6}
 				className={`${styles.smallNumber} ${
-					error.pci16 ? styles.errorClass : null
+					error.pci16Slots ? styles.errorClass : null
 				}`}
-				value={object.pci16}
+				value={object.pci16Slots}
 				onChange={(e) =>
 					setObject({
 						...object,
-						pci16: e.target.value,
+						pci16Slots: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="pci8">PCIE x8 Slots: </label>
+            <label htmlFor="pci8Slots">PCIE x8 Slots: </label>
 			<input
 				type="number"
-				id="pci8"
+				id="pci8Slots"
 				placeholder="2"
 				min={0}
                 max={6}
 				className={`${styles.smallNumber} ${
-					error.pci8 ? styles.errorClass : null
+					error.pci8Slots ? styles.errorClass : null
 				}`}
-				value={object.pci8}
+				value={object.pci8Slots}
 				onChange={(e) =>
 					setObject({
 						...object,
-						pci8: e.target.value,
+						pci8Slots: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="pci4">PCIE x4 Slots: </label>
+            <label htmlFor="pci4Slots">PCIE x4 Slots: </label>
 			<input
 				type="number"
-				id="pci4"
+				id="pci4Slots"
 				placeholder="2"
 				min={0}
                 max={6}
 				className={`${styles.smallNumber} ${
-					error.pci4 ? styles.errorClass : null
+					error.pci4Slots ? styles.errorClass : null
 				}`}
-				value={object.pci4}
+				value={object.pci4Slots}
 				onChange={(e) =>
 					setObject({
 						...object,
-						pci4: e.target.value,
+						pci4Slots: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="pci1">PCIE x1 Slots: </label>
+            <label htmlFor="pci1Slots">PCIE x1 Slots: </label>
 			<input
 				type="number"
-				id="pci1"
+				id="pci1Slots"
 				placeholder="2"
 				min={0}
                 max={6}
 				className={`${styles.smallNumber} ${
-					error.pci1 ? styles.errorClass : null
+					error.pci1Slots ? styles.errorClass : null
 				}`}
-				value={object.pci1}
+				value={object.pci1Slots}
 				onChange={(e) =>
 					setObject({
 						...object,
-						pci1: e.target.value,
+						pci1Slots: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="pci">PCI Slots: </label>
+            <label htmlFor="pciSlots">PCI Slots: </label>
 			<input
 				type="number"
-				id="pci"
+				id="pciSlots"
 				placeholder="2"
 				min={0}
                 max={6}
 				className={`${styles.smallNumber} ${
-					error.pci ? styles.errorClass : null
+					error.pciSlots ? styles.errorClass : null
 				}`}
-				value={object.pci}
+				value={object.pciSlots}
 				onChange={(e) =>
 					setObject({
 						...object,
-						pci: e.target.value,
+						pciSlots: e.target.value,
 					})
 				}
 			/>
@@ -287,6 +304,23 @@ const Motherboard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
+            <label htmlFor="miniPCIe_mSATASlots">Mini PCIE mSata Slots: </label>
+			<input
+				type="number"
+				id="miniPCIe_mSATASlots"
+				placeholder="0"
+				min={0}
+				className={`${styles.smallNumber} ${
+					error.miniPCIe_mSATASlots ? styles.errorClass : null
+				}`}
+				value={object.miniPCIe_mSATASlots}
+				onChange={(e) =>
+					setObject({
+						...object,
+						miniPCIe_mSATASlots: e.target.value,
+					})
+				}
+			/>
             <label htmlFor="mSataSlots">MSata Slots: </label>
 			<input
 				type="number"
@@ -304,52 +338,52 @@ const Motherboard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
-            <label htmlFor="sata6gb">SATA 6GB/s Ports: </label>
+            <label htmlFor="sata6Gb">SATA 6GB/s Ports: </label>
 			<input
 				type="number"
-				id="sata6gb"
+				id="sata6Gb"
 				placeholder="0"
 				min={0}
 				className={`${styles.smallNumber} ${
-					error.sata6gb ? styles.errorClass : null
+					error.sata6Gb ? styles.errorClass : null
 				}`}
-				value={object.sata6gb}
+				value={object.sata6Gb}
 				onChange={(e) =>
 					setObject({
 						...object,
-						sata6gb: e.target.value,
+						sata6Gb: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="onBoardEthernet">Onboard Ethernet: </label>
+            <label htmlFor="onboardEthernet">Onboard Ethernet: </label>
 			<input
 				type="text"
-				id="onBoardEthernet"
+				id="onboardEthernet"
 				placeholder="1 x 1 Gb/s (Realtek L8200A)"
 				className={`${
-					error.onBoardEthernet ? styles.errorClass : null
+					error.onboardEthernet ? styles.errorClass : null
 				}`}
-				value={object.onBoardEthernet}
+				value={object.onboardEthernet}
 				onChange={(e) =>
 					setObject({
 						...object,
-						onBoardEthernet: e.target.value,
+						onboardEthernet: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="onBoardVideo">Onboard Video: </label>
+            <label htmlFor="onboardVideo">Onboard Video: </label>
 			<input
 				type="text"
-				id="onBoardVideo"
+				id="onboardVideo"
 				placeholder="Depends on CPU"
 				className={`${
-					error.onBoardVideo ? styles.errorClass : null
+					error.onboardVideo ? styles.errorClass : null
 				}`}
-				value={object.onBoardVideo}
+				value={object.onboardVideo}
 				onChange={(e) =>
 					setObject({
 						...object,
-						onBoardVideo: e.target.value,
+						onboardVideo: e.target.value,
 					})
 				}
 			/>
@@ -387,66 +421,66 @@ const Motherboard = ({ object, setObject, error }) => {
 					})
 				}
 			/>
-            <label htmlFor="usb3Gen1Headers">USB 3.2 Gen 1 Headers: </label>
+            <label htmlFor="usb3_2Gen1Headers">USB 3.2 Gen 1 Headers: </label>
 			<input
 				type="number"
-				id="usb3Gen1Headers"
+				id="usb3_2Gen1Headers"
 				placeholder="1"
 				min={0}
 				className={`${styles.smallNumber} ${
-					error.usb3Gen1Headers ? styles.errorClass : null
+					error.usb3_2Gen1Headers ? styles.errorClass : null
 				}`}
-				value={object.usb3Gen1Headers}
+				value={object.usb3_2Gen1Headers}
 				onChange={(e) =>
 					setObject({
 						...object,
-						usb3Gen1Headers: e.target.value,
+						usb3_2Gen1Headers: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="usb3Gen2Headers">USB 3.2 Gen 2 Headers: </label>
+            <label htmlFor="usb3_2Gen2Headers">USB 3.2 Gen 2 Headers: </label>
 			<input
 				type="number"
-				id="usb3Gen2Headers"
+				id="usb3_2Gen2Headers"
 				placeholder="1"
 				min={0}
 				className={`${styles.smallNumber} ${
-					error.usb3Gen2Headers ? styles.errorClass : null
+					error.usb3_2Gen2Headers ? styles.errorClass : null
 				}`}
-				value={object.usb3Gen2Headers}
+				value={object.usb3_2Gen2Headers}
 				onChange={(e) =>
 					setObject({
 						...object,
-						usb3Gen2Headers: e.target.value,
+						usb3_2Gen2Headers: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="usb3Gen2x2Headers">USB 3.2 Gen 2x2 Headers: </label>
+            <label htmlFor="usb3_2Gen2x2Headers">USB 3.2 Gen 2x2 Headers: </label>
 			<input
 				type="number"
-				id="usb3Gen2x2Headers"
+				id="usb3_2Gen2x2Headers"
 				placeholder="8"
 				min={0}
 				className={`${styles.smallNumber} ${
-					error.usb3Gen2x2Headers ? styles.errorClass : null
+					error.usb3_2Gen2x2Headers ? styles.errorClass : null
 				}`}
-				value={object.usb3Gen2x2Headers}
+				value={object.usb3_2Gen2x2Headers}
 				onChange={(e) =>
 					setObject({
 						...object,
-						usb3Gen2x2Headers: e.target.value,
+						usb3_2Gen2x2Headers: e.target.value,
 					})
 				}
 			/>
-            <label htmlFor="supportECC">ECC Support: </label>
+            <label htmlFor="supportsECC">ECC Support: </label>
 			<select
-				id="supportECC"
+				id="supportsECC"
 				className={styles.smallSelect}
-				value={object.supportECC}
+				value={object.supportsECC}
 				onChange={(e) =>
 					setObject({
 						...object,
-						supportECC: e.target.value,
+						supportsECC: e.target.value,
 					})
 				}
 			>
