@@ -29,7 +29,7 @@ const InputSpecification = ({
 	specification,
 	setSpecification,
 
-	specificationError,
+	specificationError
 }) => {
 	switch (category) {
 		case "CPU":
@@ -40,7 +40,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "CPU Cooler":
+		case "CPU_COOLER":
 			return (
 				<CPUCooler
 					object={specification}
@@ -48,7 +48,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Motherboard":
+		case "MOTHERBOARD":
 			return (
 				<Motherboard
 					object={specification}
@@ -56,7 +56,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Memory":
+		case "MEMORY":
 			return (
 				<Memory
 					object={specification}
@@ -64,7 +64,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Storage":
+		case "STORAGE":
 			return (
 				<Storage
 					object={specification}
@@ -72,7 +72,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Video Card":
+		case "VIDEO_CARD":
 			return (
 				<VideoCard
 					object={specification}
@@ -80,7 +80,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Case":
+		case "CASE":
 			return (
 				<Case
 					object={specification}
@@ -88,7 +88,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Power Supply":
+		case "POWER_SUPPLY":
 			return (
 				<PowerSupply
 					object={specification}
@@ -104,7 +104,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Monitor":
+		case "MONITOR":
 			return (
 				<Monitor
 					object={specification}
@@ -112,7 +112,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Sound Cards":
+		case "SOUND_CARD":
 			return (
 				<SoundCard
 					object={specification}
@@ -120,7 +120,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Wired Network Adapters":
+		case "WIRED_NETWORK_ADAPTER":
 			return (
 				<WiredNetworkAdapter
 					object={specification}
@@ -128,7 +128,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Wireless Network Adapters":
+		case "WIRELESS_NETWORK_ADAPTER":
 			return (
 				<WirelessNetworkAdapter
 					object={specification}
@@ -136,7 +136,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Headphones":
+		case "HEADPHONES":
 			return (
 				<Headphone
 					object={specification}
@@ -144,7 +144,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Keyboards":
+		case "KEYBOARD":
 			return (
 				<Keyboard
 					object={specification}
@@ -152,7 +152,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Mice":
+		case "MOUSE":
 			return (
 				<Mice
 					object={specification}
@@ -160,7 +160,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Speakers":
+		case "SPEAKER":
 			return (
 				<Speaker
 					object={specification}
@@ -168,7 +168,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Webcams":
+		case "WEBCAM":
 			return (
 				<Webcam
 					object={specification}
@@ -176,7 +176,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Case Accessories":
+		case "CASE_ACCESSORY":
 			return (
 				<CaseAccessories
 					object={specification}
@@ -184,7 +184,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Case Fans":
+		case "CASE_FAN":
 			return (
 				<CaseFan
 					object={specification}
@@ -192,7 +192,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Fan Controllers":
+		case "FAN_CONTROLLER":
 			return (
 				<FanController
 					object={specification}
@@ -200,7 +200,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Thermal Compound":
+		case "THERMAL_COMPOUND":
 			return (
 				<ThermalCompound
 					object={specification}
@@ -208,7 +208,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "External Storage":
+		case "EXTERNAL_STORAGE":
 			return (
 				<ExternalStorage
 					object={specification}
@@ -216,7 +216,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "Optical Drive":
+		case "OPTICAL_DRIVE":
 			return (
 				<OpticalDrive
 					object={specification}
@@ -224,7 +224,7 @@ const InputSpecification = ({
 					error={specificationError}
 				/>
 			);
-		case "UPS Systems":
+		case "UPS":
 			return (
 				<UPS
 					object={specification}

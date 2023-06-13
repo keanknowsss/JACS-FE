@@ -14,7 +14,6 @@
 			height: fit-content;
 			max-height: calc(100vh - 20%);
 
-
 			.titleContainer {
 				@apply h-fit flex justify-center w-full;
 			}
@@ -33,14 +32,14 @@
 					.mainPhoto {
 						@apply w-full flex items-center justify-center relative overflow-hidden bg-white;
 						border-radius: 8px;
-						// height: calc(100vh - 300px);
+						height: min(100%, 450px);
 						aspect-ratio: 16 / 9;
 
 						img {
 							height: 100%;
 							width: 100%;
 							object-fit: cover;
-							object-position: 50% 10%
+							object-position: 50% 10%;
 						}
 
 						.mainAddPhoto {
@@ -68,6 +67,8 @@
 				}
 
 				.formColumn {
+					min-height: 450px;
+
 					.formContent {
 						@apply grid h-fit gap-x-3 gap-y-4 mb-3 mt-2 pr-5;
 						grid-template-columns: auto 1fr;
@@ -76,7 +77,8 @@
 							margin-top: 2px;
 						}
 
-						input, select {
+						input,
+						select {
 							height: 34px;
 						}
 
@@ -197,7 +199,6 @@ select {
 		}
 	}
 }
-
 
 .errorClass {
 	outline: $red-default 3px solid !important;

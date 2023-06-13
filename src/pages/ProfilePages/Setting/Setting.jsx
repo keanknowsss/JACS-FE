@@ -2,20 +2,20 @@ import { DefaultProfilePicture } from "../../../assets/placeholder";
 import { EditIcon } from "../../../assets/icons";
 import styles from "./Setting.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
 	getUser,
 	getUserDetail,
 	useAddUserProfilePictureMutation,
 	useUpdateUserDetailMutation,
-	useUpdateUserMutation,
+	useUpdateUserMutation
 } from "../../../features/api/builders/userApi";
 import { useSelector } from "react-redux";
 import { selectCurrentUserId } from "../../../features/slice/userAccessSlice";
 import Loading from "../../../components/Loading/Loading";
 import {
 	getSellerDetail,
-	useUpdateSellerDetailMutation,
+	useUpdateSellerDetailMutation
 } from "../../../features/api/builders/sellerApi";
 import Modal from "../../../components/Modal";
 
@@ -56,6 +56,7 @@ const Setting = ({ title }) => {
 	// used for having reference before saving
 	const inputName = useRef();
 	const inputUsername = useRef();
+
 	const inputEmail = useRef();
 	const inputPhone = useRef();
 	const inputAddress = useRef();
@@ -72,7 +73,7 @@ const Setting = ({ title }) => {
 	const [showContactEdit, setShowContactEdit] = useState(
 		false || location.state?.editContact
 	);
-	const [showStoreEdit, setShowStoreEdit] = useState(false);
+	const [showStoreEdit, setShowStoreEdit] = useState(false || location.state?.editShop);
 
 	// in integration add "or" in usestate to prioritize user's own profile picture
 	const [profilePicture, setProfilePicture] = useState(DefaultProfilePicture);
@@ -89,15 +90,15 @@ const Setting = ({ title }) => {
 				id,
 				editedDetails: {
 					firstName: inputName.current.value,
-					lastName: "",
-				},
+					lastName: ""
+				}
 			}).unwrap();
 
 			await updateUser({
 				id,
 				body: {
-					username: currentUserName,
-				},
+					username: currentUserName
+				}
 			});
 		} catch (error) {
 			console.log("Update Error:", error);
@@ -116,8 +117,8 @@ const Setting = ({ title }) => {
 					id,
 					editedDetails: {
 						contactNo: inputPhone.current.value,
-						address: inputAddress.current.value,
-					},
+						address: inputAddress.current.value
+					}
 				}).unwrap();
 			} else {
 				await updateUserDetail({
@@ -125,8 +126,8 @@ const Setting = ({ title }) => {
 					editedDetails: {
 						email: inputEmail.current.value,
 						contactNo: inputPhone.current.value,
-						address: inputAddress.current.value,
-					},
+						address: inputAddress.current.value
+					}
 				}).unwrap();
 
 				alert("Confirm New Email Address!");
@@ -148,8 +149,8 @@ const Setting = ({ title }) => {
 				updatedDetails: {
 					storeName: inputStoreName.current.value,
 					contactNo: inputStoreContact.current.value,
-					email: inputStoreEmail.current.value,
-				},
+					email: inputStoreEmail.current.value
+				}
 			}).unwrap();
 		} catch (error) {
 			console.log("Seller Update Error:", error);
@@ -164,8 +165,8 @@ const Setting = ({ title }) => {
 				await updateUser({
 					id,
 					body: {
-						password,
-					},
+						password
+					}
 				}).unwrap();
 
 				setPassWordModal(false);
@@ -185,7 +186,7 @@ const Setting = ({ title }) => {
 		try {
 			const uploadedImage = await addProfilePicture({
 				id,
-				images,
+				images
 			}).unwrap();
 
 			const { publicUrl } = uploadedImage.result[0];
@@ -193,8 +194,8 @@ const Setting = ({ title }) => {
 			await updateUserDetail({
 				id,
 				editedDetails: {
-					img: publicUrl,
-				},
+					img: publicUrl
+				}
 			});
 		} catch (error) {
 			console.log("Image Upload Error:", error);
@@ -230,8 +231,7 @@ const Setting = ({ title }) => {
 					userDetail.data.result;
 
 				user.error && console.log("User Query Error:", user.error);
-				userDetail.error &&
-					console.log("User Detail Query Error:", userDetail.error);
+				userDetail.error && console.log("User Detail Query Error:", userDetail.error);
 
 				setName(firstName + " " + lastName);
 				setUsername(user.data?.result?.username);
@@ -246,14 +246,23 @@ const Setting = ({ title }) => {
 		};
 
 		getData();
-	}, [
-		id,
-		getUserDetailQuery,
-		getUserQuery,
-		setName,
-		setUsername,
-		getSellerDetailQuery,
-	]);
+	}, [id, getUserDetailQuery, getUserQuery, setName, setUsername, getSellerDetailQuery]);
+
+	// scroll to particular element
+	useEffect(() => {
+		if (inputName.current && location.state?.editProfile && !loading) {
+			inputName.current.focus();
+			inputName.current.scrollIntoView({ behavior: "smooth" });
+		}
+		if (inputEmail.current && location.state?.editContact && !loading) {
+			inputEmail.current.focus();
+			inputEmail.current.scrollIntoView({ behavior: "smooth" });
+		}
+		if (inputStoreName.current && location.state?.editShop && !loading) {
+			inputStoreName.current.focus();
+			inputStoreName.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [loading, location.state]);
 
 	return loading ? (
 		<div>
@@ -277,10 +286,7 @@ const Setting = ({ title }) => {
 				<div className={styles.mainColumn}>
 					<div className={styles.firstRow}>
 						<div className={styles.imageContainer}>
-							<img
-								src={profilePicture}
-								alt="user"
-							/>
+							<img src={profilePicture} alt="user" />
 							<button
 								className={styles.editBtn}
 								onClick={() => inputImage.current.click()}
@@ -325,9 +331,7 @@ const Setting = ({ title }) => {
 								{!showProfileEdit ? (
 									<div className={styles.links}>
 										<p onClick={() => setShowProfileEdit(true)}>Edit</p>
-										<p onClick={() => setPassWordModal(true)}>
-											Change Password
-										</p>
+										<p onClick={() => setPassWordModal(true)}>Change Password</p>
 									</div>
 								) : (
 									<div className={styles.saveCancelBtn}>
@@ -335,9 +339,7 @@ const Setting = ({ title }) => {
 											<button onClick={profileSaveHandler}>Save</button>
 										</div>
 										<div>
-											<button onClick={() => setShowProfileEdit(false)}>
-												Cancel
-											</button>
+											<button onClick={() => setShowProfileEdit(false)}>Cancel</button>
 										</div>
 									</div>
 								)}
@@ -373,11 +375,7 @@ const Setting = ({ title }) => {
 
 								<p>Address</p>
 								{showContactEdit ? (
-									<textarea
-										rows={3}
-										ref={inputAddress}
-										defaultValue={userAddress}
-									/>
+									<textarea rows={3} ref={inputAddress} defaultValue={userAddress} />
 								) : (
 									<p className={styles.textDetail}>{userAddress}</p>
 								)}
@@ -392,9 +390,7 @@ const Setting = ({ title }) => {
 										<button onClick={contactSaveHandler}>Save</button>
 									</div>
 									<div>
-										<button onClick={() => setShowContactEdit(false)}>
-											Cancel
-										</button>
+										<button onClick={() => setShowContactEdit(false)}>Cancel</button>
 									</div>
 								</div>
 							)}
@@ -451,9 +447,7 @@ const Setting = ({ title }) => {
 											<button onClick={storeSaveHandler}>Save</button>
 										</div>
 										<div>
-											<button onClick={() => setShowStoreEdit(false)}>
-												Cancel
-											</button>
+											<button onClick={() => setShowStoreEdit(false)}>Cancel</button>
 										</div>
 									</div>
 								)}
@@ -461,9 +455,7 @@ const Setting = ({ title }) => {
 						</div>
 					) : (
 						<div className={styles.btnRow}>
-							<button onClick={() => navigate("/store/register")}>
-								Add Shop
-							</button>
+							<button onClick={() => navigate("/store/register")}>Add Shop</button>
 						</div>
 					)}
 					<div className={styles.backdrop}></div>

@@ -1,6 +1,6 @@
 export const INPUT_INITIAL_VALUE = {
 	value: "",
-	error: false,
+	error: false
 };
 
 export const PC_ESSENTIALS = [
@@ -13,22 +13,16 @@ export const PC_ESSENTIALS = [
 	"Case",
 	"Power Supply",
 	"OS",
-	"Monitor",
+	"Monitor"
 ];
 
 export const EXPANSION_CARDS = [
 	"Sound Cards",
 	"Wired Network Adapters",
-	"Wireless Network Adapters",
+	"Wireless Network Adapters"
 ];
 
-export const PERIPHERALS = [
-	"Headphones",
-	"Keyboards",
-	"Mice",
-	"Speakers",
-	"Webcams",
-];
+export const PERIPHERALS = ["Headphones", "Keyboards", "Mice", "Speakers", "Webcams"];
 
 export const ACCESSORIES_OTHERS = [
 	"Case Accessories",
@@ -37,32 +31,32 @@ export const ACCESSORIES_OTHERS = [
 	"Thermal Compound",
 	"External Storage",
 	"Optical Drive",
-	"UPS Systems",
+	"UPS Systems"
 ];
 
 export const DEFAULT_SPECIFICATION_DETAILS = {
 	CPU: {
 		manufacturer: "amd",
 		core: "",
-		coreClock: "",
-		boostClock: "",
-		tdp: "",
+		performanceCoreClock: "",
+		performanceBoostClock: "",
+		TDP: "",
 		series: "",
-		microArchitecture: "",
+		microArchitechture: "",
 		coreFamily: "",
 		socket: "",
 		integratedGraphics: "",
 		maxSupportedMemory: "",
 		eccSupport: "true",
-		includeCooler: "true",
+		includesCooler: "true",
 		packaging: "",
 		l1Cache: "",
 		l2Cache: "",
 		l3Cache: "",
 		lithography: "",
-		includeCPUCooler: "false",
+		includesCPUCooler: "false",
 		multithreading: "false",
-		typeOfMultithreading: "",
+		typeOfMultithreading: ""
 	},
 	CPU_COOLER: {
 		manufacturer: "",
@@ -73,7 +67,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		height: "",
 		cpuSocket: "",
 		waterCooled: "false",
-		fanless: "false",
+		fanless: "false"
 	},
 	MOTHERBOARD: {
 		manufacturer: "",
@@ -81,34 +75,36 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		formFactor: "",
 		chipset: "",
 		maxMemory: "",
+		memoryType: "DDR4",
 		memorySlots: "",
 		memorySpeed: "",
 		color: "",
 		sliCrossfire: "",
-		pci16: "",
-		pci8: "",
-		pci4: "",
-		pci1: "",
-		pci: "",
+		pci16Slots: "",
+		pci8Slots: "",
+		pci4Slots: "",
+		pci1Slots: "",
+		pciSlots: "",
 		m2Slots: "",
 		miniPCIeSlots: "",
 		halfMiniPCIeSlots: "",
+		miniPCIe_mSATASlots: "",
 		mSataSlots: "",
-		sata6gb: "",
-		onBoardEthernet: "",
-		onBoardVideo: "",
+		sata6Gb: "",
+		onboardEthernet: "",
+		onboardVideo: "",
 		usb2Headers: "",
 		singleUsb2Headers: "",
-		usb3Gen1Headers: "",
-		usb3Gen2Headers: "",
-		usb3Gen2x2Headers: "",
-		supportECC: "false",
+		usb3_2Gen1Headers: "",
+		usb3_2Gen2Headers: "",
+		usb3_2Gen2x2Headers: "",
+		supportsECC: "false",
 		wirelessNetworking: "",
-		raidSupport: "false",
+		raidSupport: "false"
 	},
 	MEMORY: {
 		manufacturer: "",
-		memorySpeed: "",
+		speed: "",
 		formFactor: "",
 		modules: "",
 		color: "",
@@ -116,8 +112,8 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		CASLatency: "",
 		voltage: "",
 		timing: "",
-		eccRegistered: "",
-		heatSpreader: "true",
+		ecc_Registered: "",
+		heatSpreader: "true"
 	},
 	STORAGE: {
 		manufacturer: "",
@@ -126,7 +122,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		cache: "",
 		formFactor: "",
 		interface: "",
-		nvme: "true",
+		nvme: "true"
 	},
 	VIDEO_CARD: {
 		manufacturer: "",
@@ -140,15 +136,15 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		interface: "",
 		color: "",
 		frameSync: "",
-		len: "",
-		tdp: "",
+		length: "",
+		TDP: "",
 		caseExpansionSlotWidth: "",
 		totalSlotWidth: "",
 		cooling: "",
 		externalPower: "",
 		dviOutputs: "",
 		hdmiOutputs: "",
-		displayPortOutputs: "",
+		displayPortOutputs: ""
 	},
 	CASING: {
 		manufacturer: "",
@@ -163,7 +159,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		driveBays: "",
 		expansionSlots: "",
 		dimensions: "",
-		volume: "",
+		volume: ""
 	},
 	POWER_SUPPLY: {
 		manufacturer: "",
@@ -171,10 +167,10 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		type: "",
 		efficiencyRating: "",
 		wattage: "",
-		len: "",
+		length: "",
 		modular: "true",
 		color: "",
-		fanless: "",
+		fanless: "true",
 		atx4pinConnectors: "",
 		eps8pinConnectors: "",
 		pcie12_4pin12VHPWRconnectors: "",
@@ -183,7 +179,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		pcie6_2pinConnectors: "",
 		pcie6pinConnectors: "",
 		sataConnectors: "",
-		molex4pinConnectors: "",
+		molex4pinConnectors: ""
 	},
 	OPERATING_SYSTEM: {
 		manufacturer: "",
@@ -191,7 +187,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		mode: "",
 		version: "",
 		maxSupportedMemory: "",
-		features: "",
+		features: ""
 	},
 	MONITOR: {
 		manufacturer: "",
@@ -210,7 +206,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		frameSync: "",
 		builtInSpeakers: "true",
 		viewingAngle: "",
-		inputs: "",
+		inputs: ""
 	},
 	SOUND_CARD: {
 		manufacturer: "",
@@ -221,12 +217,12 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		sampleRate: "",
 		chipSet: "",
 		interface: "",
-		color: "",
+		color: ""
 	},
 	WIRED_NETWORK_ADAPTER: {
 		manufacturer: "",
 		interface: "",
-		features: "",
+		features: ""
 	},
 	WIRELESS_NETWORK_ADAPTER: {
 		manufacturer: "",
@@ -234,7 +230,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		interface: "",
 		security: "",
 		antenna: "",
-		features: "",
+		features: ""
 	},
 	HEADPHONE: {
 		manufacturer: "",
@@ -249,7 +245,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		connection: "",
 		channels: "",
 		impedance: "",
-		sensitivity: "",
+		sensitivity: ""
 	},
 	KEYBOARD: {
 		manufacturer: "",
@@ -262,7 +258,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		connectionType: "",
 		color: "",
 		mouseIncluded: "false",
-		features: "",
+		features: ""
 	},
 	MICE: {
 		manufacturer: "",
@@ -272,7 +268,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		maxDPI: "",
 		handOrientation: "",
 		color: "",
-		features: "",
+		features: ""
 	},
 	SPEAKER: {
 		manufacturer: "",
@@ -285,7 +281,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		powerCenter: "",
 		powerEachRear: "",
 		powerSubwoofer: "",
-		features: "",
+		features: ""
 	},
 	WEBCAM: {
 		manufacturer: "",
@@ -299,14 +295,14 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		focalLength: "",
 		privacyShutter: "false",
 		builtInLightning: "false",
-		automaticLightningAdjust: "false",
+		automaticLightningAdjust: "false"
 	},
 	CASE_ACCESSORIES: {
 		manufacturer: "",
 		model: "",
 		type: "",
 		formFactor: "",
-		features: "",
+		features: ""
 	},
 	CASE_FAN: {
 		manufacturer: "",
@@ -321,7 +317,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		led: "",
 		connector: "",
 		controller: "",
-		staticPressure: "",
+		staticPressure: ""
 	},
 	FAN_CONTROLLER: {
 		manufacturer: "",
@@ -331,13 +327,13 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		pwm4pin: "false",
 		formFactor: "",
 		color: "",
-		features: "",
+		features: ""
 	},
 	THERMAL_COMPOUND: {
 		manufacturer: "",
 		model: "",
 		amount: "",
-		features: "",
+		features: ""
 	},
 	EXTERNAL_STORAGE: {
 		manufacturer: "",
@@ -346,7 +342,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		interface: "",
 		capacity: "",
 		color: "",
-		rpm: "",
+		rpm: ""
 	},
 	OPTICAL_DRIVE: {
 		manufacturer: "",
@@ -368,7 +364,7 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		dvd_ramSpeed: "",
 		cd_rSpeed: "",
 		cd_rwSpeed: "",
-		features: "",
+		features: ""
 	},
 	UPS: {
 		manufacturer: "",
@@ -388,6 +384,6 @@ export const DEFAULT_SPECIFICATION_DETAILS = {
 		receptacles: "",
 		serialPort: "true",
 		waveformType: "",
-		features: "",
-	},
+		features: ""
+	}
 };
