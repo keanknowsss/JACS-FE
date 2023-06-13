@@ -84,20 +84,20 @@ const PowerSupply = ({ object, setObject, error }) => {
 					})
 				}
 			/>
-            <label htmlFor="len">Length (mm): </label>
+            <label htmlFor="length">Length (mm): </label>
 			<input
 				type="number"
-				id="len"
+				id="length"
 				placeholder="140"
 				min={1}
 				className={`${styles.smallNumber} ${
-					error.len ? styles.errorClass : null
+					error.length ? styles.errorClass : null
 				}`}
-				value={object.len}
+				value={object.length}
 				onChange={(e) =>
 					setObject({
 						...object,
-						len: e.target.value,
+						length: e.target.value,
 					})
 				}
 			/>
@@ -210,6 +210,23 @@ const PowerSupply = ({ object, setObject, error }) => {
 					setObject({
 						...object,
 						pcie12pinConnectors: e.target.value,
+					})
+				}
+			/>
+            <label htmlFor="pcie8pinConnectors">PCIE 8-Pin Connectors: </label>
+			<input
+				type="number"
+				id="pcie8pinConnectors"
+				placeholder="0"
+				min={0}
+				className={`${styles.smallNumber} ${
+					error.pcie8pinConnectors ? styles.errorClass : null
+				}`}
+				value={object.pcie8pinConnectors}
+				onChange={(e) =>
+					setObject({
+						...object,
+						pcie8pinConnectors: e.target.value,
 					})
 				}
 			/>

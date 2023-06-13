@@ -4,7 +4,7 @@ import { DefaultProfilePicture } from "../../../../assets/placeholder";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentToken } from "../../../../features/slice/userAccessSlice";
 import { logOut } from "../../../../features/slice/userAccessSlice";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef } from "react";
 
 const Profile = forwardRef(
 	({ setProfileActive, name, className, userPic, isSeller }, ref) => {
@@ -70,16 +70,10 @@ const Profile = forwardRef(
 					</>
 				) : (
 					<div className="flex justify-between mt-1.5">
-						<Link
-							className={styles.login}
-							to="/login"
-						>
+						<Link className={styles.login} to="/login">
 							Login
 						</Link>
-						<Link
-							className={styles.register}
-							to="/register"
-						>
+						<Link className={styles.register} to="/register">
 							Register
 						</Link>
 					</div>

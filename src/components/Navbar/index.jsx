@@ -6,13 +6,13 @@ import styles from "./Navbar.module.scss";
 import { useSelector } from "react-redux";
 import {
 	selectCurrentToken,
-	selectCurrentUserId,
+	selectCurrentUserId
 } from "../../features/slice/userAccessSlice";
 import {
 	ProfileNavbar,
-	SearchNavbar,
+	// SearchNavbar,
 	CartNavbar,
-	MenuIcon,
+	MenuIcon
 } from "../../assets/icons";
 import { getUser, getUserDetail } from "../../features/api/builders/userApi";
 import Menu from "./subcomponents/Menu/Menu";
@@ -37,9 +37,9 @@ const Navbar = () => {
 	const route = useHref();
 	const location = useLocation();
 
-	const handleSearch = (e) => {
-		searchActive ? setSearchActive(false) : setSearchActive(true);
-	};
+	// const handleSearch = (e) => {
+	// 	searchActive ? setSearchActive(false) : setSearchActive(true);
+	// };
 
 	const changePageNameHandler = (pageLocation) => {
 		switch (pageLocation) {
@@ -97,7 +97,7 @@ const Navbar = () => {
 			}
 		};
 		getData();
-	}, [token, id]);
+	}, [token, id, userDetailQuery, userDataQuery]);
 
 	useEffect(() => {
 		setSearchActive(false);
@@ -105,7 +105,7 @@ const Navbar = () => {
 		setShowMenu(false);
 
 		changePageNameHandler(route);
-	}, [location]);
+	}, [location, route]);
 
 	return (
 		<>
@@ -126,16 +126,13 @@ const Navbar = () => {
 				</NavLink>
 
 				<div className={styles.middlePart}>
-					
 					<h1 className={styles.currentPage}>{pageName}</h1>
 
 					<ul className={styles.linkContainer}>
 						<li className={styles.linkList}>
 							<NavLink
 								to="/"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>Home</span>
 								<hr className={styles.indicator} />
@@ -144,9 +141,7 @@ const Navbar = () => {
 						<li className={styles.linkList}>
 							<NavLink
 								to="/shop"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>Shop</span>
 								<hr className={styles.indicator} />
@@ -199,9 +194,7 @@ const Navbar = () => {
 						<li className={styles.linkList}>
 							<NavLink
 								to="/about"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>About Us</span>
 								<hr className={styles.indicator} />
@@ -234,9 +227,7 @@ const Navbar = () => {
 
 						<div className={`${styles.logoContainer}`}>
 							<CartNavbar
-								className={`${cartActive && styles.cartLogoActive} ${
-									styles.cartLogo
-								}`}
+								className={`${cartActive && styles.cartLogoActive} ${styles.cartLogo}`}
 							/>
 							<div
 								className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-45%] w-10 h-12"
