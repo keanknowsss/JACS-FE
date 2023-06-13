@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-	ChipIcon,
-	MonitorIcon,
-	MouseIcon,
-	PrinterIcon,
-} from "../../../../assets/icons";
+import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../../../assets/icons";
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
@@ -15,11 +10,11 @@ import { INPUT_INITIAL_VALUE } from "../../../../constants";
 import {
 	useAddUserDetailsMutation,
 	useGetUserDetailQuery,
-	userApi,
+	userApi
 } from "../../../../features/api/builders/userApi";
 import {
 	selectCurrentUserId,
-	verifyUser,
+	verifyUser
 } from "../../../../features/slice/userAccessSlice";
 
 import styles from "./UserProfile.module.scss";
@@ -31,6 +26,7 @@ const UserInformation = ({ title }) => {
 	const [lastName, setLastName] = useState(INPUT_INITIAL_VALUE);
 	const [contactNumber, setContactNumber] = useState(INPUT_INITIAL_VALUE);
 	const [email, setEmail] = useState(INPUT_INITIAL_VALUE);
+	const [address, setAddress] = useState(INPUT_INITIAL_VALUE);
 
 	const [showModal, setShowModal] = useState(false);
 
@@ -74,6 +70,7 @@ const UserInformation = ({ title }) => {
 			lastName: lastName.value,
 			email: email.value,
 			contactNo: contactNumber.value,
+			address: address.value
 		});
 
 		if (error) {
@@ -83,6 +80,7 @@ const UserInformation = ({ title }) => {
 			setLastName({ ...lastName, error: true });
 			setContactNumber({ ...contactNumber, error: true });
 			setEmail({ ...email, error: true });
+			setAddress({ ...email, error: true });
 			return;
 		} else {
 			setShowModal(true);
@@ -105,6 +103,10 @@ const UserInformation = ({ title }) => {
 		}
 		if (email.value === "") {
 			setEmail({ ...email, error: true });
+			isFormValid = false;
+		}
+		if (address.value === "") {
+			setEmail({ ...address, error: true });
 			isFormValid = false;
 		}
 		!isFormValid && alert("Error: Invalid Inputs!");
@@ -149,11 +151,7 @@ const UserInformation = ({ title }) => {
 				subtitle={toastMessage}
 			/>
 			<main className={styles.formContainer}>
-				<form
-					className={styles.formElement}
-					onSubmit={submitHandler}
-					noValidate
-				>
+				<form className={styles.formElement} onSubmit={submitHandler} noValidate>
 					<FormContainer>
 						<div data-title="heading">
 							<h1>User Information</h1>
@@ -197,6 +195,15 @@ const UserInformation = ({ title }) => {
 								required={true}
 							>
 								Email
+							</InputField>
+							<InputField
+								name="address"
+								type="text"
+								state={address}
+								setState={setAddress}
+								required={true}
+							>
+								Address
 							</InputField>
 						</div>
 						<button type="submit" className={styles.saveButton}>
