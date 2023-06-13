@@ -22,9 +22,8 @@ export const cartApi = apiMiddleware.injectEndpoints({
 
         updateCart: builder.mutation({
             query: ({id, products}) => {
-                console.log(id)
-                console.log(products)
-
+                // console.log(id)
+                // console.log(products)
                 return {
                     url: `/cart/${id}`,
                     method: "PUT",

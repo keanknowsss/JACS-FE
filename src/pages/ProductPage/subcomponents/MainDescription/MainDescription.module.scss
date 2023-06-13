@@ -35,7 +35,7 @@
     }
 
     .deliveryDetails {
-      @apply grid grid-rows-3 grid-cols-3 p-5 rounded-md shadow-md items-start;
+      @apply grid grid-rows-3 grid-cols-3 p-5 rounded-md shadow-md items-start gap-y-7 items-center;
       background-color: #333840;
 
       .time,
