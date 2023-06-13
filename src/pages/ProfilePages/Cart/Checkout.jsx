@@ -4,17 +4,17 @@ import styles from "./Checkout.module.scss";
 import StoreRow from "./checkoutSubcomponents/StoreRow";
 import { useNavigate } from "react-router-dom";
 
-const Checkout = ({ title, setPage }) => {
+const Checkout = ({ title, setPage, stores, products, address }) => {
 	document.title = title;
 
 	const [transactions, setTransactions] = useState("walk-in");
 	const [payment, setPayment] = useState("cash");
 	const navigate = useNavigate();
 
-	const sample_order_id = "adsad234e13143"
+	const sample_order_id = "adsad234e13143";
 
 	const orderHandler = () => {
-		navigate(`/order/${sample_order_id}`)
+		navigate(`/order/${sample_order_id}`);
 	};
 
 	const goToCart = () => {
@@ -33,11 +33,12 @@ const Checkout = ({ title, setPage }) => {
 					</button>
 				</div>
 				<div className={styles.storeItemsContainer}>
-					{
-						STORE_NAME.map((name) => (
-							<StoreRow name={name} />
-						))
-					}
+					{stores.map((name) => (
+						<StoreRow
+							name={name}
+							products={products.filter((item) => item.storeName.trim() === name)}
+						/>
+					))}
 				</div>
 			</section>
 			<section className={styles.checkoutDetails}>
@@ -46,17 +47,13 @@ const Checkout = ({ title, setPage }) => {
 					<hr />
 					<div className={styles.toggleChoices}>
 						<button
-							className={`${
-								transactions === "walk-in" ? styles.selected : null
-							}`}
+							className={`${transactions === "walk-in" ? styles.selected : null}`}
 							onClick={() => setTransactions("walk-in")}
 						>
 							Walk-in
 						</button>
 						<button
-							className={`${
-								transactions === "delivery" ? styles.selected : null
-							}`}
+							className={`${transactions === "delivery" ? styles.selected : null}`}
 							onClick={() => setTransactions("delivery")}
 						>
 							Delivery
@@ -89,9 +86,7 @@ const Checkout = ({ title, setPage }) => {
 								<LocationIcon className={styles.locationIcon} />
 								{/* -- REQUIRED WITH ADDRESS */}
 								<span className={styles.address}>
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-									Nesciunt, illum deserunt aperiam perferendis odio mollitia
-									sint consequuntur minus quidem? Voluptatum?
+									{address}
 								</span>
 							</p>
 						</div>
