@@ -7,6 +7,7 @@ const TestPage = ({ title }) => {
 	const [showMenu, setShowMenu] = useState(true);
 	const [selectedItems, setSelectedItems] = useState([])
 
+
 	return (
 		<>
 			<main className="h-screen w-full bg-primary-default">
@@ -14,8 +15,16 @@ const TestPage = ({ title }) => {
 					<h1>test</h1>
 					<p>test</p>
 				</Modal> */}
+				{/* <Modal setShowModal={setShowMenu} showModal={showMenu} type="callback">
+					<h1>test</h1>
+					<p>test</p>
+				</Modal> */}
 				{/* <CartCard /> */}
 				{/* <BuildCard /> */}
+				{/* <ProductCardShop selectedItem={selectedItems} setSelectedItem={setSelectedItems} /> */}
+				{/* <Menu showMenu={true} setShowMenu={setShowMenu} /> */}
+			
+				<ProductModal type="add" showModal={showMenu} setShowModal={setShowMenu} />
 				{/* <ProductCardShop selectedItem={selectedItems} setSelectedItem={setSelectedItems} /> */}
 				{/* <Menu showMenu={true} setShowMenu={setShowMenu} /> */}
 			

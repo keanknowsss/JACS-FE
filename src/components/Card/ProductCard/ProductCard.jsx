@@ -3,8 +3,8 @@ import styles from "./ProductCard.module.scss";
 
 import { Link } from "react-router-dom";
 
-const ProductCard = (props, { modifierClass }) => {
-  const { _id, category, name, img, price } = props;
+const ProductCard = (props) => {
+  const { _id, category, name, img, price, modifierClass } = props;
 
   return (
     <>

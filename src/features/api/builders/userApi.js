@@ -12,7 +12,7 @@ export const userApi = apiMiddleware.injectEndpoints({
 		}),
 		getUser: builder.query({
 			query: (id) => `/users/${id}`,
-			providesTags: ["USER"]
+			providesTags: ["USER"],
 		}),
 		registerUser: builder.mutation({
 			query: (user) => ({
@@ -23,10 +23,10 @@ export const userApi = apiMiddleware.injectEndpoints({
 			invalidatesTags: ["USER"],
 		}),
 		updateUser: builder.mutation({
-			query: (user, id) => ({
+			query: ({id, body}) => ({
 				url: `/users/${id}`,
 				method: "PUT",
-				body: user,
+				body,
 			}),
 			invalidatesTags: ["USER"],
 		}),
@@ -35,13 +35,35 @@ export const userApi = apiMiddleware.injectEndpoints({
 			query: (userDetails) => ({
 				url: "/users/details",
 				method: "POST",
-				body: userDetails
-			})
+				body: userDetails,
+			}),
+		}),
+		updateUserDetail: builder.mutation({
+			query: ({ id, editedDetails }) => ({
+				url: `/users/${id}/details`,
+				method: "PUT",
+				body: editedDetails,
+			}),
+			invalidatesTags: ["USER_DETAILS"],
 		}),
 		getUserDetail: builder.query({
 			query: (id) => `/users/${id}/details`,
-			providesTags: ["USER_DETAILS"]
-		})
+			providesTags: ["USER_DETAILS"],
+		}),
+		addUserProfilePicture: builder.mutation({
+			query: ({ id, images }) => {
+				const body = new FormData();
+				body.append("images", images, images.name);
+
+				return {
+					url: `/users/images/${id}`,
+					method: "POST",
+					headers: {},
+					body: body,
+				};
+			},
+			invalidatesTags: ["USER"],
+		}),
 	}),
 });
 
@@ -52,6 +74,8 @@ export const {
 	useUpdateUserMutation,
 	useAddUserDetailsMutation,
 	useGetUserDetailQuery,
+	useAddUserProfilePictureMutation,
+	useUpdateUserDetailMutation,
 } = userApi;
 
-export const { getUserDetail } = userApi.endpoints;
+export const { getUser, getUserDetail } = userApi.endpoints;

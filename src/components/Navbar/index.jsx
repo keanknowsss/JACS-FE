@@ -6,16 +6,17 @@ import styles from "./Navbar.module.scss";
 import { useSelector } from "react-redux";
 import {
 	selectCurrentToken,
-	selectCurrentUserId,
+	selectCurrentUserId
 } from "../../features/slice/userAccessSlice";
 import {
 	ProfileNavbar,
-	SearchNavbar,
+	// SearchNavbar,
 	CartNavbar,
-	MenuIcon,
+	MenuIcon
 } from "../../assets/icons";
-import { getUserDetail } from "../../features/api/builders/userApi";
+import { getUser, getUserDetail } from "../../features/api/builders/userApi";
 import Menu from "./subcomponents/Menu/Menu";
+import { getCart } from "../../features/api/builders/cartApi";
 
 const Navbar = () => {
 	const [searchActive, setSearchActive] = useState(false);
@@ -24,18 +25,25 @@ const Navbar = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [pageName, setPageName] = useState(null);
 
+	const [cart, setCart] = useState();
+
+	const [isSeller, setIsSeller] = useState(false);
+
 	const token = useSelector(selectCurrentToken);
 	const id = useSelector(selectCurrentUserId);
 
-	const [queryData] = getUserDetail.useLazyQuery();
+	const [userDataQuery] = getUser.useLazyQuery();
+	const [userDetailQuery] = getUserDetail.useLazyQuery();
 	const [name, setName] = useState(null);
+	const [profilePicture, setProfilePicture] = useState(null);
+	const [getCartQuery] = getCart.useLazyQuery();
 
 	const route = useHref();
 	const location = useLocation();
 
-	const handleSearch = (e) => {
-		searchActive ? setSearchActive(false) : setSearchActive(true);
-	};
+	// const handleSearch = (e) => {
+	// 	searchActive ? setSearchActive(false) : setSearchActive(true);
+	// };
 
 	const changePageNameHandler = (pageLocation) => {
 		switch (pageLocation) {
@@ -79,16 +87,35 @@ const Navbar = () => {
 	useLayoutEffect(() => {
 		const getData = async () => {
 			if (token && id) {
-				const { data, error } = await queryData(id);
-				if (!error) {
-					setName(data?.result?.firstName);
+				const userDetailData = await userDetailQuery(id);
+				const userData = await userDataQuery(id);
+
+				if (!userDetailData.error && !userData.error) {
+					const nameArray = userDetailData.data?.result?.firstName.split(" ");
+					setName(nameArray[0]);
+					setProfilePicture(userDetailData.data?.result?.img);
+					setIsSeller(userData.data?.result?.isSeller);
 				} else {
-					console.log("error in profile name", error?.result);
+					console.log("error in user data", userDetailData.error, userData.error);
 				}
 			}
 		};
 		getData();
-	}, [token, id]);
+	}, [token, id, userDetailQuery, userDataQuery]);
+
+	useLayoutEffect(() => {
+		const getData = async () => {
+			try {
+				const { data } = await getCartQuery(id);
+				setCart(data.result.products);
+
+
+			} catch (error) {
+				console.log("Error in getting cart", error)
+			}
+		}
+		getData()
+	}, [])
 
 	useEffect(() => {
 		setSearchActive(false);
@@ -96,7 +123,7 @@ const Navbar = () => {
 		setShowMenu(false);
 
 		changePageNameHandler(route);
-	}, [location]);
+	}, [location, route]);
 
 	return (
 		<>
@@ -117,16 +144,13 @@ const Navbar = () => {
 				</NavLink>
 
 				<div className={styles.middlePart}>
-					
 					<h1 className={styles.currentPage}>{pageName}</h1>
 
 					<ul className={styles.linkContainer}>
 						<li className={styles.linkList}>
 							<NavLink
 								to="/"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>Home</span>
 								<hr className={styles.indicator} />
@@ -135,15 +159,13 @@ const Navbar = () => {
 						<li className={styles.linkList}>
 							<NavLink
 								to="/shop"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>Shop</span>
 								<hr className={styles.indicator} />
 							</NavLink>
 						</li>
-						<li className={styles.linkList}>
+						{/* <li className={styles.linkList}>
 							<NavLink
 								to="/buildpc"
 								className={({ isActive }) =>
@@ -186,13 +208,11 @@ const Navbar = () => {
 								<span>Repair</span>
 								<hr className={styles.indicator} />
 							</NavLink>
-						</li>
+						</li> */}
 						<li className={styles.linkList}>
 							<NavLink
 								to="/about"
-								className={({ isActive }) =>
-									isActive ? styles.active : styles.inactive
-								}
+								className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
 							>
 								<span>About Us</span>
 								<hr className={styles.indicator} />
@@ -202,13 +222,13 @@ const Navbar = () => {
 				</div>
 				<div className={styles.rightPart}>
 					<div className="float-right flex">
-						<button className={styles.logoContainer} onClick={handleSearch}>
+						{/* <button className={styles.logoContainer} onClick={handleSearch}>
 							<SearchNavbar
 								className={`${
 									!searchActive ? styles.searchLogo : styles.searchLogoActive
 								} transition-all ease-in duration-100`}
 							/>
-						</button>
+						</button> */}
 
 						<div className={styles.logoContainer}>
 							<ProfileNavbar
@@ -223,18 +243,16 @@ const Navbar = () => {
 							></div>
 						</div>
 
-						<div className={`${styles.logoContainer}`}>
+						{/* <div className={`${styles.logoContainer}`}>
 							<CartNavbar
-								className={`${cartActive && styles.cartLogoActive} ${
-									styles.cartLogo
-								}`}
+								className={`${cartActive && styles.cartLogoActive} ${styles.cartLogo}`}
 							/>
 							<div
 								className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-45%] w-10 h-12"
 								onMouseEnter={(e) => setCartActive(true)}
 								onMouseLeave={(e) => setCartActive(false)}
 							></div>
-						</div>
+						</div> */}
 						<button
 							className={styles.menuButtonContainer}
 							onClick={() => setShowMenu(true)}
@@ -249,11 +267,13 @@ const Navbar = () => {
 						setProfileActive={setProfileActive}
 						name={name}
 						className={styles.profileSection}
+						userPic={profilePicture}
+						isSeller={isSeller}
 					/>
 				)}
-				{cartActive && (
-					<Cart setCartActive={setCartActive} className={styles.cartSection} />
-				)}
+				{/* {cartActive && (
+					<Cart setCartActive={setCartActive} className={styles.cartSection} cart={cart} />
+				)} */}
 			</nav>
 
 			{searchActive && <Search />}

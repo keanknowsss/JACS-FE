@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {
-	ChipIcon,
-	MonitorIcon,
-	MouseIcon,
-	PrinterIcon,
-} from "../../../../assets/icons";
+import { ChipIcon, MonitorIcon, MouseIcon, PrinterIcon } from "../../../../assets/icons";
 import FormContainer from "../../../../components/FormContainer";
 import InputField from "../../../../components/InputField";
 import Modal from "../../../../components/Modal";
 import Toast from "../../../../components/Toast";
 import { INPUT_INITIAL_VALUE } from "../../../../constants";
 import {
+	getUser,
 	getUserDetail,
-	useLoginMutation,
+	useLoginMutation
 } from "../../../../features/api/builders/userApi";
 import {
 	logOut,
 	selectCurrentToken,
-	setCredentials,
+	setCredentials
 } from "../../../../features/slice/userAccessSlice";
 import styles from "./Login.module.scss";
+import { setSeller, setSellerId } from "../../../../features/slice/sellerAccessSlice";
+import { getSellerDetail } from "../../../../features/api/builders/sellerApi";
 
 const Login = ({ title }) => {
 	document.title = title;
@@ -37,7 +35,9 @@ const Login = ({ title }) => {
 	const [emailAccount, setEmailAccount] = useState("");
 	const [emailExist, setEmailExist] = useState(true);
 
-	const [queryData] = getUserDetail.useLazyQuery();
+	const [userDetailQueryData] = getUserDetail.useLazyQuery();
+	const [userQueryData] = getUser.useLazyQuery();
+	const [sellerDetailQueryData] = getSellerDetail.useLazyQuery();
 
 	const [login] = useLoginMutation();
 
@@ -51,14 +51,16 @@ const Login = ({ title }) => {
 	const USER = {
 		username: "test",
 		password: "12345",
-		email: "test@test.com",
+		email: "test@test.com"
 	};
 
 	useEffect(() => {
-		token && navigate("/")
+		token && navigate("/");
 	}, [token, navigate]);
 
 	const submitHandler = async (e) => {
+		let isSeller = false;
+
 		e.preventDefault();
 
 		if (!formValidation()) {
@@ -68,13 +70,23 @@ const Login = ({ title }) => {
 		try {
 			const { result } = await login({
 				username: username.value,
-				password: password.value,
+				password: password.value
 			}).unwrap();
-			dispatch(setCredentials(result));
+			await dispatch(setCredentials(result));
 			setPassword({ ...password, value: "" });
 			setUsername({ ...username, value: "" });
 
-			const { data, isLoading, isFetching } = await queryData(result?._id);
+			const { data, isLoading, isFetching } = await userDetailQueryData(result?._id);
+			const userData = await userQueryData(result?._id);
+
+			isSeller = userData.data.result.isSeller;
+
+			if (isSeller) {
+				const sellerDetail = await sellerDetailQueryData(result?._id);
+				// console.log(sellerDetail.data.result._id);
+				await dispatch(setSellerId(sellerDetail.data.result._id));
+				await dispatch(setSeller(userData.data.result.isSeller));
+			}
 
 			if (!isLoading && !isFetching) {
 				data?.result
@@ -154,11 +166,7 @@ const Login = ({ title }) => {
 				subtitle={apiErrorMessage}
 			/>
 			<main className={styles.formContainer}>
-				<form
-					className={styles.formElement}
-					onSubmit={submitHandler}
-					noValidate
-				>
+				<form className={styles.formElement} onSubmit={submitHandler} noValidate>
 					<FormContainer>
 						<div data-title="heading">
 							<h2>Welcome Back</h2>

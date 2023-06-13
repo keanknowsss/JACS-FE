@@ -1,0 +1,123 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+.item {
+	@apply w-full bg-primary-5 rounded-lg flex items-center gap-5;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+	padding: 18px 22px;
+
+	.selectItem {
+		@apply bg-lightWhite rounded-full flex-none mr-1;
+		height: 18px;
+		width: 18px;
+	}
+
+	img {
+		width: 142px;
+		height: 142px;
+		filter: drop-shadow(4px 4px 20px #000000);
+		border-radius: 20px;
+		object-fit: cover;
+	}
+
+	.content {
+		@apply grid self-start;
+		grid-template-columns: auto auto;
+
+		.texts {
+			@apply flex justify-between;
+			p {
+				@apply mt-2 items-start w-full;
+				display: -webkit-box;
+				width: 100%;
+				overflow: hidden;
+				-webkit-line-clamp: 6;
+				-webkit-box-orient: vertical;
+			}
+
+			.price {
+				@apply font-bold text-2xl text-secondary-default self-start mt-2 flex-none text-center;
+				min-width: 150px;
+			}
+		}
+
+		.modifyItem {
+			@apply flex flex-col gap-y-3 mt-2;
+			max-width: 100px;
+
+			.btnContainer {
+				@apply flex justify-center gap-x-4 mt-1 -ml-1;
+				.heart {
+					@apply text-secondary-default;
+					svg {
+						height: 25px;
+					}
+				}
+
+				.saved {
+					svg {
+						@apply fill-secondary-default;
+					}
+				}
+
+				.delete {
+					@apply text-secondary-default;
+
+					svg {
+						height: 26px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1210px) {
+	.item {
+		.content {
+			.texts {
+				@apply flex flex-col;
+
+				p {
+					display: -webkit-box;
+					width: 100%;
+					overflow: hidden;
+					-webkit-line-clamp: 4;
+					-webkit-box-orient: vertical;
+				}
+
+				.price {
+					@apply mt-0 mx-0 text-left w-auto;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.item {
+		.content {
+			@apply flex flex-col gap-y-2;
+			.texts {
+				@apply gap-y-2;
+				p {
+					display: -webkit-box;
+					width: 100%;
+					overflow: hidden;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+				}
+			}
+
+			.modifyItem {
+				@apply flex-row w-full justify-between;
+				max-width: 100%;
+
+				.btnContainer {
+					@apply -mt-0.5 justify-end w-full;
+				}
+			}
+		}
+		
+	}
+}

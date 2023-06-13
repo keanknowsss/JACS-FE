@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .defaultBtn {
-    @apply absolute transition-all duration-100 ease-in-out;
+    @apply transition-all duration-100 ease-in-out;
 
     width: 20px;
 	height: 20px;
@@ -18,5 +18,5 @@
 }
 
 .activeButton {
-    background: $secondary-default;
+    background: $secondary-default !important;
 }

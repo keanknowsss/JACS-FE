@@ -30,6 +30,7 @@ export { default as ErrorIcon } from "./ErrorIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as FilterIcon } from "./FilterIcon";
 export { default as ArrowNavigation } from "./ArrowNavigation";
+export { default as ArrowLine} from "./ArrowLine";
 export { default as EditIcon } from "./EditIcon";
 
 export { default as AddIcon } from "./AddIcon";
@@ -55,3 +56,5 @@ export { default as MenuIcon } from "./MenuIcon";
 export { default as StackOverflowIcon } from "./StackOverflowIcon";
 
 export { default as StarIcon } from "./StarIcon";
+
+export { default as LocationIcon } from "./LocationIcon";

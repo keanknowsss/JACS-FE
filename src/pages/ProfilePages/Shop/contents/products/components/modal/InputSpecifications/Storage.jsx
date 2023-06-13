@@ -1,6 +1,6 @@
 import styles from "../ProductModal.module.scss";
 
-const Storage = ({ object, setObject }) => {
+const Storage = ({ object, setObject, error }) => {
 	return (
 		<>
 			<label htmlFor="manufacturer">Manufacturer: </label>
@@ -8,7 +8,9 @@ const Storage = ({ object, setObject }) => {
 				type="text"
 				id="manufacturer"
 				placeholder="Corsair"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.manufacturer ? styles.errorClass : null
+				}`}
 				value={object.manufacturer}
 				onChange={(e) =>
 					setObject({
@@ -16,7 +18,6 @@ const Storage = ({ object, setObject }) => {
 						manufacturer: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="capacity">Capacity (GB): </label>
 			<input
@@ -24,7 +25,9 @@ const Storage = ({ object, setObject }) => {
 				id="capacity"
 				placeholder="1000"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.capacity ? styles.errorClass : null
+				}`}
 				value={object.capacity}
 				onChange={(e) =>
 					setObject({
@@ -32,14 +35,15 @@ const Storage = ({ object, setObject }) => {
 						capacity: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="type">Type: </label>
 			<input
 				type="text"
 				id="type"
 				placeholder="SSD"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.type ? styles.errorClass : null
+				}`}
 				value={object.type}
 				onChange={(e) =>
 					setObject({
@@ -47,7 +51,6 @@ const Storage = ({ object, setObject }) => {
 						type: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="cache">Cache (MB): </label>
 			<input
@@ -55,7 +58,9 @@ const Storage = ({ object, setObject }) => {
 				id="cache"
 				placeholder="256"
 				min={0}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.cache ? styles.errorClass : null
+				}`}
 				value={object.cache}
 				onChange={(e) =>
 					setObject({
@@ -63,14 +68,15 @@ const Storage = ({ object, setObject }) => {
 						cache: e.target.value,
 					})
 				}
-				required
 			/>
-            <label htmlFor="formFactor">Type: </label>
+            <label htmlFor="formFactor">Form Factor: </label>
 			<input
 				type="text"
 				id="formFactor"
 				placeholder="3.5"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.formFactor ? styles.errorClass : null
+				}`}
 				value={object.formFactor}
 				onChange={(e) =>
 					setObject({
@@ -78,14 +84,15 @@ const Storage = ({ object, setObject }) => {
 						formFactor: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="interface">Interface: </label>
 			<input
 				type="text"
 				id="interface"
 				placeholder="SATA 6.0 GB/s"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.interface ? styles.errorClass : null
+				}`}
 				value={object.interface}
 				onChange={(e) =>
 					setObject({
@@ -93,7 +100,6 @@ const Storage = ({ object, setObject }) => {
 						interface: e.target.value,
 					})
 				}
-				required
 			/>
             <label htmlFor="nvme">NVME: </label>
 			<select
@@ -106,7 +112,6 @@ const Storage = ({ object, setObject }) => {
 						nvme: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="true">True</option>
 				<option value="false">False</option>

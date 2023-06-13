@@ -3,7 +3,34 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import {
-	AboutUs, Build, BuildYourPC, Cart, Forum, Home, LoginForm, NotFound, Order, Profile, ProfileNavbar, Repair, Saved, Settings, Shop, ShopProfile, StoreProfileForm, StoreRegisterForm, Tech101, TechnicianProfile, TechnicianProfileForm, TechnicianRegisterForm, TestPage, UserProfileForm, UserRegisterForm
+	Home,
+	Shop,
+	BuildYourPC,
+	Forum,
+	Tech101,
+	Repair,
+	AboutUs,
+	Terms,
+	Privacy,
+	NotFound,
+	UserRegisterForm,
+	UserProfileForm,
+	LoginForm,
+	TechnicianRegisterForm,
+	StoreRegisterForm,
+	StoreProfileForm,
+	TechnicianProfileForm,
+	Profile,
+	Cart,
+	Build,
+	Saved,
+	Order,
+	ProfileNavbar,
+	Settings,
+	ShopProfile,
+	TechnicianProfile,
+	TestPage,
+	OrderSuccess,
 } from "../pages";
 import Product from "../pages/ProductPage/Product";
 import MainRoutes from "./MainRoutes";
@@ -23,6 +50,8 @@ const Navigation = () => {
 		Tech101: "JACS Tech101 - Just Another Computer Shop",
 		Repair: "JACS Repair - Just Another Computer Shop",
 		About: "About JACS - Just Another Computer Shop",
+		Terms: "Terms of Service",
+		Privacy: "Privacy Policy",
 
 		LoginForm: "Login - Just Another Computer Shop",
 		UserRegisterForm: "Create an Account - Just Another Computer Shop",
@@ -44,9 +73,11 @@ const Navigation = () => {
 		Build: "My Builds - Just Another Computer Shop",
 		Saved: "Saved - Just Another Computer Shop",
 		Order: "My Orders - Just Another Computer Shop",
-		Settings: "Settings - Just Another Computer Shop",
+		Settings: "User Settings - Just Another Computer Shop",
 
-		NotFound: "ERR.. OOPS WE DON'T HAVE THAT HERE 😫",
+		Checkout: "Checkout - Just Another Computer Shop",
+
+		NotFound: "Page Not Found 😫",
 		Test: "Testing",
 	};
 
@@ -63,6 +94,8 @@ const Navigation = () => {
 					<Route path="/tech101" element={<Tech101 title={TITLES.Tech101} />} />
 					<Route path="/repair" element={<Repair title={TITLES.Repair} />} />
 					<Route path="/about" element={<AboutUs title={TITLES.About} />} />
+					<Route path="/terms" element={<Terms title={TITLES.Terms} />} />
+					<Route path="/privacy" element={<Privacy title={TITLES.Privacy} />} />
 
 					<Route path="/user/information" element={<UserProfileForm title={TITLES.UserProfileForm} />}/>
 					<Route path="/store/register" element={<StoreRegisterForm title={TITLES.StoreRegisterForm} />} />
@@ -70,9 +103,11 @@ const Navigation = () => {
 					<Route path="/technician/register" element={<TechnicianRegisterForm title={TITLES.TechnicianRegisterForm} />} />
 					<Route path="/technician/profile" element={<TechnicianProfileForm title={TITLES.TechnicianProfileForm} />} />
 
+					<Route path="/order/:orderId" element={<OrderSuccess />}  />
+
 					<Route exact path="/profile" element={<ProfileNavbar />}>
 						<Route index element={<Profile title={TITLES.Profile} />} />
-						<Route path="cart" element={<Cart title={TITLES.Cart} />} />
+						<Route path="cart" element={<Cart title={TITLES.Cart} checkoutTitle={TITLES.Checkout} />} />
 						<Route path="builds" element={<Build title={TITLES.Build} />} />
 						<Route path="saved" element={<Saved title={TITLES.Saved} />} />
 						<Route path="orders" element={<Order title={TITLES.Order} />} />

@@ -3,13 +3,13 @@ import { CircleLoading, TextLoading } from "../../assets/images";
 
 import styles from "./Loading.module.scss";
 
-const Loading = () => {
-  return (
-    <div className={styles.loading}>
-      <img src={CircleLoading} className="" alt="" />
-      <TextLoading />
-    </div>
-  );
+const Loading = ({ modifierClass }) => {
+	return (
+		<div className={`${styles.loading} ${modifierClass}`}>
+			<img src={CircleLoading} className="" alt="" />
+			<TextLoading />
+		</div>
+	);
 };
 
 /*

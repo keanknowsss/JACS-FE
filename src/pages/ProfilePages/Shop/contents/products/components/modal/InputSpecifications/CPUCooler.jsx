@@ -1,6 +1,6 @@
 import styles from "../ProductModal.module.scss";
 
-const CPUCooler = ({ object, setObject }) => {
+const CPUCooler = ({ object, setObject, error }) => {
 	return (
 		<>
 			<label htmlFor="manufacturer">Manufacturer: </label>
@@ -8,7 +8,9 @@ const CPUCooler = ({ object, setObject }) => {
 				type="text"
 				id="manufacturer"
 				placeholder="Cooler Master"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.manufacturer ? styles.errorClass : null
+				}`}
 				value={object.manufacturer}
 				onChange={(e) =>
 					setObject({
@@ -16,12 +18,14 @@ const CPUCooler = ({ object, setObject }) => {
 						manufacturer: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="model">Model: </label>
 			<input
 				type="text"
 				id="model"
+				className={`${
+					error.model ? styles.errorClass : null
+				}`}
 				placeholder="Hyper 212 RGB Black Edition"
 				value={object.model}
 				onChange={(e) =>
@@ -30,13 +34,14 @@ const CPUCooler = ({ object, setObject }) => {
 						model: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="fanRPM">Fan Speed (RPM): </label>
 			<input
 				type="text"
 				id="fanRPM"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.fanRPM ? styles.errorClass : null
+				}`}
 				placeholder="650 - 2000"
 				value={object.fanRPM}
 				onChange={(e) =>
@@ -45,13 +50,14 @@ const CPUCooler = ({ object, setObject }) => {
 						fanRPM: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="noiseLevel">Noise Level (dB): </label>
 			<input
 				type="text"
 				id="noiseLevel"
-				className={styles.medText}
+				className={`${styles.medText} ${
+					error.noiseLevel ? styles.errorClass : null
+				}`}
 				placeholder="8 -30"
 				value={object.noiseLevel}
 				onChange={(e) =>
@@ -60,7 +66,6 @@ const CPUCooler = ({ object, setObject }) => {
 						noiseLevel: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="color">Color: </label>
 			<input
@@ -75,7 +80,6 @@ const CPUCooler = ({ object, setObject }) => {
 						color: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="height">Height (mm): </label>
 			<input
@@ -83,7 +87,9 @@ const CPUCooler = ({ object, setObject }) => {
 				id="height"
 				placeholder="159"
 				min={1}
-				className={styles.smallNumber}
+				className={`${styles.smallNumber} ${
+					error.height ? styles.errorClass : null
+				}`}
 				value={object.height}
 				onChange={(e) =>
 					setObject({
@@ -91,14 +97,15 @@ const CPUCooler = ({ object, setObject }) => {
 						height: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="cpuSocket">CPU Socket: </label>
 			<input
 				type="text"
 				id="cpuSocket"
-				className={styles.medText}
 				placeholder="AM4"
+				className={`${styles.medText} ${
+					error.cpuSocket ? styles.errorClass : null
+				}`}
 				value={object.cpuSocket}
 				onChange={(e) =>
 					setObject({
@@ -106,7 +113,6 @@ const CPUCooler = ({ object, setObject }) => {
 						cpuSocket: e.target.value,
 					})
 				}
-				required
 			/>
 			<label htmlFor="waterCooled">Water Cooling: </label>
 			<select
@@ -119,7 +125,6 @@ const CPUCooler = ({ object, setObject }) => {
 						waterCooled: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="true">True</option>
 				<option value="false">False</option>
@@ -135,7 +140,6 @@ const CPUCooler = ({ object, setObject }) => {
 						fanless: e.target.value,
 					})
 				}
-				required
 			>
 				<option value="true">True</option>
 				<option value="false">False</option>

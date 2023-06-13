@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { AddIcon, ArrowNavigation } from "../../../../assets/icons";
+import { ArrowNavigation } from "../../../../assets/icons";
 import { ReviewCard } from "../../../../components/Card";
 import styles from "./Reviews.module.scss";
 
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { CircleLoading } from "../../../../assets/images";
 import { Select } from "../../../../components/Select";
 import { useGetAllReviewsOfRefQuery } from "../../../../features/api/builders/reviewApi";
+import AddReviewModal from "./AddReviewModal/AddReviewModal";
 
 const Reviews = () => {
   const { productId } = useParams();
@@ -65,10 +66,11 @@ const Reviews = () => {
     <div className={styles.main}>
       <div className={styles.header}>
         <h1 className={styles.headerTitle}>Reviews {`(${totalDocs})`}</h1>
-        <button className={styles.btn}>
+        {/* <button className={styles.btn}>
           <AddIcon className={styles.addIcon} />
           Add a Review
-        </button>
+        </button> */}
+        <AddReviewModal referenceID={productId}/>
       </div>
 
       <span className={styles.divider}></span>
