@@ -239,7 +239,7 @@ const Setting = ({ title }) => {
 				address && setUserAddress(address);
 				setPhone(contactNo);
 				setEmail(email);
-				setProfilePicture(img);
+				img && setProfilePicture(img);
 			} catch (error) {
 				console.log("data load error: ", error);
 			}

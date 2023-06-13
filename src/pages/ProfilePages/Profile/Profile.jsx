@@ -101,7 +101,8 @@ const Profile = ({ title }) => {
 				address && setUserAddress(address);
 				setContactNumber(contactNo);
 				setEmailAddress(email);
-				setProfilePicture(img);
+				
+				img && setProfilePicture(img);
 			} catch (error) {
 				console.log("data load error: ", error);
 			}
