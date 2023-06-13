@@ -16,6 +16,7 @@ import {
 } from "../../assets/icons";
 import { getUser, getUserDetail } from "../../features/api/builders/userApi";
 import Menu from "./subcomponents/Menu/Menu";
+import { getCart } from "../../features/api/builders/cartApi";
 
 const Navbar = () => {
 	const [searchActive, setSearchActive] = useState(false);
@@ -23,6 +24,8 @@ const Navbar = () => {
 	const [cartActive, setCartActive] = useState(false);
 	const [showMenu, setShowMenu] = useState(false);
 	const [pageName, setPageName] = useState(null);
+
+	const [cart, setCart] = useState();
 
 	const [isSeller, setIsSeller] = useState(false);
 
@@ -33,6 +36,7 @@ const Navbar = () => {
 	const [userDetailQuery] = getUserDetail.useLazyQuery();
 	const [name, setName] = useState(null);
 	const [profilePicture, setProfilePicture] = useState(null);
+	const [getCartQuery] = getCart.useLazyQuery();
 
 	const route = useHref();
 	const location = useLocation();
@@ -98,6 +102,20 @@ const Navbar = () => {
 		};
 		getData();
 	}, [token, id, userDetailQuery, userDataQuery]);
+
+	useLayoutEffect(() => {
+		const getData = async () => {
+			try {
+				const { data } = await getCartQuery(id);
+				setCart(data.result.products);
+
+
+			} catch (error) {
+				console.log("Error in getting cart", error)
+			}
+		}
+		getData()
+	}, [])
 
 	useEffect(() => {
 		setSearchActive(false);
@@ -225,7 +243,7 @@ const Navbar = () => {
 							></div>
 						</div>
 
-						<div className={`${styles.logoContainer}`}>
+						{/* <div className={`${styles.logoContainer}`}>
 							<CartNavbar
 								className={`${cartActive && styles.cartLogoActive} ${styles.cartLogo}`}
 							/>
@@ -234,7 +252,7 @@ const Navbar = () => {
 								onMouseEnter={(e) => setCartActive(true)}
 								onMouseLeave={(e) => setCartActive(false)}
 							></div>
-						</div>
+						</div> */}
 						<button
 							className={styles.menuButtonContainer}
 							onClick={() => setShowMenu(true)}
@@ -253,9 +271,9 @@ const Navbar = () => {
 						isSeller={isSeller}
 					/>
 				)}
-				{cartActive && (
-					<Cart setCartActive={setCartActive} className={styles.cartSection} />
-				)}
+				{/* {cartActive && (
+					<Cart setCartActive={setCartActive} className={styles.cartSection} cart={cart} />
+				)} */}
 			</nav>
 
 			{searchActive && <Search />}

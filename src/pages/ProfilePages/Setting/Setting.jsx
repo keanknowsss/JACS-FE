@@ -71,7 +71,7 @@ const Setting = ({ title }) => {
 		false || location.state?.editProfile
 	);
 	const [showContactEdit, setShowContactEdit] = useState(
-		false || location.state?.editContact
+		false || location.state?.editContact || location.state?.editAddress
 	);
 	const [showStoreEdit, setShowStoreEdit] = useState(false || location.state?.editShop);
 
@@ -253,6 +253,10 @@ const Setting = ({ title }) => {
 		if (inputName.current && location.state?.editProfile && !loading) {
 			inputName.current.focus();
 			inputName.current.scrollIntoView({ behavior: "smooth" });
+		}
+		if (inputAddress.current && location.state?.editAddress && !loading) {
+			inputAddress.current.focus();
+			inputAddress.current.scrollIntoView({ behavior: "smooth" });
 		}
 		if (inputEmail.current && location.state?.editContact && !loading) {
 			inputEmail.current.focus();
