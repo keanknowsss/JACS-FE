@@ -15,6 +15,18 @@ width: 97%;
  }
 
  .termText{
+<<<<<<< HEAD
+    @apply text-secondary-default font-bold align-top;
+    font-size: 3rem;
+    padding-block: 5rem;
+}
+
+.termBody {
+    @apply text-justify text-white;
+    height: 50%;
+    padding: 5rem 20% 10% 20%;
+    font-size: 20px
+=======
     @apply text-secondary-default font-bold text-[3rem]
      align-top pt-[5rem] pb-[5rem]
     ;
@@ -24,4 +36,5 @@ width: 97%;
     @apply h-[50%] pt-[5rem] pl-[20%] pr-[20%] pb-[10%] 
     text-justify text-white text-[20px];
 
+>>>>>>> aa7160d6638a15f6cf8fbec2e803d05ec7053c17
 }
