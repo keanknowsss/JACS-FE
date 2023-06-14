@@ -7,22 +7,23 @@
 }
 
 .AboutUsText {
-	@apply text-secondary-default font-bold text-[3rem]
-         align-top pt-[5rem] pb-[5rem];
+	@apply text-secondary-default font-bold  align-top;
+	font-size: 3rem;
+	padding-block: 5rem
 }
 
 .aboutDiv {
-	@apply flex flex-col justify-center items-center 
-    bg-primary-default box-border rounded-lg;
+	@apply flex flex-col justify-center items-center bg-primary-default box-border rounded-lg;
 
 	width: 97%;
 }
 
 .abtUsTxt {
-	@apply pt-[5rem] pl-[20%] pr-[20%] pb-[10%] 
-    text-justify text-white text-[20px];
+	@apply text-justify text-white ;
 
-    height: calc(100vh - 20%);
+	font-size: 20px;
+	padding: 5rem 20% 10% 20%; 
+	height: calc(100vh - 20%);
 }
 
 .divContact {
@@ -44,9 +45,8 @@
 }
 
 .textbox {
-	@apply border border-gray-300 px-4 py-2 rounded-md 
-    focus:outline-none focus:ring-blue-500 focus:border-blue-500 w-[90%];
-
+	@apply border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+	width: 90%;
 	&::placeholder {
 		@apply text-gray-400 italic;
 	}
